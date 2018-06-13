@@ -1,10 +1,10 @@
-## freeCodeCamp Curriculum
+# freeCodeCamp Curriculum
 
 [![Build Status](https://travis-ci.org/freeCodeCamp/curriculum.svg?branch=master)](https://travis-ci.org/freeCodeCamp/curriculum) [![npm (scoped)](https://img.shields.io/npm/v/@freecodecamp/curriculum.svg)](https://www.npmjs.com/package/@freecodecamp/curriculum)
 
-This package contains the "seed" files used in the freeCodeCamp Curriculum.
+> This package contains the "seed" files used in the freeCodeCamp Curriculum.
 
-### Installation
+## Installation
 
 ```sh
 npm i @freecodecamp/curriculum
@@ -12,7 +12,7 @@ npm i @freecodecamp/curriculum
 yarn add @freecodecamp/curriculum
 ```
 
-### Usage
+## Usage
 
 ```js
 import { getChallenges } from '@freecodecamp/curriculum';
@@ -22,7 +22,7 @@ import { getChallenges } from '@freecodecamp/curriculum';
 getChallenges()
 ```
 
-#### `block` Structure
+### `block` Structure
 
 ```js
 {
@@ -37,7 +37,7 @@ getChallenges()
 }
 ```
 
-#### `challenge` Structure
+### `challenge` Structure
 
 ```js
 {
