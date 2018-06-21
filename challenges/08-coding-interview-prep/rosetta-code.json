@@ -4871,7 +4871,7 @@
           "testString": "assert.equal(IBeforeExceptC(\"omniscient\"),false,'<code>IBeforeExceptC(\"omniscient\")</code> should return <code>false</code>.');"
         }
       ],
-      "id": "5a23c84252665b21eecc7eb0",
+      "id": "5b2bae2e191f7c8138b067a3",
       "challengeType": 5,
       "releasedOn": "June 8, 2018",
       "files": {
