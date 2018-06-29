@@ -964,7 +964,7 @@
         "<blockquote>const Welcome = (props) => &lt;h1&gt;Hello, {props.user}!&lt;/h1&gt;</blockquote>",
         "It is standard to call this value <code>props</code> and when dealing with stateless functional components, you basically consider it as an argument to a function which returns JSX. You can access the value of the argument in the function body. With class components, you will see this is a little different.",
         "<hr>",
-        "There is a <code>Calendar</code> and <code>CurrentDate</code> component in the code editor. When rendering <code>CurrentDate</code> from the <code>Calendar</code> component, pass in a property of <code>date</code> assigned to the current date from JavaScript's <code>Date</code> object. Then access this <code>prop</code> in the <code>CurrentDate</code> component, showing its value within the <code>p</code> tags. Note that for <code>prop</code> values to be evaluated as JavaScript, they must be enclosed in curly brackets, for instance <code>date={Date()}</code>."
+        "There are <code>Calendar</code> and <code>CurrentDate</code> components in the code editor. When rendering <code>CurrentDate</code> from the <code>Calendar</code> component, pass in a property of <code>date</code> assigned to the current date from JavaScript's <code>Date</code> object. Then access this <code>prop</code> in the <code>CurrentDate</code> component, showing its value within the <code>p</code> tags. Note that for <code>prop</code> values to be evaluated as JavaScript, they must be enclosed in curly brackets, for instance <code>date={Date()}</code>."
       ],
       "files": {
         "indexjsx": {
@@ -3168,10 +3168,10 @@
       "title": "Render with an If/Else Condition",
       "releasedOn": "December 25, 2017",
       "description": [
-        "Another application of using JavaScript to control your rendered view is to tie the elements that are rendered to a condition. When the condition is true, one view renders, when it's false, it's a different view. You can do this with a standard <code>if/else</code> statement in the <code>render()</code> method of a React component.",
+        "Another application of using JavaScript to control your rendered view is to tie the elements that are rendered to a condition. When the condition is true, one view renders. When it's false, it's a different view. You can do this with a standard <code>if/else</code> statement in the <code>render()</code> method of a React component.",
         "<hr>",
         "MyComponent contains a <code>boolean</code> in its state which tracks whether you want to display some element in the UI or not. The <code>button</code> toggles the state of this value. Currently, it renders the same UI every time. Rewrite the <code>render()</code> method with an <code>if/else</code> statement so that if <code>display</code> is <code>true</code>, you return the current markup. Otherwise, return the markup without the <code>h1</code> element.",
-        "<strong>Note:</strong>&nbsp;You must write an <code>if/else</code> to pass the tests, use of the ternary operator will not pass here."
+        "<strong>Note:</strong>&nbsp;You must write an <code>if/else</code> to pass the tests. Use of the ternary operator will not pass here."
       ],
       "files": {
         "indexjsx": {
