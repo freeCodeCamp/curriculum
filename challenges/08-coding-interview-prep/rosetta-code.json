@@ -6873,6 +6873,506 @@
       }
     },
     {
+      "title": "Last letter-first letter",
+      "description": [
+        "A certain children's game involves starting with a word in a particular category.  Each participant in turn says a word, but that word must begin with the final letter of the previous word.  Once a word has been given, it cannot be repeated.  If an opponent cannot give a word in the category, they fall out of the game.",
+        "For example, with  \"animals\"  as the category,",
+        "<pre>",
+        "Child 1: dog",
+        "Child 2: goldfish",
+        "Child 1: hippopotamus",
+        "Child 2: snake",
+        "...",
+        "</pre>",
+        "Write a function that takes an array containing words. The function should return an array of words such that every word's first letter should be the same as that of the previous word. The first word can be any word freely. All the words should be present in the input array and no word should be repeated. The words should be selected so that the length of the array is maximized."
+      ],
+      "solutions": [
+        "function findLongestChain (items) {\n  function Ref(index, first_char, last_char) {\n    this.index = index;\n    this.first_char = first_char;\n    this.last_char = last_char;\n  }\n\n  var items_len = items.length\n  var refs_len = items_len;\n  var refs = []\n\n  // enough space for all items\n  var longest_path_refs_len = 0;\n  var longest_path_refs = new Array(items_len)\n\n  function search(curr_len) {\n    if (curr_len > longest_path_refs_len) {\n      longest_path_refs_len = curr_len;\n\n      for (var i = 0; i < curr_len; i++) {\n        longest_path_refs[i] = refs[i];\n      }\n    }\n\n    // recursive search\n    var last_char = refs[curr_len - 1].last_char;\n    for (var i = curr_len; i < refs_len; i++)\n      if (refs[i].first_char == last_char) {\n        var aux = refs[curr_len];\n        refs[curr_len] = refs[i];\n        refs[i] = aux;\n        search(curr_len + 1);\n        refs[i] = refs[curr_len];\n        refs[curr_len] = aux;\n      }\n  }\n\n  for (var i = 0; i < items_len; i++) {\n    var itemsi_len = items[i].length;\n    refs.push(new Ref(i, items[i][0], items[i][itemsi_len - 1]))\n  }\n\n  // try each item as possible start\n  for (var i = 0; i < items_len; i++) {\n    var aux = refs[0];\n    refs[0] = refs[i];\n    refs[i] = aux;\n    search(1);\n    refs[i] = refs[0];\n    refs[0] = aux;\n  }\n\n  var longest_path_len = longest_path_refs_len;\n  var longest_path = new Array(longest_path_len)\n  // calloc(longest_path_len, sizeof(const char*));\n  for (var i = 0; i < longest_path_len; i++)\n    longest_path[i] = items[longest_path_refs[i].index];\n\n  return longest_path\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>findLongestChain</code> should be a function.'",
+          "testString":
+            "assert(typeof findLongestChain=='function','<code>findLongestChain</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>findLongestChain('+JSON.stringify(tests[0])+')</code> should return an array.'",
+          "testString":
+            "assert(Array.isArray(findLongestChain(tests[0])),'<code>findLongestChain('+JSON.stringify(tests[0])+')</code> should return an array.');"
+        },
+        {
+          "text":
+            "'<code>findLongestChain('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findLongestChain(tests[0]),results[0],'<code>findLongestChain('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findLongestChain('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findLongestChain(tests[1]),results[1],'<code>findLongestChain('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findLongestChain('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findLongestChain(tests[2]),results[2],'<code>findLongestChain('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findLongestChain('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findLongestChain(tests[3]),results[3],'<code>findLongestChain('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findLongestChain('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findLongestChain(tests[4]),results[4],'<code>findLongestChain('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7edd",
+      "challengeType": 5,
+      "releasedOn": "June 30, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function findLongestChain (items) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests = [",
+            "[\"certain\",\"each\",\"game\",\"involves\",\"starting\",\"with\",\"word\"],",
+            "[\"audino\",\"bagon\",\"kangaskhan\",\"banette\",\"bidoof\",\"braviary\",\"exeggcute\",\"yamask\"],",
+            "[\"harp\",\"poliwrath\",\"poochyena\",\"porygon2\",\"porygonz\",\"archana\"],",
+            "[\"scolipede\",\"elephant\",\"zeaking\",\"sealeo\",\"silcoon\",\"tigers\"],",
+            "[\"loudred\",\"lumineon\",\"lunatone\",\"machamp\",\"magnezone\",\"nosepass\",\"petilil\",\"pidgeotto\",\"pikachu\"]",
+            "]",
+            "var results=[",
+            "['involves','starting','game','each'],",
+            "['braviary','yamask','kangaskhan'],",
+            "['poliwrath','harp','poochyena','archana'],",
+            "['scolipede','elephant','tigers','sealeo'],",
+            "['machamp','petilil','lumineon','nosepass']",
+            "]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Leap year",
+      "description": [
+        "Determine whether a given year is a leap year in the Gregorian calendar."
+      ],
+      "solutions": [
+        "function isLeapYear (year) {\n  return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);\n};\n"
+      ],
+      "tests": [
+        {
+          "text":
+            "assert(typeof isLeapYear == 'function', '<code>isLeapYear</code> should be a function.'",
+          "testString":
+            "assert(typeof isLeapYear == 'function', '<code>isLeapYear</code> should be a function.');"
+        },
+        {
+          "text":
+            "assert(typeof isLeapYear(2018) == 'boolean', '<code>isLeapYear()</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isLeapYear(2018) == 'boolean', '<code>isLeapYear()</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "assert.equal(isLeapYear(2018), false, '<code>isLeapYear(2018)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isLeapYear(2018), false, '<code>isLeapYear(2018)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLeapYear(2016), true, '<code>isLeapYear(2016)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isLeapYear(2016), true, '<code>isLeapYear(2016)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLeapYear(2000), true, '<code>isLeapYear(2000)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isLeapYear(2000), true, '<code>isLeapYear(2000)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLeapYear(1900), false, '<code>isLeapYear(1900)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isLeapYear(1900), false, '<code>isLeapYear(1900)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLeapYear(1996), true, '<code>isLeapYear(1996)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isLeapYear(1996), true, '<code>isLeapYear(1996)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLeapYear(1800), false, '<code>isLeapYear(1800)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isLeapYear(1800), false, '<code>isLeapYear(1800)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ede",
+      "challengeType": 5,
+      "releasedOn": "June 30, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isLeapYear (year) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Least common multiple",
+      "description": [
+        "Compute the least common multiple of an array of intergers.",
+        "Given  <i>m</i>  and  <i>n</i>,  the least common multiple is the smallest positive integer that has both  <i>m</i>  and  <i>n</i>  as factors.",
+        "The least common multiple of 12 and 18 is 36, because 12 is a factor (12 &times; 3 = 36), and 18 is a factor (18 &times; 2 = 36), and there is no positive integer less than 36 that has both factors.  As a special case, if either  <i>m</i>  or  <i>n</i>  is zero, then the least common multiple is zero.",
+        "One way to calculate the least common multiple is to iterate all the multiples of  <i>m</i>,  until you find one that is also a multiple of  <i>n</i>.",
+        "If you already have  <i>gcd</i>  for <a href=\"http://rosettacode.org/wiki/greatest common divisor\">greatest common divisor</a>,  then this formula calculates  <i>lcm</i>.",
+        "\\( \\operatorname{lcm}(m, n) = \\frac{|m \\times n|}{\\operatorname{gcd}(m, n)} \\)"
+      ],
+      "solutions": [
+        "function LCM (A) {\n    var n = A.length, a = Math.abs(A[0]);\n    for (var i = 1; i < n; i++)\n     { var b = Math.abs(A[i]), c = a;\n       while (a && b){ a > b ? a %= b : b %= a; }\n       a = Math.abs(c*A[i])/(a+b);\n     }\n    return a;\n}\n\nvar tests=[\n[2,4,8],\n[4,8,12],\n[3,4,5,12,40],\n[11,33,90],\n[-50,25,-45,-18,90,447]\n]\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>LCM</code> should be a function.'",
+          "testString":
+            "assert(typeof LCM=='function','<code>LCM</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>LCM('+JSON.stringify(tests[0])+')</code> should return a number.'",
+          "testString":
+            "assert(typeof LCM(tests[0])=='number','<code>LCM('+JSON.stringify(tests[0])+')</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>LCM('+JSON.stringify(tests[0])+')</code> should return <code>8</code>.'",
+          "testString":
+            "assert.equal(LCM(tests[0]),8,'<code>LCM('+JSON.stringify(tests[0])+')</code> should return <code>8</code>.');"
+        },
+        {
+          "text":
+            "'<code>LCM('+JSON.stringify(tests[1])+')</code> should return <code>24</code>.'",
+          "testString":
+            "assert.equal(LCM(tests[1]),24,'<code>LCM('+JSON.stringify(tests[1])+')</code> should return <code>24</code>.');"
+        },
+        {
+          "text":
+            "'<code>LCM('+JSON.stringify(tests[2])+')</code> should return <code>120</code>.'",
+          "testString":
+            "assert.equal(LCM(tests[2]),120,'<code>LCM('+JSON.stringify(tests[2])+')</code> should return <code>120</code>.');"
+        },
+        {
+          "text":
+            "'<code>LCM('+JSON.stringify(tests[3])+')</code> should return <code>990</code>.'",
+          "testString":
+            "assert.equal(LCM(tests[3]),990,'<code>LCM('+JSON.stringify(tests[3])+')</code> should return <code>990</code>.');"
+        },
+        {
+          "text":
+            "'<code>LCM('+JSON.stringify(tests[4])+')</code> should return <code>67050</code>.'",
+          "testString":
+            "assert.equal(LCM(tests[4]),67050,'<code>LCM('+JSON.stringify(tests[4])+')</code> should return <code>67050</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7edf",
+      "challengeType": 5,
+      "releasedOn": "June 30, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function LCM (A) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Left factorials",
+      "description": [
+        "<b>Left factorials</b>,  $ !n $,  may refer to either  <i>subfactorials</i>  or to  <i>factorial sums</i>. The same notation can be confusingly seen used for the two different definitions. Sometimes,  <i>subfactorials</i>  (also known as <i>derangements</i>)  may use any of the notations:",
+        "$$!n`$$",
+        "$$!n$$",
+        "$$n¡$$",
+        "(It may not be visually obvious, but the last example uses an upside-down exclamation mark.) This task will be using this formula for <b>left factorial</b>:",
+        "$$ !n = \\sum_{k=0}^{n-1} k! $$",
+        "where $!0 = 0$",
+        "Write a function to calculate the left factorial of a given number."
+      ],
+      "solutions": [
+        "function leftFactorial (n) {\n  if(n==0)\n    return 0\n  if(n==1)\n    return 1;\n\n  // Note: for n>=20, the result may not be correct.\n  // This is because Javascript uses 53 bit integers and\n  // for n>=20 result becomes too large.\n\n  let res=2,fact=2;\n  for(var i=2;i<n;i++){\n    res+=fact;\n    fact*=(i+1);\n  }\n\n  return res;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>leftFactorial</code> should be a function.'",
+          "testString":
+            "assert(typeof leftFactorial=='function','<code>leftFactorial</code> should be a function.');"
+        },
+        {
+          "text": "'<code>leftFactorial(0)</code> should return a number.'",
+          "testString":
+            "assert(typeof leftFactorial(0)=='number','<code>leftFactorial(0)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(0)</code> should return <code>0</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(0),0,'<code>leftFactorial(0)</code> should return <code>0</code>.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(1)</code> should return <code>1</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(1),1,'<code>leftFactorial(1)</code> should return <code>1</code>.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(2)</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(2),2,'<code>leftFactorial(2)</code> should return <code>2</code>.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(3)</code> should return <code>4</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(3),4,'<code>leftFactorial(3)</code> should return <code>4</code>.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(10)</code> should return <code>409114</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(10),409114,'<code>leftFactorial(10)</code> should return <code>409114</code>.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(17)</code> should return <code>22324392524314</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(17),22324392524314,'<code>leftFactorial(17)</code> should return <code>22324392524314</code>.');"
+        },
+        {
+          "text":
+            "'<code>leftFactorial(19)</code> should return <code>6780385526348314</code>.'",
+          "testString":
+            "assert.equal(leftFactorial(19),6780385526348314,'<code>leftFactorial(19)</code> should return <code>6780385526348314</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ee0",
+      "challengeType": 5,
+      "releasedOn": "June 30, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function leftFactorial (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Letter frequency",
+      "description": [
+        "Write a function to count the occurrences of each character in the given string.",
+        "All characters should be counted such as lower case, upper case letters, digits, whitespace, special characters or any other distinct character.",
+        "The function should return an array with elements in the form: <code>['char',freq]</code>.",
+        "Here the character a string with length=1 and frequency is a number denoting the count."
+      ],
+      "solutions": [
+        "function letterFrequency (txt) {\n    var cs = txt.split(''),\n        i = cs.length,\n        dct =  {},\n        c = '',\n        keys;\n\n    while (i--) {\n        c = cs[i];\n        dct[c] = (dct[c] || 0) + 1;\n    }\n\n    keys = Object.keys(dct);\n    keys.sort();\n    return keys.map(function (c) { return [c, dct[c]]; });\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>letterFrequency</code> should be a function.'",
+          "testString":
+            "assert(typeof letterFrequency=='function','<code>letterFrequency</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[0])+')</code> should return an array.'",
+          "testString":
+            "assert(Array.isArray(letterFrequency(tests[0])),'<code>letterFrequency('+JSON.stringify(tests[0])+')</code> should return an array.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(letterFrequency(tests[0]),results[0],'<code>letterFrequency('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(letterFrequency(tests[1]),results[1],'<code>letterFrequency('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(letterFrequency(tests[2]),results[2],'<code>letterFrequency('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(letterFrequency(tests[3]),results[3],'<code>letterFrequency('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(letterFrequency(tests[4]),results[4],'<code>letterFrequency('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>letterFrequency('+JSON.stringify(tests[5])+')</code> should return <code>'+JSON.stringify(results[5])+'</code>.'",
+          "testString":
+            "assert.deepEqual(letterFrequency(tests[5]),results[5],'<code>letterFrequency('+JSON.stringify(tests[5])+')</code> should return <code>'+JSON.stringify(results[5])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ee1",
+      "challengeType": 5,
+      "releasedOn": "June 30, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function letterFrequency (txt) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "  \"Not all that Mrs. Bennet, however\",",
+            "  \"daughters, could ask on the \",",
+            "  \"husband any satisfactory description\",",
+            "  \"in various ways--with barefaced\",",
+            "  \"distant surmises; but he eluded\",",
+            "  \"last obliged to accept the second-hand,\",",
+            "]",
+            "var results=[",
+            "[[' ',5],[',',1],['.',1],['B',1],['M',1],['N',1],['a',2],['e',4],['h',2],['l',2],['n',2],['o',2],['r',2],['s',1],['t',4],['v',1],['w',1]],",
+            "[[' ',5],[',',1],['a',2],['c',1],['d',2],['e',2],['g',1],['h',2],['k',1],['l',1],['n',1],['o',2],['r',1],['s',2],['t',2],['u',2]],",
+            "[[' ',3],['a',4],['b',1],['c',2],['d',2],['e',1],['f',1],['h',1],['i',3],['n',3],['o',2],['p',1],['r',2],['s',4],['t',3],['u',1],['y',2]],",
+            "[[' ',3],['-',2],['a',4],['b',1],['c',1],['d',1],['e',2],['f',1],['h',1],['i',3],['n',1],['o',1],['r',2],['s',2],['t',1],['u',1],['v',1],['w',2],['y',1]],",
+            "[[' ',4],[';',1],['a',1],['b',1],['d',3],['e',4],['h',1],['i',2],['l',1],['m',1],['n',1],['r',1],['s',4],['t',3],['u',3]],",
+            "[[' ',5],[',',1],['-',1],['a',3],['b',1],['c',3],['d',3],['e',4],['g',1],['h',2],['i',1],['l',2],['n',2],['o',3],['p',1],['s',2],['t',4]]",
+            "]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Levenshtein distance",
+      "description": [
+        "In information theory and computer science, the <b>Levenshtein distance</b> is a <a href=\"https://en.wikipedia.org/wiki/string metric\">metric</a> for measuring the amount of difference between two sequences (i.e. an <a href=\"https://en.wikipedia.org/wiki/edit distance\">edit distance</a>). The Levenshtein distance between two strings is defined as the minimum number of edits needed to transform one string into the other, with the allowable edit operations being insertion, deletion, or substitution of a single character.",
+        "Example:",
+        "The Levenshtein distance between \"<b>kitten</b>\" and \"<b>sitting</b>\" is 3, since the following three edits change one into the other, and there isn't a way to do it with fewer than three edits:",
+        "<b>k</b>itten   <b>s</b>itten      (substitution of 'k' with 's')</b>",
+        "sitt<b>e</b>n   sitt<b>i</b>n      (substitution of 'e' with 'i')</b>",
+        "sittin         sittin<b>g</b>     (insert 'g' at the end).</b>",
+        "''The Levenshtein distance between  \"<b>rosettacode</b>\",  \"<b>raisethysword</b>\"  is  <b>8</b>.",
+        "<i>The distance between two strings is same as that when both strings are reversed.</i>",
+        "Write a function that returns the Levenshtein distance between two strings given as parameters ."
+      ],
+      "solutions": [
+        "function levenshtein (a, b) {\n  var t = [], u, i, j, m = a.length, n = b.length;\n  if (!m) { return n; }\n  if (!n) { return m; }\n  for (j = 0; j <= n; j++) { t[j] = j; }\n  for (i = 1; i <= m; i++) {\n    for (u = [i], j = 1; j <= n; j++) {\n      u[j] = a[i - 1] === b[j - 1] ? t[j - 1] : Math.min(t[j - 1], t[j], u[j - 1]) + 1;\n    } t = u;\n  } return u[n];\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>levenshtein</code> should be a function.'",
+          "testString":
+            "assert(typeof levenshtein=='function','<code>levenshtein</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[0][0]+','+tests[0][1]+')</code> should return a number.'",
+          "testString":
+            "assert(typeof levenshtein(tests[0][0],tests[0][1])=='number','<code>levenshtein('+tests[0][0]+','+tests[0][1]+')</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[0][0]+','+tests[0][1]+')</code> should return <code>'+tests[0][2]+'</code>.'",
+          "testString":
+            "assert.equal(levenshtein(tests[0][0],tests[0][1]),tests[0][2],'<code>levenshtein('+tests[0][0]+','+tests[0][1]+')</code> should return <code>'+tests[0][2]+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[1][0]+','+tests[1][1]+')</code> should return <code>'+tests[1][2]+'</code>.'",
+          "testString":
+            "assert.equal(levenshtein(tests[1][0],tests[1][1]),tests[1][2],'<code>levenshtein('+tests[1][0]+','+tests[1][1]+')</code> should return <code>'+tests[1][2]+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[2][0]+','+tests[2][1]+')</code> should return <code>'+tests[2][2]+'</code>.'",
+          "testString":
+            "assert.equal(levenshtein(tests[2][0],tests[2][1]),tests[2][2],'<code>levenshtein('+tests[2][0]+','+tests[2][1]+')</code> should return <code>'+tests[2][2]+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[3][0]+','+tests[3][1]+')</code> should return <code>'+tests[3][2]+'</code>.'",
+          "testString":
+            "assert.equal(levenshtein(tests[3][0],tests[3][1]),tests[3][2],'<code>levenshtein('+tests[3][0]+','+tests[3][1]+')</code> should return <code>'+tests[3][2]+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[4][0]+','+tests[4][1]+')</code> should return <code>'+tests[4][2]+'</code>.'",
+          "testString":
+            "assert.equal(levenshtein(tests[4][0],tests[4][1]),tests[4][2],'<code>levenshtein('+tests[4][0]+','+tests[4][1]+')</code> should return <code>'+tests[4][2]+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>levenshtein('+tests[5][0]+','+tests[5][1]+')</code> should return <code>'+tests[5][2]+'</code>.'",
+          "testString":
+            "assert.equal(levenshtein(tests[5][0],tests[5][1]),tests[5][2],'<code>levenshtein('+tests[5][0]+','+tests[5][1]+')</code> should return <code>'+tests[5][2]+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ee2",
+      "challengeType": 5,
+      "releasedOn": "June 30, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function levenshtein (a, b) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "['mist','dist',1],",
+            "['tier','tor',2],",
+            "['kitten','sitting',3],",
+            "['stop','tops',2],",
+            "['rosettacode','raisethysword',8],",
+            "['mississippi','swiss miss',8]]"
+          ]
+        }
+      }
+    },
+    {
       "title": "Sailors, coconuts and a monkey problem",
       "description": [
         " <p>",
