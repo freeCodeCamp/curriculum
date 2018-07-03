@@ -47,47 +47,90 @@ class ChallengeFile {
 
     lines.forEach(line => {
       let chunkEnd = /(<!|\/\*)--end--/;
-      let chunkStart = /(<!|\/\*)--(\w+)--/;
+      let chunkStart = /(<!|\/\*)--((\w-?)+)--/;
 
       line = line.toString();
 
-      function pushParagraph() {
+      function createTranslation(lang, desc) {
+        if (!chunks.hasOwnProperty('translations')) {
+          chunks.translations = {};
+        }
+        if (!chunks.translations.hasOwnProperty(lang)) {
+          chunks.translations[lang] = {};
+        }
+        if (desc && !chunks.translations[lang].hasOwnProperty('description')) {
+          chunks.translations[lang].description = [];
+        }
+      }
+
+      function pushParagraph(lang = null) {
         removeLeadingEmptyLines(currentParagraph);
-        chunks[ readingChunk ].push(currentParagraph.join('\n'));
+        if (!lang) {
+          chunks[readingChunk].push(currentParagraph.join('\n'));
+        } else {
+          createTranslation(lang, true);
+          let translation = chunks.translations[lang];
+          translation.description.push(currentParagraph.join('\n'));
+        }
         currentParagraph = [];
       }
 
       if (chunkEnd.test(line)) {
         if (!readingChunk) {
+          console.log(this.name);
+          console.log(line);
           throw 'Encountered --end-- without being in a chunk';
         }
         if (currentParagraph.length) {
-          pushParagraph();
+          if (readingChunk.substring(0, 16) === 'transDescription') {
+            pushParagraph(readingChunk.substring(17));
+          } else {
+            pushParagraph();
+          }
         } else {
           removeLeadingEmptyLines(chunks[readingChunk]);
         }
         readingChunk = null;
       } else if (readingChunk === 'description' && line === paragraphBreak) {
         pushParagraph();
+      } else if (
+        readingChunk &&
+        readingChunk.substring(0, 16) === 'transDescription' &&
+        line === paragraphBreak
+      ) {
+        pushParagraph(readingChunk.substring(17));
       } else if (chunkStart.test(line)) {
-        let chunkName = line.match(chunkStart)[ 2 ];
+        let chunkName = line.match(chunkStart)[2];
         if (readingChunk) {
-          throw `Encountered chunk ${chunkName} start `
-          + `while already reading ${readingChunk}:
+          throw `Encountered chunk ${chunkName} start ` +
+            `while already reading ${readingChunk}:
            ${line}`;
         }
         readingChunk = chunkName;
       } else if (readingChunk) {
-        if (!chunks[ readingChunk ]) {
-          chunks[ readingChunk ] = [];
+        if (!chunks[readingChunk]) {
+          chunks[readingChunk] = [];
         }
         if (line.startsWith(jsonLinePrefix)) {
           line = JSON.parse(line.slice(jsonLinePrefix.length));
-          chunks[ readingChunk ].push(line);
+          chunks[readingChunk].push(line);
         } else if (readingChunk === 'description') {
           currentParagraph.push(line);
+        } else if (
+          readingChunk &&
+          readingChunk.substring(0, 11) === 'translation'
+        ) {
+          let lang = readingChunk.substring(12);
+          createTranslation(lang);
+          let translation = chunks.translations[lang];
+          translation.title = line;
+        } else if (
+          readingChunk &&
+          readingChunk.substring(0, 16) === 'transDescription'
+        ) {
+          currentParagraph.push(line);
         } else {
-          chunks[ readingChunk ].push(line);
+          chunks[readingChunk].push(line);
         }
       }
     });
@@ -95,7 +138,7 @@ class ChallengeFile {
     // hack to deal with solutions field being an array of a single string
     // instead of an array of lines like some other fields
     if (chunks.solutions) {
-      chunks.solutions = [ chunks.solutions.join('\n') ];
+      chunks.solutions = [chunks.solutions.join('\n')];
     }
 
     Object.keys(chunks).forEach(key => {
@@ -107,7 +150,7 @@ class ChallengeFile {
   }
 }
 
-export {ChallengeFile};
+export { ChallengeFile };
 
 class UnpackedChallenge {
   constructor(targetDir, challengeJson, index) {
@@ -130,8 +173,7 @@ class UnpackedChallenge {
   }
 
   unpack() {
-    this.challengeFile()
-      .write(this.unpackedHTML());
+    this.challengeFile().write(this.unpackedHTML());
   }
 
   challengeFile() {
@@ -140,14 +182,14 @@ class UnpackedChallenge {
 
   baseName() {
     // eslint-disable-next-line no-nested-ternary
-    let prefix = ((this.index < 10) ? '00' : (this.index < 100) ? '0' : '')
-      + this.index;
+    let prefix =
+      (this.index < 10 ? '00' : this.index < 100 ? '0' : '') + this.index;
     return `${prefix}-${dasherize(this.challenge.title)}-${this.challenge.id}`;
   }
 
-  expandedDescription() {
+  expandedDescription(description = this.challenge.description) {
     let out = [];
-    this.challenge.description.forEach(part => {
+    description.forEach(part => {
       if (_.isString(part)) {
         out.push(part.toString());
         out.push(paragraphBreak);
@@ -167,7 +209,7 @@ class UnpackedChallenge {
       }
     });
 
-    if (out[ out.length - 1 ] === paragraphBreak) {
+    if (out[out.length - 1] === paragraphBreak) {
       out.pop();
     }
     return out;
@@ -218,6 +260,53 @@ class UnpackedChallenge {
     text.push('<!--end-->');
     text.push('</div>');
 
+    text.push(`<p>If you want to add a translation this is the format:</p>
+        <p>
+          <code>
+            &lt;!--translation_<em>language code</em>--&gt;<br>
+            <em>Translated Title</em><br>
+            &lt;!--end--&gt;<br>
+            &lt;!--transDescription_<em>language code</em>--&gt;<br>
+            <em>Translated Challenge Description</em><br>
+            &lt;!--end--&gt;<br>
+          </code>
+        </p>`);
+
+    text.push('');
+    text.push('<h2>Translations</h2>');
+    text.push('<div class="unpacked">');
+    if (this.challenge.hasOwnProperty('translations')) {
+      const translations = this.challenge.translations;
+      const keys = Object.keys(translations);
+      if (keys) {
+        keys.forEach(lang => {
+          text.push(`<h3>${lang}</h3>`);
+          const translation = translations[lang];
+          if (translation.title) {
+            text.push(`<!--translation_${lang}-->`);
+            text.push(translation.title);
+            text.push('<!--end-->');
+          }
+          if (translation.description && translation.description.length) {
+            text.push(`<!--transDescription_${lang}-->`);
+            text.push(
+              this.expandedDescription(translation.description).join('\n')
+            );
+            text.push('<!--end-->');
+          }
+        });
+      }
+    }
+    text.push('</div>');
+
+    text.push('');
+    text.push('<h2>Released On</h2>');
+    text.push('<div class="unpacked">');
+    text.push('<!--releasedOn-->');
+    text.push(this.challenge.releasedOn);
+    text.push('<!--end-->');
+    text.push('</div>');
+
     text.push('');
     text.push('<h2>Seed</h2>');
     text.push('<!--seed--><pre class="unpacked">');
@@ -253,7 +342,7 @@ class UnpackedChallenge {
     // Note: none of the challenges have more than one solution
     // todo: should we deal with multiple solutions or not?
     if (this.challenge.solutions && this.challenge.solutions.length > 0) {
-      let solution = this.challenge.solutions[ 0 ];
+      let solution = this.challenge.solutions[0];
       text.push(solution);
     }
     text.push('</script><!--end-->');
@@ -269,13 +358,16 @@ class UnpackedChallenge {
     text.push('');
     text.push('<h2>Tests</h2>');
     text.push('<script class="unpacked tests">');
-    text.push(`test(\'${this.challenge.title} challenge tests\', ` +
-      'function(t) {');
+    text.push(
+      `test(\'${this.challenge.title} challenge tests\', ` + 'function(t) {'
+    );
     text.push('let assert = addAssertsToTapTest(t);');
-    text.push('let code = document.getElementById(\'solution\').innerText;');
-    text.push('t.plan(' +
-      (this.challenge.tests ? this.challenge.tests.length : 0) +
-      ');');
+    text.push("let code = document.getElementById('solution').innerText;");
+    text.push(
+      't.plan(' +
+        (this.challenge.tests ? this.challenge.tests.length : 0) +
+        ');'
+    );
     text.push('/*--tests--*/');
     text.push(this.expandedTests(this.challenge.tests).join('\n'));
     text.push('/*--end--*/');
@@ -289,5 +381,4 @@ class UnpackedChallenge {
   }
 }
 
-export {UnpackedChallenge};
-
+export { UnpackedChallenge };
