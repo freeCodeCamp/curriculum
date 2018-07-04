@@ -6884,7 +6884,7 @@
         "Child 2: snake",
         "...",
         "</pre>",
-        "Write a function that takes an array containing words. The function should return an array of words such that every word's first letter should be the same as that of the previous word. The first word can be any word freely. All the words should be present in the input array and no word should be repeated. The words should be selected so that the length of the array is maximized."
+        "Write a function that takes an input array of words. The function should return an array of words where the first letter of each word is the same as the last letter of the previous word. The first word in the return array can be anything. Use only the words in the input array, and once a word is used it cannot be repeated. The words in the return array should be selected and sequenced so that that the length of the array is maximized."
       ],
       "solutions": [
         "function findLongestChain (items) {\n  function Ref(index, first_char, last_char) {\n    this.index = index;\n    this.first_char = first_char;\n    this.last_char = last_char;\n  }\n\n  var items_len = items.length\n  var refs_len = items_len;\n  var refs = []\n\n  // enough space for all items\n  var longest_path_refs_len = 0;\n  var longest_path_refs = new Array(items_len)\n\n  function search(curr_len) {\n    if (curr_len > longest_path_refs_len) {\n      longest_path_refs_len = curr_len;\n\n      for (var i = 0; i < curr_len; i++) {\n        longest_path_refs[i] = refs[i];\n      }\n    }\n\n    // recursive search\n    var last_char = refs[curr_len - 1].last_char;\n    for (var i = curr_len; i < refs_len; i++)\n      if (refs[i].first_char == last_char) {\n        var aux = refs[curr_len];\n        refs[curr_len] = refs[i];\n        refs[i] = aux;\n        search(curr_len + 1);\n        refs[i] = refs[curr_len];\n        refs[curr_len] = aux;\n      }\n  }\n\n  for (var i = 0; i < items_len; i++) {\n    var itemsi_len = items[i].length;\n    refs.push(new Ref(i, items[i][0], items[i][itemsi_len - 1]))\n  }\n\n  // try each item as possible start\n  for (var i = 0; i < items_len; i++) {\n    var aux = refs[0];\n    refs[0] = refs[i];\n    refs[i] = aux;\n    search(1);\n    refs[i] = refs[0];\n    refs[0] = aux;\n  }\n\n  var longest_path_len = longest_path_refs_len;\n  var longest_path = new Array(longest_path_len)\n  // calloc(longest_path_len, sizeof(const char*));\n  for (var i = 0; i < longest_path_len; i++)\n    longest_path[i] = items[longest_path_refs[i].index];\n\n  return longest_path\n}\n"
@@ -7193,7 +7193,7 @@
     {
       "title": "Letter frequency",
       "description": [
-        "Write a function to count the occurrences of each character in the given string.",
+        "Write a function to count the occurrences of each character in a given string.",
         "All characters should be counted such as lower case, upper case letters, digits, whitespace, special characters or any other distinct character.",
         "The function should return an array with elements in the form: <code>['char',freq]</code>.",
         "Here the character a string with length=1 and frequency is a number denoting the count."
