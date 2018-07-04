@@ -7373,6 +7373,395 @@
       }
     },
     {
+      "title": "Linear congruential generator",
+      "description": [
+        "The <a href=\"https://en.wikipedia.org/wiki/linear congruential generator\">linear congruential generator</a> is a very simple example of a <a href=\"http://rosettacode.org/wiki/random number generator\">random number generator</a>. All linear congruential generators use this formula:",
+        "$$r_{n + 1} = a \\times r_n + c \\pmod m$$",
+        "Where:",
+        "<ul>",
+        "<li>$ r_0 $ is a seed.</li>",
+        "<li>$r_1$, $r_2$, $r_3$, ..., are the random numbers.</li>",
+        "<li>$a$, $c$, $m$ are constants.</li>",
+        "</ul>",
+        "If one chooses the values of $a$, $c$ and $m$ with care, then the generator produces a uniform distribution of integers from $0$ to $m - 1$.",
+        "LCG numbers have poor quality. $r_n$ and $r_{n + 1}$ are not independent, as true random numbers would be. Anyone who knows $r_n$ can predict $r_{n + 1}$, therefore LCG is not cryptographically secure. The LCG is still good enough for simple tasks like <a href=\"http://rosettacode.org/wiki/Miller-Rabin primality test\">Miller-Rabin primality test</a>, or <a href=\"http://rosettacode.org/wiki/deal cards for FreeCell\">FreeCell deals</a>. Among the benefits of the LCG, one can easily reproduce a sequence of numbers, from the same $r_0$. One can also reproduce such sequence with a different programming language, because the formula is so simple.",
+        "Write a function that takes $r_0,a,c,m,n$ as parameters and returns $r_n$."
+      ],
+      "solutions": [
+        "\nfunction linearCongGenerator (r0, a, c, m, n) {\n  for(var i=0;i<n;i++){\n    r0=(a*r0+c)%m\n  }\n  return r0\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>linearCongGenerator</code> should be a function.'",
+          "testString":
+            "assert(typeof linearCongGenerator=='function','<code>linearCongGenerator</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>linearCongGenerator(324, 1145, 177, 2148, 3)</code> should return a number.'",
+          "testString":
+            "assert(typeof linearCongGenerator(324, 1145, 177, 2148, 3)=='number','<code>linearCongGenerator(324, 1145, 177, 2148, 3)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>linearCongGenerator(324, 1145, 177, 2148, 3)</code> should return <code>855</code>.'",
+          "testString":
+            "assert.equal(linearCongGenerator(324, 1145, 177, 2148, 3),855,'<code>linearCongGenerator(324, 1145, 177, 2148, 3)</code> should return <code>855</code>.');"
+        },
+        {
+          "text":
+            "'<code>linearCongGenerator(234, 11245, 145, 83648, 4)</code> should return <code>1110</code>.'",
+          "testString":
+            "assert.equal(linearCongGenerator(234, 11245, 145, 83648, 4),1110,'<code>linearCongGenerator(234, 11245, 145, 83648, 4)</code> should return <code>1110</code>.');"
+        },
+        {
+          "text":
+            "'<code>linearCongGenerator(85, 11, 1234, 214748, 5)</code> should return <code>62217</code>.'",
+          "testString":
+            "assert.equal(linearCongGenerator(85, 11, 1234, 214748, 5),62217,'<code>linearCongGenerator(85, 11, 1234, 214748, 5)</code> should return <code>62217</code>.');"
+        },
+        {
+          "text":
+            "'<code>linearCongGenerator(0, 1103515245, 12345, 2147483648, 1)</code> should return <code>12345</code>.'",
+          "testString":
+            "assert.equal(linearCongGenerator(0, 1103515245, 12345, 2147483648, 1),12345,'<code>linearCongGenerator(0, 1103515245, 12345, 2147483648, 1)</code> should return <code>12345</code>.');"
+        },
+        {
+          "text":
+            "'<code>linearCongGenerator(0, 1103515245, 12345, 2147483648, 2)</code> should return <code>1406932606</code>.'",
+          "testString":
+            "assert.equal(linearCongGenerator(0, 1103515245, 12345, 2147483648, 2),1406932606,'<code>linearCongGenerator(0, 1103515245, 12345, 2147483648, 2)</code> should return <code>1406932606</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ee3",
+      "challengeType": 5,
+      "releasedOn": "July 4, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function linearCongGenerator (r0, a, c, m, n) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Long multiplication",
+      "description": [
+        "Explicitly implement  <a href=\"https://en.wikipedia.org/wiki/long multiplication\">long multiplication</a>.",
+        "This is one possible approach to arbitrary-precision integer algebra.",
+        "Write a function that takes two strings as parameters. The strings are large numbers that are to be multiplied and the result is to be returned by the function.",
+        "Note: Arithematic operators give incorrect result for large numbers and therefore you have to implement multiplication yourself."
+      ],
+      "solutions": [
+        "function mult(strNum1, strNum2) {\n    var a1 = strNum1.split(\"\").reverse();\n    var a2 = strNum2.toString().split(\"\").reverse();\n    var aResult = new Array;\n\n    for ( var iterNum1 = 0; iterNum1 < a1.length; iterNum1++ ) {\n        for ( var iterNum2 = 0; iterNum2 < a2.length; iterNum2++ ) {\n            var idxIter = iterNum1 + iterNum2;    // Get the current array position.\n            aResult[idxIter] = a1[iterNum1] * a2[iterNum2] + ( idxIter >= aResult.length ? 0 : aResult[idxIter] );\n\n            if ( aResult[idxIter] > 9 ) {    // Carrying\n                aResult[idxIter + 1] = Math.floor( aResult[idxIter] / 10 ) + ( idxIter + 1 >= aResult.length ? 0 : aResult[idxIter + 1] );\n                aResult[idxIter] %= 10;\n            }\n        }\n    }\n    return aResult.reverse().join(\"\");\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>mult</code> should be a function.'",
+          "testString":
+            "assert(typeof mult=='function','<code>mult</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>mult(\"18446744073709551616\", \"18446744073709551616\")</code> should return a string.'",
+          "testString":
+            "assert(typeof mult(\"18446744073709551616\", \"18446744073709551616\")=='string','<code>mult(\"18446744073709551616\", \"18446744073709551616\")</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>mult(\"18446744073709551616\", \"18446744073709551616\")</code> should return <code>\"340282366920938463463374607431768211456\"</code>.'",
+          "testString":
+            "assert.equal(mult(\"18446744073709551616\", \"18446744073709551616\"),\"340282366920938463463374607431768211456\",'<code>mult(\"18446744073709551616\", \"18446744073709551616\")</code> should return <code>\"340282366920938463463374607431768211456\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>mult(\"31844674073709551616\", \"1844674407309551616\")</code> should return <code>\"58743055272886011737990786529368211456\"</code>.'",
+          "testString":
+            "assert.equal(mult(\"31844674073709551616\", \"1844674407309551616\"),\"58743055272886011737990786529368211456\",'<code>mult(\"31844674073709551616\", \"1844674407309551616\")</code> should return <code>\"58743055272886011737990786529368211456\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>mult(\"1846744073709551616\", \"44844644073709551616\")</code> should return <code>\"82816580680737279241781007431768211456\"</code>.'",
+          "testString":
+            "assert.equal(mult(\"1846744073709551616\", \"44844644073709551616\"),\"82816580680737279241781007431768211456\",'<code>mult(\"1846744073709551616\", \"44844644073709551616\")</code> should return <code>\"82816580680737279241781007431768211456\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>mult(\"1844674407370951616\", \"1844674407709551616\")</code> should return <code>\"3402823669833978308014392742590611456\"</code>.'",
+          "testString":
+            "assert.equal(mult(\"1844674407370951616\", \"1844674407709551616\"),\"3402823669833978308014392742590611456\",'<code>mult(\"1844674407370951616\", \"1844674407709551616\")</code> should return <code>\"3402823669833978308014392742590611456\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>mult(\"2844674407370951616\", \"1844674407370955616\")</code> should return <code>\"5247498076580334548376218009219475456\"</code>.'",
+          "testString":
+            "assert.equal(mult(\"2844674407370951616\", \"1844674407370955616\"),\"5247498076580334548376218009219475456\",'<code>mult(\"2844674407370951616\", \"1844674407370955616\")</code> should return <code>\"5247498076580334548376218009219475456\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7eec",
+      "challengeType": 5,
+      "releasedOn": "July 4, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function mult (strNum1, strNum2) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Longest common subsequence",
+      "description": [
+        "The <b>longest common subsequence</b> (or <a href=\"http://en.wikipedia.org/wiki/Longest_common_subsequence_problem\"><b>LCS</b></a>) of groups A and B is the longest group of elements from A and B that are common between the two groups and in the same order in each group. For example, the sequences \"1234\" and \"1224533324\" have an LCS of \"1234\":",
+        "<b><u>1234</u></b>",
+        "<b><u>12</u></b>245<b><u>3</u></b>332<b><u>4</u></b>",
+        "For a string example, consider the sequences \"thisisatest\" and \"testing123testing\". An LCS would be \"tsitest\":",
+        "<b><u>t</u></b>hi<b><u>si</u></b>sa<b><u>test</u></b>",
+        "<b><u>t</u></b>e<b><u>s</u></b>t<b><u>i</u></b>ng123<b><u>test</u></b>ing",
+        "In this puzzle, your code only needs to deal with strings. Write a function which returns an LCS of two strings (case-sensitive). You don't need to show multiple LCS's.",
+        "For more information on this problem please see <a href=\"https://en.wikipedia.org/wiki/Longest_common_subsequence_problem\">Wikipedia</a>."
+      ],
+      "solutions": [
+        "function lcs (a, b) {\n  var aSub = a.substr(0, a.length - 1);\n  var bSub = b.substr(0, b.length - 1);\n\n  if (a.length === 0 || b.length === 0) {\n    return '';\n  } else if (a.charAt(a.length - 1) === b.charAt(b.length - 1)) {\n    return lcs(aSub, bSub) + a.charAt(a.length - 1);\n  } else {\n    var x = lcs(a, bSub);\n    var y = lcs(aSub, b);\n    return (x.length > y.length) ? x : y;\n  }\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>lcs</code> should be a function.'",
+          "testString":
+            "assert(typeof lcs=='function','<code>lcs</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>lcs(\"thisisatest\",\"testing123testing\")</code> should return a string.'",
+          "testString":
+            "assert(typeof lcs(\"thisisatest\",\"testing123testing\")=='string','<code>lcs(\"thisisatest\",\"testing123testing\")</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>lcs(\"thisisatest\",\"testing123testing\")</code> should return <code>\"tsitest\"</code>.'",
+          "testString":
+            "assert.equal(lcs(\"thisisatest\",\"testing123testing\"),\"tsitest\",'<code>lcs(\"thisisatest\",\"testing123testing\")</code> should return <code>\"tsitest\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lcs(\"ABCDGH\",\"AEDFHR\")</code> should return <code>\"ADH\"</code>.'",
+          "testString":
+            "assert.equal(lcs(\"ABCDGH\",\"AEDFHR\"),\"ADH\",'<code>lcs(\"ABCDGH\",\"AEDFHR\")</code> should return <code>\"ADH\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lcs(\"AGGTAB\",\"GXTXAYB\")</code> should return <code>\"GTAB\"</code>.'",
+          "testString":
+            "assert.equal(lcs(\"AGGTAB\",\"GXTXAYB\"),\"GTAB\",'<code>lcs(\"AGGTAB\",\"GXTXAYB\")</code> should return <code>\"GTAB\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lcs(\"BACDB\",\"BDCB\")</code> should return <code>\"BCB\"</code>.'",
+          "testString":
+            "assert.equal(lcs(\"BACDB\",\"BDCB\"),\"BCB\",'<code>lcs(\"BACDB\",\"BDCB\")</code> should return <code>\"BCB\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lcs(\"ABAZDC\",\"BACBAD\")</code> should return <code>\"ABAD\"</code>.'",
+          "testString":
+            "assert.equal(lcs(\"ABAZDC\",\"BACBAD\"),\"ABAD\",'<code>lcs(\"ABAZDC\",\"BACBAD\")</code> should return <code>\"ABAD\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ee9",
+      "challengeType": 5,
+      "releasedOn": "July 4, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function lcs (a, b) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Longest increasing subsequence",
+      "description": [
+        "Calculate and show here a <a href=\"https://en.wikipedia.org/wiki/Longest increasing subsequence\">longest increasing subsequence</a> of the list:",
+        "$\\{3, 2, 6, 4, 5, 1\\}$",
+        "And of the list:",
+        "$\\{0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15\\}$",
+        "Write a function that takes and array of numbers as pararmeter and returns the longest increasing subsequence."
+      ],
+      "solutions": [
+        "function findSequence (input) {\n\tvar len = input.length;\n\tvar result = []\n  for(var i=0;i<len;i++) result.push(1)\n\n\tfor(var i=0; i<len; i++)\n\t\tfor(var j=i-1;j>=0;j--)\n\t\t\tif(input[i] > input[j] && result[j] >= result[i])\n\t\t\t\tresult[i] = result[j]+1;\n\n\tvar maxValue = Math.max.apply(null, result);\n\tvar maxIndex = result.indexOf(Math.max.apply(Math, result));\n\tvar output = [];\n\toutput.push(input[maxIndex]);\n\tfor(var i = maxIndex ; i >= 0; i--){\n\t\tif(maxValue==0)break;\n\t\tif(input[maxIndex] > input[i]  && result[i] == maxValue-1){\n\t\t\toutput.push(input[i]);\n\t\t\tmaxValue--;\n\t\t}\n\t}\n\toutput.reverse();\n\treturn output;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>findSequence</code> should be a function.'",
+          "testString":
+            "assert(typeof findSequence=='function','<code>findSequence</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>findSequence('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(findSequence(tests[0])),'<code>findSequence('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>findSequence('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findSequence(tests[0]),results[0],'<code>findSequence('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findSequence('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findSequence(tests[1]),results[1],'<code>findSequence('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findSequence('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findSequence(tests[2]),results[2],'<code>findSequence('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findSequence('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findSequence(tests[3]),results[3],'<code>findSequence('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>findSequence('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(findSequence(tests[4]),results[4],'<code>findSequence('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7eea",
+      "challengeType": 5,
+      "releasedOn": "July 4, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function findSequence (input) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[[3,10,2,1,20],",
+            "[2,4,7,3,5,8],",
+            "[3,2,6,4,5,1],",
+            "[10,22,9,33,21,50,60,80],",
+            "[0,7,8,4,12,2,10,6,14,1,9,5,13,3,11,7,15]]",
+            "var results=[[3,10,20],",
+            "[2,3,5,8],",
+            "[2,4,5],",
+            "[10,22,33,50,60,80],",
+            "[0,2,6,9,11,15]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Longest string challenge",
+      "description": [
+        "Write a function that takes an array of strings and returns the strings that have length equal to the longest length."
+      ],
+      "solutions": [
+        "function longestString (strings) {\n  var mx=0;\n  var result=[]\n  strings.forEach(function (e) {\n    if(e.length>mx){\n      mx=e.length\n      result=[e]\n    }else if(e.length==mx)\n      result.push(e)\n  })\n\n  return result\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>longestString</code> should be a function.'",
+          "testString":
+            "assert(typeof longestString=='function','<code>longestString</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>longestString('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(longestString(tests[0])),'<code>longestString('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>longestString('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(longestString(tests[0]),results[0],'<code>longestString('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>longestString('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(longestString(tests[1]),results[1],'<code>longestString('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>longestString('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(longestString(tests[2]),results[2],'<code>longestString('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>longestString('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(longestString(tests[3]),results[3],'<code>longestString('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>longestString('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(longestString(tests[4]),results[4],'<code>longestString('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7eeb",
+      "challengeType": 5,
+      "releasedOn": "July 4, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function longestString (strings) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[\"a\",\"bb\",\"ccc\",\"ee\",\"f\",\"ggg\"],",
+            "[\"afedg\",\"bb\",\"sdccc\",\"efdee\",\"f\",\"geegg\"],",
+            "[\"a\",\"bhghgb\",\"ccc\",\"efde\",\"fssdrr\",\"ggg\"],",
+            "[\"ahgfhg\",\"bdsfsb\",\"ccc\",\"ee\",\"f\",\"ggdsfg\"],",
+            "[\"a\",\"bbdsf\",\"ccc\",\"edfe\",\"gzzzgg\"]]",
+            "var results=[",
+            "[\"ccc\",\"ggg\"],",
+            "[\"afedg\",\"sdccc\",\"efdee\",\"geegg\"],",
+            "[\"bhghgb\",\"fssdrr\"],",
+            "[\"ahgfhg\",\"bdsfsb\",\"ggdsfg\"],",
+            "[\"gzzzgg\"]]"
+          ]
+        }
+      }
+    },
+    {
       "title": "Sailors, coconuts and a monkey problem",
       "description": [
         " <p>",
