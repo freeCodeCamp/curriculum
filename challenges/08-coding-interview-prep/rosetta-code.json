@@ -7194,9 +7194,9 @@
       "title": "Letter frequency",
       "description": [
         "Write a function to count the occurrences of each character in a given string.",
-        "All characters should be counted such as lower case, upper case letters, digits, whitespace, special characters or any other distinct character.",
-        "The function should return an array with elements in the form: <code>['char',freq]</code>.",
-        "Here the character a string with length=1 and frequency is a number denoting the count."
+        "All characters should be counted. This includes lower and upper case letters, digits, whitespace, special characters, or any other distinct characters.",
+        "The function should return a 2D array with each of the elements in the following form: <code>['char', freq]</code>. The character should be a string with a length of 1, and frequency is a number denoting the count.",
+        "For example, given the string \"ab\", your function should return <code>[['a', 1], ['b', 1]]</code>."
       ],
       "solutions": [
         "function letterFrequency (txt) {\n    var cs = txt.split(''),\n        i = cs.length,\n        dct =  {},\n        c = '',\n        keys;\n\n    while (i--) {\n        c = cs[i];\n        dct[c] = (dct[c] || 0) + 1;\n    }\n\n    keys = Object.keys(dct);\n    keys.sort();\n    return keys.map(function (c) { return [c, dct[c]]; });\n}\n\n"
