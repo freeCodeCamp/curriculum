@@ -258,7 +258,7 @@
       "description": [
         "As seen in the previous challenge, <code>const</code> declaration alone doesn't really protect your data from mutation. To ensure your data doesn't change, JavaScript provides a function <code>Object.freeze</code> to prevent data mutation.",
         "Once the object is frozen, you can no longer add, update, or delete properties from it. Any attempt at changing the object will be rejected without an error.",
-        "<blockquote>let obj = {<br>&nbsp;&nbsp;name:\"FreeCodeCamp\"<br>&nbsp;&nbsp;review:\"Awesome\"<br>};<br>Object.freeze(obj);<br>obj.review = \"bad\"; //will be ignored. Mutation not allowed<br>obj.newProp = \"Test\"; // will be ignored. Mutation not allowed<br>console.log(obj); <br>// { name: \"FreeCodeCamp\", review:\"Awesome\"}</blockquote>",
+        "<blockquote>let obj = {<br>&nbsp;&nbsp;name:\"FreeCodeCamp\",<br>&nbsp;&nbsp;review:\"Awesome\"<br>};<br>Object.freeze(obj);<br>obj.review = \"bad\"; //will be ignored. Mutation not allowed<br>obj.newProp = \"Test\"; // will be ignored. Mutation not allowed<br>console.log(obj); <br>// { name: \"FreeCodeCamp\", review:\"Awesome\"}</blockquote>",
         "<hr>",
         "In this challenge you are going to use <code>Object.freeze</code> to prevent mathematical constants from changing. You need to freeze the <code>MATH_CONSTANTS</code> object so that no one is able alter the value of <code>PI</code>, add, or delete properties ."
       ],
@@ -906,7 +906,7 @@
             "  \"use strict\";",
             "  // change code below this line",
             "  arr = list; // change this",
-            "  // change code below this line",
+            "  // change code above this line",
             "  return arr;",
             "}",
             "const arr = removeFirstTwo(source);",
@@ -1015,7 +1015,7 @@
         {
           "text": "Template strings were used",
           "testString":
-            "getUserInput => assert(getUserInput('index').match(/\\`<li \\s*class\\s*=\\s*(\"\\s*text-warning\\s*\"|\\'\\s*text-warning\\s*\\')\\s*>\\s*\\$\\s*\\{(\\s*\\w+\\s*|\\s*\\w+\\s*\\[\\s*[\\w]+\\s*\\]\\s*)\\}\\s*<\\s*/li\\s*>\\`/g), 'Template strings were used');"
+            "getUserInput => assert(getUserInput('index').match(/`<li \\s*class\\s*=\\s*(\"\\s*text-warning\\s*\"|'\\s*text-warning\\s*')\\s*>\\s*\\$\\s*\\{(\\s*\\w+\\s*|\\s*\\w+\\s*\\[\\s*[\\w]+\\s*\\]\\s*)\\}\\s*<\\s*\\/li\\s*>`/g), 'Template strings were used');"
         }
       ],
       "releasedOn": "Feb 17, 2017",
@@ -1223,7 +1223,7 @@
         "These are classically called <dfn>getters</dfn> and <dfn>setters</dfn>.",
         "Getter functions are meant to simply return (get) the value of an object's private variable to the user without the user directly accessing the private variable.",
         "Setter functions are meant to modify (set) the value of an object's private variable based on the value passed into the setter function. This change could involve calculations, or even overwriting the previous value completely.",
-        "<blockquote>class Book {<br>&nbsp;&nbsp;constructor(author) {<br>&nbsp;&nbsp;&nbsp;&nbsp;this._author = author;<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;// getter<br>&nbsp;&nbsp;get writer(){<br>&nbsp;&nbsp;&nbsp;&nbsp;return this._author;<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;// setter<br>&nbsp;&nbsp;set writer(updatedAuthor){<br>&nbsp;&nbsp;&nbsp;&nbsp;this._author = updatedAuthor;<br>&nbsp;&nbsp;}<br>}<br>const lol = new Book('anonymous');<br>console.log(lol.writer);<br>lol.writer = 'wut';<br>console.log(lol.writer);</blockquote>",
+        "<blockquote>class Book {<br>&nbsp;&nbsp;constructor(author) {<br>&nbsp;&nbsp;&nbsp;&nbsp;this._author = author;<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;// getter<br>&nbsp;&nbsp;get writer(){<br>&nbsp;&nbsp;&nbsp;&nbsp;return this._author;<br>&nbsp;&nbsp;}<br>&nbsp;&nbsp;// setter<br>&nbsp;&nbsp;set writer(updatedAuthor){<br>&nbsp;&nbsp;&nbsp;&nbsp;this._author = updatedAuthor;<br>&nbsp;&nbsp;}<br>}<br>const lol = new Book('anonymous');<br>console.log(lol.writer);&nbsp;&nbsp;// anonymous<br>lol.writer = 'wut';<br>console.log(lol.writer);&nbsp;&nbsp;// wut</blockquote>",
         "Notice the syntax we are using to invoke the getter and setter - as if they are not even functions.",
         "Getters and setters are important, because they hide internal implementation details.",
         "<hr>",
@@ -1301,7 +1301,7 @@
         {
           "text": "valid <code>import</code> statement",
           "testString":
-            "getUserInput => assert(getUserInput('index').match(/import\\s+\\{\\s?capitalizeString\\s?\\}\\s+from\\s+\"string_functions\"/g), 'valid <code>import</code> statement');"
+            "getUserInput => assert(getUserInput('index').match(/import\\s+\\{\\s?capitalizeString\\s?\\}\\s+from\\s+(\"|')string_functions\\1/g), 'valid <code>import</code> statement');"
         }
       ],
       "releasedOn": "Feb 17, 2017",
@@ -1341,12 +1341,12 @@
         {
           "text": "<code>foo</code> is exported.",
           "testString":
-            "getUserInput => assert(getUserInput('index').match(/export\\s+const\\s+foo\\s+=+\\s\"bar\"/g), '<code>foo</code> is exported.');"
+            "getUserInput => assert(getUserInput('index').match(/export\\s+const\\s+foo\\s*=\\s*\"bar\"/g), '<code>foo</code> is exported.');"
         },
         {
           "text": "<code>bar</code> is exported.",
           "testString":
-            "getUserInput => assert(getUserInput('index').match(/export\\s+const\\s+bar\\s+=+\\s\"foo\"/g), '<code>bar</code> is exported.');"
+            "getUserInput => assert(getUserInput('index').match(/export\\s+const\\s+bar\\s*=\\s*\"foo\"/g), '<code>bar</code> is exported.');"
         }
       ],
       "releasedOn": "Feb 17, 2017",
@@ -1360,7 +1360,7 @@
           "contents": [
             "\"use strict\";",
             "const foo = \"bar\";",
-            "const bar= \"foo\";"
+            "const bar = \"foo\";"
           ],
           "head": ["window.exports = function(){};"],
           "tail": []
