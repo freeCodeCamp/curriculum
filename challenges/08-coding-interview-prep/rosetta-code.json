@@ -7456,8 +7456,8 @@
       "description": [
         "Explicitly implement  <a href=\"https://en.wikipedia.org/wiki/long multiplication\">long multiplication</a>.",
         "This is one possible approach to arbitrary-precision integer algebra.",
-        "Write a function that takes two strings as parameters. The strings are large numbers that are to be multiplied and the result is to be returned by the function.",
-        "Note: Arithematic operators give incorrect result for large numbers and therefore you have to implement multiplication yourself."
+        "Write a function that takes two strings of large numbers as parameters. Your function should return the product of these two large numbers as a string.",
+        "Note: In JavaScript, arithmetic operations are inaccurate with large numbers, so you will have to implement precise multiplication yourself."
       ],
       "solutions": [
         "function mult(strNum1, strNum2) {\n    var a1 = strNum1.split(\"\").reverse();\n    var a2 = strNum2.toString().split(\"\").reverse();\n    var aResult = new Array;\n\n    for ( var iterNum1 = 0; iterNum1 < a1.length; iterNum1++ ) {\n        for ( var iterNum2 = 0; iterNum2 < a2.length; iterNum2++ ) {\n            var idxIter = iterNum1 + iterNum2;    // Get the current array position.\n            aResult[idxIter] = a1[iterNum1] * a2[iterNum2] + ( idxIter >= aResult.length ? 0 : aResult[idxIter] );\n\n            if ( aResult[idxIter] > 9 ) {    // Carrying\n                aResult[idxIter + 1] = Math.floor( aResult[idxIter] / 10 ) + ( idxIter + 1 >= aResult.length ? 0 : aResult[idxIter + 1] );\n                aResult[idxIter] %= 10;\n            }\n        }\n    }\n    return aResult.reverse().join(\"\");\n}\n"
@@ -7602,7 +7602,7 @@
         "$\\{3, 2, 6, 4, 5, 1\\}$",
         "And of the list:",
         "$\\{0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15\\}$",
-        "Write a function that takes and array of numbers as pararmeter and returns the longest increasing subsequence."
+        "Write a function that takes an array of numbers as a parameter and returns the longest increasing subsequence."
       ],
       "solutions": [
         "function findSequence (input) {\n\tvar len = input.length;\n\tvar result = []\n  for(var i=0;i<len;i++) result.push(1)\n\n\tfor(var i=0; i<len; i++)\n\t\tfor(var j=i-1;j>=0;j--)\n\t\t\tif(input[i] > input[j] && result[j] >= result[i])\n\t\t\t\tresult[i] = result[j]+1;\n\n\tvar maxValue = Math.max.apply(null, result);\n\tvar maxIndex = result.indexOf(Math.max.apply(Math, result));\n\tvar output = [];\n\toutput.push(input[maxIndex]);\n\tfor(var i = maxIndex ; i >= 0; i--){\n\t\tif(maxValue==0)break;\n\t\tif(input[maxIndex] > input[i]  && result[i] == maxValue-1){\n\t\t\toutput.push(input[i]);\n\t\t\tmaxValue--;\n\t\t}\n\t}\n\toutput.reverse();\n\treturn output;\n}\n"
