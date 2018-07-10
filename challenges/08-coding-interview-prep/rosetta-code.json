@@ -7456,8 +7456,8 @@
       "description": [
         "Explicitly implement  <a href=\"https://en.wikipedia.org/wiki/long multiplication\">long multiplication</a>.",
         "This is one possible approach to arbitrary-precision integer algebra.",
-        "Write a function that takes two strings as parameters. The strings are large numbers that are to be multiplied and the result is to be returned by the function.",
-        "Note: Arithematic operators give incorrect result for large numbers and therefore you have to implement multiplication yourself."
+        "Write a function that takes two strings of large numbers as parameters. Your function should return the product of these two large numbers as a string.",
+        "Note: In JavaScript, arithmetic operations are inaccurate with large numbers, so you will have to implement precise multiplication yourself."
       ],
       "solutions": [
         "function mult(strNum1, strNum2) {\n    var a1 = strNum1.split(\"\").reverse();\n    var a2 = strNum2.toString().split(\"\").reverse();\n    var aResult = new Array;\n\n    for ( var iterNum1 = 0; iterNum1 < a1.length; iterNum1++ ) {\n        for ( var iterNum2 = 0; iterNum2 < a2.length; iterNum2++ ) {\n            var idxIter = iterNum1 + iterNum2;    // Get the current array position.\n            aResult[idxIter] = a1[iterNum1] * a2[iterNum2] + ( idxIter >= aResult.length ? 0 : aResult[idxIter] );\n\n            if ( aResult[idxIter] > 9 ) {    // Carrying\n                aResult[idxIter + 1] = Math.floor( aResult[idxIter] / 10 ) + ( idxIter + 1 >= aResult.length ? 0 : aResult[idxIter + 1] );\n                aResult[idxIter] %= 10;\n            }\n        }\n    }\n    return aResult.reverse().join(\"\");\n}\n"
@@ -7602,7 +7602,7 @@
         "$\\{3, 2, 6, 4, 5, 1\\}$",
         "And of the list:",
         "$\\{0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15\\}$",
-        "Write a function that takes and array of numbers as pararmeter and returns the longest increasing subsequence."
+        "Write a function that takes an array of numbers as a parameter and returns the longest increasing subsequence."
       ],
       "solutions": [
         "function findSequence (input) {\n\tvar len = input.length;\n\tvar result = []\n  for(var i=0;i<len;i++) result.push(1)\n\n\tfor(var i=0; i<len; i++)\n\t\tfor(var j=i-1;j>=0;j--)\n\t\t\tif(input[i] > input[j] && result[j] >= result[i])\n\t\t\t\tresult[i] = result[j]+1;\n\n\tvar maxValue = Math.max.apply(null, result);\n\tvar maxIndex = result.indexOf(Math.max.apply(Math, result));\n\tvar output = [];\n\toutput.push(input[maxIndex]);\n\tfor(var i = maxIndex ; i >= 0; i--){\n\t\tif(maxValue==0)break;\n\t\tif(input[maxIndex] > input[i]  && result[i] == maxValue-1){\n\t\t\toutput.push(input[i]);\n\t\t\tmaxValue--;\n\t\t}\n\t}\n\toutput.reverse();\n\treturn output;\n}\n"
@@ -7757,6 +7757,724 @@
             "[\"bhghgb\",\"fssdrr\"],",
             "[\"ahgfhg\",\"bdsfsb\",\"ggdsfg\"],",
             "[\"gzzzgg\"]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Look-and-say sequence",
+      "description": [
+        "The  <a href=\"https://en.wikipedia.org/wiki/Look and say sequence\">Look and say sequence</a>  is a recursively defined sequence of numbers studied most notably by  <a href=\"https://en.wikipedia.org/wiki/John Horton Conway\">John Conway</a>.",
+        "Sequence Definition",
+        "<ul><li>Take a decimal number</li>",
+        "<li><span>Look</span> at the number, visually grouping consecutive runs of the same digit.</li>",
+        "<li><span>Say</span> the number, from left to right, group by group; as how many of that digit there are - followed by the digit grouped.</li></ul><span> This becomes the next number of the sequence.</span>",
+        "<span>An example:</span>",
+        "<ul><li>Starting with the number 1,  you have <span>one</span> 1 which produces 11</li>",
+        "<li>Starting with 11,  you have <span>two</span> 1's.  I.E.:  21</li>",
+        "<li>Starting with 21,  you have <span>one</span> 2, then <span>one</span> 1.  I.E.:  (12)(11) which becomes 1211</li>",
+        "<li>Starting with 1211,  you have <span>one</span> 1, <span>one</span> 2, then <span>two</span> 1's.  I.E.:  (11)(12)(21) which becomes 111221</li></ul>",
+        "Write a function that takes a string as parameter. This string has the number that should be processed as mentioned above. The function should return the resultant string."
+      ],
+      "solutions": [
+        "function lookAndSay (str) {\n    return str.replace(/(.)\\1*/g, function(seq, p1){return seq.length.toString() + p1})\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>lookAndSay</code> should be a function.'",
+          "testString":
+            "assert(typeof lookAndSay=='function','<code>lookAndSay</code> should be a function.');"
+        },
+        {
+          "text": "'<code>lookAndSay(\"1\")</code> should return a string.'",
+          "testString":
+            "assert(typeof lookAndSay(\"1\") == 'string','<code>lookAndSay(\"1\")</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>lookAndSay(\"1\")</code> should return <code>\"11\"</code>.'",
+          "testString":
+            "assert.equal(lookAndSay(\"1\"),\"11\",'<code>lookAndSay(\"1\")</code> should return <code>\"11\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lookAndSay(\"11\")</code> should return <code>\"21\"</code>.'",
+          "testString":
+            "assert.equal(lookAndSay(\"11\"),\"21\",'<code>lookAndSay(\"11\")</code> should return <code>\"21\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lookAndSay(\"21\")</code> should return <code>\"1211\"</code>.'",
+          "testString":
+            "assert.equal(lookAndSay(\"21\"),\"1211\",'<code>lookAndSay(\"21\")</code> should return <code>\"1211\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lookAndSay(\"1211\")</code> should return <code>\"111221\"</code>.'",
+          "testString":
+            "assert.equal(lookAndSay(\"1211\"),\"111221\",'<code>lookAndSay(\"1211\")</code> should return <code>\"111221\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>lookAndSay(\"3542\")</code> should return <code>\"13151412\"</code>.'",
+          "testString":
+            "assert.equal(lookAndSay(\"3542\"),\"13151412\",'<code>lookAndSay(\"3542\")</code> should return <code>\"13151412\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7eed",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function lookAndSay (str) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Loop over multiple arrays simultaneously",
+      "description": [
+        "Loop over multiple arrays and create a new array whose $i^{th}$ element is the concatenation of $i^{th}$  element of each of the given.",
+        "For this example, if you are given this array of arrays:",
+        "<code>[ [\"a\",\"b\",\"c\"],[\"A\",\"B\",\"C\"],[1,2,3] ]</code>",
+        "the output should be:",
+        "<code>[\"aA1\",\"bB2\",\"cC3\"]</code>"
+      ],
+      "solutions": [
+        "function loopSimult (A) {\n  var res=[],output\n  for (var i = 0; i < A[0].length; i += 1) {\n    output=\"\"\n    for(var j=0;j<A.length;j++)\n      output += A[j][i];\n    res.push(output)\n  }\n  return res\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>loopSimult</code> should be a function.'",
+          "testString":
+            "assert(typeof loopSimult=='function','<code>loopSimult</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>loopSimult('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(loopSimult(tests[0])),'<code>loopSimult('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>loopSimult('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(loopSimult(tests[0]),results[0],'<code>loopSimult('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>loopSimult('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(loopSimult(tests[1]),results[1],'<code>loopSimult('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>loopSimult('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(loopSimult(tests[2]),results[2],'<code>loopSimult('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>loopSimult('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(loopSimult(tests[3]),results[3],'<code>loopSimult('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>loopSimult('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(loopSimult(tests[4]),results[4],'<code>loopSimult('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7eee",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function loopSimult (A) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[[\"a\",\"b\",\"c\"],[\"A\",\"B\",\"C\"],[1,2,3]],",
+            "[[\"c\",\"b\",\"c\"],[\"4\",\"5\",\"C\"],[7,7,3]],",
+            "[[\"a\",\"b\",\"c\",\"d\"],[\"A\",\"B\",\"C\",\"d\"],[1,2,3,4]],",
+            "[[\"a\",\"b\"],[\"A\",\"B\"],[1,2]],",
+            "[[\"b\",\"c\"],[\"B\",\"C\"],[2,3]]]",
+            "var results=[",
+            "[\"aA1\",\"bB2\",\"cC3\"],",
+            "[\"c47\",\"b57\",\"cC3\"],",
+            "[\"aA1\",\"bB2\",\"cC3\",\"dd4\"],",
+            "[\"aA1\",\"bB2\"],",
+            "[\"bB2\",\"cC3\"]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "LU decomposition",
+      "description": [
+        "Every square matrix $A$ can be decomposed into a product of a lower triangular matrix $L$ and a upper triangular matrix $U$, as described in <a href=\"https://en.wikipedia.org/wiki/LU decomposition\">LU decomposition</a>.",
+        "$A = LU$",
+        "It is a modified form of Gaussian elimination.",
+        "While the <a href=\"http://rosettacode.org/wiki/Cholesky decomposition\">Cholesky decomposition</a> only works for symmetric, positive definite matrices, the more general LU decomposition works for any square matrix.",
+        "There are several algorithms for calculating $L$ and $U$.",
+        "To derive <i>Crout's algorithm</i> for a 3x3 example, we have to solve the following system:",
+        "\\begin{align}A = \\begin{pmatrix} a_{11} & a_{12} & a_{13}\\\\ a_{21} & a_{22} & a_{23}\\\\ a_{31} & a_{32} & a_{33}\\\\ \\end{pmatrix}= \\begin{pmatrix} l_{11} & 0 & 0 \\\\ l_{21} & l_{22} & 0 \\\\ l_{31} & l_{32} & l_{33}\\\\ \\end{pmatrix} \\begin{pmatrix} u_{11} & u_{12} & u_{13} \\\\ 0 & u_{22} & u_{23} \\\\ 0 & 0 & u_{33} \\end{pmatrix} = LU\\end{align}",
+        "We now would have to solve 9 equations with 12 unknowns. To make the system uniquely solvable, usually the diagonal elements of $L$ are set to 1",
+        "$l_{11}=1$",
+        "$l_{22}=1$",
+        "$l_{33}=1$",
+        "so we get a solvable system of 9 unknowns and 9 equations.",
+        "\\begin{align}A = \\begin{pmatrix} a_{11} & a_{12} & a_{13}\\\\ a_{21} & a_{22} & a_{23}\\\\ a_{31} & a_{32} & a_{33}\\\\ \\end{pmatrix} = \\begin{pmatrix} 1      & 0      & 0 \\\\ l_{21} & 1      & 0 \\\\ l_{31} & l_{32} & 1\\\\ \\end{pmatrix} \\begin{pmatrix} u_{11} & u_{12} & u_{13} \\\\ 0 & u_{22} & u_{23} \\\\ 0 & 0 & u_{33} \\end{pmatrix} = \\begin{pmatrix} u_{11}        & u_{12}                    & u_{13}              \\\\ u_{11}l_{21}  & u_{12}l_{21}+u_{22}       & u_{13}l_{21}+u_{23} \\\\ u_{11}l_{31}  & u_{12}l_{31}+u_{22}l_{32} & u_{13}l_{31} + u_{23}l_{32}+u_{33} \\end{pmatrix} = LU\\end{align}",
+        "Solving for the other $l$ and $u$, we get the following equations:",
+        "$u_{11}=a_{11}$",
+        "$u_{12}=a_{12}$",
+        "$u_{13}=a_{13}$",
+        "$u_{22}=a_{22} - u_{12}l_{21}$",
+        "$u_{23}=a_{23} - u_{13}l_{21}$",
+        "$u_{33}=a_{33} - (u_{13}l_{31} + u_{23}l_{32})$",
+        "and for $l$:",
+        "$l_{21}=\\frac{1}{u_{11}} a_{21}$",
+        "$l_{31}=\\frac{1}{u_{11}} a_{31}$",
+        "$l_{32}=\\frac{1}{u_{22}} (a_{32} - u_{12}l_{31})$",
+        "We see that there is a calculation pattern, which can be expressed as the following formulas, first for $U$",
+        "$u_{ij} = a_{ij} - \\sum_{k=1}^{i-1} u_{kj}l_{ik}$",
+        "and then for $L$",
+        "$l_{ij} = \\frac{1}{u_{jj}} (a_{ij} - \\sum_{k=1}^{j-1} u_{kj}l_{ik})$",
+        "We see in the second formula that to get the $l_{ij}$ below the diagonal, we have to divide by the diagonal element (pivot) $u_{jj}$, so we get problems when $u_{jj}$ is either 0 or very small, which leads to numerical instability.",
+        "The solution to this problem is <i>pivoting</i> $A$, which means rearranging the rows of $A$, prior to the $LU$ decomposition, in a way that the largest element of each column gets onto the diagonal of $A$. Rearranging the rows means to multiply $A$ by a permutation matrix $P$:",
+        "$PA \\Rightarrow A'$",
+        "Example:",
+        "\\begin{align} \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} \\begin{pmatrix} 1 & 4 \\\\ 2 & 3 \\end{pmatrix} \\Rightarrow \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix} \\end{align}",
+        "The decomposition algorithm is then applied on the rearranged matrix so that",
+        "$PA = LU$",
+        "<b>Task description</b>",
+        "The task is to implement a routine which will take a square nxn matrix $A$ and return a lower triangular matrix $L$, a upper triangular matrix $U$ and a permutation matrix $P$, so that the above equation is fullfilled. The returned value should be in the form <code>[L,U,P]</code>."
+      ],
+      "solutions": [
+        "function luDecomposition (A) {\n\n  function dotProduct(a,b) {\n    var sum=0;\n    for(var i=0;i<a.length;i++)\n      sum+=a[i]*b[i]\n    return sum;\n  }\n\n  function matrixMul(A,B) {\n    var result=new Array(A.length);\n    for(var i=0;i<A.length;i++)\n      result[i]=new Array(B[0].length)\n    var aux = new Array(B.length);\n\n    for (var j = 0; j < B[0].length; j++) {\n\n        for (var k = 0; k < B.length; k++)\n            aux[k] = B[k][j];\n\n        for (var i = 0; i < A.length; i++)\n            result[i][j] = dotProduct(A[i], aux);\n    }\n    return result;\n  }\n\n  function pivotize(m) {\n    var n = m.length;\n    var id=new Array(n);\n    for(var i=0;i<n;i++){\n      id[i]=new Array(n);\n      id[i].fill(0)\n      id[i][i]=1;\n    }\n\n    for (var i = 0; i < n; i++) {\n        var maxm = m[i][i];\n        var row = i;\n        for (var j = i; j < n; j++)\n            if (m[j][i] > maxm) {\n                maxm = m[j][i];\n                row = j;\n            }\n\n        if (i != row) {\n            var tmp = id[i];\n            id[i] = id[row];\n            id[row] = tmp;\n        }\n    }\n    return id;\n  }\n\n  var n = A.length;\n  var L=new Array(n);\n  for(var i=0;i<n;i++){ L[i]=new Array(n); L[i].fill(0) }\n  var U=new Array(n);\n  for(var i=0;i<n;i++){ U[i]=new Array(n); U[i].fill(0) }\n  var P = pivotize(A);\n  var A2 = matrixMul(P, A);\n\n  for (var j = 0; j < n; j++) {\n      L[j][j] = 1;\n      for (var i = 0; i < j + 1; i++) {\n          var s1 = 0;\n          for (var k = 0; k < i; k++)\n              s1 += U[k][j] * L[i][k];\n          U[i][j] = A2[i][j] - s1;\n      }\n      for (var i = j; i < n; i++) {\n          var s2 = 0;\n          for (var k = 0; k < j; k++)\n              s2 += U[k][j] * L[i][k];\n          L[i][j] = (A2[i][j] - s2) / U[j][j];\n      }\n  }\n  return [L, U, P];\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>luDecomposition</code> should be a function.'",
+          "testString":
+            "assert(typeof luDecomposition=='function','<code>luDecomposition</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>luDecomposition('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(luDecomposition(tests[0])),'<code>luDecomposition('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>luDecomposition('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(luDecomposition(tests[0]),results[0],'<code>luDecomposition('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>luDecomposition('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(luDecomposition(tests[1]),results[1],'<code>luDecomposition('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>luDecomposition('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(luDecomposition(tests[2]),results[2],'<code>luDecomposition('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>luDecomposition('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(luDecomposition(tests[3]),results[3],'<code>luDecomposition('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7efb",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function luDecomposition (A) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[[1,3,5],[2,4,7],[1,1,0]],",
+            "[[11,9,24,2],[1,5,2,6],[3,17,18,1],[2,5,7,1]],",
+            "[[1,1,1],[4,3,-1],[3,5,3]],",
+            "[[1,-2,3],[2,-5,12],[0,2,-10]]]",
+            "var results=[",
+            "[[[1,0,0],[0.5,1,0],[0.5,-1,1]],[[2,4,7],[0,1,1.5],[0,0,-2]],[[0,1,0],[1,0,0],[0,0,1]]],",
+            "[[[1,0,0,0],[0.2727272727272727,1,0,0],[0.09090909090909091,0.2875,1,0],[0.18181818181818182,0.23124999999999996,0.0035971223021580693,1]],[[11,9,24,2],[0,14.545454545454547,11.454545454545455,0.4545454545454546],[0,0,-3.4749999999999996,5.6875],[0,0,0,0.510791366906476]],[[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]]],",
+            "[[[1,0,0],[0.75,1,0],[0.25,0.09090909090909091,1]],[[4,3,-1],[0,2.75,3.75],[0,0,0.9090909090909091]],[[0,1,0],[0,0,1],[1,0,0]]],",
+            "[[[1,0,0],[0,1,0],[0.5,0.25,1]],[[2,-5,12],[0,2,-10],[0,0,-0.5]],[[0,1,0],[0,0,1],[1,0,0]]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Lucas-Lehmer test",
+      "description": [
+        "Lucas-Lehmer Test: for $p$ an odd prime, the Mersenne number $2^p-1$ is prime if and only if $2^p-1$ divides $S(p-1)$ where $S(n+1)=(S(n))^2-2$, and $S(1)=4$.",
+        "Write a function that returns true if given Mersenne number is prime otherwise returns false."
+      ],
+      "solutions": [
+        "function lucasLehmer (p) {\n  function isPrime(p) {\n    if (p == 2)\n      return true;\n    else if (p <= 1 || p % 2 == 0)\n      return false;\n    else {\n      var to = Math.sqrt(p);\n      for (var i = 3; i <= to; i += 2)\n        if (p % i == 0)\n          return false;\n      return true;\n    }\n  }\n\n  function isMersennePrime(p) {\n    if (p == 2)\n      return true;\n    else {\n      var m_p = Math.pow(2,p)-1\n      var s = 4;\n      for (var i = 3; i <= p; i++)\n        s = (s*s - 2) %m_p\n      return s==0;\n    }\n  }\n\n  return isPrime(p) && isMersennePrime(p)\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>lucasLehmer</code> should be a function.'",
+          "testString":
+            "assert(typeof lucasLehmer=='function','<code>lucasLehmer</code> should be a function.');"
+        },
+        {
+          "text": "'<code>lucasLehmer(11)</code> should return a boolean.'",
+          "testString":
+            "assert(typeof lucasLehmer(11) == 'boolean','<code>lucasLehmer(11)</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>lucasLehmer(11)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(lucasLehmer(11),false,'<code>lucasLehmer(11)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>lucasLehmer(15)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(lucasLehmer(15),false,'<code>lucasLehmer(15)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>lucasLehmer(13)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(lucasLehmer(13),true,'<code>lucasLehmer(13)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>lucasLehmer(17)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(lucasLehmer(17),true,'<code>lucasLehmer(17)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>lucasLehmer(19)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(lucasLehmer(19),true,'<code>lucasLehmer(19)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>lucasLehmer(21)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(lucasLehmer(21),false,'<code>lucasLehmer(21)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7efa",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function lucasLehmer (p) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Ludic numbers",
+      "description": [
+        "<a href=\"https://oeis.org/wiki/Ludic_numbers\">Ludic numbers</a>  are related to prime numbers as they are generated by a sieve quite like the <a href=\"http://rosettacode.org/wiki/Sieve of Eratosthenes\">Sieve of Eratosthenes</a> is used to generate prime numbers.",
+        "The first ludic number is  <span style=\"color:blue;font-weight:bold\">1</span>.",
+        "To generate succeeding ludic numbers create an array of increasing integers starting from  <span style=\"color:blue;font-weight:bold\">2</span>.",
+        "<code><span style=\"color:blue;font-weight:bold\">2</span> 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ...</code>",
+        "(Loop)",
+        "<ul><li>Take the first member of the resultant array as the next ludic number  <span style=\"color:blue;font-weight:bold\">2</span>.</li>",
+        "<li>Remove every  <span>2<sup>nd</sup></span>  indexed item from the array (including the first).</li></ul><span>:<code><span style=\"color:blue;font-weight:bold\"><s>2</s></span> 3 <s>4</s> 5 <s>6</s> 7 <s>8</s> 9 <s>10</s> 11 <s>12</s> 13 <s>14</s> 15 <s>16</s> 17 <s>18</s> 19 <s>20</s> 21 <s>22</s> 23 <s>24</s> 25 <s>26</s> ...</code></span>",
+        "<ul><li>(Unrolling a few loops...)</li>",
+        "<li>Take the first member of the resultant array as the next ludic number  <span style=\"color:blue;font-weight:bold\">3</span>.</li>",
+        "<li>Remove every  <span>3<sup>rd</sup></span>  indexed item from the array (including the first).</li></ul><span>:<code><span style=\"color:blue;font-weight:bold\"><s>3</s></span> 5 7 <s>9</s> 11 13 <s>15</s> 17 19 <s>21</s> 23 25 <s>27</s> 29 31 <s>33</s> 35 37 <s>39</s> 41 43 <s>45</s> 47 49 <s>51</s> ...</code></span>",
+        "<ul><li>Take the first member of the resultant array as the next ludic number  <span style=\"color:blue;font-weight:bold\">5</span>.</li>",
+        "<li>Remove every  <span>5<sup>th</sup></span>  indexed item from the array (including the first).</li></ul><span>:<code><span style=\"color:blue;font-weight:bold\"><s>5</s></span> 7 11 13 17 <s>19</s> 23 25 29 31 <s>35</s> 37 41 43 47 <s>49</s> 53 55 59 61 <s>65</s> 67 71 73 77 ...</code></span>",
+        "<ul><li>Take the first member of the resultant array as the next ludic number  <span style=\"color:blue;font-weight:bold\">7</span>.</li>",
+        "<li>Remove every  <span>7<sup>th</sup></span>  indexed item from the array (including the first).</li></ul><span>:<code><span style=\"color:blue;font-weight:bold\"><s>7</s></span> 11 13 17 23 25 29 <s>31</s> 37 41 43 47 53 55 <s>59</s> 61 67 71 73 77 83 <s>85</s> 89 91 97 ...</code></span>",
+        "<ul><li><big><b> ... </b></big></li>",
+        "<li>Take the first member of the current array as the next ludic number  <span style=\"color:blue;font-weight:bold\">L</span>.</li>",
+        "<li>Remove every  <span>L<sup>th</sup></span>  indexed item from the array (including the first).</li>",
+        "<li><big><b> ... </b></big></li></ul>",
+        "Write a function that returns all the ludic numbers that do not exceed the given number."
+      ],
+      "solutions": [
+        "function ludic (n) {\n  const makeArr = (s, e) => new Array(e + 1 - s).fill(s).map((e, i) => e + i);\n\n  const filterAtInc = (arr, n) => arr.filter((e, i) => (i + 1) % n);\n\n  const makeLudic = (arr, result) => {\n    const iter = arr.shift();\n    result.push(iter);\n    return arr.length ? makeLudic(filterAtInc(arr, iter), result) : result;\n  };\n\n  const ludicResult = makeLudic(makeArr(2, n), [1]);\n\n  return ludicResult\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>ludic</code> should be a function.'",
+          "testString":
+            "assert(typeof ludic=='function','<code>ludic</code> should be a function.');"
+        },
+        {
+          "text": "'<code>ludic(2)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(ludic(2)),'<code>ludic(2)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>ludic(2)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(ludic(2),results[0],'<code>ludic(2)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>ludic(3)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(ludic(3),results[1],'<code>ludic(3)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>ludic(5)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(ludic(5),results[2],'<code>ludic(5)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>ludic(20)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(ludic(20),results[3],'<code>ludic(20)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>ludic(26)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(ludic(26),results[4],'<code>ludic(26)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7efc",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function ludic (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[1,2],",
+            "[1,2,3],",
+            "[1,2,3,5],",
+            "[1,2,3,5,7,11,13,17],",
+            "[1,2,3,5,7,11,13,17,23,25]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Luhn test of credit card numbers",
+      "description": [
+        "The <a href=\"https://en.wikipedia.org/wiki/Luhn algorithm\">Luhn test</a> is used by some credit card companies to distinguish valid credit card numbers from what could be a random selection of digits.",
+        "Those companies using credit card numbers that can be validated by the Luhn test have numbers that pass the following test:",
+        "<ol><li> Reverse the order of the digits in the number.</li>",
+        "<li> Take the first, third, ... and every other odd digit in the reversed digits and sum them to form the partial sum s1</li>",
+        "<li> Taking the second, fourth ... and every other even digit in the reversed digits:</li></ol>",
+        "#  Multiply each digit by two and sum the digits if the answer is greater than nine to form partial sums for the even digits",
+        "#  Sum the partial sums of the even digits to form s2",
+        "If s1 + s2 ends in zero then the original number is in the form of a valid credit card number as verified by the Luhn test.",
+        "///",
+        "For example, if the trial number is 49927398716:",
+        "Reverse the digits:",
+        "61789372994",
+        "Sum the odd digits:",
+        "6 + 7 + 9 + 7 + 9 + 4 = 42 = s1",
+        "The even digits:",
+        "1,  8,  3,  2,  9",
+        "Two times each even digit:",
+        "2, 16,  6,  4, 18",
+        "Sum the digits of each multiplication:",
+        "2,  7,  6,  4,  9",
+        "Sum the last:",
+        "2 + 7 + 6 + 4 + 9 = 28 = s2s1 + s2 = 70 which ends in zero which means that 49927398716 passes the Luhn test",
+        "Write a function that will validate a number with the Luhn test. Return true if valid else false."
+      ],
+      "solutions": [
+        "function luhnTest (str) {\n\tvar luhnArr = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9];\n  var counter = 0;\n  var incNum;\n  var odd = false;\n  var temp = String(str).replace(/[^\\d]/g, \"\");\n  if (temp.length == 0)\n    return false;\n  for (var i = temp.length - 1; i >= 0; --i) {\n    incNum = parseInt(temp.charAt(i), 10);\n    counter += (odd = !odd) ? incNum : luhnArr[incNum];\n  }\n  return (counter % 10 == 0);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>luhnTest</code> should be a function.'",
+          "testString":
+            "assert(typeof luhnTest=='function','<code>luhnTest</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"4111111111111111\")</code> should return a boolean.'",
+          "testString":
+            "assert(typeof luhnTest(\"4111111111111111\") == 'boolean','<code>luhnTest(\"4111111111111111\")</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"4111111111111111\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(luhnTest(\"4111111111111111\"),true,'<code>luhnTest(\"4111111111111111\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"4111111111111112\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(luhnTest(\"4111111111111112\"),false,'<code>luhnTest(\"4111111111111112\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"49927398716\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(luhnTest(\"49927398716\"),true,'<code>luhnTest(\"49927398716\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"49927398717\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(luhnTest(\"49927398717\"),false,'<code>luhnTest(\"49927398717\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"1234567812345678\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(luhnTest(\"1234567812345678\"),false,'<code>luhnTest(\"1234567812345678\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>luhnTest(\"1234567812345670\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(luhnTest(\"1234567812345670\"),true,'<code>luhnTest(\"1234567812345670\")</code> should return <code>true</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7efd",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function luhnTest (str) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Lychrel numbers",
+      "description": [
+        "<ol><li>Take an integer n, greater than zero.</li>",
+        "<li>Form the next n of its series by reversing the digits of the current n and adding the result to the current n.</li>",
+        "<li>Stop when n becomes palindromic - i.e. the digits of n in reverse order == n.</li></ol>",
+        "The above recurrence relation when applied to most starting numbers n = 1, 2, ... terminates in a palindrome quite quickly, for example if n<sub>0</sub> = 12 we get",
+        "12",
+        "12 + 21 = 33, a palindrome!",
+        "And if n<sub>0</sub> = 55 we get",
+        "55",
+        "55 + 55 = 110",
+        "110 + 011 = 121, a palindrome!",
+        "Notice that the check for a palindrome happens <i>after</i> an addition.",
+        "Some starting numbers seem to go on forever; the recurrence relation for 196 has been calculated for millions of repetitions forming numbers with millions of digits, without forming a palindrome. These numbers that do not end in a palindrome are called <b>Lychrel numbers</b>.",
+        "For the purposes of this task a Lychrel number is any starting number that does not form a palindrome within 500 (or more) iterations.",
+        "Seed and related Lychrel numbers:>",
+        "Any integer produced in the sequence of a Lychrel number is also a Lychrel number.",
+        "In general, any sequence from one Lychrel number <i>might</i> converge to join the sequence from a prior Lychrel number candidate; for example the sequences for the numbers 196 and then 689 begin:",
+        "196",
+        "196 + 691 = 887",
+        "887 + 788 = 1675",
+        "1675 + 5761 = 7436",
+        "7436 + 6347 = 13783",
+        "13783 + 38731 = 52514",
+        "52514 + 41525 = 94039",
+        "...",
+        "689",
+        "689 + 986 = 1675",
+        "1675 + 5761 = 7436",
+        "...",
+        "So we see that the sequence starting with 689 converges to, and continues with the same numbers as that for 196. Because of this we can further split the Lychrel numbers into true <b>Seed</b> Lychrel number candidates, and <b>Related</b> numbers that produce no palindromes but have integers in their sequence seen as part of the sequence generated from a lower Lychrel number.",
+        "Write a function that takes a number as a parameter. Return true if the number is a Lynchrel number else false. Iteration limit is 500."
+      ],
+      "solutions": [
+        "function isLychrel (n) {\n  function reverse(num) {\n    return parseInt(num.toString().split('').reverse().join(''))\n  }\n\n  var i;\n  for (i = 0; i < 500; i++) {\n    n = n + reverse(n)\n    if (n == reverse(n))\n      break\n  }\n\n  return i == 500\n}\n"
+      ],
+      "tests": [
+        {
+          "text":
+            "assert(typeof isLychrel == 'function', '<code>isLychrel</code> should be a function.'",
+          "testString":
+            "assert(typeof isLychrel == 'function', '<code>isLychrel</code> should be a function.');"
+        },
+        {
+          "text":
+            "assert(typeof isLychrel(12) == 'boolean', '<code>isLychrel(12)</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isLychrel(12) == 'boolean', '<code>isLychrel(12)</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "assert.equal(isLychrel(12), false, '<code>isLychrel(12)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isLychrel(12), false, '<code>isLychrel(12)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLychrel(55), false, '<code>isLychrel(55)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isLychrel(55), false, '<code>isLychrel(55)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLychrel(196), true, '<code>isLychrel(196)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isLychrel(196), true, '<code>isLychrel(196)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLychrel(879), true, '<code>isLychrel(879)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isLychrel(879), true, '<code>isLychrel(879)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLychrel(44987), false, '<code>isLychrel(44987)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isLychrel(44987), false, '<code>isLychrel(44987)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "assert.equal(isLychrel(7059), true, '<code>isLychrel(7059)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isLychrel(7059), true, '<code>isLychrel(7059)</code> should return <code>true</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7efe",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isLychrel (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "LZW compression",
+      "description": [
+        "The Lempel-Ziv-Welch (LZW) algorithm provides loss-less data compression.",
+        "You can read a complete description of it in the  <a href=\"https://en.wikipedia.org/wiki/Lempel-Ziv-Welch\">Wikipedia article</a>  on the subject.  It was patented, but it entered the public domain in 2004.",
+        "Write a function that takes two parameters. First parameter is a boolean. True indicates compress and false indicates decompress. Second parameter is a string in case of compression, array in case of decompression. Return an array for compression. Return a string for decompression."
+      ],
+      "solutions": [
+        "function LZW (compressData, input) {\n  function compress(uncompressed) {\n    // Build the dictionary.\n    var i,\n      dictionary = {},\n      c,\n      wc,\n      w = \"\",\n      result = [],\n      dictSize = 256;\n    for (i = 0; i < 256; i += 1) {\n      dictionary[String.fromCharCode(i)] = i;\n    }\n\n    for (i = 0; i < uncompressed.length; i += 1) {\n      c = uncompressed.charAt(i);\n      wc = w + c;\n      //Do not use dictionary[wc] because javascript arrays\n      //will return values for array['pop'], array['push'] etc\n      // if (dictionary[wc]) {\n      if (dictionary.hasOwnProperty(wc)) {\n        w = wc;\n      } else {\n        result.push(dictionary[w]);\n        // Add wc to the dictionary.\n        dictionary[wc] = dictSize++;\n        w = String(c);\n      }\n    }\n\n    // Output the code for w.\n    if (w !== \"\") {\n      result.push(dictionary[w]);\n    }\n    return result;\n  }\n\n\n  function decompress(compressed) {\n    // Build the dictionary.\n    var i,\n      dictionary = [],\n      w,\n      result,\n      k,\n      entry = \"\",\n      dictSize = 256;\n    for (i = 0; i < 256; i += 1) {\n      dictionary[i] = String.fromCharCode(i);\n    }\n\n    w = String.fromCharCode(compressed[0]);\n    result = w;\n    for (i = 1; i < compressed.length; i += 1) {\n      k = compressed[i];\n      if (dictionary[k]) {\n        entry = dictionary[k];\n      } else {\n        if (k === dictSize) {\n          entry = w + w.charAt(0);\n        } else {\n          return null;\n        }\n      }\n\n      result += entry;\n\n      // Add w+entry[0] to the dictionary.\n      dictionary[dictSize++] = w + entry.charAt(0);\n\n      w = entry;\n    }\n    return result;\n  }\n\n  if(compressData){\n    return compress(input)\n  }else{\n    return decompress(input)\n  }\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>LZW</code> should be a function.'",
+          "testString":
+            "assert(typeof LZW=='function','<code>LZW</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>LZW(true,\\\"'+tests[0]+'\\\")</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(LZW(true,tests[0])),'<code>LZW(true,\\\"'+tests[0]+'\\\")</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>LZW(true,'+JSON.stringify(tests[0])+')</code> should return a string.'",
+          "testString":
+            "assert(typeof LZW(false,tests[1]) == 'string','<code>LZW(true,'+JSON.stringify(tests[0])+')</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>LZW(true,\\\"'+tests[0]+'\\\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(LZW(true,tests[0]),results[0],'<code>LZW(true,\\\"'+tests[0]+'\\\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>LZW(false,'+JSON.stringify(tests[1])+')</code> should return <code>\\\"'+results[1]+'\\\"</code>.'",
+          "testString":
+            "assert.equal(LZW(false,tests[1]),results[1],'<code>LZW(false,'+JSON.stringify(tests[1])+')</code> should return <code>\\\"'+results[1]+'\\\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>LZW(true,\\\"'+tests[2]+'\\\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(LZW(true,tests[2]),results[2],'<code>LZW(true,\\\"'+tests[2]+'\\\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>LZW(false,'+JSON.stringify(tests[3])+')</code> should return <code>\\\"'+results[3]+'\\\"</code>.'",
+          "testString":
+            "assert.equal(LZW(false,tests[3]),results[3],'<code>LZW(false,'+JSON.stringify(tests[3])+')</code> should return <code>\\\"'+results[3]+'\\\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>LZW(true,\\\"'+tests[4]+'\\\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(LZW(true,tests[4]),results[4],'<code>LZW(true,\\\"'+tests[4]+'\\\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>LZW(false,'+JSON.stringify(tests[5])+')</code> should return <code>\\\"'+results[5]+'\\\"</code>.'",
+          "testString":
+            "assert.equal(LZW(false,tests[5]),results[5],'<code>LZW(false,'+JSON.stringify(tests[5])+')</code> should return <code>\\\"'+results[5]+'\\\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7eff",
+      "challengeType": 5,
+      "releasedOn": "July 10, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function LZW (compressData, input) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "\"TOBEORNOTTOBEORTOBEORNOT\",",
+            "[84,79,66,69,79,82,78,79,84,256,258,260,265,259,261,263],",
+            "\"0123456789\",",
+            "[48,49,50,51,52,53,54,55,56,57],",
+            "\"BABAABAAA\",",
+            "[66,65,256,257,65,260]]",
+            "var results=[",
+            "[84,79,66,69,79,82,78,79,84,256,258,260,265,259,261,263],",
+            "\"TOBEORNOTTOBEORTOBEORNOT\",",
+            "[48,49,50,51,52,53,54,55,56,57],",
+            "\"0123456789\",",
+            "[66,65,256,257,65,260],",
+            "\"BABAABAAA\"]"
           ]
         }
       }
