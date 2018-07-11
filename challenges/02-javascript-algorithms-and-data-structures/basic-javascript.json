@@ -30,7 +30,7 @@
           "text":
             "Create a <code>/* */</code> style comment that contains at least five letters.",
           "testString":
-            "assert(code.match(/(\\/\\*)([^\\*\\/]{5,})(?=\\*\\/)/gm), 'Create a <code>/* */</code> style comment that contains at least five letters.');"
+            "assert(code.match(/(\\/\\*)([^\\/]{5,})(?=\\*\\/)/gm), 'Create a <code>/* */</code> style comment that contains at least five letters.');"
         }
       ],
       "challengeType": 1,
@@ -3491,12 +3491,6 @@
             "assert(typeof timesFive === 'function', '<code>timesFive</code> should be a function');"
         },
         {
-          "text":
-            "function <code>timesFive</code> should be called with a number",
-          "testString":
-            "assert(code.match(/timesFive\\(\\s*\\d+\\s*\\)/g), 'function <code>timesFive</code> should be called with a number');"
-        },
-        {
           "text": "<code>timesFive(5)</code> should return <code>25</code>",
           "testString":
             "assert(timesFive(5) === 25, '<code>timesFive(5)</code> should return <code>25</code>');"
@@ -3620,7 +3614,7 @@
       "id": "56533eb9ac21ba0edf2244c3",
       "title": "Assignment with a Returned Value",
       "description": [
-        "If you'll recall from our discussion of <a href=\"storing-values-with-the-assignment-operator\" target=\"_blank\">Storing Values with the Assignment Operator</a>, everything to the right of the equal sign is resolved before the value is assigned. This means we can take the return value of a function and assign it to a variable.",
+        "If you'll recall from our discussion of <a href=\"javascript-algorithms-and-data-structures/basic-javascript/storing-values-with-the-assignment-operator\" target=\"_blank\">Storing Values with the Assignment Operator</a>, everything to the right of the equal sign is resolved before the value is assigned. This means we can take the return value of a function and assign it to a variable.",
         "Assume we have pre-defined a function <code>sum</code> which adds two numbers together, then: ",
         "<code>ourSum = sum(5, 12);</code>",
         "will call <code>sum</code> function, which returns a value of <code>17</code> and assigns it to <code>ourSum</code> variable.",
@@ -4106,9 +4100,9 @@
       "title": "Practice comparing different values",
       "description": [
         "In the last two challenges, we learned about the equality operator (<code>==</code>) and the strict equality operator (<code>===</code>). Let's do a quick review and practice using these operators some more.",
-        "If the values being compared are not of the same type, the equality operator will perform a type conversion, and then evaluate the values. However, the strict equalty operator will compare both the data type and value as-is, without converting one type to the other.",
+        "If the values being compared are not of the same type, the equality operator will perform a type conversion, and then evaluate the values. However, the strict equality operator will compare both the data type and value as-is, without converting one type to the other.",
         "<strong>Examples</strong>",
-        "<blockquote>3 == '3'  // returns true because JavaScript performs type converstion from string to number<br>3 === '3' // returns false because the types are different and type conversion is not performed</blockquote>",
+        "<blockquote>3 == '3'  // returns true because JavaScript performs type conversion from string to number<br>3 === '3' // returns false because the types are different and type conversion is not performed</blockquote>",
         "<strong>Note</strong><br>In JavaScript, you can determine the type of a variable or a value with the <code>typeof</code> operator, as follows:",
         "<blockquote>typeof 3   // returns 'number'<br>typeof '3' // returns 'string'</blockquote>",
         "<hr>",
