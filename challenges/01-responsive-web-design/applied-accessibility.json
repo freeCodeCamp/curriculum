@@ -120,6 +120,12 @@
           "text": "Your code should not have any <code>h5</code> tags.",
           "testString":
             "assert($('h5').length === 0, 'Your code should not have any <code>h5</code> tags.');"
+        },
+        {
+          "text":
+            "Make sure your <code>h5</code> element has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/h5>/g) && code.match(/<\\/h5>/g).length === code.match(/<h5>/g).length, 'Make sure your <code>h5</code> element has a closing tag.');"
         }
       ],
       "solutions": [],
