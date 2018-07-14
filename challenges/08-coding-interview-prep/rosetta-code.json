@@ -8212,7 +8212,7 @@
         "2,  7,  6,  4,  9",
         "Sum the last:",
         "2 + 7 + 6 + 4 + 9 = 28 = s2s1 + s2 = 70 which ends in zero which means that 49927398716 passes the Luhn test",
-        "Write a function that will validate a number with the Luhn test. Return true if valid else false."
+        "Write a function that will validate a number with the Luhn test. Return true if it's a valid number. Otherwise, return false."
       ],
       "solutions": [
         "function luhnTest (str) {\n\tvar luhnArr = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9];\n  var counter = 0;\n  var incNum;\n  var odd = false;\n  var temp = String(str).replace(/[^\\d]/g, \"\");\n  if (temp.length == 0)\n    return false;\n  for (var i = temp.length - 1; i >= 0; --i) {\n    incNum = parseInt(temp.charAt(i), 10);\n    counter += (odd = !odd) ? incNum : luhnArr[incNum];\n  }\n  return (counter % 10 == 0);\n}\n"
@@ -8312,7 +8312,7 @@
         "1675 + 5761 = 7436",
         "...",
         "So we see that the sequence starting with 689 converges to, and continues with the same numbers as that for 196. Because of this we can further split the Lychrel numbers into true <b>Seed</b> Lychrel number candidates, and <b>Related</b> numbers that produce no palindromes but have integers in their sequence seen as part of the sequence generated from a lower Lychrel number.",
-        "Write a function that takes a number as a parameter. Return true if the number is a Lynchrel number else false. Iteration limit is 500."
+        "Write a function that takes a number as a parameter. Return true if the number is a Lynchrel number. Otherwise, return false. The iteration limit is 500."
       ],
       "solutions": [
         "function isLychrel (n) {\n  function reverse(num) {\n    return parseInt(num.toString().split('').reverse().join(''))\n  }\n\n  var i;\n  for (i = 0; i < 500; i++) {\n    n = n + reverse(n)\n    if (n == reverse(n))\n      break\n  }\n\n  return i == 500\n}\n"
@@ -8386,7 +8386,7 @@
       "description": [
         "The Lempel-Ziv-Welch (LZW) algorithm provides loss-less data compression.",
         "You can read a complete description of it in the  <a href=\"https://en.wikipedia.org/wiki/Lempel-Ziv-Welch\">Wikipedia article</a>  on the subject.  It was patented, but it entered the public domain in 2004.",
-        "Write a function that takes two parameters. First parameter is a boolean. True indicates compress and false indicates decompress. Second parameter is a string in case of compression, array in case of decompression. Return an array for compression. Return a string for decompression."
+        "Write a function that takes two parameters. The first parameter is a boolean. True indicates compress and false indicates decompress. The second parameter is either a string or an array to be compressed or decompressed, respectively. If it is a string to be compressed, return an array of numbers. If it's an array of numbers to be decompressed, return a string."
       ],
       "solutions": [
         "function LZW (compressData, input) {\n  function compress(uncompressed) {\n    // Build the dictionary.\n    var i,\n      dictionary = {},\n      c,\n      wc,\n      w = \"\",\n      result = [],\n      dictSize = 256;\n    for (i = 0; i < 256; i += 1) {\n      dictionary[String.fromCharCode(i)] = i;\n    }\n\n    for (i = 0; i < uncompressed.length; i += 1) {\n      c = uncompressed.charAt(i);\n      wc = w + c;\n      //Do not use dictionary[wc] because javascript arrays\n      //will return values for array['pop'], array['push'] etc\n      // if (dictionary[wc]) {\n      if (dictionary.hasOwnProperty(wc)) {\n        w = wc;\n      } else {\n        result.push(dictionary[w]);\n        // Add wc to the dictionary.\n        dictionary[wc] = dictSize++;\n        w = String(c);\n      }\n    }\n\n    // Output the code for w.\n    if (w !== \"\") {\n      result.push(dictionary[w]);\n    }\n    return result;\n  }\n\n\n  function decompress(compressed) {\n    // Build the dictionary.\n    var i,\n      dictionary = [],\n      w,\n      result,\n      k,\n      entry = \"\",\n      dictSize = 256;\n    for (i = 0; i < 256; i += 1) {\n      dictionary[i] = String.fromCharCode(i);\n    }\n\n    w = String.fromCharCode(compressed[0]);\n    result = w;\n    for (i = 1; i < compressed.length; i += 1) {\n      k = compressed[i];\n      if (dictionary[k]) {\n        entry = dictionary[k];\n      } else {\n        if (k === dictSize) {\n          entry = w + w.charAt(0);\n        } else {\n          return null;\n        }\n      }\n\n      result += entry;\n\n      // Add w+entry[0] to the dictionary.\n      dictionary[dictSize++] = w + entry.charAt(0);\n\n      w = entry;\n    }\n    return result;\n  }\n\n  if(compressData){\n    return compress(input)\n  }else{\n    return decompress(input)\n  }\n}\n"
