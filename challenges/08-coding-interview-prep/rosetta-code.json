@@ -9932,7 +9932,7 @@
         "<td>'orbacdefghijklmnpqstuvwxyz'</td>",
         "</tr>",
         "</table>",
-        "Write a function that takes two parameters. The first parameter is a boolean (True indicates encode operation and False indicates decode operation). The second parameter is data to be encoded/decoded. The function should return the encode//decode operation result."
+        "Write a function that takes two parameters. The first parameter is a boolean. True indicates an encode operation and false indicates a decode operation. The second parameter is either a string or an array to be encoded or decoded, respectively. If it is a string to be encoded, return an array of numbers. If it's an array of numbers to be decoded, return a string."
       ],
       "solutions": [
         "function MTF (encode, data) {\n  var encodeMTF = function(word) {\n    var init = {\n      wordAsNumbers: [],\n      charList: 'abcdefghijklmnopqrstuvwxyz'.split('')\n    };\n\n    return word.split('').reduce(function(acc, char) {\n      var charNum = acc.charList.indexOf(char);\n      acc.wordAsNumbers.push(charNum);\n      acc.charList.unshift(acc.charList.splice(charNum, 1)[0]);\n      return acc;\n    }, init).wordAsNumbers;\n  };\n\n  var decodeMTF = function(numList) {\n    var init = {\n      word: '',\n      charList: 'abcdefghijklmnopqrstuvwxyz'.split('')\n    };\n\n    return numList.reduce(function(acc, num) {\n      acc.word += acc.charList[num];\n      acc.charList.unshift(acc.charList.splice(num, 1)[0]);\n      return acc;\n    }, init).word;\n  };\n\n  return encode ? encodeMTF(data) : decodeMTF(data)\n}\n"
