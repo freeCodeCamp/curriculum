@@ -10507,6 +10507,1096 @@
       }
     },
     {
+      "title": "N'th",
+      "description": [
+        "Write a function/method/subroutine/... that when given an integer greater than or equal to zero returns a string of the number followed by an apostrophe then the <a href=\"https://en.wikipedia.org/wiki/Ordinal number (linguistics)\">ordinal suffix</a>.",
+        "Example returns would include <code>1'st 2'nd 3'rd 11'th 111'th 1001'st 1012'th</code>"
+      ],
+      "solutions": [
+        "function fnOrdinalForm (n) {\n  var lstSuffix = 'th st nd rd th th th th th th'.split(' ')\n  return n.toString() + \"'\" + (\n    11 <= n % 100 && 13 >= n % 100 ?\n    \"th\" : lstSuffix[n % 10])\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>fnOrdinalForm</code> should be a function.'",
+          "testString":
+            "assert(typeof fnOrdinalForm=='function','<code>fnOrdinalForm</code> should be a function.');"
+        },
+        {
+          "text": "'<code>fnOrdinalForm(10)</code> should return a string.'",
+          "testString":
+            "assert(typeof fnOrdinalForm(10) == 'string','<code>fnOrdinalForm(10)</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>fnOrdinalForm(10)</code> should return <code>\"10\\'th\"</code>.'",
+          "testString":
+            "assert.equal(fnOrdinalForm(10),\"10'th\",'<code>fnOrdinalForm(10)</code> should return <code>\"10\\'th\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>fnOrdinalForm(874)</code> should return <code>\"874\\'th\"</code>.'",
+          "testString":
+            "assert.equal(fnOrdinalForm(874),\"874'th\",'<code>fnOrdinalForm(874)</code> should return <code>\"874\\'th\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>fnOrdinalForm(579)</code> should return <code>\"579\\'th\"</code>.'",
+          "testString":
+            "assert.equal(fnOrdinalForm(579),\"579'th\",'<code>fnOrdinalForm(579)</code> should return <code>\"579\\'th\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>fnOrdinalForm(1001)</code> should return <code>\"1001\\'st\"</code>.'",
+          "testString":
+            "assert.equal(fnOrdinalForm(1001),\"1001'st\",'<code>fnOrdinalForm(1001)</code> should return <code>\"1001\\'st\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>fnOrdinalForm(1002)</code> should return <code>\"1002\\'nd\"</code>.'",
+          "testString":
+            "assert.equal(fnOrdinalForm(1002),\"1002'nd\",'<code>fnOrdinalForm(1002)</code> should return <code>\"1002\\'nd\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>fnOrdinalForm(36003)</code> should return <code>\"36003\\'rd\"</code>.'",
+          "testString":
+            "assert.equal(fnOrdinalForm(36003),\"36003'rd\",'<code>fnOrdinalForm(36003)</code> should return <code>\"36003\\'rd\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f3c",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function fnOrdinalForm (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "N-queens problem",
+      "description": [
+        "Write a function to solve the <a href=\"http://rosettacode.org/wiki/WP:Eight_queens_puzzle\">eight queens puzzle</a>. It should take the number of rows and columns as parameters. It should return all the possible solutions for the given board size in the form of a 2D array. Each element of this array should be of length equal to the number of rows. The i<sup>th</sup> element should be the position of the queen in the i<sup>th</sup> row."
+      ],
+      "solutions": [
+        "function queenPuzzle (rows, columns) {\n\n  function addQueen(newRow, columns, prevSolution) {\n    var newSolutions = [];\n    var prev = queenPuzzle(newRow, columns);\n    for (var i = 0; i < prev.length; i++) {\n      var solution = prev[i];\n      for (var newColumn = 0; newColumn < columns; newColumn++) {\n        if (!hasConflict(newRow, newColumn, solution))\n          newSolutions.push(solution.concat([newColumn]))\n      }\n    }\n    return newSolutions;\n  }\n\n  function hasConflict(newRow, newColumn, solution) {\n    for (var i = 0; i < newRow; i++) {\n      if (solution[i] == newColumn ||\n        solution[i] + i == newColumn + newRow ||\n        solution[i] - i == newColumn - newRow) {\n        return true;\n      }\n    }\n    return false;\n  }\n  if (rows <= 0) {\n    return [\n      []\n    ];\n  } else {\n    return addQueen(rows - 1, columns);\n  }\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>queenPuzzle</code> should be a function.'",
+          "testString":
+            "assert(typeof queenPuzzle=='function','<code>queenPuzzle</code> should be a function.');"
+        },
+        {
+          "text": "'<code>queenPuzzle(4,4)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(queenPuzzle(4,4)),'<code>queenPuzzle(4,4)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>queenPuzzle(4,4)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(queenPuzzle(4,4),results[0],'<code>queenPuzzle(4,4)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>queenPuzzle(3,4)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(queenPuzzle(3,4),results[1],'<code>queenPuzzle(3,4)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>queenPuzzle(2,4)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(queenPuzzle(2,4),results[2],'<code>queenPuzzle(2,4)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>queenPuzzle(6,6)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(queenPuzzle(6,6),results[3],'<code>queenPuzzle(6,6)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f3b",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function queenPuzzle (rows, columns) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[[1,3,0,2],[2,0,3,1]],",
+            "[[0,3,1],[1,3,0],[2,0,3],[3,0,2]],",
+            "[[0,2],[0,3],[1,3],[2,0],[3,0],[3,1]],",
+            "[[1,3,5,0,2,4],[2,5,1,4,0,3],[3,0,4,1,5,2],[4,2,0,5,3,1]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Narcissistic decimal number",
+      "description": [
+        "A <a href=\"http://mathworld.wolfram.com/NarcissisticNumber.html\">Narcissistic decimal number</a> is a non-negative integer, $ n $, that is equal to the sum of the $ m^{th} $ powers of each of the digits in the decimal representation of $n$, where $m$ is the number of digits in the decimal representation of $n$.",
+        "Narcissistic (decimal) numbers are sometimes called <b>Armstrong</b> numbers, named after Michael F. Armstrong.",
+        "if $ n $ is <b>153</b>",
+        "then $ m $, (the number of decimal digits) is <b>3</b>",
+        "we have  1<sup>3</sup> + 5<sup>3</sup> + 3<sup>3</sup> = 1 + 125 + 27 = <b>153</b>",
+        "and so <b>153</b> is a narcissistic decimal number</span>",
+        "Write a function that returns true if the given number is Narcissistic, otherwise false."
+      ],
+      "solutions": [
+        "function isNarc (x) {\n  var str = x.toString(),\n    i,\n    sum = 0,\n    l = str.length;\n  if (x < 0) {\n    return false;\n  } else {\n    for (i = 0; i < l; i++) {\n      sum += Math.pow(str.charAt(i), l);\n    }\n  }\n  return sum == x;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isNarc</code> should be a function.'",
+          "testString":
+            "assert(typeof isNarc=='function','<code>isNarc</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isNarc(153)</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isNarc(153) == 'boolean','<code>isNarc(153)</code> should return a boolean.');"
+        },
+        {
+          "text": "'<code>isNarc(153)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isNarc(153),true,'<code>isNarc(153)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isNarc(4)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isNarc(4),true,'<code>isNarc(4)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isNarc(94)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isNarc(94),false,'<code>isNarc(94)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isNarc(370)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isNarc(370),true,'<code>isNarc(370)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isNarc(24)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isNarc(24),false,'<code>isNarc(24)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isNarc(172)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isNarc(172),false,'<code>isNarc(172)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f30",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isNarc (x) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Natural sorting",
+      "description": [
+        "Natural sorting is the sorting of text that does more than rely on the order of individual characters codes to make the finding of individual strings easier for a <i>human</i> reader.",
+        "There is no \"one true way\" to do this, but for the purpose of this task 'natural' orderings might include:",
+        "<ul><li> Ignore leading, trailing and multiple adjacent spaces</li> <li> Make all whitespace characters equivalent.</li> <li> Sorting without regard to case.</li> <li> Sorting numeric portions of strings in numeric order. That is split the string into fields on numeric boundaries, then sort on each field, with the rightmost fields being the most significant, and numeric fields of integers treated as numbers.</li> <li> Sort ligatures as separate letters.</li></ul>",
+        "Write a function that takes an array of strings as parameter and returns the sorted array."
+      ],
+      "solutions": [
+        "function nsort (input) {\n  var e = function(s) {\n    return (' ' + s + ' ').replace(/[\\s]+/g, ' ').toLowerCase().replace(/[\\d]+/, function(d) {\n      d = '' + 1e20 + d;\n      return d.substring(d.length - 20);\n    });\n  };\n  return input.sort(function(a, b) {\n    return e(a).localeCompare(e(b));\n  });\n};\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>nsort</code> should be a function.'",
+          "testString":
+            "assert(typeof nsort=='function','<code>nsort</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>nsort('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(nsort(tests[0])),'<code>nsort('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>nsort('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(nsort(tests[0]),results[0],'<code>nsort('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>nsort('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(nsort(tests[1]),results[1],'<code>nsort('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>nsort('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(nsort(tests[2]),results[2],'<code>nsort('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>nsort('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(nsort(tests[3]),results[3],'<code>nsort('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>nsort('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(nsort(tests[4]),results[4],'<code>nsort('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f32",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function nsort (input) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[\"file10.txt\",\"\\nfile9.txt\",\"File11.TXT\",\"file12.txt\"],",
+            "[\"ignore leading spaces: 2-2\",\" ignore leading spaces: 2-1\",\" ignore leading spaces: 2+0\",\" ignore leading spaces: 2+1\"],",
+            "[\"Equiv. spaces: 3-3\",\"Equiv.\\rspaces: 3-2\",\"Equiv.\\x0cspaces: 3-1\",\"Equiv.\\x0bspaces: 3+0\",\"Equiv.\\nspaces: 3+1\",\"Equiv.\\tspaces: 3+2\"],",
+            "[\"cASE INDEPENENT: 3-2\",\"caSE INDEPENENT: 3-1\",\"casE INDEPENENT: 3+0\",\"case INDEPENENT: 3+1\"],",
+            "[\"The Wind in the Willows\",\"The 40th step more\",\"The 39 steps\",\"Wanda\"]]",
+            "var results=[",
+            "[\"\\nfile9.txt\",\"file10.txt\",\"File11.TXT\",\"file12.txt\"],",
+            "[\" ignore leading spaces: 2-1\",\"ignore leading spaces: 2-2\",\" ignore leading spaces: 2+0\",\" ignore leading spaces: 2+1\"],",
+            "[\"Equiv.\\fspaces: 3-1\",\"Equiv.\\rspaces: 3-2\",\"Equiv. spaces: 3-3\",\"Equiv.\\u000bspaces: 3+0\",\"Equiv.\\nspaces: 3+1\",\"Equiv.\\tspaces: 3+2\"],",
+            "[\"caSE INDEPENENT: 3-1\",\"cASE INDEPENENT: 3-2\",\"casE INDEPENENT: 3+0\",\"case INDEPENENT: 3+1\"],",
+            "[\"The 39 steps\",\"The 40th step more\",\"The Wind in the Willows\",\"Wanda\"]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Non-continuous subsequences",
+      "description": [
+        "Consider some sequence of elements. (It differs from a mere set of elements by having an ordering among members.)",
+        "A <i>subsequence</i> contains some subset of the elements of this sequence, in the same order.",
+        "A <i>continuous</i> subsequence is one in which no elements are missing between the first and last elements of the subsequence.",
+        "Note: Subsequences are defined <i>structurally</i>, not by their contents.",
+        "So a sequence <i>a,b,c,d</i> will always have the same subsequences and continuous subsequences, no matter which values are substituted; it may even be the same value.",
+        "<b>Task</b>: Find all non-continuous subsequences for a given sequence.",
+        "Example: For the sequence  <i>1,2,3,4</i>,  there are five non-continuous subsequences, namely:",
+        "<i>1,3</i>",
+        "<i>1,4</i>",
+        "<i>2,4</i>",
+        "<i>1,3,4</i>",
+        "<i>1,2,4</i>",
+        "Wite a function that returns the non-continuous subsequences of the given sequence."
+      ],
+      "solutions": [
+        "function non_continuous_subsequences (ary) {\n  function is_array_continuous(ary) {\n    if (ary.length < 2)\n      return true;\n    for (var j = 1; j < ary.length; j++) {\n      if (ary[j] - ary[j - 1] != 1) {\n        return false;\n      }\n    }\n    return true;\n  }\n  function powerset(ary) {\n    var ps = [\n      []\n    ];\n    for (var i = 0; i < ary.length; i++) {\n      for (var j = 0, len = ps.length; j < len; j++) {\n        ps.push(ps[j].concat(ary[i]));\n      }\n    }\n    return ps;\n  }\n\n  ary = powerset(ary)\n  var non_continuous = new Array();\n  for (var i = 0; i < ary.length; i++) {\n    if (!is_array_continuous(ary[i])) {\n      non_continuous.push(ary[i]);\n    }\n  }\n  return non_continuous;\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text":
+            "'<code>non_continuous_subsequences</code> should be a function.'",
+          "testString":
+            "assert(typeof non_continuous_subsequences=='function','<code>non_continuous_subsequences</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>non_continuous_subsequences('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(non_continuous_subsequences(tests[0])),'<code>non_continuous_subsequences('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>non_continuous_subsequences('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(non_continuous_subsequences(tests[0]),results[0],'<code>non_continuous_subsequences('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>non_continuous_subsequences('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(non_continuous_subsequences(tests[1]),results[1],'<code>non_continuous_subsequences('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>non_continuous_subsequences('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(non_continuous_subsequences(tests[2]),results[2],'<code>non_continuous_subsequences('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>non_continuous_subsequences('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(non_continuous_subsequences(tests[3]),results[3],'<code>non_continuous_subsequences('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>non_continuous_subsequences('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(non_continuous_subsequences(tests[4]),results[4],'<code>non_continuous_subsequences('+JSON.stringify(tests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f35",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function non_continuous_subsequences (ary) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[1,2,3],",
+            "[1,2,3,4],",
+            "[1,5,9],",
+            "[1,2,3,4,5],",
+            "[5,18,14]]",
+            "var results=[",
+            "[[1,3]],",
+            "[[1,3],[1,4],[2,4],[1,2,4],[1,3,4]],",
+            "[[1,5],[1,9],[5,9],[1,5,9]],",
+            "[[1,3],[1,4],[2,4],[1,2,4],[1,3,4],[1,5],[2,5],[1,2,5],[3,5],[1,3,5],[2,3,5],[1,2,3,5],[1,4,5],[2,4,5],[1,2,4,5],[1,3,4,5]],",
+            "[[5,18],[5,14],[18,14],[5,18,14]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Nonoblock",
+      "description": [
+        "Nonoblock is a chip off the old <a href=\"http://rosettacode.org/wiki/Nonogram solver\">Nonogram</a> puzzle.",
+        "Given a row of five cells and a block of two cells followed by a block of 1 cell - in that order, the example could be shown as:",
+        "[0,0,0,0,0] # 5 cells and [2, 1] blocks",
+        "And would expand to the following 3 possible rows of block positions:",
+        "[1,1,0,1,0]",
+        "[1,1,0,0,1]",
+        "[0,1,1,0,1]",
+        "Note how the sets of blocks are always separated by a 0.",
+        "Write a function that takes a string and a number as parameters. The string contains digits and gives the size of the blocks. For example: \"21\" = [2,1] blocks. The second parameter is the length/number of cells. The function should return an array with all possible solutions. Each element should be a bit array (array consisting of 0s and 1s) that represents a solution."
+      ],
+      "solutions": [
+        "function Nonoblock (data, len) {\n  function block() {\n    let sumChars = 0;\n\n    for (let i = 0; i < data.length; i++) {\n      sumChars += parseInt(data[i])\n    }\n\n    let a = data.split(\"\");\n\n    let prep = a.filter(x => \"\" != x)\n      .map(x => repeat(parseInt(x), \"1\"))\n\n    var res=[]\n    for (var r of genSequence(prep, len - sumChars + 1))\n      res.push(r.substring(1))\n\n    return res\n  }\n\n  function genSequence(ones, numZeros) {\n    if (ones.length == 0)\n      return [repeat(numZeros, \"0\")]\n\n    let result = [];\n    for (let x = 1; x < numZeros - ones.length + 2; x++) {\n      let skipOne = ones.slice(1, ones.length)\n      let t = genSequence(skipOne, numZeros - x)\n\n      for (let i = 0; i < t.length; i++) {\n        result.push(repeat(x, \"0\") + ones[0] + t[i]);\n      }\n    }\n\n    return result;\n  }\n\n  function repeat(n, s) {\n    let sb = \"\";\n    for (let i = 0; i < n; i++)\n      sb += s\n    return sb;\n  }\n  return block()\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>Nonoblock</code> should be a function.'",
+          "testString":
+            "assert(typeof Nonoblock=='function','<code>Nonoblock</code> should be a function.');"
+        },
+        {
+          "text": "'<code>Nonoblock(\"21\",5)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(Nonoblock(\"21\",5)),'<code>Nonoblock(\"21\",5)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>Nonoblock(\"21\",5)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(Nonoblock(\"21\",5),results[0],'<code>Nonoblock(\"21\",5)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>Nonoblock(\"\",5)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(Nonoblock(\"\",5),results[1],'<code>Nonoblock(\"\",5)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>Nonoblock(\"8\",10)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(Nonoblock(\"8\",10),results[2],'<code>Nonoblock(\"8\",10)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>Nonoblock(\"2323\",15)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(Nonoblock(\"2323\",15),results[3],'<code>Nonoblock(\"2323\",15)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>Nonoblock(\"23\",5)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(Nonoblock(\"23\",5),results[4],'<code>Nonoblock(\"23\",5)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f39",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function Nonoblock (data, len) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[\"11010\",\"11001\",\"01101\"],",
+            "[\"00000\"],",
+            "[\"1111111100\",\"0111111110\",\"0011111111\"],",
+            "[\"110111011011100\",\"110111011001110\",\"110111011000111\",\"110111001101110\",\"110111001100111\",\"110111000110111\",\"110011101101110\",\"110011101100111\",\"110011100110111\",\"110001110110111\",\"011011101101110\",\"011011101100111\",\"011011100110111\",\"011001110110111\",\"001101110110111\"],",
+            "[]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Nonogram solver",
+      "description": [
+        "A <a href=\"https://en.wikipedia.org/wiki/Nonogram\">nonogram</a> is a puzzle that provides numeric clues used to fill in a grid of cells, establishing for each cell whether it is filled or not.",
+        "The puzzle solution is typically a picture of some kind.",
+        "Each row and column of a rectangular grid is annotated with the lengths of its distinct runs of occupied cells.",
+        "Using only these lengths you should find a valid configuration of empty and occupied cells.",
+        "Problem:",
+        ". . . . . . . .  3",
+        ". . . . . . . .  2 1",
+        ". . . . . . . .  3 2",
+        ". . . . . . . .  2 2",
+        ". . . . . . . .  6",
+        ". . . . . . . .  1 5",
+        ". . . . . . . .  6",
+        ". . . . . . . .  1",
+        ". . . . . . . .  2",
+        "1 3 1 7 5 3 4 3",
+        "2 1 5 1",
+        "Solution:",
+        ". # # # . . . .  3",
+        "# # . # . . . .  2 1",
+        ". # # # . . # #  3 2",
+        ". . # # . . # #  2 2",
+        ". . # # # # # #  6",
+        "# . # # # # # .  1 5",
+        "# # # # # # . .  6",
+        ". . . . # . . .  1",
+        ". . . # # . . .  2",
+        "1 3 1 7 5 3 4 3",
+        "2 1 5 1",
+        "The problem above could be represented by two lists of lists:",
+        "x = [[3], [2,1], [3,2], [2,2], [6], [1,5], [6], [1], [2]]",
+        "y = [[1,2], [3,1], [1,5], [7,1], [5], [3], [4], [3]]",
+        "A more compact representation of the same problem uses strings,",
+        "where the letters represent the numbers, A=1, B=2, etc:",
+        "x = \"C BA CB BB F AE F A B\"",
+        "y = \"AB CA AE GA E C D C\"",
+        "Write a function that takes an array of strings as parameter and returns a 2D bit-matrix as a solution for the given nonogram (represented by the array of strings). The element of the bit-matrix should be 1 for occupied cell and 0 for unoccupied cell."
+      ],
+      "solutions": [
+        "// noprotect\nfunction NonogramSolver (input){\n  function BitSet(nbits) {\n      var _this = this;\n      if (((typeof nbits === 'number') || nbits === null)) {\n          var __args = Array.prototype.slice.call(arguments);\n          this.bits = null;\n          this.bits = null;\n          (function () {\n              var length = nbits >>> 6;\n              if ((nbits & BitSet.LONG_MASK) !== 0)\n                  ++length;\n              _this.bits = (function (s) { var a = []; while (s-- > 0)\n                  a.push(0); return a; })(length);\n          })();\n      }\n      else if (nbits === undefined) {\n          var __args = Array.prototype.slice.call(arguments);\n          {\n              var __args_1 = Array.prototype.slice.call(arguments);\n              var nbits_1 = 64;\n              this.bits = null;\n              this.bits = null;\n              (function () {\n                  var length = nbits_1 >>> 6;\n                  if ((nbits_1 & BitSet.LONG_MASK) !== 0)\n                      ++length;\n                  _this.bits = (function (s) { var a = []; while (s-- > 0)\n                      a.push(0); return a; })(length);\n              })();\n          }\n      }\n      else\n          throw new Error('invalid overload');\n  }\n  BitSet.LONG_MASK = 63;\n  BitSet.prototype.and = function (bs) {\n      var max = Math.min(this.bits.length, bs.bits.length);\n      var i;\n      for (i = 0; i < max; ++i)\n          this.bits[i] &= bs.bits[i];\n      while ((i < this.bits.length))\n          this.bits[i++] = 0;\n  };\n  BitSet.prototype.clear$int = function (pos) {\n      var offset = pos >> 6;\n      this.ensure(offset);\n      this.bits[offset] &= ~(1 << pos);\n  };\n  BitSet.prototype.get = function (pos) {\n      var offset = pos >> 6;\n      if (offset >= this.bits.length)\n          return false;\n      return (this.bits[offset] & (1 << pos)) !== 0;\n  };\n  BitSet.prototype.isEmpty = function () {\n      for (var i = this.bits.length - 1; i >= 0; i--)\n          if (this.bits[i] !== 0)\n              return false;\n      ;\n      return true;\n  };\n  BitSet.prototype.length = function () {\n      var i;\n      for (i = this.bits.length - 1; i >= 0 && this.bits[i] === 0; --i)\n          ;\n      if (i < 0)\n          return 0;\n      var b = this.bits[i];\n      var len = (i + 1) * 64;\n      while ((b >= 0)) {\n          --len;\n          b <<= 1;\n      }\n      ;\n      return len;\n  };\n  BitSet.prototype.or = function (bs) {\n      this.ensure(bs.bits.length - 1);\n      for (var i = bs.bits.length - 1; i >= 0; i--)\n          this.bits[i] |= bs.bits[i];\n  };\n  BitSet.prototype.set$int = function (pos) {\n      var offset = pos >> 6;\n      this.ensure(offset);\n      this.bits[offset] |= 1 << pos;\n  };\n  BitSet.prototype.set$int$boolean = function (index, value) {\n      if (value)\n          this.set$int(index);\n      else\n          this.clear$int(index);\n  };\n  BitSet.prototype.set$int$int = function (from, to) {\n      if (from < 0 || from > to)\n          throw Object.defineProperty(new Error(), '__classes', { configurable: true, value: ['java.lang.Throwable', 'java.lang.IndexOutOfBoundsException', 'java.lang.Object', 'java.lang.RuntimeException', 'java.lang.Exception'] });\n      if (from === to)\n          return;\n      var lo_offset = from >>> 6;\n      var hi_offset = to >>> 6;\n      this.ensure(hi_offset);\n      if (lo_offset === hi_offset) {\n          this.bits[hi_offset] |= (-1 << from) & ((1 << to) - 1);\n          return;\n      }\n      this.bits[lo_offset] |= -1 << from;\n      this.bits[hi_offset] |= (1 << to) - 1;\n      for (var i = lo_offset + 1; i < hi_offset; i++)\n          this.bits[i] = -1;\n  };\n  BitSet.prototype.size = function () {\n      return this.bits.length * 64;\n  };\n  BitSet.prototype.ensure = function (lastElt) {\n      if (lastElt >= this.bits.length) {\n          var nd = (function (s) { var a = []; while (s-- > 0)\n              a.push(0); return a; })(lastElt + 1);\n          (function (srcPts, srcOff, dstPts, dstOff, size) { if (srcPts !== dstPts || dstOff >= srcOff + size) {\n              while (--size >= 0)\n                  dstPts[dstOff++] = srcPts[srcOff++];\n          }\n          else {\n              var tmp = srcPts.slice(srcOff, srcOff + size);\n              for (var i = 0; i < size; i++)\n                  dstPts[dstOff++] = tmp[i];\n          } })(this.bits, 0, nd, 0, this.bits.length);\n          this.bits = nd;\n      }\n  };\n\n  function newPuzzle(data) {\n      var rowData = data[0].split(/\\s/);\n      var colData = data[1].split(/\\s/);\n      var cols;\n      var rows;\n      rows = getCandidates(rowData, colData.length);\n      cols = getCandidates(colData, rowData.length);\n      var numChanged;\n      do {\n          numChanged = reduceMutual(cols, rows);\n      } while ((numChanged > 0));\n      var o,res=[];\n      for (var j = 0; j < rows.length; j++) {\n          var row = rows[j];\n          {\n              o = [];\n              for (var i = 0; i < cols.length; i++)\n                  o.push(row[0].get(i) ? 1 : 0);\n              res.push(o)\n          }\n      }\n\n      return res;\n  };\n\n  function getCandidates(data, len) {\n      var result = ([]);\n      for (var ii = 0; ii < data.length; ii++) {\n          var s = data[ii];\n          {\n              var lst = ([]);\n              var sumChars = 0;\n              for (var i = 0; i < s.length; i++)\n                  sumChars += (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(s.charAt(i)) - 'A'.charCodeAt(0) + 1;\n              var prep = ([]);\n              {\n                  var arr = s.split(\"\");\n                  for (var index9341 = 0; index9341 < arr.length; index9341++) {\n                      var ss = arr[index9341];\n                      (prep.push(repeat((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(ss.charAt(0)) - 'A'.charCodeAt(0) + 1, \"1\")) > 0);\n                  }\n              }\n              {\n                  var arr = genSequence(prep, len - sumChars + 1);\n                  for (var j = 0; j < arr.length; j++) {\n                      var r = arr[j];\n                      {\n                          var bits = (r.substring(1)).split('');\n                          var bitset = new BitSet(bits.length);\n                          for (var i = 0; i < bits.length; i++)\n                              bitset.set$int$boolean(i, (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(bits[i]) == '1'.charCodeAt(0));\n                          (lst.push(bitset) > 0);\n                      }\n                  }\n              }\n              (result.push(lst) > 0);\n          }\n      }\n      return result;\n  };\n\n  function genSequence(ones, numZeros) {\n      if ((ones.length == 0))\n          return [repeat(numZeros, \"0\")];\n      var result = ([]);\n      for (var x = 1; x < numZeros - ones.length + 2; x++) {\n          var skipOne = (ones.slice(0));\n          skipOne.splice(0, 1);\n          {\n              var arr = genSequence(skipOne, numZeros - x);\n              for (var ii = 0; ii < arr.length; ii++) {\n                  var tail = arr[ii];\n                  (result.push(repeat(x, \"0\") + ones[0] + tail) > 0);\n              }\n          }\n      }\n      ;\n      return result;\n  };\n\n  function repeat(n, s) {\n      var sb = { str: \"\", toString: function () { return this.str; } };\n      for (var i = 0; i < n; i++)\n          (function (sb) { sb.str = sb.str.concat(s); return sb; })(sb);\n      return sb.str;\n  };\n\n  function reduceMutual(cols, rows) {\n      var countRemoved1 = reduce(cols, rows);\n      if (countRemoved1 === -1)\n          return -1;\n      var countRemoved2 = reduce(rows, cols);\n      if (countRemoved2 === -1)\n          return -1;\n      return countRemoved1 + countRemoved2;\n  };\n\n  function reduce(a, b) {\n      var countRemoved = 0;\n      for (var i = 0; i < a.length; i++) {\n          var commonOn = new BitSet();\n          commonOn.set$int$int(0, b.length);\n          var commonOff = new BitSet();\n          {\n              var array9348 = a[i];\n              for (var ii = 0; ii < array9348.length; ii++) {\n                  var candidate = array9348[ii];\n                  {\n                      commonOn.and(candidate);\n                      commonOff.or(candidate);\n                  }\n              }\n          }\n          for (var j = 0; j < b.length; j++) {\n              var fi = i;\n              var fj = j;\n              var rm = false;\n              var item = void 0;\n              for (var bi = 0; bi < b[j].length; bi++) {\n                  item = b[j][bi];\n                  if ((commonOn.get(fj) && !item.get(fi)) || (!commonOff.get(fj) && item.get(fi))) {\n                      rm = true;\n                      b[j].splice(bi, 1);\n                      bi--;\n                  }\n              }\n              ;\n              if (rm)\n                  countRemoved++;\n              if ((b[j].length == 0))\n                  return -1;\n          }\n          ;\n      }\n      ;\n      return countRemoved;\n  };\n\n  return newPuzzle(input)\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>NonogramSolver</code> should be a function.'",
+          "testString":
+            "assert(typeof NonogramSolver=='function','<code>NonogramSolver</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>NonogramSolver('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(NonogramSolver(tests[0])),'<code>NonogramSolver('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>NonogramSolver('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(NonogramSolver(tests[0]),results[0],'<code>NonogramSolver('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>NonogramSolver('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(NonogramSolver(tests[1]),results[1],'<code>NonogramSolver('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>NonogramSolver('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(NonogramSolver(tests[2]),results[2],'<code>NonogramSolver('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>NonogramSolver('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(NonogramSolver(tests[3]),results[3],'<code>NonogramSolver('+JSON.stringify(tests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f3a",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function NonogramSolver (input){",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[\"C BA CB BB F AE F A B\",\"AB CA AE GA E C D C\"],",
+            "[\"F CAC ACAC CN AAA AABB EBB EAA ECCC HCCC\",\"D D AE CD AE A DA BBB CC AAB BAA AAB DA AAB AAA BAB AAA CD BBA DA\"],",
+            "[\"CA BDA ACC BD CCAC CBBAC BBBBB BAABAA ABAD AABB BBH BBBD ABBAAA CCEA AACAAB BCACC ACBH DCH ADBE ADBB DBE ECE DAA DB CC\",\"BC CAC CBAB BDD CDBDE BEBDF ADCDFA DCCFB DBCFC ABDBA BBF AAF BADB DBF AAAAD BDG CEF CBDB BBB FC\"],",
+            "[\"E BCB BEA BH BEK AABAF ABAC BAA BFB OD JH BADCF Q Q R AN AAN EI H G\",\"E CB BAB AAA AAA AC BB ACC ACCA AGB AIA AJ AJ ACE AH BAF CAG DAG FAH FJ GJ ADK ABK BL CM\"]]",
+            "var results=[",
+            "[[0,1,1,1,0,0,0,0],",
+            "[1,1,0,1,0,0,0,0],",
+            "[0,1,1,1,0,0,1,1],",
+            "[0,0,1,1,0,0,1,1],",
+            "[0,0,1,1,1,1,1,1],",
+            "[1,0,1,1,1,1,1,0],",
+            "[1,1,1,1,1,1,0,0],",
+            "[0,0,0,0,1,0,0,0],",
+            "[0,0,0,1,1,0,0,0]],",
+            "",
+            "[[0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0],",
+            "[0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,1,1,1,0,0],",
+            "[0,0,0,1,0,0,1,1,1,0,0,0,1,0,0,0,0,1,1,1],",
+            "[0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],",
+            "[0,0,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1],",
+            "[1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0],",
+            "[1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0],",
+            "[1,1,1,1,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0],",
+            "[1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1]],",
+            "",
+            "[[0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],",
+            "[0,0,0,0,1,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0],",
+            "[0,0,0,0,1,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0],",
+            "[0,0,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],",
+            "[0,1,1,1,0,1,1,1,0,1,0,0,0,0,1,1,1,0,0,0],",
+            "[1,1,1,0,0,1,1,0,1,1,0,0,0,1,0,1,1,1,0,0],",
+            "[1,1,0,0,1,1,0,1,1,0,0,0,0,1,1,0,1,1,0,0],",
+            "[0,0,0,0,1,1,0,1,0,1,0,0,1,1,0,1,0,1,0,0],",
+            "[0,0,0,0,1,0,1,1,0,1,0,0,0,1,1,1,1,0,0,0],",
+            "[0,0,0,0,1,0,1,0,1,1,0,0,0,0,0,1,1,0,0,0],",
+            "[0,0,0,0,0,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,1,1,0,1,1,0,0,0,1,1,0,0,1,1,1,1],",
+            "[0,0,0,0,1,0,1,1,0,1,1,0,1,0,0,0,1,0,0,1],",
+            "[1,1,1,0,0,1,1,1,0,1,1,1,1,1,0,0,0,0,0,1],",
+            "[1,0,1,0,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1,1],",
+            "[1,1,0,0,1,1,1,0,1,0,0,0,0,1,1,1,0,1,1,1],",
+            "[0,1,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,0],",
+            "[0,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0],",
+            "[0,0,0,1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,0,0],",
+            "[0,0,0,1,0,1,1,1,1,0,1,1,0,0,0,1,1,0,0,0],",
+            "[0,0,0,0,1,1,1,1,0,0,1,1,0,0,0,1,1,1,1,1],",
+            "[0,0,0,1,1,1,1,1,0,1,1,1,0,0,0,1,1,1,1,1],",
+            "[0,0,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1],",
+            "[0,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0],",
+            "[0,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0]],",
+            "",
+            "[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1],",
+            "[0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1],",
+            "[0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1],",
+            "[1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0],",
+            "[1,1,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0],",
+            "[1,0,1,0,0,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,0,0,0],",
+            "[1,0,0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0],",
+            "[1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],",
+            "[0,1,1,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1],",
+            "[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1],",
+            "[0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,1,1,0,1,0,1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1],",
+            "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Nth root",
+      "description": [
+        "Write a function  to implement the algorithm to compute the principal <a href=\"https://en.wikipedia.org/wiki/Nth root\"><i>n</i>th root</a> $\\sqrt[n]A$ of a positive real number <i>A</i>, as explained at the <a href=\"https://en.wikipedia.org/wiki/Nth root algorithm\">Wikipedia page</a>. The function should take 3 parameters. The first will be the number whose root is to be found. The second parameter represents the root number and the third parameter is the precision. The function should return the result rounded to 3 decimal places."
+      ],
+      "solutions": [
+        "function nthRoot (A, n, p) {\n\tvar x_prev = A,x = A / n;\n\twhile(Math.abs(x - x_prev) > p) {\n\t\tx_prev = x;\n\t\tx = ((n - 1.0) * x + A / Math.pow(x, n - 1.0)) / n;\n\t}\n\treturn Math.round(x*1000)/1000;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>nthRoot</code> should be a function.'",
+          "testString":
+            "assert(typeof nthRoot=='function','<code>nthRoot</code> should be a function.');"
+        },
+        {
+          "text": "'<code>nthRoot(4,2,0.1)</code> should return a number.'",
+          "testString":
+            "assert(typeof nthRoot(4,2,0.1) == 'number','<code>nthRoot(4,2,0.1)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>nthRoot(4,2,0.1)</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(nthRoot(4,2,0.1),2,'<code>nthRoot(4,2,0.1)</code> should return <code>2</code>.');"
+        },
+        {
+          "text":
+            "'<code>nthRoot(27,3,0.01)</code> should return <code>3</code>.'",
+          "testString":
+            "assert.equal(nthRoot(27,3,0.01),3,'<code>nthRoot(27,3,0.01)</code> should return <code>3</code>.');"
+        },
+        {
+          "text":
+            "'<code>nthRoot(5,4,1)</code> should return <code>1.578</code>.'",
+          "testString":
+            "assert.equal(nthRoot(5,4,1),1.578,'<code>nthRoot(5,4,1)</code> should return <code>1.578</code>.');"
+        },
+        {
+          "text":
+            "'<code>nthRoot(2,5,0.001)</code> should return <code>1.149</code>.'",
+          "testString":
+            "assert.equal(nthRoot(2,5,0.001),1.149,'<code>nthRoot(2,5,0.001)</code> should return <code>1.149</code>.');"
+        },
+        {
+          "text":
+            "'<code>nthRoot(1728,3,0.001)</code> should return <code>12</code>.'",
+          "testString":
+            "assert.equal(nthRoot(1728,3,0.001),12,'<code>nthRoot(1728,3,0.001)</code> should return <code>12</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f3d",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function nthRoot (A, n, p) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Number names",
+      "description": [
+        "Write a function that spells out a given number in English and returns the resultant string. You should support inputs up to at least one million. It should also support negative numbers."
+      ],
+      "solutions": [
+        "function numberName (value) {\n  const divMod = y => x => [Math.floor(y / x), y % x];\n  let name = '';\n  let quotient, remainder;\n  const dm = divMod(value);\n  const units = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',\n    'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen',\n    'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'\n  ];\n  const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty',\n    'seventy', 'eighty', 'ninety'\n  ];\n  const big = [...['', 'thousand'], ...['m', 'b', 'tr', 'quadr', 'quint',\n    'sext', 'sept', 'oct', 'non', 'dec'\n  ].map(e => `${e}illion`)];\n\n  if (value < 0) {\n    name = `negative ${numberName(-value)}`\n  } else if (value < 20) {\n    name = units[value]\n  } else if (value < 100) {\n    [quotient, remainder] = dm(10);\n    name = `${tens[quotient]} ${units[remainder]}`.replace(' zero', '');\n  } else if (value < 1000) {\n    [quotient, remainder] = dm(100);\n    name = `${numberName(quotient)} hundred and ${numberName(remainder)}`\n      .replace(' and zero', '')\n  } else {\n    const chunks = [];\n    const text = [];\n    while (value !== 0) {\n      [value, remainder] = divMod(value)(1000);\n      chunks.push(remainder);\n    }\n    chunks.forEach((e, i) => {\n      if (e > 0) {\n        text.push(`${numberName(e)}${i === 0 ? '' : ' ' + big[i]}`);\n        if (i === 0 && e < 100) {\n          text.push('and');\n        }\n      }\n    });\n    name = text.reverse().join(', ').replace(', and,', ' and');\n  }\n  return name;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>numberName</code> should be a function.'",
+          "testString":
+            "assert(typeof numberName=='function','<code>numberName</code> should be a function.');"
+        },
+        {
+          "text": "'<code>numberName(0)</code> should return a string.'",
+          "testString":
+            "assert(typeof numberName(0) == 'string','<code>numberName(0)</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>numberName(0)</code> should return <code>\"zero\"</code>.'",
+          "testString":
+            "assert.equal(numberName(0),\"zero\",'<code>numberName(0)</code> should return <code>\"zero\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(10)</code> should return <code>\"ten\"</code>.'",
+          "testString":
+            "assert.equal(numberName(10),\"ten\",'<code>numberName(10)</code> should return <code>\"ten\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(30)</code> should return <code>\"thirty\"</code>.'",
+          "testString":
+            "assert.equal(numberName(30),\"thirty\",'<code>numberName(30)</code> should return <code>\"thirty\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(47)</code> should return <code>\"forty seven\"</code>.'",
+          "testString":
+            "assert.equal(numberName(47),\"forty seven\",'<code>numberName(47)</code> should return <code>\"forty seven\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(100)</code> should return <code>\"one hundred\"</code>.'",
+          "testString":
+            "assert.equal(numberName(100),\"one hundred\",'<code>numberName(100)</code> should return <code>\"one hundred\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(999)</code> should return <code>\"nine hundred and ninety nine\"</code>.'",
+          "testString":
+            "assert.equal(numberName(999),\"nine hundred and ninety nine\",'<code>numberName(999)</code> should return <code>\"nine hundred and ninety nine\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(1000)</code> should return <code>\"one thousand\"</code>.'",
+          "testString":
+            "assert.equal(numberName(1000),\"one thousand\",'<code>numberName(1000)</code> should return <code>\"one thousand\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(9999)</code> should return <code>\"nine thousand, nine hundred and ninety nine\"</code>.'",
+          "testString":
+            "assert.equal(numberName(9999),\"nine thousand, nine hundred and ninety nine\",'<code>numberName(9999)</code> should return <code>\"nine thousand, nine hundred and ninety nine\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(123456)</code> should return <code>\"one hundred and twenty three thousand, four hundred and fifty six\"</code>.'",
+          "testString":
+            "assert.equal(numberName(123456),\"one hundred and twenty three thousand, four hundred and fifty six\",'<code>numberName(123456)</code> should return <code>\"one hundred and twenty three thousand, four hundred and fifty six\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(900000001)</code> should return <code>\"nine hundred million and one\"</code>.'",
+          "testString":
+            "assert.equal(numberName(900000001),\"nine hundred million and one\",'<code>numberName(900000001)</code> should return <code>\"nine hundred million and one\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(1234567890)</code> should return <code>\"one billion, two hundred and thirty four million, five hundred and sixty seven thousand, eight hundred and ninety\"</code>.'",
+          "testString":
+            "assert.equal(numberName(1234567890),\"one billion, two hundred and thirty four million, five hundred and sixty seven thousand, eight hundred and ninety\",'<code>numberName(1234567890)</code> should return <code>\"one billion, two hundred and thirty four million, five hundred and sixty seven thousand, eight hundred and ninety\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>numberName(-987654321)</code> should return <code>\"negative nine hundred and eighty seven million, six hundred and fifty four thousand, three hundred and twenty one\"</code>.'",
+          "testString":
+            "assert.equal(numberName(-987654321),\"negative nine hundred and eighty seven million, six hundred and fifty four thousand, three hundred and twenty one\",'<code>numberName(-987654321)</code> should return <code>\"negative nine hundred and eighty seven million, six hundred and fifty four thousand, three hundred and twenty one\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f3f",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function numberName (value) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Numeric error propagation",
+      "description": [
+        "If  <b>f</b>,  <b>a</b>,  and  <b>b</b>  are values with uncertainties  σ<sub>f</sub>,  σ<sub>a</sub>,  and  σ<sub>b</sub>,  and  <b>c</b>  is a constant; then if  <b>f</b>  is derived from  <b>a</b>,  <b>b</b>,  and  <b>c</b>  in the following ways, then  σ<sub>f</sub>  can be calculated as follows:",
+        "Addition/Subtraction",
+        "If  f = a &plusmn; c,  or  f = c &plusmn; a  then  <b>σ<sub>f</sub> = σ<sub>a</sub></b>",
+        "If  f = a &plusmn; b  then  <b>σ<sub>f</sub><sup>2</sup> = σ<sub>a</sub><sup>2</sup> + σ<sub>b</sub><sup>2</sup></b>",
+        "Multiplication/Division",
+        "If  f = ca  or  f = ac    then  <b>σ<sub>f</sub> = |cσ<sub>a</sub>|</b>",
+        "If  f = ab  or  f = a / b             then  <b>σ<sub>f</sub><sup>2</sup> = f<sup>2</sup>( (σ<sub>a</sub> / a)<sup>2</sup> + (σ<sub>b</sub> / b)<sup>2</sup>)</b>",
+        "Exponentiation",
+        "If  f = a<sup>c</sup>  then  <b>σ<sub>f</sub> = |fc(σ<sub>a</sub> / a)|</b>",
+        "Caution:",
+        "This implementation of error propagation does not address issues of dependent and independent values.  It is assumed that  <b>a</b>  and  <b>b</b>  are independent and so the formula for multiplication should not be applied to  <b>a*a</b>  for example.  See  <a href=\"http://rosettacode.org/wiki/Talk:Numeric_error_propagation\">the talk page</a>  for some of the implications of this issue.",
+        "<ol><li>Add an uncertain number type to your language that can support addition, subtraction, multiplication, division, and exponentiation between numbers with an associated error term together with 'normal' floating point numbers without an associated error term. Implement enough functionality to perform the following calculations.</li> <li>Calculate the distance between the two points using the classic Pythagorean formula:   d = &radic;<span style=\"text-decoration:overline\">  (x1 - x2)²  +  (y1 - y2)²  </span> </li></ol>",
+        "Write a function that takes x1, x2, y1 and y2 as parameters. These parameters are arrays having 2 elements. The first is the value and the second is the error. The function should return the result after the above calculation as an object in this form { \"value\" : val, \"error\" : err }. Both value and error should be rounded to 4 decimal places."
+      ],
+      "solutions": [
+        "function errorProp(x1, x2, y1, y2) {\n  function Approx(value, error) {\n    var _this = this;\n    if (((typeof value === 'number') || value === null) && ((typeof error === 'number') || error === null)) {\n      var __args = Array.prototype.slice.call(arguments);\n      this.value = 0;\n      this.error = 0;\n      this.value = 0;\n      this.error = 0;\n      (function() {\n        _this.value = value;\n        _this.error = error;\n      })();\n    } else if (((value != null && value instanceof Approx) || value === null) && error === undefined) {\n      var __args = Array.prototype.slice.call(arguments);\n      var b_1 = __args[0];\n      this.value = 0;\n      this.error = 0;\n      this.value = 0;\n      this.error = 0;\n      (function() {\n        _this.value = b_1.value;\n        _this.error = b_1.error;\n      })();\n    } else if (value === undefined && error === undefined) {\n      var __args = Array.prototype.slice.call(arguments);\n      this.value = 0;\n      this.error = 0;\n      this.value = 0;\n      this.error = 0;\n      (function() {\n        _this.value = _this.error = 0;\n      })();\n    } else\n      throw new Error('invalid overload');\n  }\n  Approx.prototype.add$Approx = function(b) {\n    this.value += b.value;\n    this.error = Math.sqrt(this.error * this.error + b.error * b.error);\n    return this;\n  };\n  Approx.prototype.add = function(b) {\n    if (((b != null && b instanceof Approx) || b === null)) {\n      return this.add$Approx(b);\n    } else if (((typeof b === 'number') || b === null)) {\n      return this.add$double(b);\n    } else\n      throw new Error('invalid overload');\n  };\n  Approx.prototype.add$double = function(b) {\n    this.value += b;\n    return this;\n  };\n  Approx.prototype.sub$Approx = function(b) {\n    this.value -= b.value;\n    this.error = Math.sqrt(this.error * this.error + b.error * b.error);\n    return this;\n  };\n  Approx.prototype.sub = function(b) {\n    if (((b != null && b instanceof Approx) || b === null)) {\n      return this.sub$Approx(b);\n    } else if (((typeof b === 'number') || b === null)) {\n      return this.sub$double(b);\n    } else\n      throw new Error('invalid overload');\n  };\n  Approx.prototype.sub$double = function(b) {\n    this.value -= b;\n    return this;\n  };\n  Approx.prototype.mult$Approx = function(b) {\n    var oldVal = this.value;\n    this.value *= b.value;\n    this.error = Math.sqrt(this.value * this.value * (this.error * this.error) / (oldVal * oldVal) + (b.error * b.error) / (b.value * b.value));\n    return this;\n  };\n  Approx.prototype.mult = function(b) {\n    if (((b != null && b instanceof Approx) || b === null)) {\n      return this.mult$Approx(b);\n    } else if (((typeof b === 'number') || b === null)) {\n      return this.mult$double(b);\n    } else\n      throw new Error('invalid overload');\n  };\n  Approx.prototype.mult$double = function(b) {\n    this.value *= b;\n    this.error = Math.abs(b * this.error);\n    return this;\n  };\n  Approx.prototype.div$Approx = function(b) {\n    var oldVal = this.value;\n    this.value /= b.value;\n    this.error = Math.sqrt(this.value * this.value * (this.error * this.error) / (oldVal * oldVal) + (b.error * b.error) / (b.value * b.value));\n    return this;\n  };\n  Approx.prototype.div = function(b) {\n    if (((b != null && b instanceof Approx) || b === null)) {\n      return this.div$Approx(b);\n    } else if (((typeof b === 'number') || b === null)) {\n      return this.div$double(b);\n    } else\n      throw new Error('invalid overload');\n  };\n  Approx.prototype.div$double = function(b) {\n    this.value /= b;\n    this.error = Math.abs(b * this.error);\n    return this;\n  };\n  Approx.prototype.pow = function(b) {\n    var oldVal = this.value;\n    this.value = Math.pow(this.value, b);\n    this.error = Math.abs(this.value * b * (this.error / oldVal));\n    return this;\n  };\n\n  x1 = new Approx(x1[0], x1[1]);\n  y1 = new Approx(y1[0], y1[1]);\n  x2 = new Approx(x2[0], x2[1]);\n  y2 = new Approx(y2[0], y2[1]);\n  x1.sub$Approx(x2).pow(2).add$Approx(y1.sub$Approx(y2).pow(2)).pow(0.5);\n  return {\n    value: Math.round(x1.value * 10000) / 10000,\n    error: Math.round(x1.error * 10000) / 10000\n  };\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>errorProp</code> should be a function.'",
+          "testString":
+            "assert(typeof errorProp=='function','<code>errorProp</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>errorProp('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+','+JSON.stringify(tests[0][3])+')</code> should return a object.'",
+          "testString":
+            "assert(typeof errorProp(tests[0][0],tests[0][1],tests[0][2],tests[0][3]) == 'object','<code>errorProp('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+','+JSON.stringify(tests[0][3])+')</code> should return a object.');"
+        },
+        {
+          "text":
+            "'<code>errorProp('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+','+JSON.stringify(tests[0][3])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(errorProp(tests[0][0],tests[0][1],tests[0][2],tests[0][3]),results[0],'<code>errorProp('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+','+JSON.stringify(tests[0][3])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>errorProp('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+','+JSON.stringify(tests[1][2])+','+JSON.stringify(tests[1][3])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(errorProp(tests[1][0],tests[1][1],tests[1][2],tests[1][3]),results[1],'<code>errorProp('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+','+JSON.stringify(tests[1][2])+','+JSON.stringify(tests[1][3])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>errorProp('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+','+JSON.stringify(tests[2][2])+','+JSON.stringify(tests[2][3])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(errorProp(tests[2][0],tests[2][1],tests[2][2],tests[2][3]),results[2],'<code>errorProp('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+','+JSON.stringify(tests[2][2])+','+JSON.stringify(tests[2][3])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>errorProp('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+','+JSON.stringify(tests[3][2])+','+JSON.stringify(tests[3][3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(errorProp(tests[3][0],tests[3][1],tests[3][2],tests[3][3]),results[3],'<code>errorProp('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+','+JSON.stringify(tests[3][2])+','+JSON.stringify(tests[3][3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>errorProp('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+','+JSON.stringify(tests[4][2])+','+JSON.stringify(tests[4][3])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(errorProp(tests[4][0],tests[4][1],tests[4][2],tests[4][3]),results[4],'<code>errorProp('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+','+JSON.stringify(tests[4][2])+','+JSON.stringify(tests[4][3])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f43",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function errorProp(x1, x2, y1, y2) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[[100,1.1],[50,1.2],[200,2.2],[100,2.33]],",
+            "[[10,1.31],[30,1.26],[33,2.6],[43,1.73]],",
+            "[[4,1.13],[50,1.5],[50,2.4],[70,2.73]],",
+            "[[58,2.23],[19,1.4],[18,2.12],[17,2.37]],",
+            "[[99,1.41],[50,1.7],[30,2.21],[100,2.23]]]",
+            "var results=[",
+            "{ \"value\": 111.8034, \"error\": 2.9572 },",
+            "{ \"value\": 22.3607, \"error\": 2.1433 },",
+            "{ \"value\": 50.1597, \"error\": 2.251 },",
+            "{ \"value\": 39.0128, \"error\": 2.6334 },",
+            "{ \"value\": 85.4459, \"error\": 2.867 }",
+            "]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Numerical integration/Gauss-Legendre Quadrature",
+      "description": [
+        "In a general <a href=\"https://en.wikipedia.org/wiki/Gaussian quadrature\">Gaussian quadrature</a> rule, an definite integral of $f(x)$ is first approximated over the interval $[-1,1]$ by a polynomial approximable function $g(x)$ and a known weighting function $W(x)$.",
+        "$\\int_{-1}^1 f(x) \\, dx = \\int_{-1}^1 W(x) g(x) \\, dx$",
+        "Those are then approximated by a sum of function values at specified points $x_i$ multiplied by some weights $w_i$:",
+        "$\\int_{-1}^1 W(x) g(x) \\, dx \\approx \\sum_{i=1}^n w_i g(x_i)$",
+        "In the case of Gauss-Legendre quadrature, the weighting function $W(x) = 1$, so we can approximate an integral of $f(x)$ with:",
+        "$\\int_{-1}^1 f(x)\\,dx \\approx \\sum_{i=1}^n w_i f(x_i)$",
+        "For this, we first need to calculate the nodes and the weights, but after we have them, we can reuse them for numerious integral evaluations, which greatly speeds up the calculation compared to more <a href=\"http://rosettacode.org/wiki/Numerical Integration\">simple numerical integration methods</a>.",
+        "The $n$ evaluation points $x_i$ for a n-point rule, also called \"nodes\", are roots of n-th order <a href=\"https://en.wikipedia.org/wiki/Legendre Polynomials\">Legendre Polynomials</a> $P_n(x)$. Legendre polynomials are defined by the following recursive rule:",
+        "$P_0(x) = 1$",
+        "$P_1(x) = x$",
+        "$nP_{n}(x) = (2n-1)xP_{n-1}(x)-(n-1)P_{n-2}(x)$",
+        "There is also a recursive equation for their derivative:",
+        "$P_{n}'(x) = \\frac{n}{x^2-1} \\left( x P_n(x) - P_{n-1}(x) \\right)$",
+        "The roots of those polynomials are in general not analytically solvable, so they have to be approximated numerically, for example by <a href=\"https://en.wikipedia.org/wiki/Newton's method\">Newton-Raphson iteration</a>:",
+        "$x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}$",
+        "The first guess $x_0$ for the $i$-th root of a $n$-order polynomial $P_n$ can be given by",
+        "$x_0 = \\cos \\left( \\pi \\, \\frac{i - \\frac{1}{4}}{n+\\frac{1}{2}} \\right)$",
+        "After we get the nodes $x_i$, we compute the appropriate weights by:",
+        "$w_i = \\frac{2}{\\left( 1-x_i^2 \\right) [P'_n(x_i)]^2}$",
+        "After we have the nodes and the weights for a n-point quadrature rule, we can approximate an integral over any interval $[a,b]$ by",
+        "$\\int_a^b f(x)\\,dx \\approx \\frac{b-a}{2} \\sum_{i=1}^n w_i f\\left(\\frac{b-a}{2}x_i + \\frac{a+b}{2}\\right)$",
+        "<b>Task description</b>",
+        "Write a function to calculate the value of the below equation. It should take $N$, $from$ and $to$ as parameters. It should return the result rounded to 3 decimal places.",
+        "$\\int_{from}^{to} \\exp(x) \\, dx \\approx \\sum_{i=1}^N w_i \\; \\exp(x_i)$"
+      ],
+      "solutions": [
+        "function numericalIntegration (N, from, to) {\n  var lroots,lcoef,weight;\n  function lroots_$LI$() {\n    if (lroots == null)\n      lroots = (function(s) {\n        var a = [];\n        while (s-- > 0)\n          a.push(0);\n        return a;\n      })(N);\n    return lroots;\n  };;\n\n  function weight_$LI$() {\n    if (weight == null)\n      weight = (function(s) {\n        var a = [];\n        while (s-- > 0)\n          a.push(0);\n        return a;\n      })(N);\n    return weight;\n  };;\n\n  function lcoef_$LI$() {\n    if (lcoef == null)\n      lcoef = (function(dims) {\n        var allocate = function(dims) {\n          if (dims.length == 0) {\n            return 0;\n          } else {\n            var array = [];\n            for (var i = 0; i < dims[0]; i++) {\n              array.push(allocate(dims.slice(1)));\n            }\n            return array;\n          }\n        };\n        return allocate(dims);\n      })([N + 1, N + 1]);\n    return lcoef;\n  };;\n\n  function legeCoef() {\n    lcoef_$LI$()[0][0] = lcoef_$LI$()[1][1] = 1;\n    for (var n = 2; n <= N; n++) {\n      lcoef_$LI$()[n][0] = -(n - 1) * lcoef_$LI$()[n - 2][0] / n;\n      for (var i = 1; i <= n; i++) {\n        lcoef_$LI$()[n][i] = ((2 * n - 1) * lcoef_$LI$()[n - 1][i - 1] - (n - 1) * lcoef_$LI$()[n - 2][i]) / n;\n      };\n    };\n  };\n\n  function legeEval(n, x) {\n    var s = lcoef_$LI$()[n][n];\n    for (var i = n; i > 0; i--)\n      s = s * x + lcoef_$LI$()[n][i - 1];\n    return s;\n  };\n\n  function legeDiff(n, x) {\n    return n * (x * legeEval(n, x) - legeEval(n - 1, x)) / (x * x - 1);\n  };\n\n  function legeRoots() {\n    var x;\n    var x1;\n    for (var i = 1; i <= N; i++) {\n      x = Math.cos(Math.PI * (i - 0.25) / (N + 0.5));\n      do {\n        x1 = x;\n        x -= legeEval(N, x) / legeDiff(N, x);\n      } while ((x !== x1));\n      lroots_$LI$()[i - 1] = x;\n      x1 = legeDiff(N, x);\n      weight_$LI$()[i - 1] = 2 / ((1 - x * x) * x1 * x1);\n    };\n  };\n\n  function legeInte(f, a, b) {\n    var c1 = (b - a) / 2;\n    var c2 = (b + a) / 2;\n    var sum = 0;\n    var _loop_1 = function(i) {\n      sum += weight_$LI$()[i] * (function(target) {\n        return (typeof target === 'function') ? target(c1 * lroots_$LI$()[i] + c2) : target.apply(c1 * lroots_$LI$()[i] + c2);\n      })(f);\n    };\n    for (var i = 0; i < N; i++) {\n      _loop_1(i);\n    }\n    return c1 * sum;\n  };\n\n  lcoef_$LI$();\n  weight_$LI$();\n  lroots_$LI$();\n  legeCoef();\n  legeRoots();\n\n  return Math.round(legeInte(x => Math.exp(x), from, to)*1000)/1000;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>numericalIntegration</code> should be a function.'",
+          "testString":
+            "assert(typeof numericalIntegration=='function','<code>numericalIntegration</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(5,-3,3)</code> should return a number.'",
+          "testString":
+            "assert(typeof numericalIntegration(5,-3,3) == 'number','<code>numericalIntegration(5,-3,3)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(5,-3,3)</code> should return <code>20.036</code>.'",
+          "testString":
+            "assert.equal(numericalIntegration(5,-3,3),20.036,'<code>numericalIntegration(5,-3,3)</code> should return <code>20.036</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(5,-9,9)</code> should return <code>7980.062</code>.'",
+          "testString":
+            "assert.equal(numericalIntegration(5,-9,9),7980.062,'<code>numericalIntegration(5,-9,9)</code> should return <code>7980.062</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(6,10,11)</code> should return <code>37847.676</code>.'",
+          "testString":
+            "assert.equal(numericalIntegration(6,10,11),37847.676,'<code>numericalIntegration(6,10,11)</code> should return <code>37847.676</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(4,-3,3)</code> should return <code>20.029</code>.'",
+          "testString":
+            "assert.equal(numericalIntegration(4,-3,3),20.029,'<code>numericalIntegration(4,-3,3)</code> should return <code>20.029</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(5,0,3)</code> should return <code>19.086</code>.'",
+          "testString":
+            "assert.equal(numericalIntegration(5,0,3),19.086,'<code>numericalIntegration(5,0,3)</code> should return <code>19.086</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f41",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function numericalIntegration (N, from, to) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Numerical integration",
+      "description": [
+        "Write a function that calculates the definite integral of a function <span style=\"font-family: serif\"><i>ƒ(x)</i></span> using <i>all</i> five of the following methods:",
+        "<a href=\"https://en.wikipedia.org/wiki/Rectangle_method\">rectangular</a> left",
+        "<a href=\"https://en.wikipedia.org/wiki/Rectangle_method\">rectangular</a> right",
+        "<a href=\"https://en.wikipedia.org/wiki/Rectangle_method\">rectangular</a> midpoint",
+        "<a href=\"https://en.wikipedia.org/wiki/Trapezoidal_rule\">trapezium</a>",
+        "<a href=\"https://en.wikipedia.org/wiki/Simpson%27s_rule\">Simpson's</a>",
+        "Simpson's method is defined by the following pseudo-code:",
+        "<pre>",
+        "h := (b - a) / n",
+        "sum1 := f(a + h/2)",
+        "sum2 := 0loop on i from 1 to (n - 1)",
+        "    sum1 := sum1 + f(a + h * i + h/2)",
+        "    sum2 := sum2 + f(a + h * i)answer := (h / 6) * (f(a) + f(b) + 4*sum1 + 2*sum2)",
+        "</pre>",
+        "Your function should take in the upper and lower bounds  (<span style=\"font-family: serif\"><i>a</i></span>  and  <span style=\"font-family: serif\"><i>b</i></span>),  and the number of approximations to make in that range  (<span style=\"font-family: serif\"><i>n</i></span>).",
+        "<span style=\"font-family: serif\"><i>ƒ(x)</i></span> for this task are as follows: $ x^3, 1/x $ and $ x $",
+        "The function should return a 2D array containing the definite integrals for all the functions and methods mentioned above. The 2D array must contain 3 elements, one for each function and the sequence must be as stated above. The element for each function should contain the results of the methods in this sequence: [rectangularLeft, rectangularMidpoint, rectangularRight, trapezium, simpsons]."
+      ],
+      "solutions": [
+        "function numericalIntegration (a, b, n) {\n  var res=[]\n\n  function rectangularLeft(f) {\n    return rectangular(f, 0);\n  };\n  function rectangularMidpoint(f) {\n    return rectangular(f, 1);\n  };\n  function rectangularRight(f) {\n    return rectangular(f, 2);\n  };\n  function trapezium(f) {\n    var range = checkParamsGetRange(a, b, n);\n    var nFloat = n;\n    var sum = 0.0;\n    for (var i = 1; i < n; i++) {\n      var x = a + range * i / nFloat;\n      sum += f(x);\n    };\n    sum += (f(a) + f(b)) / 2.0;\n    return sum * range / nFloat;\n  };\n  function simpsons(f) {\n    var range = checkParamsGetRange(a, b, n);\n    var nFloat = n;\n    var sum1 = f(a + range / (nFloat * 2.0));\n    var sum2 = 0.0;\n    for (var i = 1; i < n; i++) {\n      var x1 = a + range * (i + 0.5) / nFloat;\n      sum1 += f(x1);\n      var x2 = a + range * i / nFloat;\n      sum2 += f(x2);\n    };\n    return (f(a) + f(b) + sum1 * 4.0 + sum2 * 2.0) * range / (nFloat * 6.0);\n  };\n  function rectangular(f, mode) {\n    var range = checkParamsGetRange(a, b, n);\n    var modeOffset = mode / 2.0;\n    var nFloat = n;\n    var sum = 0.0;\n    for (var i = 0; i < n; i++) {\n      var x = a + range * (i + modeOffset) / nFloat;\n      sum += f(x);\n    };\n    return sum * range / nFloat;\n  };\n  function checkParamsGetRange(a, b, n) {\n    if (n <= 0)\n      throw Object.defineProperty(new Error(\"Invalid value of n\"), '__classes', {\n        configurable: true,\n        value: ['java.lang.Throwable', 'java.lang.Object', 'java.lang.RuntimeException', 'java.lang.IllegalArgumentException', 'java.lang.Exception']\n      });\n    var range = b - a;\n    if (range <= 0)\n      throw Object.defineProperty(new Error(\"Invalid range\"), '__classes', {\n        configurable: true,\n        value: ['java.lang.Throwable', 'java.lang.Object', 'java.lang.RuntimeException', 'java.lang.IllegalArgumentException', 'java.lang.Exception']\n      });\n    return range;\n  };\n\n  function roundTo3(num){\n    return Math.round(num*1000)/1000\n  }\n\n  function testFunction(f) {\n    res.push([roundTo3(rectangularLeft(f)),\n      roundTo3(rectangularMidpoint(f)),\n      roundTo3(rectangularRight(f)),\n      roundTo3(trapezium(f)),\n      roundTo3(simpsons(f))])\n  }\n\n  testFunction(x=>x*x*x);\n  testFunction(x=>1/x);\n  testFunction(x=>x);\n\n  return res;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>numericalIntegration</code> should be a function.'",
+          "testString":
+            "assert(typeof numericalIntegration=='function','<code>numericalIntegration</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(1,100,100)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(numericalIntegration(1,100,100)),'<code>numericalIntegration(1,100,100)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(1,100,100)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(numericalIntegration(1,100,100),results[0],'<code>numericalIntegration(1,100,100)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(1,100,1000)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(numericalIntegration(1,100,1000),results[1],'<code>numericalIntegration(1,100,1000)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(1,50,100)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(numericalIntegration(1,50,100),results[2],'<code>numericalIntegration(1,50,100)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(1,5,10)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(numericalIntegration(1,5,10),results[3],'<code>numericalIntegration(1,5,10)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>numericalIntegration(5,10,100)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(numericalIntegration(5,10,100),results[4],'<code>numericalIntegration(5,10,100)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f42",
+      "challengeType": 5,
+      "releasedOn": "July 28, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function numericalIntegration (a, b, n) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[[24507450.25,24998774.748,25497449.26,25002449.755,24999999.75],[5.171,4.569,4.191,4.681,4.607],[4950.495,4999.5,5048.505,4999.5,4999.5]],",
+            "[[24950524.3,24999987.5,25049524.201,25000024.25,24999999.75],[4.655,4.605,4.557,4.606,4.605],[4994.6,4999.5,5004.401,4999.5,4999.5]],",
+            "[[1532024.997,1562424.749,1593274.507,1562649.752,1562499.75],[4.172,3.902,3.691,3.932,3.912],[1237.495,1249.5,1261.505,1249.5,1249.5]],",
+            "[[132.16,155.52,181.76,156.96,156],[1.782,1.603,1.462,1.622,1.609],[11.2,12,12.8,12,12]],",
+            "[[2321.922,2343.727,2365.672,2343.797,2343.75],[0.696,0.693,0.691,0.693,0.693],[37.375,37.5,37.625,37.5,37.5]]]"
+          ]
+        }
+      }
+    },
+    {
       "title": "Sailors, coconuts and a monkey problem",
       "description": [
         " <p>",
