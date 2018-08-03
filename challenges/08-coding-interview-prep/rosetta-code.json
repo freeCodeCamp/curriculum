@@ -11597,6 +11597,844 @@
       }
     },
     {
+      "title": "Optional parameters",
+      "description": [
+        "Write a function which sorts a 2D array of strings. Besides the input to be sorted, it shall have the following optional parameters (passed as an object):",
+        "ordering: A string specifying the ordering of strings. It can be \"lexicographic\" or \"numeric\".",
+        "column: An integer specifying which string of each row to compare; the first by default.",
+        "reverse: Reverses the ordering."
+      ],
+      "solutions": [
+        "function sorter (table, options) {\n  var ordering = options.ordering || 'lexicographic',\n    column = options.column || 0,\n    reverse = options.reverse || false,\n    numer = ordering == \"numeric\";\n  table.sort(function(a, b) {\n    var swap=a[column].localeCompare(b[column]) > 0\n    if(numer)\n      swap = a[column].localeCompare(b[column],undefined, { numeric: true }) > 0\n\n    if (reverse) {\n      swap = !swap\n    }\n\n    return swap\n  })\n\n  return table\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>sorter</code> should be a function.'",
+          "testString":
+            "assert(typeof sorter=='function','<code>sorter</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>sorter('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(sorter(tests[0][0],tests[0][1])),'<code>sorter('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>sorter('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(sorter(tests[0][0],tests[0][1]),results[0],'<code>sorter('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>sorter('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(sorter(tests[1][0],tests[1][1]),results[1],'<code>sorter('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>sorter('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(sorter(tests[2][0],tests[2][1]),results[2],'<code>sorter('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>sorter('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(sorter(tests[3][0],tests[3][1]),results[3],'<code>sorter('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>sorter('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(sorter(tests[4][0],tests[4][1]),results[4],'<code>sorter('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f4c",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function sorter (table, options) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "let tests=[",
+            "[[[\"123\",\"456\",\"0789\"],[\"456\",\"0789\",\"123\"],[\"0789\",\"123\",\"456\"]],{\"reverse\":true}],",
+            "[[[\"123\",\"456\",\"0789\"],[\"456\",\"0789\",\"123\"],[\"0789\",\"123\",\"456\"]],{\"column\":2,\"reverse\":true}],",
+            "[[[\"123\",\"456\",\"0789\"],[\"456\",\"0789\",\"123\"],[\"0789\",\"123\",\"456\"]],{\"ordering\":\"numeric\",\"reverse\":true}],",
+            "[[[\"a\",\"b\",\"c\"],[\"\",\"q\",\"z\"],[\"zap\",\"zip\",\"Zot\"]],{\"column\":1}],",
+            "[[[\"a\",\"b\",\"c\"],[\"\",\"q\",\"z\"],[\"zap\",\"zip\",\"Zot\"]],{\"column\":1,\"reverse\":true}]]",
+            "let results=[",
+            "[[\"456\",\"0789\",\"123\"],[\"123\",\"456\",\"0789\"],[\"0789\",\"123\",\"456\"]],",
+            "[[\"0789\",\"123\",\"456\"],[\"456\",\"0789\",\"123\"],[\"123\",\"456\",\"0789\"]],",
+            "[[\"0789\",\"123\",\"456\"],[\"456\",\"0789\",\"123\"],[\"123\",\"456\",\"0789\"]],",
+            "[[\"a\",\"b\",\"c\"],[\"\",\"q\",\"z\"],[\"zap\",\"zip\",\"Zot\"]],",
+            "[[\"zap\",\"zip\",\"Zot\"],[\"\",\"q\",\"z\"],[\"a\",\"b\",\"c\"]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Order disjoint list items",
+      "description": [
+        "Given  <code>M</code>  as a list of items and another list  <code>N</code>  of items chosen from  <code>M</code>,  create  <code>M'</code>  as a list with the <i>first</i> occurrences of items from  N  sorted to be in one of the set of indices of their original occurrence in  <code>M</code>  but in the order given by their order in   <code>N</code>.",
+        "That is, items in  <code>N</code>  are taken from  <code>M</code>  without replacement, then the corresponding positions in  <code>M'</code>  are filled by successive items from  <code>N</code>.",
+        "if  <code>M</code>  is  <code>'the cat sat on the mat'</code>",
+        "And  <code>N</code>  is  <code>'mat cat'</code>",
+        "Then the result  <code>M'</code>  is  <code>'the mat sat on the cat'</code>.",
+        "The words not in  <code>N</code>  are left in their original positions.",
+        "If there are duplications then only the first instances in  <code>M</code>  up to as many as are mentioned in  <code>N</code>  are potentially re-ordered.",
+        "<code> M = 'A B C A B C A B C' </code>",
+        "<code> N = 'C A C A'</code>",
+        "Is ordered as:",
+        "<code> M' = 'C B A C B A A B C' </code>"
+      ],
+      "solutions": [
+        "function orderDisjointList (M, N) {\n  const concatMap = (f, xs) => [].concat.apply([], xs.map(f));\n  const deleteFirst = (x, xs) =>\n    xs.length > 0 ? (\n      x === xs[0] ? (\n        xs.slice(1)\n      ) : [xs[0]].concat(deleteFirst(x, xs.slice(1)))\n    ) : [];\n  const flatten = t => (t instanceof Array ? concatMap(flatten, t) : [t]);\n  const unwords = xs => xs.join(' ');\n  const words = s => s.split(/\\s+/);\n  const zipWith = (f, xs, ys) => {\n    const ny = ys.length;\n    return (xs.length <= ny ? xs : xs.slice(0, ny))\n      .map((x, i) => f(x, ys[i]));\n  };\n  const disjointOrder = (ms, ns) =>\n    flatten(\n      zipWith(\n        (a, b) => a.concat(b),\n        segments(ms, ns),\n        ns.concat('')\n      )\n    );\n  const segments = (ms, ns) => {\n    const dct = ms.reduce((a, x) => {\n      const wds = a.words,\n        blnFound = wds.indexOf(x) !== -1;\n      return {\n        parts: a.parts.concat(blnFound ? [a.current] : []),\n        current: blnFound ? [] : a.current.concat(x),\n        words: blnFound ? deleteFirst(x, wds) : wds,\n      };\n    }, {\n      words: ns,\n      parts: [],\n      current: []\n    });\n\n    return dct.parts.concat([dct.current]);\n  };\n  return unwords(disjointOrder(words(M), words(N))).slice(0,-1);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>orderDisjointList</code> should be a function.'",
+          "testString":
+            "assert(typeof orderDisjointList=='function','<code>orderDisjointList</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"the cat sat on the mat\",\"mat cat\")</code> should return a string.'",
+          "testString":
+            "assert(typeof orderDisjointList(\"the cat sat on the mat\",\"mat cat\") == 'string','<code>orderDisjointList(\"the cat sat on the mat\",\"mat cat\")</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"the cat sat on the mat\",\"mat cat\")</code> should return <code>\"the mat sat on the cat\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"the cat sat on the mat\",\"mat cat\"),\"the mat sat on the cat\",'<code>orderDisjointList(\"the cat sat on the mat\",\"mat cat\")</code> should return <code>\"the mat sat on the cat\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"the cat sat on the mat\",\"cat mat\")</code> should return <code>\"the cat sat on the mat\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"the cat sat on the mat\",\"cat mat\"),\"the cat sat on the mat\",'<code>orderDisjointList(\"the cat sat on the mat\",\"cat mat\")</code> should return <code>\"the cat sat on the mat\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"A B C A B C A B C\",\"C A C A\")</code> should return <code>\"C B A C B A A B C\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"A B C A B C A B C\",\"C A C A\"),\"C B A C B A A B C\",'<code>orderDisjointList(\"A B C A B C A B C\",\"C A C A\")</code> should return <code>\"C B A C B A A B C\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"A B C A B D A B E\",\"E A D A\")</code> should return <code>\"E B C A B D A B A\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"A B C A B D A B E\",\"E A D A\"),\"E B C A B D A B A\",'<code>orderDisjointList(\"A B C A B D A B E\",\"E A D A\")</code> should return <code>\"E B C A B D A B A\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"A B\",\"B\")</code> should return <code>\"A B\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"A B\",\"B\"),\"A B\",'<code>orderDisjointList(\"A B\",\"B\")</code> should return <code>\"A B\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"A B\",\"B A\")</code> should return <code>\"B A\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"A B\",\"B A\"),\"B A\",'<code>orderDisjointList(\"A B\",\"B A\")</code> should return <code>\"B A\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>orderDisjointList(\"A B B A\",\"B A\")</code> should return <code>\"B A B A\"</code>.'",
+          "testString":
+            "assert.equal(orderDisjointList(\"A B B A\",\"B A\"),\"B A B A\",'<code>orderDisjointList(\"A B B A\",\"B A\")</code> should return <code>\"B A B A\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f4d",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function orderDisjointList (M, N) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Ordered Partitions",
+      "description": [
+        "In this task we want to find the ordered partitions into fixed-size blocks. This task is related to <a href=\"http://rosettacode.org/wiki/Combinations\">Combinations</a> in that it has to do with discrete mathematics.",
+        "$partitions(\\mathit{arg}_1,\\mathit{arg}_2,...,\\mathit{arg}_n)$ should generate all distributions of the elements in $\\{1,...,\\Sigma_{i=1}^n\\mathit{arg}_i\\}$ into $n$ blocks of respective size $\\mathit{arg}_1,\\mathit{arg}_2,...,\\mathit{arg}_n$.",
+        "Example 1: $partitions(2,0,2)$ would create:",
+        "<pre>",
+        "{({1, 2}, {}, {3, 4}),",
+        " ({1, 3}, {}, {2, 4}),",
+        " ({1, 4}, {}, {2, 3}),",
+        " ({2, 3}, {}, {1, 4}),",
+        " ({2, 4}, {}, {1, 3}),",
+        " ({3, 4}, {}, {1, 2})}",
+        "</pre>",
+        "Example 2: $partitions(1,1,1)$ would create:",
+        "<pre>",
+        "{({1}, {2}, {3}),",
+        " ({1}, {3}, {2}),",
+        " ({2}, {1}, {3}),",
+        " ({2}, {3}, {1}),",
+        " ({3}, {1}, {2}),",
+        " ({3}, {2}, {1})}",
+        "</pre>",
+        "Note that the number of elements in the list is",
+        "${\\mathit{arg}_1+\\mathit{arg}_2+...+\\mathit{arg}_n \\choose \\mathit{arg}_1} \\cdot {\\mathit{arg}_2+\\mathit{arg}_3+...+\\mathit{arg}_n \\choose \\mathit{arg}_2} \\cdot \\ldots \\cdot {\\mathit{arg}_n \\choose \\mathit{arg}_n}$",
+        "(see <a href=\"http://en.wikipedia.org/wiki/Binomial_coefficient\">the definition of the binomial coefficient</a> if you are not familiar with this notation) and the number of elements remains the same regardless of how the argument is permuted (i.e. the <a href=\"http://en.wikipedia.org/wiki/Multinomial_coefficient\">multinomial coefficient</a>). Also, $partitions(1,1,1)$ creates the permutations of $\\{1,2,3\\}$ and thus there would be $3! = 6$ elements in the list.",
+        "<b>Notation</b>",
+        "Here are some explanatory remarks on the notation used in the task description:$\\{1, \\ldots, n\\}$ denotes the set of consecutive numbers from $1$ to $n$, e.g. $\\{1,2,3\\}$ if $n = 3$. $\\Sigma$ is the mathematical notation for summation, e.g. $\\Sigma_{i=1}^3 i = 6$. $\\mathit{arg}_1,\\mathit{arg}_2,...,\\mathit{arg}_n$ are the arguments — natural numbers — that the sought function receives.",
+        "Write a function that takes 3 numbers as paramters and returns the ordered partitions as a 3D array as explained above."
+      ],
+      "solutions": [
+        "function partitions (a1, a2, a3) {\n  function combos(s, n, xxs) {\n    if (!xxs.length) return [\n      []\n    ];\n    var x = xxs[0],\n      xs = xxs.slice(1);\n    return mb(choose(s, n, x), function(l_rest) {\n      return mb(combos(l_rest[1], (n - x), xs), function(r) {\n        return [\n          [l_rest[0]].concat(r)\n        ];\n\n      })\n    });\n  }\n\n  function choose(aa, n, m) {\n    if (!m) return [\n      [\n        [], aa\n      ]\n    ];\n    var a = aa[0],\n      as = aa.slice(1);\n    return n === m ? (\n      [\n        [aa, []]\n      ]\n    ) : (\n      choose(as, n - 1, m - 1).map(function(xy) {\n        return [\n          [a].concat(xy[0]), xy[1]\n        ];\n      }).concat(choose(as, n - 1, m).map(function(xy) {\n        return [xy[0],\n          [a].concat(xy[1])\n        ];\n      }))\n    );\n  }\n\n  function mb(xs, f) {\n    return [].concat.apply([], xs.map(f));\n  }\n\n  function range(m, n) {\n    return Array.apply(null, Array(n - m + 1)).map(function(x, i) {\n      return m + i;\n    });\n  }\n\n  var n = a1 + a2 + a3;\n\n  return combos(range(1, n), n, [a1, a2, a3]);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>partitions</code> should be a function.'",
+          "testString":
+            "assert(typeof partitions=='function','<code>partitions</code> should be a function.');"
+        },
+        {
+          "text": "'<code>partitions(2,0,2)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(partitions(2,0,2)),'<code>partitions(2,0,2)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>partitions(2,0,2)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(partitions(2,0,2),results[0],'<code>partitions(2,0,2)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>partitions(1,1,1)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(partitions(1,1,1),results[1],'<code>partitions(1,1,1)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>partitions(1,0,1)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(partitions(1,0,1),results[2],'<code>partitions(1,0,1)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>partitions(1,0,2)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(partitions(1,0,2),results[3],'<code>partitions(1,0,2)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>partitions(2,0,1)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(partitions(2,0,1),results[4],'<code>partitions(2,0,1)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f4e",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function partitions (a1, a2, a3) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[[[1,2],[],[3,4]],[[1,3],[],[2,4]],[[1,4],[],[2,3]],[[2,3],[],[1,4]],[[2,4],[],[1,3]],[[3,4],[],[1,2]]],",
+            "[[[1],[2],[3]],[[1],[3],[2]],[[2],[1],[3]],[[2],[3],[1]],[[3],[1],[2]],[[3],[2],[1]]],",
+            "[[[1],[],[2]],[[2],[],[1]]],",
+            "[[[1],[],[2,3]],[[2],[],[1,3]],[[3],[],[1,2]]],",
+            "[[[1,2],[],[3]],[[1,3],[],[2]],[[2,3],[],[1]]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Ordered words",
+      "description": [
+        "An  <i>ordered word</i>  is a word in which the letters appear in alphabetic order.",
+        "Examples include  <b>abbey</b>  and  <b>dirt</b>.",
+        "Write a function that returns true if given word is ordered. Otherwise returns false"
+      ],
+      "solutions": [
+        "function is_ordered (word) {\n  return word.split('').sort().join('') === word;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>is_ordered</code> should be a function.'",
+          "testString":
+            "assert(typeof is_ordered=='function','<code>is_ordered</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"abbott\")</code> should return a boolean.'",
+          "testString":
+            "assert(typeof is_ordered(\"abbott\") == 'boolean','<code>is_ordered(\"abbott\")</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"abbott\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"abbott\"),true,'<code>is_ordered(\"abbott\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"rosetta\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"rosetta\"),false,'<code>is_ordered(\"rosetta\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"accent\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"accent\"),true,'<code>is_ordered(\"accent\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"coding\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"coding\"),false,'<code>is_ordered(\"coding\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"access\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"access\"),true,'<code>is_ordered(\"access\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"lexicographic\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"lexicographic\"),false,'<code>is_ordered(\"lexicographic\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"knotty\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"knotty\"),true,'<code>is_ordered(\"knotty\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>is_ordered(\"champion\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(is_ordered(\"champion\"),false,'<code>is_ordered(\"champion\")</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f4f",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function is_ordered (word) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Palindrome detection",
+      "description": [
+        "A <a href=\"https://en.wikipedia.org/wiki/Palindrome\">palindrome</a> is a phrase which reads the same backward and forward.",
+        "Write a function or program that checks whether a given sequence of characters is a palindrome."
+      ],
+      "solutions": [
+        "function isPalindrome (str) {\n  return str === str.split(\"\").reverse().join(\"\");\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isPalindrome</code> should be a function.'",
+          "testString":
+            "assert(typeof isPalindrome=='function','<code>isPalindrome</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"ABBA\")</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isPalindrome(\"ABBA\") == 'boolean','<code>isPalindrome(\"ABBA\")</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"ABBA\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPalindrome(\"ABBA\"),true,'<code>isPalindrome(\"ABBA\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"abcedfgfedcb\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPalindrome(\"abcedfgfedcb\"),false,'<code>isPalindrome(\"abcedfgfedcb\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"abcdeffedcba\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPalindrome(\"abcdeffedcba\"),true,'<code>isPalindrome(\"abcdeffedcba\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"hello\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPalindrome(\"hello\"),false,'<code>isPalindrome(\"hello\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"abcdefgfedcba\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPalindrome(\"abcdefgfedcba\"),true,'<code>isPalindrome(\"abcdefgfedcba\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPalindrome(\"ingirumimusnocteetconsumimurigni\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPalindrome(\"ingirumimusnocteetconsumimurigni\"),true,'<code>isPalindrome(\"ingirumimusnocteetconsumimurigni\")</code> should return <code>true</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f51",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isPalindrome (str) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Pangram checker",
+      "description": [
+        "A pangram is a sentence that contains all the letters of the English alphabet at least once.",
+        "For example:  <i>The quick brown fox jumps over the lazy dog</i>.",
+        "Write a function to check if a sentence is a  <a href=\"https://en.wikipedia.org/wiki/Pangram\">pangram</a>."
+      ],
+      "solutions": [
+        "function isPangram (s) {\n    var letters = \"zqxjkvbpygfwmucldrhsnioate\"\n    // sorted by frequency ascending (http://en.wikipedia.org/wiki/Letter_frequency)\n    s = s.toLowerCase().replace(/[^a-z]/g,'')\n    for (var i = 0; i < 26; i++)\n        if (s.indexOf(letters[i]) < 0) return false\n    return true\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isPangram</code> should be a function.'",
+          "testString":
+            "assert(typeof isPangram=='function','<code>isPangram</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"is this a pangram\")</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isPangram(\"is this a pangram\") == 'boolean','<code>isPangram(\"is this a pangram\")</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"is this a pangram\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPangram(\"is this a pangram\"),false,'<code>isPangram(\"is this a pangram\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"The quick brown fox jumps over the lazy dog\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPangram(\"The quick brown fox jumps over the lazy dog\"),true,'<code>isPangram(\"The quick brown fox jumps over the lazy dog\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"Pack my box with five dozen liquor jugs.\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPangram(\"Pack my box with five dozen liquor jugs.\"),true,'<code>isPangram(\"Pack my box with five dozen liquor jugs.\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"This sentence contains A-Z but not the whole alphabet.\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPangram(\"This sentence contains A-Z but not the whole alphabet.\"),false,'<code>isPangram(\"This sentence contains A-Z but not the whole alphabet.\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"The five boxing wizards jump quickly.\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPangram(\"The five boxing wizards jump quickly.\"),true,'<code>isPangram(\"The five boxing wizards jump quickly.\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPangram(\"Trying to write all the alphabets in this statement\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPangram(\"Trying to write all the alphabets in this statement\"),false,'<code>isPangram(\"Trying to write all the alphabets in this statement\")</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f52",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isPangram (s) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Paraffins",
+      "description": [
+        "This organic chemistry task is essentially to implement a tree enumeration algorithm.",
+        "Paraffins are built up using only carbon atoms, which has four bonds, and hydrogen, which has one bond. All bonds for each atom must be used, so it is easiest to think of an alkane as linked carbon atoms forming the \"backbone\" structure, with adding hydrogen atoms linking the remaining unused bonds.",
+        "In a paraffin, one is allowed neither double bonds (two bonds between the same pair of atoms), nor cycles of linked carbons. So all paraffins with  <b>n</b>  carbon atoms share the empirical formula  C<sub>n</sub>H<sub>2n+2</sub>",
+        "But for all  <b>n</b> ≥ 4  there are several distinct molecules (\"isomers\") with the same formula but different structures.",
+        "The number of isomers rises rather rapidly when  <b>n</b>  increases.",
+        "In counting isomers it should be borne in mind that the four bond positions on a given carbon atom can be freely interchanged and bonds rotated (including 3-D \"out of the paper\" rotations when it's being observed on a flat diagram), so rotations or re-orientations of parts of the molecule (without breaking bonds) do not give different isomers. So what seem at first to be different molecules may in fact turn out to be different orientations of the same molecule.",
+        "With  <b>n</b> = 3  there is only one way of linking the carbons despite the different orientations the molecule can be drawn;  and with  <b>n</b> = 4  there are two configurations:",
+        "straight chain:   (CH<sub>3</sub>)(CH<sub>2</sub>)(CH<sub>2</sub>)(CH<sub>3</sub>)",
+        "branched chain:   (CH<sub>3</sub>)(CH(CH<sub>3</sub>))(CH<sub>3</sub>)",
+        "Due to bond rotations, it doesn't matter which direction the branch points in.",
+        "The phenomenon of \"stereo-isomerism\" (a molecule being different from its mirror image due to the actual 3-D arrangement of bonds) is ignored for the purpose of this task.",
+        "The input is the number  <b>n</b>  of carbon atoms of a molecule (for instance <b>17</b>).",
+        "The output is how many different different paraffins there are with  <b>n</b>  carbon atoms  (for instance  24,894  if  <b>n</b> = 17).",
+        "The sequence of those results is visible in the <a href=\"http://rosettacode.org/wiki/oeis:A000602\">Sloane encyclopedia</a>. The sequence is (the index starts from zero, and represents the number of carbon atoms):",
+        "1, 1, 1, 1, 2, 3, 5, 9, 18, 35, 75, 159, 355, 802, 1858, 4347, 10359, 24894, 60523, 148284, 366319, 910726, 2278658, 5731580, 14490245, 36797588, 93839412, 240215803, 617105614, 1590507121, 4111846763, 10660307791, 27711253769, ..."
+      ],
+      "solutions": [
+        "function paraffinIsomers (N) {\n  var nBranches = 4;\n  var c=new Array(nBranches);\n  var rooted=new Array(N+1);\n  var unrooted=new Array(N+1);\n\n  function tree(br, n, l, inSum, cnt) {\n    var sum = inSum;\n    for (var b = br + 1; b <= nBranches; b++) {\n      sum += n;\n      if (sum > N || (l * 2 >= sum && b >= nBranches))\n        return;\n      var tmp = rooted[n];\n      if (b === br + 1) {\n        c[br] = tmp * cnt;\n      } else {\n        c[br] = c[br] * (tmp + b - br - 1);\n        c[br] = (c[br] / (b - br) | 0);\n      }\n      if (l * 2 < sum)\n        unrooted[sum] = unrooted[sum] + c[br];\n      if (b < nBranches)\n        rooted[sum] = rooted[sum] + c[br];\n      for (var m = n - 1; m > 0; m--)\n        tree(b, m, l, sum, c[br]);\n    };\n  };\n  function bicenter(s) {\n    if ((s & 1) === 0) {\n      var tmp = rooted[s / 2];\n      tmp = (tmp + 1) * rooted[s / 2];\n      unrooted[s] = unrooted[s] + (tmp >> 1);\n    }\n  };\n\n  rooted.fill(0);\n  unrooted.fill(0);\n  rooted[0] = rooted[1] = 1;\n  unrooted[0] = unrooted[1] = 1;\n  var n;\n  for (n = 1; n <= N; n++) {\n    tree(0, n, n, 1, 1);\n    bicenter(n);\n  }\n\n  return unrooted[n-1];\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>paraffinIsomers</code> should be a function.'",
+          "testString":
+            "assert(typeof paraffinIsomers=='function','<code>paraffinIsomers</code> should be a function.');"
+        },
+        {
+          "text": "'<code>paraffinIsomers(3)</code> should return a number.'",
+          "testString":
+            "assert(typeof paraffinIsomers(3) == 'number','<code>paraffinIsomers(3)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>paraffinIsomers(3)</code> should return <code>1</code>.'",
+          "testString":
+            "assert.equal(paraffinIsomers(3),1,'<code>paraffinIsomers(3)</code> should return <code>1</code>.');"
+        },
+        {
+          "text":
+            "'<code>paraffinIsomers(5)</code> should return <code>3</code>.'",
+          "testString":
+            "assert.equal(paraffinIsomers(5),3,'<code>paraffinIsomers(5)</code> should return <code>3</code>.');"
+        },
+        {
+          "text":
+            "'<code>paraffinIsomers(7)</code> should return <code>9</code>.'",
+          "testString":
+            "assert.equal(paraffinIsomers(7),9,'<code>paraffinIsomers(7)</code> should return <code>9</code>.');"
+        },
+        {
+          "text":
+            "'<code>paraffinIsomers(10)</code> should return <code>75</code>.'",
+          "testString":
+            "assert.equal(paraffinIsomers(10),75,'<code>paraffinIsomers(10)</code> should return <code>75</code>.');"
+        },
+        {
+          "text":
+            "'<code>paraffinIsomers(20)</code> should return <code>366319</code>.'",
+          "testString":
+            "assert.equal(paraffinIsomers(20),366319,'<code>paraffinIsomers(20)</code> should return <code>366319</code>.');"
+        },
+        {
+          "text":
+            "'<code>paraffinIsomers(25)</code> should return <code>36797588</code>.'",
+          "testString":
+            "assert.equal(paraffinIsomers(25),36797588,'<code>paraffinIsomers(25)</code> should return <code>36797588</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f53",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function paraffinIsomers (N) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Parse an IP Address",
+      "description": [
+        "The purpose of this task is to demonstrate parsing of text-format IP addresses, using IPv4 and IPv6.",
+        "Taking the following as inputs:",
+        "127.0.0.1",
+        "=> The \"localhost\" IPv4 address",
+        "127.0.0.1:80",
+        "=> The \"localhost\" IPv4 address, with a specified port (80)",
+        "::1",
+        "=> The \"localhost\" IPv6 address",
+        "[::1]:80",
+        "=> The \"localhost\" IPv6 address, with a specified port (80)",
+        "2605:2700:0:3::4713:93e3",
+        "=> Rosetta Code's primary server's public IPv6 address",
+        "[2605:2700:0:3::4713:93e3]:80",
+        "=> Rosetta Code's primary server's public IPv6 address, with a specified port (80)",
+        "Write a function to parse the IP address from a given string. The function should return an array in case of a valid IP address (\"invalid\" string in case of invalid). The first element of the array should be the IP address. The second element should be the port number or \"absent\" if there is no port number. The third element should be the address space(\"ipv4\" or \"ipv6\")."
+      ],
+      "solutions": [
+        "function parseIP (str){\n  var ipRegx= /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\\-]*[A-Za-z0-9])$|^\\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$/\n\n  var ip,port,type,portRegx\n  if(str.indexOf('.')==-1){\n    type='ipv6'\n    portRegx=/\\[(.*)\\]:(\\d+)/\n  }else{\n    type='ipv4'\n    portRegx=/(.*?):(\\d+)/\n  }\n  var portMatch=portRegx.exec(str)\n  if(portMatch){\n    ip=portMatch[1]\n    port=parseInt(portMatch[2])\n  }else{\n    ip=str\n    port='absent';\n  }\n  if(!ipRegx.test(ip)){\n    return 'invalid'\n  }\n  return [ip,port,type]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>parseIP</code> should be a function.'",
+          "testString":
+            "assert(typeof parseIP=='function','<code>parseIP</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"127.0.0.1\")</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(parseIP(\"127.0.0.1\")),'<code>parseIP(\"127.0.0.1\")</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"127.0.0.1\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(parseIP(\"127.0.0.1\"),results[0],'<code>parseIP(\"127.0.0.1\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"127.0.0.1:80\")</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(parseIP(\"127.0.0.1:80\"),results[1],'<code>parseIP(\"127.0.0.1:80\")</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"::1\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(parseIP(\"::1\"),results[2],'<code>parseIP(\"::1\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"[::1]:80\")</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(parseIP(\"[::1]:80\"),results[3],'<code>parseIP(\"[::1]:80\")</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"2605:2700:0:3::4713:93e3\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(parseIP(\"2605:2700:0:3::4713:93e3\"),results[4],'<code>parseIP(\"2605:2700:0:3::4713:93e3\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"[2605:2700:0:3::4713:93e3]:80\")</code> should return <code>'+JSON.stringify(results[5])+'</code>.'",
+          "testString":
+            "assert.deepEqual(parseIP(\"[2605:2700:0:3::4713:93e3]:80\"),results[5],'<code>parseIP(\"[2605:2700:0:3::4713:93e3]:80\")</code> should return <code>'+JSON.stringify(results[5])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"1\")</code> should return <code>\"invalid\"</code>.'",
+          "testString":
+            "assert.equal(parseIP(\"1\"),\"invalid\",'<code>parseIP(\"1\")</code> should return <code>\"invalid\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"666.1.1.1\")</code> should return <code>\"invalid\"</code>.'",
+          "testString":
+            "assert.equal(parseIP(\"666.1.1.1\"),\"invalid\",'<code>parseIP(\"666.1.1.1\")</code> should return <code>\"invalid\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>parseIP(\"1:1:\")</code> should return <code>\"invalid\"</code>.'",
+          "testString":
+            "assert.equal(parseIP(\"1:1:\"),\"invalid\",'<code>parseIP(\"1:1:\")</code> should return <code>\"invalid\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f58",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function parseIP (str){", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[\"127.0.0.1\",\"absent\",\"ipv4\"],",
+            "[\"127.0.0.1\",80,\"ipv4\"],",
+            "[\"::1\",\"absent\",\"ipv6\"],",
+            "[\"::1\",80,\"ipv6\"],",
+            "[\"2605:2700:0:3::4713:93e3\",\"absent\",\"ipv6\"],",
+            "[\"2605:2700:0:3::4713:93e3\",80,\"ipv6\"]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Parsing/RPN calculator algorithm",
+      "description": [
+        "Create a stack-based evaluator for an expression in  <a href=\"https://en.wikipedia.org/wiki/Reverse Polish notation\">Reverse Polish Notation (RPN)</a>.",
+        "<ul><li>Assume an input of a correct, space separated, string of tokens of an RPN expression</li> <li>Test with the RPN expression generated from the  <a href=\"http://rosettacode.org/wiki/Parsing/Shunting-yard algorithm\">Parsing/Shunting-yard algorithm</a></li></ul>",
+        "Write a function that takes an RPN expression as string and returns the result as a number."
+      ],
+      "solutions": [
+        "function rpnCalculate (e) {\n  var s = [],\n    e = e.split(' ')\n  for (var i in e) {\n    var t = e[i],\n      n = +t\n    if (n == t)\n      s.push(n)\n    else {\n      var o2 = s.pop(),\n        o1 = s.pop()\n      switch (t) {\n        case '+':\n          s.push(o1 + o2);\n          break;\n        case '-':\n          s.push(o1 - o2);\n          break;\n        case '*':\n          s.push(o1 * o2);\n          break;\n        case '/':\n          s.push(o1 / o2);\n          break;\n        case '^':\n          s.push(Math.pow(o1, o2));\n          break;\n      }\n    }\n  }\n\n  return parseFloat(s[0])\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>rpnCalculate</code> should be a function.'",
+          "testString":
+            "assert(typeof rpnCalculate=='function','<code>rpnCalculate</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>rpnCalculate(\"3 4 +\")</code> should return a number.'",
+          "testString":
+            "assert(typeof rpnCalculate(\"3 4 +\") == 'number','<code>rpnCalculate(\"3 4 +\")</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>rpnCalculate(\"3 4 +\")</code> should return <code>7</code>.'",
+          "testString":
+            "assert.equal(rpnCalculate(\"3 4 +\"),7,'<code>rpnCalculate(\"3 4 +\")</code> should return <code>7</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnCalculate(\"15 7 1 1 + - / 3 * 2 1 1 + + -\")</code> should return <code>5</code>.'",
+          "testString":
+            "assert.equal(rpnCalculate(\"15 7 1 1 + - / 3 * 2 1 1 + + -\"),5,'<code>rpnCalculate(\"15 7 1 1 + - / 3 * 2 1 1 + + -\")</code> should return <code>5</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnCalculate(\"3 5 + 7 2 - *\")</code> should return <code>40</code>.'",
+          "testString":
+            "assert.equal(rpnCalculate(\"3 5 + 7 2 - *\"),40,'<code>rpnCalculate(\"3 5 + 7 2 - *\")</code> should return <code>40</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnCalculate(\"12 3 - 3 /\")</code> should return <code>3</code>.'",
+          "testString":
+            "assert.equal(rpnCalculate(\"12 3 - 3 /\"),3,'<code>rpnCalculate(\"12 3 - 3 /\")</code> should return <code>3</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnCalculate(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\")</code> should return <code>3.0001220703125</code>.'",
+          "testString":
+            "assert.equal(rpnCalculate(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\"),3.0001220703125,'<code>rpnCalculate(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\")</code> should return <code>3.0001220703125</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f59",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function rpnCalculate (e) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Parsing/RPN to infix conversion",
+      "description": [
+        "Write a function that takes an <a href=\"https://en.wikipedia.org/wiki/Reverse Polish notation\">RPN</a> representation of an expression formatted as a space separated sequence of tokens and generates the equivalent expression in <a href=\"https://en.wikipedia.org/wiki/Infix notation\">infix notation</a>.",
+        "<ul><li>Assume an input of a correct, space separated, string of tokens</li> <li>Generate a space separated output string representing the same expression in infix notation</li>"
+      ],
+      "solutions": [
+        "function rpnToInfix (rpn) {\n  const Associativity = {\n    // a / b / c = (a / b) / c\n    left: 0,\n    // a ^ b ^ c = a ^ (b ^ c)\n    right: 1,\n    // a + b + c = (a + b) + c = a + (b + c)\n    both: 2,\n  };\n  const operators = {\n    '+': {\n      precedence: 2,\n      associativity: Associativity.both\n    },\n    '-': {\n      precedence: 2,\n      associativity: Associativity.left\n    },\n    '*': {\n      precedence: 3,\n      associativity: Associativity.both\n    },\n    '/': {\n      precedence: 3,\n      associativity: Associativity.left\n    },\n    '^': {\n      precedence: 4,\n      associativity: Associativity.right\n    },\n  };\n  class NumberNode {\n    constructor(text) {\n      this.text = text;\n    }\n    toString() {\n      return this.text;\n    }\n  }\n  function InfixNode(fnname, operands) {\n    this.fnname = fnname;\n    this.operands = operands;\n    this.toString=function (parentPrecedence = 0) {\n      const op = operators[this.fnname];\n      const leftAdd = op.associativity === Associativity.right ? 0.01 : 0;\n      const rightAdd = op.associativity === Associativity.left ? 0.01 : 0;\n      if (this.operands.length !== 2) throw Error(\"invalid operand count\");\n      const result = this.operands[0].toString(op.precedence + leftAdd) +\n        ` ${this.fnname} ${this.operands[1].toString(op.precedence + rightAdd)}`;\n      if (parentPrecedence > op.precedence) return `( ${result} )`;\n      else return result;\n    }\n  }\n\n  function rpnToTree(tokens) {\n    const stack = [];\n    for (const token of tokens.split(\" \")) {\n      if (token in operators) {\n        const op = operators[token],\n          arity = 2; // all of these operators take 2 arguments\n        if (stack.length < arity) throw Error(\"stack error\");\n        stack.push(new InfixNode(token, stack.splice(stack.length - arity)));\n      } else stack.push(new NumberNode(token));\n    }\n    if (stack.length !== 1) throw Error(\"stack error \" + stack);\n    return stack[0];\n  }\n\n  return rpnToTree(rpn).toString()\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>rpnToInfix</code> should be a function.'",
+          "testString":
+            "assert(typeof rpnToInfix=='function','<code>rpnToInfix</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>rpnToInfix(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\")</code> should return a string.'",
+          "testString":
+            "assert(typeof rpnToInfix(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\") == 'string','<code>rpnToInfix(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\")</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>rpnToInfix(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\")</code> should return <code>\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\"</code>.'",
+          "testString":
+            "assert.equal(rpnToInfix(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\"),\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\",'<code>rpnToInfix(\"3 4 2 * 1 5 - 2 3 ^ ^ / +\")</code> should return <code>\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnToInfix(\"1 2 + 3 4 + ^ 5 6 + ^\")</code> should return <code>\"( ( 1 + 2 ) ^ ( 3 + 4 ) ) ^ ( 5 + 6 )\"</code>.'",
+          "testString":
+            "assert.equal(rpnToInfix(\"1 2 + 3 4 + ^ 5 6 + ^\"),\"( ( 1 + 2 ) ^ ( 3 + 4 ) ) ^ ( 5 + 6 )\",'<code>rpnToInfix(\"1 2 + 3 4 + ^ 5 6 + ^\")</code> should return <code>\"( ( 1 + 2 ) ^ ( 3 + 4 ) ) ^ ( 5 + 6 )\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnToInfix(\"1 2 3 + +\")</code> should return <code>\"1 + 2 + 3\"</code>.'",
+          "testString":
+            "assert.equal(rpnToInfix(\"1 2 3 + +\"),\"1 + 2 + 3\",'<code>rpnToInfix(\"1 2 3 + +\")</code> should return <code>\"1 + 2 + 3\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnToInfix(\"3 5 + 7 2 - *\")</code> should return <code>\"( 3 + 5 ) * ( 7 - 2 )\"</code>.'",
+          "testString":
+            "assert.equal(rpnToInfix(\"3 5 + 7 2 - *\"),\"( 3 + 5 ) * ( 7 - 2 )\",'<code>rpnToInfix(\"3 5 + 7 2 - *\")</code> should return <code>\"( 3 + 5 ) * ( 7 - 2 )\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>rpnToInfix(\"15 7 1 1 + - / 3 * 2 1 1 + + -\")</code> should return <code>\"15 / ( 7 - ( 1 + 1 ) ) * 3 - ( 2 + 1 + 1 )\"</code>.'",
+          "testString":
+            "assert.equal(rpnToInfix(\"15 7 1 1 + - / 3 * 2 1 1 + + -\"),\"15 / ( 7 - ( 1 + 1 ) ) * 3 - ( 2 + 1 + 1 )\",'<code>rpnToInfix(\"15 7 1 1 + - / 3 * 2 1 1 + + -\")</code> should return <code>\"15 / ( 7 - ( 1 + 1 ) ) * 3 - ( 2 + 1 + 1 )\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f5a",
+      "challengeType": 5,
+      "releasedOn": "August 3, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function rpnToInfix (rpn) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
       "title": "Sailors, coconuts and a monkey problem",
       "description": [
         " <p>",
