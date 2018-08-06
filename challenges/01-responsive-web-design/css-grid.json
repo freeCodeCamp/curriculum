@@ -15,10 +15,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>display</code> property with a value of <code>grid</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*display\\s*?:\\s*?grid\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>display</code> property with a value of <code>grid</code>.');"
+          "text": "<code>container</code> class should have a <code>display</code> property with a value of <code>grid</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*display\\s*?:\\s*?grid\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>display</code> property with a value of <code>grid</code>.');"
         }
       ],
       "solutions": [],
@@ -61,7 +59,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cqwREC4"
     },
     {
       "id": "5a9036d038fddaf9a66b5d32",
@@ -76,10 +75,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-columns</code> property with three units of <code>100px</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?100px\\s*?100px\\s*?100px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property with three units of <code>100px</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-template-columns</code> property with three units of <code>100px</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?100px\\s*?100px\\s*?100px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property with three units of <code>100px</code>.');"
         }
       ],
       "solutions": [],
@@ -123,7 +120,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/c7NzDHv"
     },
     {
       "id": "5a9036e138fddaf9a66b5d33",
@@ -135,10 +133,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-rows</code> property with two units of <code>50px</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-rows\\s*?:\\s*?50px\\s*?50px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-rows</code> property with two units of <code>50px</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-template-rows</code> property with two units of <code>50px</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-rows\\s*?:\\s*?50px\\s*?50px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-rows</code> property with two units of <code>50px</code>.');"
         }
       ],
       "solutions": [],
@@ -183,7 +179,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cbp9Pua"
     },
     {
       "id": "5a9036ee38fddaf9a66b5d34",
@@ -201,10 +198,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-columns</code> property that has three columns with the following widths: <code>1fr, 100px, and 2fr</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?1fr\\s*?100px\\s*?2fr\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property that has three columns with the following widths: <code>1fr, 100px, and 2fr</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-template-columns</code> property that has three columns with the following widths: <code>1fr, 100px, and 2fr</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?1fr\\s*?100px\\s*?2fr\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property that has three columns with the following widths: <code>1fr, 100px, and 2fr</code>.');"
         }
       ],
       "solutions": [],
@@ -250,7 +245,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cvE8phd"
     },
     {
       "id": "5a9036ee38fddaf9a66b5d35",
@@ -264,10 +260,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-column-gap</code> property that has the value of <code>20px</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-column-gap\\s*?:\\s*?20px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-column-gap</code> property that has the value of <code>20px</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-column-gap</code> property that has the value of <code>20px</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-column-gap\\s*?:\\s*?20px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-column-gap</code> property that has the value of <code>20px</code>.');"
         }
       ],
       "solutions": [],
@@ -314,7 +308,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cVZ8vfD"
     },
     {
       "id": "5a9036ee38fddaf9a66b5d36",
@@ -326,10 +321,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-row-gap</code> property that has the value of <code>5px</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-row-gap\\s*?:\\s*?5px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-row-gap</code> property that has the value of <code>5px</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-row-gap</code> property that has the value of <code>5px</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-row-gap\\s*?:\\s*?5px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-row-gap</code> property that has the value of <code>5px</code>.');"
         }
       ],
       "solutions": [],
@@ -376,7 +369,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cPbJ2Cv"
     },
     {
       "id": "5a9036ee38fddaf9a66b5d37",
@@ -388,10 +382,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-gap</code> property that introduces <code>10px</code> gap between the rows and <code>20px</code> gap between the columns.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-gap\\s*?:\\s*?10px\\s*?20px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-gap</code> property that introduces <code>10px</code> gap between the rows and <code>20px</code> gap between the columns.');"
+          "text": "<code>container</code> class should have a <code>grid-gap</code> property that introduces <code>10px</code> gap between the rows and <code>20px</code> gap between the columns.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-gap\\s*?:\\s*?10px\\s*?20px\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-gap</code> property that introduces <code>10px</code> gap between the rows and <code>20px</code> gap between the columns.');"
         }
       ],
       "solutions": [],
@@ -437,7 +429,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/ca2qVtv"
     },
     {
       "id": "5a90372638fddaf9a66b5d38",
@@ -456,10 +449,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item5</code> class should have a <code>grid-column</code> property that has the value of <code>2 / 4</code>.",
-          "testString":
-            "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-column\\s*?:\\s*?2\\s*?\\/\\s*?4\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-column</code> property that has the value of <code>2 / 4</code>.');"
+          "text": "<code>item5</code> class should have a <code>grid-column</code> property that has the value of <code>2 / 4</code>.",
+          "testString": "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-column\\s*?:\\s*?2\\s*?\\/\\s*?4\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-column</code> property that has the value of <code>2 / 4</code>.');"
         }
       ],
       "solutions": [],
@@ -510,7 +501,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cnzkDSr"
     },
     {
       "id": "5a90373638fddaf9a66b5d39",
@@ -522,10 +514,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item5</code> class should have a <code>grid-row</code> property that has the value of <code>2 / 4</code>.",
-          "testString":
-            "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-row\\s*?:\\s*?2\\s*?\\/\\s*?4\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-row</code> property that has the value of <code>2 / 4</code>.');"
+          "text": "<code>item5</code> class should have a <code>grid-row</code> property that has the value of <code>2 / 4</code>.",
+          "testString": "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-row\\s*?:\\s*?2\\s*?\\/\\s*?4\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-row</code> property that has the value of <code>2 / 4</code>.');"
         }
       ],
       "solutions": [],
@@ -577,7 +567,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/c9WBLU4"
     },
     {
       "id": "5a90374338fddaf9a66b5d3a",
@@ -592,10 +583,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item2</code> class should have a <code>justify-self</code> property that has the value of <code>center</code>.",
-          "testString":
-            "assert(code.match(/.item2\\s*?{[\\s\\S]*justify-self\\s*?:\\s*?center\\s*?;[\\s\\S]*}/gi), '<code>item2</code> class should have a <code>justify-self</code> property that has the value of <code>center</code>.');"
+          "text": "<code>item2</code> class should have a <code>justify-self</code> property that has the value of <code>center</code>.",
+          "testString": "assert(code.match(/.item2\\s*?{[\\s\\S]*justify-self\\s*?:\\s*?center\\s*?;[\\s\\S]*}/gi), '<code>item2</code> class should have a <code>justify-self</code> property that has the value of <code>center</code>.');"
         }
       ],
       "solutions": [],
@@ -647,7 +636,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cJbpKHq"
     },
     {
       "id": "5a90375238fddaf9a66b5d3b",
@@ -659,10 +649,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item3</code> class should have a <code>align-self</code> property that has the value of <code>end</code>.",
-          "testString":
-            "assert(code.match(/.item3\\s*?{[\\s\\S]*align-self\\s*?:\\s*?end\\s*?;[\\s\\S]*}/gi), '<code>item3</code> class should have a <code>align-self</code> property that has the value of <code>end</code>.');"
+          "text": "<code>item3</code> class should have a <code>align-self</code> property that has the value of <code>end</code>.",
+          "testString": "assert(code.match(/.item3\\s*?{[\\s\\S]*align-self\\s*?:\\s*?end\\s*?;[\\s\\S]*}/gi), '<code>item3</code> class should have a <code>align-self</code> property that has the value of <code>end</code>.');"
         }
       ],
       "solutions": [],
@@ -714,7 +702,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cmzd4fz"
     },
     {
       "id": "5a90376038fddaf9a66b5d3c",
@@ -726,10 +715,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>justify-items</code> property that has the value of <code>center</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*justify-items\\s*?:\\s*?center\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>justify-items</code> property that has the value of <code>center</code>.');"
+          "text": "<code>container</code> class should have a <code>justify-items</code> property that has the value of <code>center</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*justify-items\\s*?:\\s*?center\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>justify-items</code> property that has the value of <code>center</code>.');"
         }
       ],
       "solutions": [],
@@ -777,7 +764,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cJbpECn"
     },
     {
       "id": "5a94fdf869fb03452672e45b",
@@ -789,10 +777,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>align-items</code> property that has the value of <code>end</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*align-items\\s*?:\\s*?end\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>align-items</code> property that has the value of <code>end</code>.');"
+          "text": "<code>container</code> class should have a <code>align-items</code> property that has the value of <code>end</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*align-items\\s*?:\\s*?end\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>align-items</code> property that has the value of <code>end</code>.');"
         }
       ],
       "solutions": [],
@@ -840,7 +826,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/ckzPeUv"
     },
     {
       "id": "5a94fe0569fb03452672e45c",
@@ -856,10 +843,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-areas</code> property similar to the preview but has <code>.</code> instead of the <code>advert</code> area.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-areas\\s*?:\\s*?\"\\s*?header\\s*?header\\s*?header\\s*?\"\\s*?\"\\s*?.\\s*?content\\s*?content\\s*?\"\\s*?\"\\s*?footer\\s*?footer\\s*?footer\\s*?\"\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-areas</code> propertiy similar to the preview but has <code>.</code> instead of the <code>advert</code> area.');"
+          "text": "<code>container</code> class should have a <code>grid-template-areas</code> property similar to the preview but has <code>.</code> instead of the <code>advert</code> area.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-areas\\s*?:\\s*?\"\\s*?header\\s*?header\\s*?header\\s*?\"\\s*?\"\\s*?.\\s*?content\\s*?content\\s*?\"\\s*?\"\\s*?footer\\s*?footer\\s*?footer\\s*?\"\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-areas</code> propertiy similar to the preview but has <code>.</code> instead of the <code>advert</code> area.');"
         }
       ],
       "solutions": [],
@@ -910,7 +895,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cLLpGAy"
     },
     {
       "id": "5a94fe1369fb03452672e45d",
@@ -924,10 +910,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>footer</code>.",
-          "testString":
-            "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-area\\s*?:\\s*?footer\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>footer</code>.');"
+          "text": "<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>footer</code>.",
+          "testString": "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-area\\s*?:\\s*?footer\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>footer</code>.');"
         }
       ],
       "solutions": [],
@@ -982,7 +966,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cRrqmtV"
     },
     {
       "id": "5a94fe2669fb03452672e45e",
@@ -998,10 +983,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>3/1/4/4</code>.",
-          "testString":
-            "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-area\\s*?:\\s*?3\\s*?\\/\\s*?1\\s*?\\/\\s*?4\\s*?\\/\\s*?4\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>3/1/4/4</code>.');"
+          "text": "<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>3/1/4/4</code>.",
+          "testString": "assert(code.match(/.item5\\s*?{[\\s\\S]*grid-area\\s*?:\\s*?3\\s*?\\/\\s*?1\\s*?\\/\\s*?4\\s*?\\/\\s*?4\\s*?;[\\s\\S]*}/gi), '<code>item5</code> class should have a <code>grid-area</code> property that has the value of <code>3/1/4/4</code>.');"
         }
       ],
       "solutions": [],
@@ -1052,7 +1035,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/c6N7VhK"
     },
     {
       "id": "5a94fe3669fb03452672e45f",
@@ -1072,10 +1056,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the width of <code>1fr</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?3\\s*?,\\s*?1fr\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the width of <code>1fr</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the width of <code>1fr</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?3\\s*?,\\s*?1fr\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the width of <code>1fr</code>.');"
         }
       ],
       "solutions": [],
@@ -1123,7 +1105,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cQvqyHR"
     },
     {
       "id": "5a94fe4469fb03452672e460",
@@ -1137,10 +1120,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the minimum width of <code>90px</code> and maximum width of <code>1fr</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?3\\s*?,\\s*?minmax\\s*?\\(\\s*?90px\\s*?,\\s*?1fr\\s*?\\)\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the minimum width of <code>90px</code> and maximum width of <code>1fr</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the minimum width of <code>90px</code> and maximum width of <code>1fr</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?3\\s*?,\\s*?minmax\\s*?\\(\\s*?90px\\s*?,\\s*?1fr\\s*?\\)\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property that is set to repeat 3 columns with the minimum width of <code>90px</code> and maximum width of <code>1fr</code>.');"
         }
       ],
       "solutions": [],
@@ -1188,7 +1169,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cD97RTv"
     },
     {
       "id": "5a94fe5469fb03452672e461",
@@ -1204,10 +1186,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fill</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?auto-fill\\s*?,\\s*?minmax\\s*?\\(\\s*?60px\\s*?,\\s*?1fr\\s*?\\)\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fill</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.');"
+          "text": "<code>container</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fill</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?auto-fill\\s*?,\\s*?minmax\\s*?\\(\\s*?60px\\s*?,\\s*?1fr\\s*?\\)\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fill</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.');"
         }
       ],
       "solutions": [],
@@ -1272,7 +1252,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cmzdycW"
     },
     {
       "id": "5a94fe6269fb03452672e462",
@@ -1285,10 +1266,8 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>container2</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fit</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.",
-          "testString":
-            "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?auto-fit\\s*?,\\s*?minmax\\s*?\\(\\s*?60px\\s*?,\\s*?1fr\\s*?\\)\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container2</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fit</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.');"
+          "text": "<code>container2</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fit</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.",
+          "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?repeat\\s*?\\(\\s*?auto-fit\\s*?,\\s*?minmax\\s*?\\(\\s*?60px\\s*?,\\s*?1fr\\s*?\\)\\s*?\\)\\s*?;[\\s\\S]*}/gi), '<code>container2</code> class should have a <code>grid-template-columns</code> property with <code>repeat</code> and <code>auto-fit</code> that will fill the grid with columns that have a minimum width of <code>60px</code> and maximum of <code>1fr</code>.');"
         }
       ],
       "solutions": [],
@@ -1354,7 +1333,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/c3dPph8"
     },
     {
       "id": "5a94fe7769fb03452672e463",
@@ -1367,10 +1347,8 @@
       ],
       "tests": [
         {
-          "text":
-            "When the viewport is <code>400px</code> or more, <code>container</code> class should have a <code>grid-template-areas</code> property in which the footer and header areas occupy the top and bottom rows respectively and advert and content occupy the left and right columns of the middle row.",
-          "testString":
-            "assert(code.match(/@media\\s*?\\(\\s*?min-width\\s*?:\\s*?400px\\s*?\\)[\\s\\S]*.container\\s*?{[\\s\\S]*grid-template-areas\\s*?:\\s*?\"\\s*?header\\s*?header\\s*?\"\\s*?\"\\s*?advert\\s*?content\\s*?\"\\s*?\"\\s*?footer\\s*?footer\\s*?\"\\s*?;[\\s\\S]*}/gi), 'When the viewport is <code>400px</code> or more, <code>container</code> class should have a <code>grid-template-areas</code> property in which the footer and header areas occupy the top and bottom rows respectively and advert and content occupy the left and right columns of the middle row.');"
+          "text": "When the viewport is <code>400px</code> or more, <code>container</code> class should have a <code>grid-template-areas</code> property in which the footer and header areas occupy the top and bottom rows respectively and advert and content occupy the left and right columns of the middle row.",
+          "testString": "assert(code.match(/@media\\s*?\\(\\s*?min-width\\s*?:\\s*?400px\\s*?\\)[\\s\\S]*.container\\s*?{[\\s\\S]*grid-template-areas\\s*?:\\s*?\"\\s*?header\\s*?header\\s*?\"\\s*?\"\\s*?advert\\s*?content\\s*?\"\\s*?\"\\s*?footer\\s*?footer\\s*?\"\\s*?;[\\s\\S]*}/gi), 'When the viewport is <code>400px</code> or more, <code>container</code> class should have a <code>grid-template-areas</code> property in which the footer and header areas occupy the top and bottom rows respectively and advert and content occupy the left and right columns of the middle row.');"
         }
       ],
       "solutions": [],
@@ -1456,7 +1434,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/cMbqeHk"
     },
     {
       "id": "5a94fe8569fb03452672e464",
@@ -1469,16 +1448,12 @@
       ],
       "tests": [
         {
-          "text":
-            "<code>item3</code> class should have a <code>grid-template-columns</code> property with <code>auto</code> and <code>1fr</code> as values.",
-          "testString":
-            "assert(code.match(/.item3\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?auto\\s*?1fr\\s*?;[\\s\\S]*}/gi), '<code>item3</code> class should have a <code>grid-template-columns</code> property with <code>auto</code> and <code>1fr</code> as values.');"
+          "text": "<code>item3</code> class should have a <code>grid-template-columns</code> property with <code>auto</code> and <code>1fr</code> as values.",
+          "testString": "assert(code.match(/.item3\\s*?{[\\s\\S]*grid-template-columns\\s*?:\\s*?auto\\s*?1fr\\s*?;[\\s\\S]*}/gi), '<code>item3</code> class should have a <code>grid-template-columns</code> property with <code>auto</code> and <code>1fr</code> as values.');"
         },
         {
-          "text":
-            "<code>item3</code> class should have a <code>display</code> property with the value of <code>grid</code>.",
-          "testString":
-            "assert(code.match(/.item3\\s*?{[\\s\\S]*display\\s*?:\\s*?grid\\s*?;[\\s\\S]*}/gi), '<code>item3</code> class should have a <code>display</code> property with the value of <code>grid</code>.');"
+          "text": "<code>item3</code> class should have a <code>display</code> property with the value of <code>grid</code>.",
+          "testString": "assert(code.match(/.item3\\s*?{[\\s\\S]*display\\s*?:\\s*?grid\\s*?;[\\s\\S]*}/gi), '<code>item3</code> class should have a <code>display</code> property with the value of <code>grid</code>.');"
         }
       ],
       "solutions": [],
@@ -1554,7 +1529,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pByETK/c6N78Ap"
     }
   ]
 }
