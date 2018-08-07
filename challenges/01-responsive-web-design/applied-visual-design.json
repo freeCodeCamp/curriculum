@@ -321,12 +321,6 @@
             "The <code>u</code> tag should wrap around the text \"Ph.D. students\".",
           "testString":
             "assert($('u').text() === 'Ph.D. students', 'The <code>u</code> tag should wrap around the text \"Ph.D. students\".');"
-        },
-        {
-          "text":
-            "The <code>u</code> tag should not wrap around the parent <code>div</code> tag.",
-          "testString":
-            "assert($('u').children('div').length === 0, 'The <code>u</code> tag should not wrap around the parent <code>div</code> tag.');"
         }
       ],
       "solutions": [],
