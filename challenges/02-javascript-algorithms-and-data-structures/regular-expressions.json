@@ -941,6 +941,10 @@
           "testString": "assert(nonAlphabetRegex.global, 'Your regex should use the global flag.');"
         },
         {
+          "text": "Your regex should use the shorthand character.",
+          "testString":"assert(/\\\\W/.test(nonAlphabetRegex.source), 'Your regex should use the shorthand character to match characters which are non-alphanumeric.');"
+        },
+        {
           "text": "Your regex should find 6 non-alphanumeric characters in <code>\"The five boxing wizards jump quickly.\"</code>.",
           "testString": "assert(\"The five boxing wizards jump quickly.\".match(nonAlphabetRegex).length == 6, 'Your regex should find 6 non-alphanumeric characters in <code>\"The five boxing wizards jump quickly.\"</code>.');"
         },
