@@ -19,7 +19,7 @@
           "testString": "assert(code.match(/.container\\s*?{[\\s\\S]*\\/\\s*?display\\s*?:\\s*?grid\\s*?;\\s*?\\/[\\s\\S]*}/gi), '<code>container</code> class should have a <code>display</code> property with a value of <code>grid</code>.');"
         }
       ],
-      "solutions": ["var code = \".container {\\**\\display: grid;\\**\\}\""],
+      "solutions": ["var code = \".container {/**/display: grid;/**/}\""],
       "hints": [],
       "releasedOn": "Feb 15, 2018",
       "challengeType": 0,
