@@ -12676,7 +12676,7 @@
         "<b>4</b>  (3 + 1)</span>",
         "<b>1</b>  (since the last element of each row doesn't have two elements above it) </span>",
         "So the triangle now looks like this:",
-        "<pre> 1\n 1 1\n 1 2 1\n 1 3 3 1\n 1 4 6 4 1</pre>"
+        "<pre> 1\n 1 1\n 1 2 1\n 1 3 3 1\n 1 4 6 4 1</pre>",
         "Each row  <tt> n </tt>  (starting with row  0  at the top) shows the coefficients of the binomial expansion of   (x + y)<sup>n</sup>.",
         "Write a function that returns the first  <tt> n </tt>  rows of the triangle  (with  <tt> f(1) </tt>  yielding the row consisting of only the element <b>1</b>) as a 2D array.",
         "This can be done either by summing elements from the previous rows or using a binary coefficient or combination function."
