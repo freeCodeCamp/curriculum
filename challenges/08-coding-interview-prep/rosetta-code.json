@@ -12435,6 +12435,949 @@
       }
     },
     {
+      "title": "Parsing/Shunting-yard algorithm",
+      "description": [
+        "Given the operator characteristics and input from the <a href=\"https://en.wikipedia.org/wiki/Shunting-yard_algorithm\">Shunting-yard algorithm</a> page and tables, use the algorithm to generate the RPN output.</p>",
+        "<ul><li>Assume an input of a correct, space separated, string of tokens representing an infix expression</li> <li>Generate a space separated output string representing the RPN</li> <li>Operator precedence is given in this table:</li></ul>",
+        "<table style=\"text-align:center;border-collapse:collapse;\" border=\"1\" cellpadding=5> <tr><th>Operator</th><th>Precedence</th><th>Associativity</th><th>Operation</th></tr> <tr><td>^</td><td>4</td><td>Right</td><td>Exponentiation</td></tr> <tr><td>*</td><td>3</td><td>Left</td><td>Multiplication</td></tr> <tr><td>/</td><td>3</td><td>Left</td><td>Division</td></tr> <tr><td>+</td><td>2</td><td>Left</td><td>Addition</td></tr> <tr><td>-</td><td>2</td><td>Left</td><td>Subtraction</td></tr> </table>"
+      ],
+      "solutions": [
+        "function shuntingYard (infix) {\n  function Stack() {\n    this.dataStore = [];\n    this.top = 0;\n    this.push = push;\n    this.pop = pop;\n    this.peek = peek;\n    this.length = length;\n  }\n\n  function push(element) {\n    this.dataStore[this.top++] = element;\n  }\n\n  function pop() {\n    return this.dataStore[--this.top];\n  }\n\n  function peek() {\n    return this.dataStore[this.top - 1];\n  }\n\n  function length() {\n    return this.top;\n  }\n\n  infix = infix.replace(/\\s+/g, ''); // remove spaces, so infix[i]!=\" \"\n\n  var s = new Stack();\n  var ops = \"-+/*^\";\n  var precedence = {\n    \"^\": 4,\n    \"*\": 3,\n    \"/\": 3,\n    \"+\": 2,\n    \"-\": 2\n  };\n  var associativity = {\n    \"^\": \"Right\",\n    \"*\": \"Left\",\n    \"/\": \"Left\",\n    \"+\": \"Left\",\n    \"-\": \"Left\"\n  };\n  var token;\n  var postfix = \"\";\n  var o1, o2;\n\n  for (var i = 0; i < infix.length; i++) {\n    token = infix[i];\n    if (token >= \"0\" && token <= \"9\") { // if token is operand (here limited to 0 <= x <= 9)\n      postfix += token + \" \";\n    } else if (ops.indexOf(token) != -1) { // if token is an operator\n      o1 = token;\n      o2 = s.peek();\n      while (ops.indexOf(o2) != -1 && ( // while operator token, o2, on top of the stack\n          // and o1 is left-associative and its precedence is less than or equal to that of o2\n          (associativity[o1] == \"Left\" && (precedence[o1] <= precedence[o2])) ||\n          // the algorithm on wikipedia says: or o1 precedence < o2 precedence, but I think it should be\n          // or o1 is right-associative and its precedence is less than that of o2\n          (associativity[o1] == \"Right\" && (precedence[o1] < precedence[o2]))\n        )) {\n        postfix += o2 + \" \"; // add o2 to output queue\n        s.pop(); // pop o2 of the stack\n        o2 = s.peek(); // next round\n      }\n      s.push(o1); // push o1 onto the stack\n    } else if (token == \"(\") { // if token is left parenthesis\n      s.push(token); // then push it onto the stack\n    } else if (token == \")\") { // if token is right parenthesis\n      while (s.peek() != \"(\") { // until token at top is (\n        postfix += s.pop() + \" \";\n      }\n      s.pop(); // pop (, but not onto the output queue\n    }\n  }\n  postfix += s.dataStore.reverse().join(\" \");\n  return postfix\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>shuntingYard</code> should be a function.'",
+          "testString":
+            "assert(typeof shuntingYard=='function','<code>shuntingYard</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>shuntingYard(\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\")</code> should return a string.'",
+          "testString":
+            "assert(typeof shuntingYard(\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\") == 'string','<code>shuntingYard(\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\")</code> should return a string.');"
+        },
+        {
+          "text":
+            "'<code>shuntingYard(\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\")</code> should return <code>\"3 4 2 * 1 5 - 2 3 ^ ^ / +\"</code>.'",
+          "testString":
+            "assert.equal(shuntingYard(\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\"),\"3 4 2 * 1 5 - 2 3 ^ ^ / +\",'<code>shuntingYard(\"3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3\")</code> should return <code>\"3 4 2 * 1 5 - 2 3 ^ ^ / +\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>shuntingYard(\"1 + 2 + 3\")</code> should return <code>\"1 2 + 3 +\"</code>.'",
+          "testString":
+            "assert.equal(shuntingYard(\"1 + 2 + 3\"),\"1 2 + 3 +\",'<code>shuntingYard(\"1 + 2 + 3\")</code> should return <code>\"1 2 + 3 +\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>shuntingYard(\"3 * 3 ^ 2\")</code> should return <code>\"3 3 2 ^ *\"</code>.'",
+          "testString":
+            "assert.equal(shuntingYard(\"3 * 3 ^ 2\"),\"3 3 2 ^ *\",'<code>shuntingYard(\"3 * 3 ^ 2\")</code> should return <code>\"3 3 2 ^ *\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>shuntingYard(\"1 / 3 - 5 ^ 2\")</code> should return <code>\"1 3 / 5 2 ^ -\"</code>.'",
+          "testString":
+            "assert.equal(shuntingYard(\"1 / 3 - 5 ^ 2\"),\"1 3 / 5 2 ^ -\",'<code>shuntingYard(\"1 / 3 - 5 ^ 2\")</code> should return <code>\"1 3 / 5 2 ^ -\"</code>.');"
+        },
+        {
+          "text":
+            "'<code>shuntingYard(\"7 + 8 * 4 * 3\")</code> should return <code>\"7 8 4 * 3 * +\"</code>.'",
+          "testString":
+            "assert.equal(shuntingYard(\"7 + 8 * 4 * 3\"),\"7 8 4 * 3 * +\",'<code>shuntingYard(\"7 + 8 * 4 * 3\")</code> should return <code>\"7 8 4 * 3 * +\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f5b",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function shuntingYard (infix) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Pascal matrix generation",
+      "description": [
+        "A pascal matrix is a two-dimensional square matrix holding numbers from  <a href=\"http://rosettacode.org/wiki/Pascal's triangle\">Pascal's triangle</a>,  also known as  <a href=\"http://rosettacode.org/wiki/Evaluate binomial coefficients\">binomial coefficients</a>  and which can be shown as   <sup>n</sup>C<sub>r</sub>.",
+        "Shown below are truncated  5-by-5  matrices  M[i, j]  for  i,j  in range  0..4.",
+        "A Pascal upper-triangular matrix that is populated with  <sup>j</sup>C<sub>i</sub>:",
+        "<pre> [[1, 1, 1, 1, 1],\n [0, 1, 2, 3, 4],\n [0, 0, 1, 3, 6],\n [0, 0, 0, 1, 4],\n [0, 0, 0, 0, 1]]</pre>",
+        "A Pascal lower-triangular matrix that is populated with  <sup>i</sup>C<sub>j</sub>  (the transpose of the upper-triangular matrix):",
+        "<pre>[[1, 0, 0, 0, 0],\n [1, 1, 0, 0, 0],\n [1, 2, 1, 0, 0],\n [1, 3, 3, 1, 0],\n [1, 4, 6, 4, 1]]</pre>",
+        "A Pascal symmetric matrix that is populated with  <sup>i+j</sup>C<sub>i</sub>:",
+        "<pre>[[1, 1, 1, 1, 1],\n [1, 2, 3, 4, 5],\n [1, 3, 6, 10, 15],\n [1, 4, 10, 20, 35],\n [1, 5, 15, 35, 70]]</pre>",
+        "Write a function that takes a string and a 2D array as parameters. The string can have the values \"lower\", \"upper\" and \"symmetric\". The function should return the appropriate resultant matrix corresponding to the given string.",
+        "The  <a href=\"http://rosettacode.org/wiki/Cholesky decomposition\">Cholesky decomposition</a>  of a Pascal symmetric matrix is the Pascal lower-triangle matrix of the same size."
+      ],
+      "solutions": [
+        "function pascalMat (type, N) {\n  const pascalMatrix = (f, n) =>\n    chunksOf(n, map(compose(bc, f), range([\n      [0, 0],\n      [n - 1, n - 1]\n    ])));\n\n  // Binomial coefficient\n  // bc :: (Int, Int) -> Int\n  const bc = ([n, k]) => {\n    return enumFromTo(1, k)\n      .reduce((a, x) => {\n        return (Math.floor((a * (n - x + 1)) / x) + 0)\n      }, 1)\n  };\n\n  // GENERIC FUNCTIONS -----------------------------------------------------\n\n  // A list of functions applied to a list of arguments\n  // <*> :: [(a -> b)] -> [a] -> [b]\n  const ap = (fs, xs) => //\n    [].concat.apply([], fs.map(f => //\n      [].concat.apply([], xs.map(x => [f(x)]))));\n\n  // chunksOf :: Int -> [a] -> [[a]]\n  const chunksOf = (n, xs) =>\n    xs.reduce((a, _, i, xs) =>\n      i % n ? a : a.concat([xs.slice(i, i + n)]), []);\n\n  // compose :: (b -> c) -> (a -> b) -> (a -> c)\n  const compose = (f, g) => x => f(g(x));\n\n  // concat :: [[a]] -> [a] | [String] -> String\n  const concat = xs => {\n    if (xs.length > 0) {\n      const unit = typeof xs[0] === 'string' ? '' : [];\n      return unit.concat.apply(unit, xs);\n    } else return [];\n  };\n\n  // cons :: a -> [a] -> [a]\n  const cons = (x, xs) => [x].concat(xs);\n\n  // curry :: ((a, b) -> c) -> a -> b -> c\n  const curry = f => a => b => f(a, b);\n\n  // enumFromTo :: Int -> Int -> [Int]\n  const enumFromTo = (m, n) =>\n    Array.from({\n      length: Math.floor(n - m) + 1\n    }, (_, i) => m + i);\n\n  // id :: a -> a\n  const id = x => x;\n\n  // map :: (a -> b) -> [a] -> [b]\n  const map = (f, xs) => xs.map(f);\n\n  // range :: Ix a => (a, a) -> [a]\n  const range = ([a, b]) => {\n    const [as, bs] = a instanceof Array ? [a, b] : [\n        [a],\n        [b]\n      ],\n      an = as.length;\n    return (an === bs.length) ? (\n      an > 1 ? (\n        sequence(as.map((_, i) => enumFromTo(as[i], bs[i])))\n      ) : enumFromTo(a, b)\n    ) : [];\n  };\n\n  // Evaluate left to right, and collect the results\n  // sequence :: Monad m => [m a] -> m [a]\n  const sequence = xs => traverse(id, xs);\n\n  // Map each element of a structure to an action,\n  // evaluate these actions from left to right,\n  // and collect the results.\n  // traverse :: (a -> [b]) -> [a] -> [[b]]\n  const traverse = (f, xs) => {\n    const cons_f = (a, x) => ap(f(x)\n      .map(curry(cons)), a);\n    return xs.reduceRight(cons_f, [\n      []\n    ]);\n  };\n\n  // unlines :: [String] -> String\n  const unlines = xs => xs.join('\\n');\n\n  // zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]\n  const zipWith = (f, xs, ys) => {\n    const ny = ys.length;\n    return (xs.length <= ny ? xs : xs.slice(0, ny))\n      .map((x, i) => f(x, ys[i]));\n  };\n\n  var res;\n  switch (type) {\n    case 'lower':\n      res=pascalMatrix(x=>x,N)\n      break;\n    case 'upper':\n      res=pascalMatrix(([a, b]) => [b, a],N)\n      break;\n    case 'symmetric':\n      res=pascalMatrix(([a, b]) => [a + b, a],N)\n      break;\n  }\n\n  return res;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>pascalMat</code> should be a function.'",
+          "testString":
+            "assert(typeof pascalMat=='function','<code>pascalMat</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>pascalMat(\"lower\",3)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(pascalMat(\"lower\",3)),'<code>pascalMat(\"lower\",3)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>pascalMat(\"lower\",3)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalMat(\"lower\",3),results[0],'<code>pascalMat(\"lower\",3)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalMat(\"upper\",3)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalMat(\"upper\",3),results[1],'<code>pascalMat(\"upper\",3)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalMat(\"lower\",5)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalMat(\"lower\",5),results[2],'<code>pascalMat(\"lower\",5)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalMat(\"upper\",5)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalMat(\"upper\",5),results[3],'<code>pascalMat(\"upper\",5)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalMat(\"symmetric\",5)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalMat(\"symmetric\",5),results[4],'<code>pascalMat(\"symmetric\",5)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f5d",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function pascalMat (type, N) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[[1,0,0],[1,1,0],[1,2,1]],",
+            "[[1,1,1],[0,1,2],[0,0,1]],",
+            "[[1,0,0,0,0],[1,1,0,0,0],[1,2,1,0,0],[1,3,3,1,0],[1,4,6,4,1]],",
+            "[[1,1,1,1,1],[0,1,2,3,4],[0,0,1,3,6],[0,0,0,1,4],[0,0,0,0,1]],",
+            "[[1,1,1,1,1],[1,2,3,4,5],[1,3,6,10,15],[1,4,10,20,35],[1,5,15,35,70]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Pascal's triangle/Puzzle",
+      "description": [
+        "This puzzle involves a <a href=\"http://xunor.free.fr/en/riddles/auto/pyramidnb.php\">Pascal's Triangle</a>, also known as a <a href=\"http://xunor.free.fr/en/riddles/auto/pyramidnb.php\">Pyramid of Numbers</a>.",
+        "<pre>           [top]\n          [  ][  ]\n       [mid][  ][  ]\n      [  ][  ][  ][  ]\n     [ X][a][ Y][b][ Z]</pre>",
+        "Each brick of the pyramid is the sum of the two bricks situated below it.",
+        "Of the three missing numbers at the base of the pyramid, the middle one is the sum of the other two (that is, Y = X + Z).",
+        "Write a function to find a solution to this puzzle. It should take a, b, mid and top as parameters and return the result as an array of the form: <code>[X,Y,Z]</code>."
+      ],
+      "solutions": [
+        "function pascal (a, b, mid, top) {\n  function fmod(dividend, divisor) {\n    var multiplier = 0;\n\n    while (divisor * multiplier < dividend) {\n      ++multiplier;\n    }\n\n    --multiplier;\n\n    return dividend - (divisor * multiplier);\n  }\n  var x, y, z;\n  var ytemp = (top - 4 * (a + b)) / 7.;\n  if (ytemp % 1. >= 0.0001) {\n    x = 0;\n    return;\n  }\n  y = ytemp;\n  x = mid - 2 * a - y;\n  z = y - x;\n\n  return [x, y, z]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>pascal</code> should be a function.'",
+          "testString":
+            "assert(typeof pascal=='function','<code>pascal</code> should be a function.');"
+        },
+        {
+          "text": "'<code>pascal(11,4,40,151)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(pascal(11,4,40,151)),'<code>pascal(11,4,40,151)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>pascal(11,4,40,151)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascal(11,4,40,151),results[0],'<code>pascal(11,4,40,151)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascal(11,4,41,151)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascal(11,4,41,151),results[1],'<code>pascal(11,4,41,151)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascal(11,4,35,151)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascal(11,4,35,151),results[2],'<code>pascal(11,4,35,151)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascal(11,4,440,151)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascal(11,4,440,151),results[3],'<code>pascal(11,4,440,151)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f5e",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function pascal (a, b, mid, top) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[5,13,8],",
+            "[6,13,7],",
+            "[0,13,13],",
+            "[405,13,-392]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Pascal's triangle",
+      "description": [
+        "<a href=\"https://en.wikipedia.org/wiki/Pascal's triangle\">Pascal's triangle</a>  is an arithmetic and geometric figure first imagined by  <a href=\"https://en.wikipedia.org/wiki/Blaise Pascal\">Blaise Pascal</a>.",
+        "Its first few rows look like this:",
+        "<pre> 1\n 1 1\n 1 2 1\n 1 3 3 1</pre>",
+        "where each element of each row is either 1 or the sum of the two elements right above it.",
+        "For example, the next row of the triangle would be:",
+        "<b>1</b>  (since the first element of each row doesn't have two elements above it)</span>",
+        "<b>4</b>  (1 + 3)</span>",
+        "<b>6</b>  (3 + 3)</span>",
+        "<b>4</b>  (3 + 1)</span>",
+        "<b>1</b>  (since the last element of each row doesn't have two elements above it) </span>",
+        "So the triangle now looks like this:",
+        "<pre> 1\n 1 1\n 1 2 1\n 1 3 3 1\n 1 4 6 4 1</pre>",
+        "Each row  <tt> n </tt>  (starting with row  0  at the top) shows the coefficients of the binomial expansion of   (x + y)<sup>n</sup>.",
+        "Write a function that returns the first  <tt> n </tt>  rows of the triangle  (with  <tt> f(1) </tt>  yielding the row consisting of only the element <b>1</b>) as a 2D array.",
+        "This can be done either by summing elements from the previous rows or using a binary coefficient or combination function."
+      ],
+      "solutions": [
+        "function pascalTriangle (rows) {\n  // The 2D array holding the rows of the triangle\n  var triangle = new Array();\n  for (var r = 0; r < rows; r++) {\n    triangle[r] = new Array();\n    for (var i = 0; i <= r; i++) {\n      if (i == 0 || i == r)\n        triangle[r][i] = 1;\n      else\n        triangle[r][i] = triangle[r - 1][i - 1] + triangle[r - 1][i];\n    }\n  }\n\n  // Private method to calculate digits in number\n  var digits = function(n, b) {\n    var d = 0;\n    while (n >= 1) {\n      d++;\n      n /= b;\n    }\n    return d;\n  }\n\n  var res=[];\n  // Print the triangle line by line\n  for (var r = 0; r < triangle.length; r++) {\n    var m=[]\n    for (var i = 0; i < triangle[r].length; i++) {\n      m.push(triangle[r][i]);\n    }\n    res.push(m)\n  }\n  return res\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>pascalTriangle</code> should be a function.'",
+          "testString":
+            "assert(typeof pascalTriangle=='function','<code>pascalTriangle</code> should be a function.');"
+        },
+        {
+          "text": "'<code>pascalTriangle(1)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(pascalTriangle(1)),'<code>pascalTriangle(1)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>pascalTriangle(1)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalTriangle(1),results[0],'<code>pascalTriangle(1)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalTriangle(2)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalTriangle(2),results[1],'<code>pascalTriangle(2)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalTriangle(3)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalTriangle(3),results[2],'<code>pascalTriangle(3)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalTriangle(4)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalTriangle(4),results[3],'<code>pascalTriangle(4)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pascalTriangle(5)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pascalTriangle(5),results[4],'<code>pascalTriangle(5)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f5f",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function pascalTriangle (rows) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[[1]],",
+            "[[1],[1,1]],",
+            "[[1],[1,1],[1,2,1]],",
+            "[[1],[1,1],[1,2,1],[1,3,3,1]],",
+            "[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Pattern matching",
+      "description": [
+        "Some languages offer direct support for <a href=\"https://en.wikipedia.org/wiki/Algebraic_data_type\">algebraic data types</a> and pattern matching on them. While this of course can always be simulated with manual tagging and conditionals, it allows for terse code which is easy to read, and can represent the algorithm directly.",
+        "As an example, implement insertion in a <a href=\"https://en.wikipedia.org/wiki/Red_Black_Tree\">red-black-tree</a>. A red-black-tree is a binary tree where each internal node has a color attribute <i>red</i> or <i>black</i>. Moreover, no red node can have a red child, and every path from the root to an empty node must contain the same number of black nodes. As a consequence, the tree is balanced, and must be re-balanced after an insertion.",
+        "Write a function that takes an array as parameter. The array elements should be sequentially inserted into a red black tree and the tree should be returned. The returned tree should be in the form: { value: ... , color: ... , left: ... , right: ... }. The values for red and black should be 0 and 1 respectively. If a node does not have a left or right subtree, it should have null in its place."
+      ],
+      "solutions": [
+        "function rbTree (vals) {\n  var RED = 0\n  var BLACK = 1\n\n  function RBNode(color, key, value, left, right, count) {\n    this._color = color\n    this.key = key\n    this.value = value\n    this.left = left\n    this.right = right\n    this._count = count\n  }\n\n  function cloneNode(node) {\n    return new RBNode(node._color, node.key, node.value, node.left, node.right, node._count)\n  }\n\n  function repaint(color, node) {\n    return new RBNode(color, node.key, node.value, node.left, node.right, node._count)\n  }\n\n  function recount(node) {\n    node._count = 1 + (node.left ? node.left._count : 0) + (node.right ? node.right._count : 0)\n  }\n\n  function RedBlackTree(compare, root) {\n    this._compare = compare\n    this.root = root\n  }\n\n  var proto = RedBlackTree.prototype\n\n  Object.defineProperty(proto, \"keys\", {\n    get: function() {\n      var result = []\n      this.forEach(function(k, v) {\n        result.push(k)\n      })\n      return result\n    }\n  })\n\n  Object.defineProperty(proto, \"values\", {\n    get: function() {\n      var result = []\n      this.forEach(function(k, v) {\n        result.push(v)\n      })\n      return result\n    }\n  })\n\n  //Returns the number of nodes in the tree\n  Object.defineProperty(proto, \"length\", {\n    get: function() {\n      if (this.root) {\n        return this.root._count\n      }\n      return 0\n    }\n  })\n\n  //Insert a new item into the tree\n  proto.insert = function(key, value) {\n    var cmp = this._compare\n    //Find point to insert new node at\n    var n = this.root\n    var n_stack = []\n    var d_stack = []\n    while (n) {\n      var d = cmp(key, n.key)\n      n_stack.push(n)\n      d_stack.push(d)\n      if (d <= 0) {\n        n = n.left\n      } else {\n        n = n.right\n      }\n    }\n    //Rebuild path to leaf node\n    n_stack.push(new RBNode(RED, key, value, null, null, 1))\n    for (var s = n_stack.length - 2; s >= 0; --s) {\n      var n = n_stack[s]\n      if (d_stack[s] <= 0) {\n        n_stack[s] = new RBNode(n._color, n.key, n.value, n_stack[s + 1], n.right, n._count + 1)\n      } else {\n        n_stack[s] = new RBNode(n._color, n.key, n.value, n.left, n_stack[s + 1], n._count + 1)\n      }\n    }\n    //Rebalance tree using rotations\n    //console.log(\"start insert\", key, d_stack)\n    for (var s = n_stack.length - 1; s > 1; --s) {\n      var p = n_stack[s - 1]\n      var n = n_stack[s]\n      if (p._color === BLACK || n._color === BLACK) {\n        break\n      }\n      var pp = n_stack[s - 2]\n      if (pp.left === p) {\n        if (p.left === n) {\n          var y = pp.right\n          if (y && y._color === RED) {\n            //console.log(\"LLr\")\n            p._color = BLACK\n            pp.right = repaint(BLACK, y)\n            pp._color = RED\n            s -= 1\n          } else {\n            //console.log(\"LLb\")\n            pp._color = RED\n            pp.left = p.right\n            p._color = BLACK\n            p.right = pp\n            n_stack[s - 2] = p\n            n_stack[s - 1] = n\n            recount(pp)\n            recount(p)\n            if (s >= 3) {\n              var ppp = n_stack[s - 3]\n              if (ppp.left === pp) {\n                ppp.left = p\n              } else {\n                ppp.right = p\n              }\n            }\n            break\n          }\n        } else {\n          var y = pp.right\n          if (y && y._color === RED) {\n            //console.log(\"LRr\")\n            p._color = BLACK\n            pp.right = repaint(BLACK, y)\n            pp._color = RED\n            s -= 1\n          } else {\n            //console.log(\"LRb\")\n            p.right = n.left\n            pp._color = RED\n            pp.left = n.right\n            n._color = BLACK\n            n.left = p\n            n.right = pp\n            n_stack[s - 2] = n\n            n_stack[s - 1] = p\n            recount(pp)\n            recount(p)\n            recount(n)\n            if (s >= 3) {\n              var ppp = n_stack[s - 3]\n              if (ppp.left === pp) {\n                ppp.left = n\n              } else {\n                ppp.right = n\n              }\n            }\n            break\n          }\n        }\n      } else {\n        if (p.right === n) {\n          var y = pp.left\n          if (y && y._color === RED) {\n            //console.log(\"RRr\", y.key)\n            p._color = BLACK\n            pp.left = repaint(BLACK, y)\n            pp._color = RED\n            s -= 1\n          } else {\n            //console.log(\"RRb\")\n            pp._color = RED\n            pp.right = p.left\n            p._color = BLACK\n            p.left = pp\n            n_stack[s - 2] = p\n            n_stack[s - 1] = n\n            recount(pp)\n            recount(p)\n            if (s >= 3) {\n              var ppp = n_stack[s - 3]\n              if (ppp.right === pp) {\n                ppp.right = p\n              } else {\n                ppp.left = p\n              }\n            }\n            break\n          }\n        } else {\n          var y = pp.left\n          if (y && y._color === RED) {\n            //console.log(\"RLr\")\n            p._color = BLACK\n            pp.left = repaint(BLACK, y)\n            pp._color = RED\n            s -= 1\n          } else {\n            //console.log(\"RLb\")\n            p.left = n.right\n            pp._color = RED\n            pp.right = n.left\n            n._color = BLACK\n            n.right = p\n            n.left = pp\n            n_stack[s - 2] = n\n            n_stack[s - 1] = p\n            recount(pp)\n            recount(p)\n            recount(n)\n            if (s >= 3) {\n              var ppp = n_stack[s - 3]\n              if (ppp.right === pp) {\n                ppp.right = n\n              } else {\n                ppp.left = n\n              }\n            }\n            break\n          }\n        }\n      }\n    }\n    //Return new tree\n    n_stack[0]._color = BLACK\n    return new RedBlackTree(cmp, n_stack[0])\n  }\n\n  //Default comparison function\n  function defaultCompare(a, b) {\n    if (a > b) {\n      return 1\n    }\n    if (a < b) {\n      return -1\n    }\n    return 0\n  }\n\n  //Build a tree\n  function createRBTree(compare) {\n    return new RedBlackTree(compare || defaultCompare, null)\n  }\n\n  function JSONTree(node) {\n    if (node) {\n      return {\n        value: node.value,\n        color: node._color,\n        left: JSONTree(node.left),\n        right: JSONTree(node.right)\n      };\n    } else {\n      return null\n    }\n  }\n\n  var tr = createRBTree()\n  vals.forEach(function(e, i) {\n    tr = tr.insert(e, e)\n  })\n  return JSONTree(tr.root)\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>rbTree</code> should be a function.'",
+          "testString":
+            "assert(typeof rbTree=='function','<code>rbTree</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>rbTree([10,20,30,15])</code> should return a object.'",
+          "testString":
+            "assert(typeof rbTree([10,20,30,15]) == 'object','<code>rbTree([10,20,30,15])</code> should return a object.');"
+        },
+        {
+          "text":
+            "'<code>rbTree([10,20,30,15])</code> should return a valid Red black tree.'",
+          "testString":
+            "assert(isCorrect(rbTree([10,20,30,15]),[10,20,30,15]),'<code>rbTree([10,20,30,15])</code> should return a valid Red black tree.');"
+        },
+        {
+          "text":
+            "'<code>rbTree([7,6,5,4,3,2,1])</code> should return a valid Red black tree.'",
+          "testString":
+            "assert(isCorrect(rbTree([7,6,5,4,3,2,1]),[7,6,5,4,3,2,1]),'<code>rbTree([7,6,5,4,3,2,1])</code> should return a valid Red black tree.');"
+        },
+        {
+          "text":
+            "'<code>rbTree([7,3,18,10,22,8,11,26])</code> should return a valid Red black tree.'",
+          "testString":
+            "assert(isCorrect(rbTree([7,3,18,10,22,8,11,26]),[7,3,18,10,22,8,11,26]),'<code>rbTree([7,3,18,10,22,8,11,26])</code> should return a valid Red black tree.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f62",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function rbTree (vals) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "function isCorrect(root, values) {",
+            "  var correct = true,",
+            "    values = values.slice(),",
+            "    leaves = [],",
+            "    keys = JSON.stringify(['value', 'color', 'left', 'right']);",
+            "",
+            "  // Traverse tree",
+            "  function inorder(node) {",
+            "    if (node == null)",
+            "      return;",
+            "",
+            "    // check if Object has correct keys",
+            "    if (typeof node != 'object' || JSON.stringify(Object.keys(node)) != keys)",
+            "      return correct = false",
+            "    // check if value of node is in the sequence",
+            "    if (values.indexOf(node.value) == -1)",
+            "      return correct = false",
+            "    else",
+            "      // Remove the value",
+            "      values.splice(values.indexOf(node.value), 1)",
+            "",
+            "    // if node and child has red, sets correct=false and returns",
+            "    if (node.color == 0) {",
+            "      if ((node.left != null && node.left.color == 0) || (node.right != null && node.right.color == 0))",
+            "        return correct = false",
+            "    }",
+            "",
+            "    // listing all the leaves",
+            "    if (node.left == null && node.right == null)",
+            "      leaves.push(node.value)",
+            "    // Traverse left and right sub-trees",
+            "    inorder(node.left)",
+            "    inorder(node.right)",
+            "  }",
+            "",
+            "  // Start traverse",
+            "  inorder(root)",
+            "",
+            "  // If not correct or values array is not empty",
+            "  // values should be empty as after traversing, all elements should have been removed",
+            "  if (!correct || values.length != 0) return false",
+            "",
+            "  function blackNodes(value) {",
+            "    var temp = root,",
+            "      count = 0;",
+            "    while (temp.value != value) {",
+            "      count += temp.color",
+            "      if (temp.value > value) {",
+            "        temp = temp.left",
+            "      } else {",
+            "        temp = temp.right",
+            "      }",
+            "    }",
+            "    count += temp.color",
+            "    return count;",
+            "  }",
+            "",
+            "  // Check black height",
+            "  var blackHeight;",
+            "  for (var i = 0; i < leaves.length; i++) {",
+            "    if (i == 0) {",
+            "      blackHeight = blackNodes(leaves[i])",
+            "    } else if (blackNodes(leaves[i]) != blackHeight) {",
+            "      return false;",
+            "    }",
+            "  }",
+            "",
+            "  return true;",
+            "}"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Perfect numbers",
+      "description": [
+        "Write a function which checks whether a number is perfect.",
+        "<a href=\"https://en.wikipedia.org/wiki/Perfect_numbers\">A perfect number</a> is a positive integer that is the sum of its proper positive divisors excluding the number itself.",
+        "Equivalently, a perfect number is a number that is half the sum of all of its positive divisors (including itself).",
+        "Note:  The faster  <a href=\"http://rosettacode.org/wiki/Lucas-Lehmer test\">Lucas-Lehmer test</a>  is used to find primes of the form   2<sup><i>n</i></sup>-1,  all <i>known</i> perfect numbers can be derived from these primes using the formula   (2<sup><i>n</i></sup> - 1) × 2<sup><i>n</i> - 1</sup>.",
+        "It is not known if there are any odd perfect numbers (any that exist are larger than 10<sup>2000</sup>)."
+      ],
+      "solutions": [
+        "function isPerfect (n) {\n  var sum = 1,\n    i, sqrt = Math.floor(Math.sqrt(n));\n  for (i = sqrt - 1; i > 1; i--) {\n    if (n % i == 0) {\n      sum += i + n / i;\n    }\n  }\n  if (n % sqrt == 0)\n    sum += sqrt + (sqrt * sqrt == n ? 0 : n / sqrt);\n  return sum === n;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isPerfect</code> should be a function.'",
+          "testString":
+            "assert(typeof isPerfect=='function','<code>isPerfect</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isPerfect(6)</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isPerfect(6) == 'boolean','<code>isPerfect(6)</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(6)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPerfect(6),true,'<code>isPerfect(6)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(28)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPerfect(28),true,'<code>isPerfect(28)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(66)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPerfect(66),false,'<code>isPerfect(66)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(496)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPerfect(496),true,'<code>isPerfect(496)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(17)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPerfect(17),false,'<code>isPerfect(17)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(8128)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPerfect(8128),true,'<code>isPerfect(8128)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPerfect(100)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPerfect(100),false,'<code>isPerfect(100)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f6a",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isPerfect (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Perfect shuffle",
+      "description": [
+        "A perfect shuffle (or <a href=\"https://en.wikipedia.org/wiki/Faro_shuffle\">faro/weave shuffle</a>) means splitting a deck of cards into equal halves, and perfectly interleaving them - so that you end up with the first card from the left half, followed by the first card from the right half, and so on:",
+        "<div style=\"display:inline-block;margin:0.5em 1.5em\"> <tt> <span style=\"background:#8DF\">7♠</span> <span style=\"background:#8DF\">8♠</span> <span style=\"background:#8DF\">9♠</span> <span style=\"background:#FB5\">J♠</span> <span style=\"background:#FB5\">Q♠</span> <span style=\"background:#FB5\">K♠</span> </tt> </div>",
+        "<div style=\"display:inline-block\">&rarr; <div style=\"display:inline-block;vertical-align:middle;margin:0.5em 1.5em\"><tt> <span style=\"background:#8DF\">7♠</span>&nbsp;&nbsp; <span style=\"background:#8DF\">8♠</span>&nbsp;&nbsp; <span style=\"background:#8DF\">9♠</span> </tt><br> <tt> &nbsp;&nbsp;<span style=\"background:#FB5\">J♠</span> &nbsp;&nbsp;<span style=\"background:#FB5\">Q♠</span> &nbsp;&nbsp;<span style=\"background:#FB5\">K♠</span> </tt> </div> </div>",
+        "<div style=\"display:inline-block\">&rarr; <div style=\"display:inline-block;vertical-align:middle;margin:0.5em 1.5em\"> <tt> <span style=\"background:#8DF\">7♠</span> <span style=\"background:#FB5\">J♠</span> <span style=\"background:#8DF\">8♠</span> <span style=\"background:#FB5\">Q♠</span> <span style=\"background:#8DF\">9♠</span> <span style=\"background:#Fb5\">K♠</span> </tt> </div> </div>",
+        "When you repeatedly perform perfect shuffles on an even-sized deck of unique cards, it will at some point arrive back at its original order. How many shuffles this takes, depends solely on the number of cards in the deck - for example for a deck of eight cards it takes three shuffles:",
+        "<table style=\"border-spacing:0.5em 0;border-collapse:separate;margin:0 1em;text-align:right\">",
+        "<tr> <td><small><i>original:</i></small></td> <td><tt style=\"background:#122CF8;color:#B8C0FD;padding:0 0.3em\">1</tt> <tt style=\"background:#332AD7;color:#C2C0F3;padding:0 0.3em\">2</tt> <tt style=\"background:#5428B7;color:#CCBFEA;padding:0 0.3em\">3</tt> <tt style=\"background:#752696;color:#D6BEE0;padding:0 0.3em\">4</tt> <tt style=\"background:#962576;color:#E0BED6;padding:0 0.3em\">5</tt> <tt style=\"background:#B72355;color:#EABDCC;padding:0 0.3em\">6</tt> <tt style=\"background:#D82135;color:#F3BDC3;padding:0 0.3em\">7</tt> <tt style=\"background:#F92015;color:#FDBDB9;padding:0 0.3em\">8</tt></td> </tr>",
+        "<tr> <td><small><i>after 1st shuffle:</i></small></td> <td><tt style=\"background:#122CF8;color:#B8C0FD;padding:0 0.3em\">1</tt> <tt style=\"background:#962576;color:#E0BED6;padding:0 0.3em\">5</tt> <tt style=\"background:#332AD7;color:#C2C0F3;padding:0 0.3em\">2</tt> <tt style=\"background:#B72355;color:#EABDCC;padding:0 0.3em\">6</tt> <tt style=\"background:#5428B7;color:#CCBFEA;padding:0 0.3em\">3</tt> <tt style=\"background:#D82135;color:#F3BDC3;padding:0 0.3em\">7</tt> <tt style=\"background:#752696;color:#D6BEE0;padding:0 0.3em\">4</tt> <tt style=\"background:#F92015;color:#FDBDB9;padding:0 0.3em\">8</tt></td> </tr>",
+        "<tr> <td><small><i>after 2nd shuffle:</i></small></td> <td><tt style=\"background:#122CF8;color:#B8C0FD;padding:0 0.3em\">1</tt> <tt style=\"background:#5428B7;color:#CCBFEA;padding:0 0.3em\">3</tt> <tt style=\"background:#962576;color:#E0BED6;padding:0 0.3em\">5</tt> <tt style=\"background:#D82135;color:#F3BDC3;padding:0 0.3em\">7</tt> <tt style=\"background:#332AD7;color:#C2C0F3;padding:0 0.3em\">2</tt> <tt style=\"background:#752696;color:#D6BEE0;padding:0 0.3em\">4</tt> <tt style=\"background:#B72355;color:#EABDCC;padding:0 0.3em\">6</tt> <tt style=\"background:#F92015;color:#FDBDB9;padding:0 0.3em\">8</tt></td> </tr>",
+        "<tr> <td><small><i>after 3rd shuffle:</i></small></td> <td><tt style=\"background:#122CF8;color:#B8C0FD;padding:0 0.3em\">1</tt> <tt style=\"background:#332AD7;color:#C2C0F3;padding:0 0.3em\">2</tt> <tt style=\"background:#5428B7;color:#CCBFEA;padding:0 0.3em\">3</tt> <tt style=\"background:#752696;color:#D6BEE0;padding:0 0.3em\">4</tt> <tt style=\"background:#962576;color:#E0BED6;padding:0 0.3em\">5</tt> <tt style=\"background:#B72355;color:#EABDCC;padding:0 0.3em\">6</tt> <tt style=\"background:#D82135;color:#F3BDC3;padding:0 0.3em\">7</tt> <tt style=\"background:#F92015;color:#FDBDB9;padding:0 0.3em\">8</tt></td> </tr>",
+        "</table>",
+        "<ol> <li>Write a function that can perform a perfect shuffle on an even-sized list of values.</li> <li>Call this function repeatedly to count how many shuffles are needed to get a deck back to its original order, for each of the deck sizes listed under \"Test Cases\" below.</li> <li>You can use a list of numbers (or anything else that's convenient) to represent a deck; just make sure that all \"cards\" are unique within each deck.</li> <li>Return the resulting shuffle counts, to demonstrate that your program passes the test-cases.</li> </ol>"
+      ],
+      "solutions": [
+        "function cycleLength (deckSize) {\n  // shuffleCycleLength :: Int -> Int\n  const shuffleCycleLength = deckSize =>\n    firstCycle(shuffle, range(1, deckSize))\n    .all.length;\n\n  // shuffle :: [a] -> [a]\n  const shuffle = xs =>\n    concat(zip.apply(null, splitAt(div(length(xs), 2), xs)));\n\n  // firstycle :: Eq a => (a -> a) -> a -> [a]\n  const firstCycle = (f, x) =>\n    until(\n      m => EqArray(x, m.current),\n      m => {\n        const fx = f(m.current);\n        return {\n          current: fx,\n          all: m.all.concat([fx])\n        };\n      }, {\n        current: f(x),\n        all: [x]\n      }\n    );\n\n  // Two arrays equal ?\n  // EqArray :: [a] -> [b] -> Bool\n  const EqArray = (xs, ys) => {\n    const [nx, ny] = [xs.length, ys.length];\n    return nx === ny ? (\n      nx > 0 ? (\n        xs[0] === ys[0] && EqArray(xs.slice(1), ys.slice(1))\n      ) : true\n    ) : false;\n  };\n\n  // GENERIC FUNCTIONS\n\n  // zip :: [a] -> [b] -> [(a,b)]\n  const zip = (xs, ys) =>\n    xs.slice(0, Math.min(xs.length, ys.length))\n    .map((x, i) => [x, ys[i]]);\n\n  // concat :: [[a]] -> [a]\n  const concat = xs => [].concat.apply([], xs);\n\n  // splitAt :: Int -> [a] -> ([a],[a])\n  const splitAt = (n, xs) => [xs.slice(0, n), xs.slice(n)];\n\n  // div :: Num -> Num -> Int\n  const div = (x, y) => Math.floor(x / y);\n\n  // until :: (a -> Bool) -> (a -> a) -> a -> a\n  const until = (p, f, x) => {\n    const go = x => p(x) ? x : go(f(x));\n    return go(x);\n  }\n\n  // range :: Int -> Int -> [Int]\n  const range = (m, n) =>\n    Array.from({\n      length: Math.floor(n - m) + 1\n    }, (_, i) => m + i);\n\n  // length :: [a] -> Int\n  // length :: Text -> Int\n  const length = xs => xs.length;\n\n  return shuffleCycleLength(deckSize)\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>cycleLength</code> should be a function.'",
+          "testString":
+            "assert(typeof cycleLength=='function','<code>cycleLength</code> should be a function.');"
+        },
+        {
+          "text": "'<code>cycleLength(8)</code> should return a number.'",
+          "testString":
+            "assert(typeof cycleLength(8) == 'number','<code>cycleLength(8)</code> should return a number.');"
+        },
+        {
+          "text": "'<code>cycleLength(8)</code> should return <code>3</code>.'",
+          "testString":
+            "assert.equal(cycleLength(8),3,'<code>cycleLength(8)</code> should return <code>3</code>.');"
+        },
+        {
+          "text":
+            "'<code>cycleLength(24)</code> should return <code>11</code>.'",
+          "testString":
+            "assert.equal(cycleLength(24),11,'<code>cycleLength(24)</code> should return <code>11</code>.');"
+        },
+        {
+          "text":
+            "'<code>cycleLength(52)</code> should return <code>8</code>.'",
+          "testString":
+            "assert.equal(cycleLength(52),8,'<code>cycleLength(52)</code> should return <code>8</code>.');"
+        },
+        {
+          "text":
+            "'<code>cycleLength(100)</code> should return <code>30</code>.'",
+          "testString":
+            "assert.equal(cycleLength(100),30,'<code>cycleLength(100)</code> should return <code>30</code>.');"
+        },
+        {
+          "text":
+            "'<code>cycleLength(1020)</code> should return <code>1018</code>.'",
+          "testString":
+            "assert.equal(cycleLength(1020),1018,'<code>cycleLength(1020)</code> should return <code>1018</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f6b",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function cycleLength (deckSize) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Permutation test",
+      "description": [
+        "A new medical treatment was tested on a population of $n + m$ volunteers, with each volunteer randomly assigned either to a group of $n$ treatment subjects, or to a group of $m$ control subjects.",
+        "Members of the treatment group were given the treatment, and members of the control group were given a placebo.",
+        "The effect of the treatment or placebo on each volunteer was measured and reported in this table.",
+        "<table style=\"text-align:center;border-collapse:collapse\" border=\"1\" cellpadding=\"5\"><tr><th>Treatment group</th><th>Control group</th></tr><tr><td>85</td><td>68</td></tr><tr><td>88</td><td>41</td></tr><tr><td>75</td><td>10</td></tr><tr><td>66</td><td>49</td></tr><tr><td>25</td><td>16</td></tr><tr><td>29</td><td>65</td></tr><tr><td>83</td><td>32</td></tr><tr><td>39</td><td>92</td></tr><tr><td>97</td><td>28</td></tr><tr><td></td><td>98</td></tr></table>",
+        "Write a function that performs a <a href=\"https://en.wikipedia.org/wiki/Permutation_test#Permutation_tests\">permutation test</a> to judge whether the treatment had a significantly stronger effect than the placebo. The function should take two arrays as parameters. These arrays will contain the data.",
+        "<ul><li>Do this by considering every possible alternative assignment from the same pool of volunteers to a treatment group of size $n$ and a control group of size $m$ (i.e., the same group sizes used in the actual experiment but with the group members chosen differently), while assuming that each volunteer's effect remains constant regardless.</li>",
+        "<li>Note that the number of alternatives will be the <a href=\"https://en.wikipedia.org/wiki/Binomial_coefficient\">binomial coefficient</a> $\\tbinom{n+m}{n}$.</li>",
+        "<li>Compute the mean effect for each group and the difference in means between the groups in every case by subtracting the mean of the control group from the mean of the treatment group.</li>",
+        "<li>The function should return the percentage of alternative groupings for which the difference in means is less or equal to the actual experimentally observed difference in means, and the percentage for which it is greater as an array of 2 elements. The percentages should be rounded to 2 decimal places.</li></ul>"
+      ],
+      "solutions": [
+        "function permutationTest (a, b) {\n  var data=a.slice(0).concat(b);\n  function pick(at, remain, accu, treat) {\n    if (remain === 0)\n      return (accu > treat) ? 1 : 0;\n    return pick(at - 1, remain - 1, accu + data[at - 1], treat) + ((at > remain) ? pick(at - 1, remain, accu, treat) : 0);\n  }\n\n  var treat = 0;\n  var total = 1.0;\n  for (var i = 0; i < a.length; ++i) {\n    treat += data[i];\n  };\n  for (var i = data.length; i >= a.length+2; --i) {\n    total *= i;\n  };\n  for (var i = a.length; i >= 1; --i) {\n    total /= i;\n  };\n  var gt = pick(data.length, a.length, 0, treat);\n  var le = ((total - gt) | 0);\n  var result=100.0 * le / total\n  return Math.floor(result*100)/100\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>permutationTest</code> should be a function.'",
+          "testString":
+            "assert(typeof permutationTest=='function','<code>permutationTest</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>permutationTest('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return a number.'",
+          "testString":
+            "assert(typeof permutationTest(tests[0][0],tests[0][1]) == 'number','<code>permutationTest('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>permutationTest('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return <code>39.68</code>.'",
+          "testString":
+            "assert.equal(permutationTest(tests[0][0],tests[0][1]),39.68,'<code>permutationTest('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+')</code> should return <code>39.68</code>.');"
+        },
+        {
+          "text":
+            "'<code>permutationTest('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+')</code> should return <code>93.65</code>.'",
+          "testString":
+            "assert.equal(permutationTest(tests[1][0],tests[1][1]),93.65,'<code>permutationTest('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+')</code> should return <code>93.65</code>.');"
+        },
+        {
+          "text":
+            "'<code>permutationTest('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+')</code> should return <code>49.2</code>.'",
+          "testString":
+            "assert.equal(permutationTest(tests[2][0],tests[2][1]),49.2,'<code>permutationTest('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+')</code> should return <code>49.2</code>.');"
+        },
+        {
+          "text":
+            "'<code>permutationTest('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+')</code> should return <code>68.25</code>.'",
+          "testString":
+            "assert.equal(permutationTest(tests[3][0],tests[3][1]),68.25,'<code>permutationTest('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+')</code> should return <code>68.25</code>.');"
+        },
+        {
+          "text":
+            "'<code>permutationTest('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+')</code> should return <code>87.19</code>.'",
+          "testString":
+            "assert.equal(permutationTest(tests[4][0],tests[4][1]),87.19,'<code>permutationTest('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+')</code> should return <code>87.19</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f70",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function permutationTest (a, b) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[[1,2,3,4],[1,2,3,4,5]],",
+            "[[85,88,75,66],[68,41,10,49,90]],",
+            "[[29,83,39,97],[65,32,92,28,98]],",
+            "[[29,83,39,97],[65,32,92,28,48]],",
+            "[[85,88,75,66,25,29,83,39,97],[68,41,10,49,16,65,32,92,28,98]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Permutations by swapping",
+      "description": [
+        "The task is to generate permutations of n items in which successive permutations differ from each other by the swapping of any two items.",
+        "Also generate the sign of the permutation which is +1 when the permutation is generated from an even number of swaps from the initial state, and -1 for odd.",
+        "Write a function that takes an array as parameter. Return permutations as a 2D array in which each element is a permutation. Each permutation element should have an additional number at the end that denotes the sign as stated above (1 or -1)."
+      ],
+      "solutions": [
+        "function HeapsAlgorithm (arr) {\n  var flag = 1;\n  var res=[],perm\n  function heapPermute(n) {\n    var temp;\n    var i;\n\n    if (n == 1) {\n      perm=[]\n\n      for (i = 0; i < arr.length; i++)\n        perm.push(arr[i])\n      perm.push(flag)\n      res.push(perm)\n      flag *= -1;\n    } else {\n      for (i = 0; i < n - 1; i++) {\n        heapPermute(n - 1);\n\n        if (n % 2 == 0) {\n          temp = arr[i];\n          arr[i] = arr[n - 1];\n          arr[n - 1] = temp;\n        } else {\n          temp = arr[0];\n          arr[0] = arr[n - 1];\n          arr[n - 1] = temp;\n        }\n      }\n      heapPermute(n - 1);\n    }\n  }\n\n  heapPermute(arr.length);\n  res.sort()\n  return res\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>HeapsAlgorithm</code> should be a function.'",
+          "testString":
+            "assert(typeof HeapsAlgorithm=='function','<code>HeapsAlgorithm</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>HeapsAlgorithm('+JSON.stringify(tests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(HeapsAlgorithm(tests[0].slice())),'<code>HeapsAlgorithm('+JSON.stringify(tests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>HeapsAlgorithm('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(HeapsAlgorithm(tests[0]),results[0],'<code>HeapsAlgorithm('+JSON.stringify(tests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>HeapsAlgorithm('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(HeapsAlgorithm(tests[1]),results[1],'<code>HeapsAlgorithm('+JSON.stringify(tests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>HeapsAlgorithm('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(HeapsAlgorithm(tests[2]),results[2],'<code>HeapsAlgorithm('+JSON.stringify(tests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f6c",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function HeapsAlgorithm (arr) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[1,2,3],",
+            "[4,5,6],",
+            "[22,31,43,57]]",
+            "var results=[",
+            "[[1,2,3,1],[1,3,2,-1],[2,1,3,-1],[2,3,1,1],[3,1,2,1],[3,2,1,-1]],",
+            "[[4,5,6,1],[4,6,5,-1],[5,4,6,-1],[5,6,4,1],[6,4,5,1],[6,5,4,-1]],",
+            "[[22,31,43,57,1],[22,31,57,43,-1],[22,43,31,57,-1],[22,43,57,31,1],[22,57,31,43,1],[22,57,43,31,-1],[31,22,43,57,-1],[31,22,57,43,1],[31,43,22,57,1],[31,43,57,22,-1],[31,57,22,43,-1],[31,57,43,22,1],[43,22,31,57,1],[43,22,57,31,-1],[43,31,22,57,-1],[43,31,57,22,1],[43,57,22,31,1],[43,57,31,22,-1],[57,22,31,43,-1],[57,22,43,31,1],[57,31,22,43,1],[57,31,43,22,-1],[57,43,22,31,-1],[57,43,31,22,1]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Permutations/Derangements",
+      "description": [
+        "A <a href=\"http://mathworld.wolfram.com/Derangement.html\">derangement</a> is a permutation of the order of distinct items in which <i>no item appears in its original place</i>.",
+        "For example, the only two derangements of the three items (0, 1, 2) are (1, 2, 0), and (2, 0, 1).",
+        "Write a function that takes a string as a parameter and returns its derangements as an array. Note: Sort the array before returning it."
+      ],
+      "solutions": [
+        "function derangements (str) {\n  String.prototype.replaceAt = function(index, replacement) {\n    return this.substr(0, index) + replacement + this.substr(index + replacement.length);\n  }\n  var res = []\n\n  var orig=str\n  function deranged(depth) {\n    var i;\n    var tmp;\n    var count = 0;\n\n    if (depth == str.length) {\n      res.push(str)\n      return 1;\n    }\n    for (i = str.length - 1; i >= depth; i--) {\n      if (orig[i] == str[depth]) continue;\n\n      tmp = str[i];\n      str=str.replaceAt(i, str[depth])\n      str=str.replaceAt(depth, tmp)\n      count += deranged(depth + 1);\n      tmp = str[i];\n      str=str.replaceAt(i, str[depth])\n      str=str.replaceAt(depth, tmp)\n    }\n    return count;\n  }\n\n  deranged(0);\n\n  res.sort()\n  return res\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>derangements</code> should be a function.'",
+          "testString":
+            "assert(typeof derangements=='function','<code>derangements</code> should be a function.');"
+        },
+        {
+          "text": "'<code>derangements(\"567\")</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(derangements(\"567\")),'<code>derangements(\"567\")</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>derangements(\"567\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(derangements(\"567\"),results[0],'<code>derangements(\"567\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>derangements(\"xyz\")</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(derangements(\"xyz\"),results[1],'<code>derangements(\"xyz\")</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>derangements(\"mqr\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(derangements(\"mqr\"),results[2],'<code>derangements(\"mqr\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>derangements(\"1234\")</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(derangements(\"1234\"),results[3],'<code>derangements(\"1234\")</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>derangements(\"abcd\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(derangements(\"abcd\"),results[4],'<code>derangements(\"abcd\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f6d",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function derangements (str) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[\"675\",\"756\"],",
+            "[\"yzx\",\"zxy\"],",
+            "[\"qrm\",\"rmq\"],",
+            "[\"2143\",\"2341\",\"2413\",\"3142\",\"3412\",\"3421\",\"4123\",\"4312\",\"4321\"],",
+            "[\"badc\",\"bcda\",\"bdac\",\"cadb\",\"cdab\",\"cdba\",\"dabc\",\"dcab\",\"dcba\"]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Permutations/Rank of a permutation",
+      "description": [
+        "A particular ranking of a permutation associates an integer with a particular ordering of all the permutations of a set of distinct items.",
+        "For our purposes the ranking will assign integers $0 .. (n! - 1)$ to an ordering of all the permutations of the integers $0 .. (n - 1)$.",
+        "For example, the permutations of the digits zero to 3 arranged lexicographically have the following rank:",
+        "<pre>  PERMUTATION      RANK\n  (0, 1, 2, 3) ->  0\n  (0, 1, 3, 2) ->  1\n  (0, 2, 1, 3) ->  2\n  (0, 2, 3, 1) ->  3\n  (0, 3, 1, 2) ->  4...  (3, 2, 1, 0) -> 23</pre>",
+        "Algorithms exist that can generate a rank from a permutation for some particular ordering of permutations, and that can generate the same rank from the given individual permutation (i.e. given a rank of 17 produce (2, 3, 1, 0) in the example above).",
+        "One use of such algorithms could be in generating a small, random, sample of permutations of $n$ items without duplicates when the total number of permutations is large. Remember that the total number of permutations of $n$ items is given by $n!$ which grows large very quickly: A 32 bit integer can only hold $12!$, a 64 bit integer only $20!$. It becomes difficult to take the straight-forward approach of generating all permutations then taking a random sample of them.",
+        "Create a function to generate a permutation from a rank. This function should take $n$ and rank as parameters and return the permutation. Create the inverse function that given the permutation generates its rank. This function should take a permution as an array and return its rank."
+      ],
+      "solutions": [
+        "function BitSet (nbits) {\n  var _this = this;\n  if (((typeof nbits === 'number') || nbits === null)) {\n    var __args = Array.prototype.slice.call(arguments);\n    this.bits = null;\n    this.bits = null;\n    (function() {\n      var length = nbits >>> 6;\n      if ((nbits & BitSet.LONG_MASK) !== 0)\n        ++length;\n      _this.bits = (function(s) {\n        var a = [];\n        while (s-- > 0)\n          a.push(0);\n        return a;\n      })(length);\n    })();\n  } else if (nbits === undefined) {\n    var __args = Array.prototype.slice.call(arguments); {\n      var __args_1 = Array.prototype.slice.call(arguments);\n      var nbits_1 = 64;\n      this.bits = null;\n      this.bits = null;\n      (function() {\n        var length = nbits_1 >>> 6;\n        if ((nbits_1 & BitSet.LONG_MASK) !== 0)\n          ++length;\n        _this.bits = (function(s) {\n          var a = [];\n          while (s-- > 0)\n            a.push(0);\n          return a;\n        })(length);\n      })();\n    }\n  } else\n    throw new Error('invalid overload');\n}\nBitSet.LONG_MASK = 63;\nBitSet.prototype.set = function(pos) {\n  var offset = pos >> 6;\n  this.ensure(offset);\n  this.bits[offset] |= 1 << pos;\n};\nBitSet.prototype.ensure = function(lastElt) {\n  if (lastElt >= this.bits.length) {\n    var nd = (function(s) {\n      var a = [];\n      while (s-- > 0)\n        a.push(0);\n      return a;\n    })(lastElt + 1);\n    (function(srcPts, srcOff, dstPts, dstOff, size) {\n      if (srcPts !== dstPts || dstOff >= srcOff + size) {\n        while (--size >= 0)\n          dstPts[dstOff++] = srcPts[srcOff++];\n      } else {\n        var tmp = srcPts.slice(srcOff, srcOff + size);\n        for (var i = 0; i < size; i++)\n          dstPts[dstOff++] = tmp[i];\n      }\n    })(this.bits, 0, nd, 0, this.bits.length);\n    this.bits = nd;\n  }\n};\nBitSet.prototype.nextClearBit = function(from) {\n  var offset = from >> 6;\n  var mask = 1 << from;\n  while (offset < this.bits.length) {\n    var h = this.bits[offset];\n    do {\n      if ((h & mask) == 0)\n        return from;\n      mask <<= 1;\n      from++;\n    }\n    while (mask != 0);\n    mask = 1;\n    offset++;\n  }\n  return from;\n}\n\nfunction getRank (permutation) {\n  var n = permutation.length;\n  var usedDigits = new BitSet();\n  var rank = 0;\n  for (var i = 0; i < n; i++) {\n    rank = rank * (n - i);\n    var digit = 0;\n    var v = -1;\n    while ((v = usedDigits.nextClearBit(v + 1)) < permutation[i])\n      digit++;\n    usedDigits.set(v);\n    rank = rank + digit;\n  }\n  return rank;\n}\n\nfunction getPermutation (n, rank) {\n  var digits = new Array(n);\n  for (var digit = 2; digit <= n; digit++) {\n    var divisor = digit;\n    digits[n - digit] = rank%divisor;\n    if (digit < n)\n      rank = Math.floor(rank/divisor);\n  }\n  var usedDigits = new BitSet();\n  var permutation = new Array(n);\n  for (var i = 0; i < n; i++) {\n    var v = usedDigits.nextClearBit(0);\n    for (var j = 0; j < digits[i]; j++)\n      v = usedDigits.nextClearBit(v + 1);\n    permutation[i] = v;\n    usedDigits.set(v);\n  }\n  return permutation;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>getRank</code> should be a function.'",
+          "testString":
+            "assert(typeof getRank=='function','<code>getRank</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>getRank('+JSON.stringify(tests[0])+')</code> should return a number.'",
+          "testString":
+            "assert(typeof getRank(tests[0]) == 'number','<code>getRank('+JSON.stringify(tests[0])+')</code> should return a number.');"
+        },
+        {
+          "text": "'<code>getPermutation</code> should be a function.'",
+          "testString":
+            "assert(typeof getPermutation=='function','<code>getPermutation</code> should be a function.');"
+        },
+        {
+          "text": "'<code>getPermutation(4,17)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(getPermutation(4,17)),'<code>getPermutation(4,17)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>getRank('+JSON.stringify(tests[0])+')</code> should return <code>17</code>.'",
+          "testString":
+            "assert.equal(getRank(tests[0]),17,'<code>getRank('+JSON.stringify(tests[0])+')</code> should return <code>17</code>.');"
+        },
+        {
+          "text":
+            "'<code>getRank('+JSON.stringify(tests[1])+')</code> should return <code>11</code>.'",
+          "testString":
+            "assert.equal(getRank(tests[1]),11,'<code>getRank('+JSON.stringify(tests[1])+')</code> should return <code>11</code>.');"
+        },
+        {
+          "text":
+            "'<code>getRank('+JSON.stringify(tests[2])+')</code> should return <code>23</code>.'",
+          "testString":
+            "assert.equal(getRank(tests[2]),23,'<code>getRank('+JSON.stringify(tests[2])+')</code> should return <code>23</code>.');"
+        },
+        {
+          "text":
+            "'<code>getRank('+JSON.stringify(tests[3])+')</code> should return <code>590</code>.'",
+          "testString":
+            "assert.equal(getRank(tests[3]),590,'<code>getRank('+JSON.stringify(tests[3])+')</code> should return <code>590</code>.');"
+        },
+        {
+          "text":
+            "'<code>getPermutation(4,17)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(getPermutation(4,17),results[0],'<code>getPermutation(4,17)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>getPermutation(4,11)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(getPermutation(4,11),results[1],'<code>getPermutation(4,11)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>getPermutation(4,23)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(getPermutation(4,23),results[2],'<code>getPermutation(4,23)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>getPermutation(6,590)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(getPermutation(6,590),results[3],'<code>getPermutation(6,590)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f6e",
+      "challengeType": 5,
+      "releasedOn": "August 15, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function getRank (permutation) {",
+            "  // Good luck!",
+            "}",
+            "",
+            "function getPermutation (n, rank) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[2,3,1,0],",
+            "[1,3,2,0],",
+            "[3,2,1,0],",
+            "[4,5,2,1,0,3]]",
+            "var results=[",
+            "[2,3,1,0],",
+            "[1,3,2,0],",
+            "[3,2,1,0],",
+            "[4,5,2,1,0,3]]"
+          ]
+        }
+      }
+    },
+    {
       "title": "Sailors, coconuts and a monkey problem",
       "description": [
         " <p>",
