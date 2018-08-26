@@ -3017,12 +3017,34 @@
       "title": "Problem 55: Lychrel numbers",
       "tests": [
         {
-          "text": "<code>euler55()</code> should return 249.",
+          "text": "<code>countLychrelNumbers(1000)</code> should return 13.",
           "testString":
-            "assert.strictEqual(euler55(), 249, '<code>euler55()</code> should return 249.');"
+            "assert.strictEqual(countLychrelNumbers(1000), 13, '<code>countLychrelNumbers(1000)</code> should return 13.');"
+        },
+        {
+          "text": "<code>countLychrelNumbers(5000)</code> should return 76.",
+          "testString":
+            "assert.strictEqual(countLychrelNumbers(5000), 76, '<code>countLychrelNumbers(5000)</code> should return 76.');"
+        },
+        {
+          "text": "<code>countLychrelNumbers(10000)</code> should return 249.",
+          "testString":
+            "assert.strictEqual(countLychrelNumbers(10000), 249, '<code>countLychrelNumbers(10000)</code> should return 249.');"
+        },
+        {
+          "text": "Your function should count all Lychrel numbers.",
+          "testString":
+            "assert.strictEqual(countLychrelNumbers(3243), 39, 'Your function should count all Lychrel numbers.');"
+        },
+        {
+          "text": "Your function should pass all test cases.",
+          "testString":
+            "assert.strictEqual(countLychrelNumbers(7654), 140, 'Your function should pass all test cases.');"
         }
       ],
-      "solutions": [],
+      "solutions": [
+        "const countLychrelNumbers = (size) => {\n  const numReverse = (num) => {\n    return Number(num.toString().split('').reverse().join(''));\n  };\n  const isPalin = (num) => {\n    if (numReverse(num) === num) {\n      return true;\n    }\n    return false;\n  };\n  let total = 0;\n  for (let i = 1; i < size; i++) {\n    let loopCount = 1;\n    let sum = i;\n    while (loopCount < 50) {\n      sum = sum + numReverse(sum);\n      if (isPalin(sum)) {\n        break;\n      } else {\n        loopCount++;\n      }\n    }\n    if (loopCount === 50) {\n      total++;\n    }\n  }\n  return total;\n}"
+      ],
       "translations": {},
       "description": [
         "If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.",
@@ -3042,12 +3064,12 @@
           "ext": "js",
           "name": "index",
           "contents": [
-            "function euler55() {",
+            "function countLychrelNumbers(num) {",
             "  // Good luck!",
             "  return true;",
             "}",
             "",
-            "euler55();"
+            "countLychrelNumbers(10000);"
           ],
           "head": [],
           "tail": []
