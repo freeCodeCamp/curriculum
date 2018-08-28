@@ -308,7 +308,7 @@
         "ES6 provides us with the syntactic sugar to not have to write anonymous functions this way. Instead, you can use <strong>arrow function syntax</strong>:",
         "<blockquote>const myFunc = () => {<br>&nbsp;&nbsp;const myVar = \"value\";<br>&nbsp;&nbsp;return myVar;<br>}</blockquote>",
         "When there is no function body, and only a return value, arrow function syntax allows you to omit the keyword <code>return</code> as well as the brackets surrounding the code. This helps simplify smaller functions into one-line statements:",
-        "<blockquote>const myFunc= () => \"value\"</blockquote>",
+        "<blockquote>const myFunc = () => \"value\"</blockquote>",
         "This code will still return <code>value</code> by default.",
         "<hr>",
         "Rewrite the function assigned to the variable <code>magic</code> which returns a new <code>Date()</code> to use arrow function syntax. Also make sure nothing is defined using the keyword <code>var</code>."
@@ -421,24 +421,24 @@
         "<blockquote>FBPosts.filter((post) => post.thumbnail !== null && post.shares > 100 && post.likes > 500)</blockquote>",
         "This code is more succinct and accomplishes the same task with fewer lines of code.",
         "<hr>",
-        "Use arrow function syntax to compute the square of only the positive integers (fractions are not integers) in the array <code>realNumberArray</code> and store the new array in the variable <code>squaredIntegers</code>."
+        "Use arrow function syntax to compute the square of only the positive integers (decimal numbers are not integers) in the array <code>realNumberArray</code> and store the new array in the variable <code>squaredIntegers</code>."
       ],
       "tests": [
         {
-          "text": "User did replace <code>var</code> keyword.",
-          "testString": "getUserInput => assert(!getUserInput('index').match(/var/g), 'User did replace <code>var</code> keyword.');"
-        },
-        {
-          "text": "<code>squaredIntegers</code> should be a constant variable (by using <code>const</code>).",
-          "testString": "getUserInput => assert(getUserInput('index').match(/const\\s+squaredIntegers/g), '<code>squaredIntegers</code> should be a constant variable (by using <code>const</code>).');"
+          "text":
+            "<code>squaredIntegers</code> should be a constant variable (by using <code>const</code>).",
+          "testString":
+            "getUserInput => assert(getUserInput('index').match(/const\\s+squaredIntegers/g), '<code>squaredIntegers</code> should be a constant variable (by using <code>const</code>).');"
         },
         {
           "text": "<code>squaredIntegers</code> should be an <code>array</code>",
           "testString": "assert(Array.isArray(squaredIntegers), '<code>squaredIntegers</code> should be an <code>array</code>');"
         },
         {
-          "text": "<code>squaredIntegers</code> should be <code>[16, 1764, 36]</code>",
-          "testString": "assert(squaredIntegers[0] === 16 && squaredIntegers[1] === 1764 && squaredIntegers[2] === 36, '<code>squaredIntegers</code> should be <code>[16, 1764, 36]</code>');"
+          "text":
+            "<code>squaredIntegers</code> should be <code>[16, 1764, 36]</code>",
+          "testString":
+            "assert.deepStrictEqual(squaredIntegers, [16, 1764, 36], '<code>squaredIntegers</code> should be <code>[16, 1764, 36]</code>');"
         },
         {
           "text": "<code>function</code> keyword was not used.",
@@ -462,7 +462,7 @@
           "ext": "js",
           "name": "index",
           "contents": [
-            "const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34];",
+            "const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];",
             "const squareList = (arr) => {",
             "  \"use strict\";",
             "  // change code below this line",
@@ -653,20 +653,16 @@
         "<blockquote>const { x : a, y : b, z : c } = voxel // a = 3.6, b = 7.4, c = 6.54</blockquote>",
         "You may read it as \"get the field <code>x</code> and copy the value into <code>a</code>,\" and so on.",
         "<hr>",
-        "Use destructuring to obtain the length of the input string <code>str</code>, and assign the length to <code>len</code> in line."
+        "Use destructuring to obtain the average temperature for tomorrow from the input object <code>AVG_TEMPERATURES</code>, and assign value with key <code>tomorrow</code> to <code>tempOfTomorrow</code> in line."
       ],
       "tests": [
         {
-          "text": "the function <code>getLength()</code> returns a number.",
-          "testString": "assert(typeof getLength('') === 'number', 'the function <code>getLength()</code> returns a number.');"
-        },
-        {
-          "text": "<code>getLength(\"FreeCodeCamp\")</code> should be <code>12</code>",
-          "testString": "assert(getLength(\"FreeCodeCamp\") === 12, '<code>getLength(\"FreeCodeCamp\")</code> should be <code>12</code>');"
+          "text": "<code>getTempOfTmrw(AVG_TEMPERATURES)</code> should be <code>79</code>",
+          "testString": "assert(getTempOfTmrw(AVG_TEMPERATURES) === 79, '<code>getTempOfTmrw(AVG_TEMPERATURES)</code> should be <code>79</code>');"
         },
         {
           "text": "destructuring with reassignment was used",
-          "testString": "getUserInput => assert(getUserInput('index').match(/\\{\\s*length\\s*:\\s*len\\s*}\\s*=\\s*str/g),'destructuring with reassignment was used');"
+          "testString": "getUserInput => assert(getUserInput('index').match(/\\{\\s*tomorrow\\s*:\\s*tempOfTomorrow\\s*}\\s*=\\s*avgTemperatures/g),'destructuring with reassignment was used');"
         }
       ],
       "releasedOn": "Feb 17, 2017",
@@ -678,18 +674,20 @@
           "ext": "js",
           "name": "index",
           "contents": [
-            "function getLength(str) {",
+            "const AVG_TEMPERATURES = {",
+            "  today: 77.5,",
+            "  tomorrow: 79",
+            "};",
+            "",
+            "function getTempOfTmrw(avgTemperatures) {",
             "  \"use strict\";",
-            "",
             "  // change code below this line",
-            "  const length = 0; // change this",
+            "  const tempOfTomorrow = undefined; // change this line",
             "  // change code above this line",
-            "",
-            "  return len; // you must assign length to len in line",
-            "",
+            "  return tempOfTomorrow;",
             "}",
             "",
-            "console.log(getLength('FreeCodeCamp'));"
+            "console.log(getTempOfTmrw(AVG_TEMPERATURES)); // should be 79"
           ],
           "head": [],
           "tail": []
@@ -929,7 +927,7 @@
         "<blockquote>const person = {<br>&nbsp;&nbsp;name: \"Zodiac Hasbro\",<br>&nbsp;&nbsp;age: 56<br>};<br><br>// Template literal with multi-line and string interpolation<br>const greeting = `Hello, my name is ${person.name}!<br>I am ${person.age} years old.`;<br><br>console.log(greeting); // prints<br>// Hello, my name is Zodiac Hasbro!<br>// I am 56 years old.<br></blockquote>",
         "A lot of things happened there.",
         "Firstly, the example uses backticks (<code>`</code>), not quotes (<code>'</code> or <code>\"</code>), to wrap the string.",
-        "Secondly, notice that the string is multi-line, both in the code and the output. This saves inserting \n within strings.",
+        "Secondly, notice that the string is multi-line, both in the code and the output. This saves inserting <code>\\n</code> within strings.",
         "The <code>${variable}</code> syntax used above is a placeholder. Basically, you won't have to use concatenation with the <code>+</code> operator anymore. To add variables to strings, you just drop the variable in a template string and wrap it with <code>${</code> and <code>}</code>. Similarly, you can include other expressions in your string literal, for example <code>${a + b}</code>.",
         "This new way of creating strings gives you more flexibility to create robust strings.",
         "<hr>",
@@ -946,7 +944,7 @@
         },
         {
           "text": "Template strings were used",
-          "testString": "getUserInput => assert(getUserInput('index').match(/`<li \\s*class\\s*=\\s*(\"\\s*text-warning\\s*\"|'\\s*text-warning\\s*')\\s*>\\s*\\$\\s*\\{(\\s*\\w+\\s*|\\s*\\w+\\s*\\[\\s*[\\w]+\\s*\\]\\s*)\\}\\s*<\\s*\\/li\\s*>`/g), 'Template strings were used');"
+          "testString": "getUserInput => assert(getUserInput('index').match(/`.*`/g), 'Template strings were not used');"
         }
       ],
       "releasedOn": "Feb 17, 2017",
@@ -1115,7 +1113,10 @@
         },
         {
           "text": "<code>Vegetable</code> can be instantiated.",
-          "testString": "assert(() => {const a = new Vegetable(\"apple\"); return typeof a === 'object';},'<code>Vegetable</code> can be instantiated.');"
+        },
+        {
+          "text": "<code>carrot.name</code> should return <code>carrot</code>.",
+          "testString": "assert(carrot.name=='carrot','<code>carrot.name</code> should return <code>carrot</code>.');"
         }
       ],
       "releasedOn": "Feb 17, 2017",

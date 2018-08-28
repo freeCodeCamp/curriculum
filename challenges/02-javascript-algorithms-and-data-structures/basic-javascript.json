@@ -671,7 +671,8 @@
         },
         {
           "text": "<code>myVar = myVar + 1;</code> should be changed",
-          "testString": "assert(/var\\s*myVar\\s*=\\s*87;\\s*\\/*.*\\s*myVar\\+\\+;/.test(code), '<code>myVar = myVar + 1;</code> should be changed');"
+          "testString":
+            "assert(/var\\s*myVar\\s*=\\s*87;\\s*\\/*.*\\s*([+]{2}\\s*myVar|myVar\\s*[+]{2});/.test(code), '<code>myVar = myVar + 1;</code> should be changed');"
         },
         {
           "text": "Use the <code>++</code> operator",
@@ -740,7 +741,8 @@
         },
         {
           "text": "<code>myVar = myVar - 1;</code> should be changed",
-          "testString": "assert(/var\\s*myVar\\s*=\\s*11;\\s*\\/*.*\\s*myVar--;/.test(code), '<code>myVar = myVar - 1;</code> should be changed');"
+          "testString":
+            "assert(/var\\s*myVar\\s*=\\s*11;\\s*\\/*.*\\s*([-]{2}\\s*myVar|myVar\\s*[-]{2});/.test(code), '<code>myVar = myVar - 1;</code> should be changed');"
         },
         {
           "text": "Use the <code>--</code> operator on <code>myVar</code>",
@@ -4878,6 +4880,12 @@
         {
           "text": "You should have at least two <code>if</code> statements",
           "testString": "assert(code.match(/if/g).length > 1, 'You should have at least two <code>if</code> statements');"
+        },
+        {
+          "text":
+            "You should have closing and opening curly braces for each condition",
+          "testString":
+            "assert(code.match(/if\\s*\\((.+)\\)\\s*\\{[\\s\\S]+\\}\\s*else if\\s*\\((.+)\\)\\s*\\{[\\s\\S]+\\}\\s*else\\s*\\{[\\s\\S]+\\s*\\}/), 'You should have closing and opening curly braces for each condition in your if else statement');"
         },
         {
           "text": "<code>testElseIf(0)</code> should return \"Smaller than 5\"",

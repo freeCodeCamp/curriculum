@@ -1593,8 +1593,16 @@
           "testString": "assert($(\"div\").hasClass(\"silver-background\"), 'Give your <code>div</code> element the class <code>silver-background</code>.');"
         },
         {
-          "text": "Your <code>div</code> element should have a silver background.",
-          "testString": "assert($(\"div\").css(\"background-color\") === \"rgb(192, 192, 192)\", 'Your <code>div</code> element should have a silver background.');"
+          "text":
+            "Your <code>div</code> element should have a silver background.",
+          "testString":
+            "assert($(\"div\").css(\"background-color\") === \"rgb(192, 192, 192)\", 'Your <code>div</code> element should have a silver background.');"
+        },
+        {
+          "text":
+            "Define a class named <code>silver-background</code> within the <code>style</code> element and assign the value of <code>silver</code> to the <code>background-color</code> property.",
+          "testString":
+            "assert(code.match(/\\.silver-background\\s*{\\s*background-color:\\s*silver;\\s*}/), \"Define a class named <code>silver-background</code> within the <code>style</code> element and assign the value of <code>silver</code> to the <code>background-color</code> property.\");"
         }
       ],
       "challengeType": 0,
@@ -4348,7 +4356,9 @@
           "testString": "assert(code.match(/.penguin\\s*?{[\\s\\S]*--penguin-beak\\s*?:\\s*?orange\\s*?;[\\s\\S]*}/gi), '<code>penguin</code> class should declare the <code>--penguin-beak</code> variable and assign it to <code>orange</code>.');"
         }
       ],
-      "solutions": [],
+      "solutions": [
+        "var code = \".penguin {--penguin-skin: gray; --penguin-belly: white; --penguin-beak: orange;}\""
+      ],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,
@@ -4583,7 +4593,7 @@
           "testString": "assert(code.match(/.penguin\\s*?{[\\s\\S]*--penguin-skin\\s*?:\\s*?gray\\s*?;[\\s\\S]*}/gi), '<code>penguin</code> class should declare the <code>--penguin-skin</code> variable and assign it to <code>gray</code>.');"
         }
       ],
-      "solutions": [],
+      "solutions": ["var code = \".penguin {--penguin-skin: gray;}\""],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,
@@ -4827,7 +4837,9 @@
           "testString": "assert(code.match(/.left-hand\\s*?{[\\s\\S]*background\\s*?:\\s*?var\\s*?\\(\\s*?--penguin-skin\\s*?\\)\\s*?;[\\s\\S]*}/gi), 'Apply the <code>--penguin-skin</code> variable to the <code>background</code> property of the <code>left-hand</code> class.');"
         }
       ],
-      "solutions": [],
+      "solutions": [
+        "var code = \".penguin-top {background: var(--penguin-skin);} .penguin-bottom {background: var(--penguin-skin);} .right-hand {background: var(--penguin-skin);} .left-hand {background: var(--penguin-skin);}\""
+      ],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,
@@ -5059,14 +5071,14 @@
       "id": "5a9d7286424fe3d0e10cad13",
       "title": "Attach a Fallback value to a CSS Variable",
       "description": [
-        "When using your variable as a CSS property value, you can attach a fallback value that your page will revert to if for some reason it can't get your variable to work.",
-        "It could be that someone is using an older browser that hasn't yet adopted CSS Variables, or perhaps their device doesn't support the value you gave the variable. Here's how you do it:",
+        "When using your variable as a CSS property value, you can attach a fallback value that your browser will revert to if the given variable is invalid.",
+        "<strong>Note:</strong> This fallback is not used to increase browser compatibilty, and it will not work on IE browsers. Rather, it is used so that the browser has a color to display if it cannot find your variable.",
+        "Here's how you do it:",
         "<blockquote>background: var(--penguin-skin, black);</blockquote>",
-        "This will set background to black if there is a problem with your variable.",
+        "This will set background to black if your variable wasn't set.",
         "Note that this can be useful for debugging.",
         "<hr>",
-        "Add a fallback value of <code>black</code> to the <code>background</code> property of <code>penguin-top</code> and <code>penguin-bottom</code> classes.",
-        "<strong>Note</strong>: The above style will be applied because of a typo in the CSS variable name."
+        "It looks there is a problem with the variables supplied to the <code>.penguin-top</code> and <code>.penguin-bottom</code> classes. Rather than fix the typo, add a fallback value of <code>black</code> to the <code>background</code> property of the <code>.penguin-top</code> and <code>.penguin-bottom</code> classes."
       ],
       "tests": [
         {
@@ -5078,7 +5090,9 @@
           "testString": "assert(code.match(/.penguin-bottom\\s*?{[\\s\\S]*background\\s*?:\\s*?var\\(\\s*?--pengiun-skin\\s*?,\\s*?black\\s*?\\)\\s*?;[\\s\\S]*}/gi), 'Apply the fallback value of <code>black</code> to the <code>background</code> property of the <code>penguin-bottom</code> class.');"
         }
       ],
-      "solutions": [],
+      "solutions": [
+        "var code = \".penguin-top {background: var(--pengiun-skin, black);} .penguin-bottom {background: var(--pengiun-skin, black);}\""
+      ],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,
@@ -5317,7 +5331,7 @@
           "testString": "assert(code.match(/:root\\s*?{[\\s\\S]*--penguin-belly\\s*?:\\s*?pink\\s*?;[\\s\\S]*}/gi), 'declare the <code>--penguin-belly</code> variable in the <code>:root</code> and assign it to <code>pink</code>.');"
         }
       ],
-      "solutions": [],
+      "solutions": ["var code = \":root {--penguin-belly: pink;}\""],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,
@@ -5552,7 +5566,7 @@
           "testString": "assert(code.match(/.penguin\\s*?{[\\s\\S]*--penguin-belly\\s*?:\\s*?white\\s*?;[\\s\\S]*}/gi), 'The <code>penguin</code> class should reassign the <code>--penguin-belly</code> variable to <code>white</code>.');"
         }
       ],
-      "solutions": [],
+      "solutions": ["var code = \".penguin {--penguin-belly: white;}\""],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,
@@ -5793,7 +5807,9 @@
           "testString": "assert(code.match(/media\\s*?\\(\\s*?max-width\\s*?:\\s*?350px\\s*?\\)\\s*?{[\\s\\S]*:root\\s*?{[\\s\\S]*--penguin-skin\\s*?:\\s*?black\\s*?;[\\s\\S]*}[\\s\\S]*}/gi), '<code>:root</code> should reassign the <code>--penguin-skin</code> variable to <code>black</code>.');"
         }
       ],
-      "solutions": [],
+      "solutions": [
+        "var code = \"@media (max-width: 350px) {:root {--penguin-size: 200px; --penguin-skin: black;}}\""
+      ],
       "hints": [],
       "releasedOn": "Mar 15, 2018",
       "challengeType": 0,

@@ -25,7 +25,7 @@
         },
         {
           "text": "Declare a <code>@media</code> query for devices with a <code>height</code> less than or equal to 800px.",
-          "testString": "assert(code.match(/@media\\s?\\(max-height:\\s*?800px\\)/g), 'Declare a <code>@media</code> query for devices with a <code>height</code> less than or equal to 800px.');"
+          "testString": "assert(code.match(/@media\\s*?\\(\\s*?max-height\\s*?:\\s*?800px\\s*?\\)/g), 'Declare a <code>@media</code> query for devices with a <code>height</code> less than or equal to 800px.');"
         }
       ],
       "releasedOn": "Feb 17, 2017",
@@ -206,7 +206,7 @@
         }
       ],
       "releasedOn": "Feb 17, 2017",
-      "solutions": [],
+      "solutions": ["var code = \"h2 {width: 80vw;} p {width: 75vmin;}\""],
       "hints": [],
       "challengeType": 0,
       "translations": {
