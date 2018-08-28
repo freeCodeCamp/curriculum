@@ -38,7 +38,8 @@
         "ru": {
           "title": "Создайте страницу посвященную тому что вас вдохновляет"
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d78af367417b2b2512b03",
@@ -71,7 +72,8 @@
       "tests": [],
       "isRequired": true,
       "challengeType": 3,
-      "translations": {}
+      "translations": {},
+      "videoUrl": ""
     },
     {
       "id": "587d78af367417b2b2512b04",
@@ -103,7 +105,8 @@
       "tests": [],
       "isRequired": true,
       "challengeType": 3,
-      "translations": {}
+      "translations": {},
+      "videoUrl": ""
     },
     {
       "id": "587d78b0367417b2b2512b05",
@@ -135,7 +138,8 @@
       "tests": [],
       "isRequired": true,
       "challengeType": 3,
-      "translations": {}
+      "translations": {},
+      "videoUrl": ""
     },
     {
       "id": "bd7158d8c242eddfaeb5bd13",
@@ -172,7 +176,8 @@
         "ru": {
           "title": "Создайте сайт-портфолио"
         }
-      }
+      },
+      "videoUrl": ""
     }
   ]
 }

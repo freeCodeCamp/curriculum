@@ -6,8 +6,7 @@
   "challenges": [
     {
       "id": "587d774c367417b2b2512a9c",
-      "title":
-        "Add a Text Alternative to Images for Visually Impaired Accessibility",
+      "title": "Add a Text Alternative to Images for Visually Impaired Accessibility",
       "description": [
         "It's likely you've seen an <code>alt</code> attribute on an <code>img</code> tag in other challenges. <code>Alt</code> text describes the content of the image and provides a text-alternative. This helps in case the image fails to load or can't be seen by a user. It's also used by search engines to understand what an image contains to include it in search results. Here's an example:",
         "<code>&lt;img src=&quot;importantLogo.jpeg&quot; alt=&quot;Company logo&quot;&gt;</code>",
@@ -18,10 +17,8 @@
       ],
       "tests": [
         {
-          "text":
-            "Your <code>img</code> tag should have an <code>alt</code> attribute, and it should not be empty.",
-          "testString":
-            "assert($('img').attr('alt'), 'Your <code>img</code> tag should have an <code>alt</code> attribute, and it should not be empty.');"
+          "text": "Your <code>img</code> tag should have an <code>alt</code> attribute, and it should not be empty.",
+          "testString": "assert($('img').attr('alt'), 'Your <code>img</code> tag should have an <code>alt</code> attribute, and it should not be empty.');"
         }
       ],
       "solutions": [],
@@ -29,18 +26,20 @@
       "releasedOn": "Feb 17, 2017",
       "challengeType": 0,
       "translations": {},
-      "guideUrl":
-        "https://guide.freecodecamp.org/certificates/add-alt-text-to-an-image-for-accessibility",
+      "guideUrl": "https://guide.freecodecamp.org/certificates/add-alt-text-to-an-image-for-accessibility",
       "files": {
         "indexhtml": {
           "key": "indexhtml",
           "ext": "html",
           "name": "index",
-          "contents": ["<img src=\"doingKarateWow.jpeg\">"],
+          "contents": [
+            "<img src=\"doingKarateWow.jpeg\">"
+          ],
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cPp7VfD"
     },
     {
       "id": "587d774c367417b2b2512a9d",
@@ -56,16 +55,12 @@
       ],
       "tests": [
         {
-          "text":
-            "Your <code>img</code> tag should have an <code>alt</code> attribute.",
-          "testString":
-            "assert(!($('img').attr('alt') == undefined), 'Your <code>img</code> tag should have an <code>alt</code> attribute.');"
+          "text": "Your <code>img</code> tag should have an <code>alt</code> attribute.",
+          "testString": "assert(!($('img').attr('alt') == undefined), 'Your <code>img</code> tag should have an <code>alt</code> attribute.');"
         },
         {
-          "text":
-            "The <code>alt</code> attribute should be set to an empty string.",
-          "testString":
-            "assert($('img').attr('alt') == '', 'The <code>alt</code> attribute should be set to an empty string.');"
+          "text": "The <code>alt</code> attribute should be set to an empty string.",
+          "testString": "assert($('img').attr('alt') == '', 'The <code>alt</code> attribute should be set to an empty string.');"
         }
       ],
       "solutions": [],
@@ -95,7 +90,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cM9P4t2"
     },
     {
       "id": "587d774d367417b2b2512a9e",
@@ -113,13 +109,11 @@
       "tests": [
         {
           "text": "Your code should have six <code>h3</code> tags.",
-          "testString":
-            "assert($('h3').length === 6, 'Your code should have six <code>h3</code> tags.');"
+          "testString": "assert($('h3').length === 6, 'Your code should have six <code>h3</code> tags.');"
         },
         {
           "text": "Your code should not have any <code>h5</code> tags.",
-          "testString":
-            "assert($('h5').length === 0, 'Your code should not have any <code>h5</code> tags.');"
+          "testString": "assert($('h5').length === 0, 'Your code should not have any <code>h5</code> tags.');"
         }
       ],
       "solutions": [],
@@ -153,7 +147,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cqVEktm"
     },
     {
       "id": "587d774e367417b2b2512a9f",
@@ -169,14 +164,11 @@
       "tests": [
         {
           "text": "Your code should have one <code>main</code> tag.",
-          "testString":
-            "assert($('main').length == 1, 'Your code should have one <code>main</code> tag.');"
+          "testString": "assert($('main').length == 1, 'Your code should have one <code>main</code> tag.');"
         },
         {
-          "text":
-            "The <code>main</code> tags should be between the closing <code>header</code> tag and the opening <code>footer</code> tag.",
-          "testString":
-            "assert(code.match(/<\\/header>\\s*?<main>\\s*?<\\/main>/gi), 'The <code>main</code> tags should be between the closing <code>header</code> tag and the opening <code>footer</code> tag.');"
+          "text": "The <code>main</code> tags should be between the closing <code>header</code> tag and the opening <code>footer</code> tag.",
+          "testString": "assert(code.match(/<\\/header>\\s*?<main>\\s*?<\\/main>/gi), 'The <code>main</code> tags should be between the closing <code>header</code> tag and the opening <code>footer</code> tag.');"
         }
       ],
       "solutions": [],
@@ -201,7 +193,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cPp7zuE"
     },
     {
       "id": "587d774e367417b2b2512aa0",
@@ -218,13 +211,11 @@
       "tests": [
         {
           "text": "Your code should have three <code>article</code> tags.",
-          "testString":
-            "assert($('article').length == 3, 'Your code should have three <code>article</code> tags.');"
+          "testString": "assert($('article').length == 3, 'Your code should have three <code>article</code> tags.');"
         },
         {
           "text": "Your code should not have any <code>div</code> tags.",
-          "testString":
-            "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
+          "testString": "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
         }
       ],
       "solutions": [],
@@ -263,7 +254,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cPp79S3"
     },
     {
       "id": "587d7787367417b2b2512aa1",
@@ -278,25 +270,19 @@
       "tests": [
         {
           "text": "Your code should have one <code>header</code> tag.",
-          "testString":
-            "assert($('header').length == 1, 'Your code should have one <code>header</code> tag.');"
+          "testString": "assert($('header').length == 1, 'Your code should have one <code>header</code> tag.');"
         },
         {
-          "text":
-            "Your <code>header</code> tags should wrap around the <code>h1</code>.",
-          "testString":
-            "assert($('header').children('h1').length == 1, 'Your <code>header</code> tags should wrap around the <code>h1</code>.');"
+          "text": "Your <code>header</code> tags should wrap around the <code>h1</code>.",
+          "testString": "assert($('header').children('h1').length == 1, 'Your <code>header</code> tags should wrap around the <code>h1</code>.');"
         },
         {
           "text": "Your code should not have any <code>div</code> tags.",
-          "testString":
-            "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
+          "testString": "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
         },
         {
-          "text":
-            "Make sure your <code>header</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/header>/g) && code.match(/<\\/header>/g).length === code.match(/<header>/g).length, 'Make sure your <code>header</code> element has a closing tag.');"
+          "text": "Make sure your <code>header</code> element has a closing tag.",
+          "testString": "assert(code.match(/<\\/header>/g) && code.match(/<\\/header>/g).length === code.match(/<header>/g).length, 'Make sure your <code>header</code> element has a closing tag.');"
         }
       ],
       "solutions": [],
@@ -339,7 +325,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/czVwWSv"
     },
     {
       "id": "587d7788367417b2b2512aa2",
@@ -353,24 +340,19 @@
       "tests": [
         {
           "text": "Your code should have one <code>nav</code> tag.",
-          "testString":
-            "assert($('nav').length == 1, 'Your code should have one <code>nav</code> tag.');"
+          "testString": "assert($('nav').length == 1, 'Your code should have one <code>nav</code> tag.');"
         },
         {
-          "text":
-            "Your <code>nav</code> tags should wrap around the <code>ul</code> and its list items.",
-          "testString":
-            "assert($('nav').children('ul').length == 1, 'Your <code>nav</code> tags should wrap around the <code>ul</code> and its list items.');"
+          "text": "Your <code>nav</code> tags should wrap around the <code>ul</code> and its list items.",
+          "testString": "assert($('nav').children('ul').length == 1, 'Your <code>nav</code> tags should wrap around the <code>ul</code> and its list items.');"
         },
         {
           "text": "Your code should not have any <code>div</code> tags.",
-          "testString":
-            "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
+          "testString": "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
         },
         {
           "text": "Make sure your <code>nav</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/nav>/g) && code.match(/<\\/nav>/g).length === code.match(/<nav>/g).length, 'Make sure your <code>nav</code> element has a closing tag.');"
+          "testString": "assert(code.match(/<\\/nav>/g) && code.match(/<\\/nav>/g).length === code.match(/<nav>/g).length, 'Make sure your <code>nav</code> element has a closing tag.');"
         }
       ],
       "solutions": [],
@@ -419,7 +401,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cB76vtv"
     },
     {
       "id": "587d7788367417b2b2512aa3",
@@ -432,19 +415,15 @@
       "tests": [
         {
           "text": "Your code should have one <code>footer</code> tag.",
-          "testString":
-            "assert($('footer').length == 1, 'Your code should have one <code>footer</code> tag.');"
+          "testString": "assert($('footer').length == 1, 'Your code should have one <code>footer</code> tag.');"
         },
         {
           "text": "Your code should not have any <code>div</code> tags.",
-          "testString":
-            "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
+          "testString": "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
         },
         {
-          "text":
-            "Your code should have an opening and closing <code>footer</code> tag.",
-          "testString":
-            "assert(code.match(/<footer>\\s*&copy; 2018 Camper Cat\\s*<\\/footer>/g), 'Your code should have an opening and closing <code>footer</code> tag.');"
+          "text": "Your code should have an opening and closing <code>footer</code> tag.",
+          "testString": "assert(code.match(/<footer>\\s*&copy; 2018 Camper Cat\\s*<\\/footer>/g), 'Your code should have an opening and closing <code>footer</code> tag.');"
         }
       ],
       "solutions": [],
@@ -496,7 +475,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/crVrDh8"
     },
     {
       "id": "587d7789367417b2b2512aa4",
@@ -514,43 +494,31 @@
       "tests": [
         {
           "text": "Your code should have one <code>audio</code> tag.",
-          "testString":
-            "assert($('audio').length === 1, 'Your code should have one <code>audio</code> tag.');"
+          "testString": "assert($('audio').length === 1, 'Your code should have one <code>audio</code> tag.');"
         },
         {
-          "text":
-            "Make sure your <code>audio</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/audio>/g).length === 1 && code.match(/<audio.*>[\\s\\S]*<\\/audio>/g), 'Make sure your <code>audio</code> element has a closing tag.');"
+          "text": "Make sure your <code>audio</code> element has a closing tag.",
+          "testString": "assert(code.match(/<\\/audio>/g).length === 1 && code.match(/<audio.*>[\\s\\S]*<\\/audio>/g), 'Make sure your <code>audio</code> element has a closing tag.');"
         },
         {
-          "text":
-            "The <code>audio</code> tag should have the <code>controls</code> attribute.",
-          "testString":
-            "assert($('audio').attr('controls'), 'The <code>audio</code> tag should have the <code>controls</code> attribute.');"
+          "text": "The <code>audio</code> tag should have the <code>controls</code> attribute.",
+          "testString": "assert($('audio').attr('controls'), 'The <code>audio</code> tag should have the <code>controls</code> attribute.');"
         },
         {
           "text": "Your code should have one <code>source</code> tag.",
-          "testString":
-            "assert($('source').length === 1, 'Your code should have one <code>source</code> tag.');"
+          "testString": "assert($('source').length === 1, 'Your code should have one <code>source</code> tag.');"
         },
         {
-          "text":
-            "Your <code>source</code> tag should be inside the <code>audio</code> tags.",
-          "testString":
-            "assert($('audio').children('source').length === 1, 'Your <code>source</code> tag should be inside the <code>audio</code> tags.');"
+          "text": "Your <code>source</code> tag should be inside the <code>audio</code> tags.",
+          "testString": "assert($('audio').children('source').length === 1, 'Your <code>source</code> tag should be inside the <code>audio</code> tags.');"
         },
         {
-          "text":
-            "The value for the <code>src</code> attribute on the <code>source</code> tag should match the link in the instructions exactly.",
-          "testString":
-            "assert($('source').attr('src') === 'https://s3.amazonaws.com/freecodecamp/screen-reader.mp3', 'The value for the <code>src</code> attribute on the <code>source</code> tag should match the link in the instructions exactly.');"
+          "text": "The value for the <code>src</code> attribute on the <code>source</code> tag should match the link in the instructions exactly.",
+          "testString": "assert($('source').attr('src') === 'https://s3.amazonaws.com/freecodecamp/screen-reader.mp3', 'The value for the <code>src</code> attribute on the <code>source</code> tag should match the link in the instructions exactly.');"
         },
         {
-          "text":
-            "Your code should include a <code>type</code> attribute on the <code>source</code> tag with a value of audio/mpeg.",
-          "testString":
-            "assert($('source').attr('type') === 'audio/mpeg', 'Your code should include a <code>type</code> attribute on the <code>source</code> tag with a value of audio/mpeg.');"
+          "text": "Your code should include a <code>type</code> attribute on the <code>source</code> tag with a value of audio/mpeg.",
+          "testString": "assert($('source').attr('type') === 'audio/mpeg', 'Your code should include a <code>type</code> attribute on the <code>source</code> tag with a value of audio/mpeg.');"
         }
       ],
       "solutions": [],
@@ -579,7 +547,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cVJVkcZ"
     },
     {
       "id": "587d778a367417b2b2512aa5",
@@ -595,35 +564,27 @@
       "tests": [
         {
           "text": "Your code should have one <code>figure</code> tag.",
-          "testString":
-            "assert($('figure').length == 1, 'Your code should have one <code>figure</code> tag.');"
+          "testString": "assert($('figure').length == 1, 'Your code should have one <code>figure</code> tag.');"
         },
         {
           "text": "Your code should have one <code>figcaption</code> tag.",
-          "testString":
-            "assert($('figcaption').length == 1, 'Your code should have one <code>figcaption</code> tag.');"
+          "testString": "assert($('figcaption').length == 1, 'Your code should have one <code>figcaption</code> tag.');"
         },
         {
           "text": "Your code should not have any <code>div</code> tags.",
-          "testString":
-            "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
+          "testString": "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
         },
         {
           "text": "Your code should not have any <code>p</code> tags.",
-          "testString":
-            "assert($('p').length == 0, 'Your code should not have any <code>p</code> tags.');"
+          "testString": "assert($('p').length == 0, 'Your code should not have any <code>p</code> tags.');"
         },
         {
-          "text":
-            "The <code>figcaption</code> should be a child of the <code>figure</code> tag.",
-          "testString":
-            "assert($('figure').children('figcaption').length == 1, 'The <code>figcaption</code> should be a child of the <code>figure</code> tag.');"
+          "text": "The <code>figcaption</code> should be a child of the <code>figure</code> tag.",
+          "testString": "assert($('figure').children('figcaption').length == 1, 'The <code>figcaption</code> should be a child of the <code>figure</code> tag.');"
         },
         {
-          "text":
-            "Make sure your <code>figure</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/figure>/g) && code.match(/<\\/figure>/g).length === code.match(/<figure>/g).length, 'Make sure your <code>figure</code> element has a closing tag.');"
+          "text": "Make sure your <code>figure</code> element has a closing tag.",
+          "testString": "assert(code.match(/<\\/figure>/g) && code.match(/<\\/figure>/g).length === code.match(/<figure>/g).length, 'Make sure your <code>figure</code> element has a closing tag.');"
         }
       ],
       "solutions": [],
@@ -682,7 +643,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cGJMqtE"
     },
     {
       "id": "587d778a367417b2b2512aa6",
@@ -698,16 +660,12 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should have a <code>for</code> attribute on the <code>label</code> tag that is not empty.",
-          "testString":
-            "assert($('label').attr('for'), 'Your code should have a <code>for</code> attribute on the <code>label</code> tag that is not empty.');"
+          "text": "Your code should have a <code>for</code> attribute on the <code>label</code> tag that is not empty.",
+          "testString": "assert($('label').attr('for'), 'Your code should have a <code>for</code> attribute on the <code>label</code> tag that is not empty.');"
         },
         {
-          "text":
-            "Your <code>for</code> attribute value should match the <code>id</code> value on the email <code>input</code>.",
-          "testString":
-            "assert($('label').attr('for') == 'email', 'Your <code>for</code> attribute value should match the <code>id</code> value on the email <code>input</code>.');"
+          "text": "Your <code>for</code> attribute value should match the <code>id</code> value on the email <code>input</code>.",
+          "testString": "assert($('label').attr('for') == 'email', 'Your <code>for</code> attribute value should match the <code>id</code> value on the email <code>input</code>.');"
         }
       ],
       "solutions": [],
@@ -757,12 +715,12 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cGJMMAN"
     },
     {
       "id": "587d778b367417b2b2512aa7",
-      "title":
-        "Wrap Radio Buttons in a fieldset Element for Better Accessibility",
+      "title": "Wrap Radio Buttons in a fieldset Element for Better Accessibility",
       "description": [
         "The next form topic covers accessibility of radio buttons. Each choice is given a <code>label</code> with a <code>for</code> attribute tying to the <code>id</code> of the corresponding item as covered in the last challenge. Since radio buttons often come in a group where the user must choose one, there's a way to semantically show the choices are part of a set.",
         "The <code>fieldset</code> tag surrounds the entire grouping of radio buttons to achieve this. It often uses a <code>legend</code> tag to provide a description for the grouping, which is read by screen readers for each choice in the <code>fieldset</code> element.",
@@ -774,33 +732,24 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should have a <code>fieldset</code> tag around the radio button set.",
-          "testString":
-            "assert($('fieldset').length == 1, 'Your code should have a <code>fieldset</code> tag around the radio button set.');"
+          "text": "Your code should have a <code>fieldset</code> tag around the radio button set.",
+          "testString": "assert($('fieldset').length == 1, 'Your code should have a <code>fieldset</code> tag around the radio button set.');"
         },
         {
-          "text":
-            "Make sure your <code>fieldset</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/fieldset>/g) && code.match(/<\\/fieldset>/g).length === code.match(/<fieldset>/g).length, 'Make sure your <code>fieldset</code> element has a closing tag.');"
+          "text": "Make sure your <code>fieldset</code> element has a closing tag.",
+          "testString": "assert(code.match(/<\\/fieldset>/g) && code.match(/<\\/fieldset>/g).length === code.match(/<fieldset>/g).length, 'Make sure your <code>fieldset</code> element has a closing tag.');"
         },
         {
-          "text":
-            "Your code should have a <code>legend</code> tag around the text asking what level ninja a user is.",
-          "testString":
-            "assert($('legend').length == 1, 'Your code should have a <code>legend</code> tag around the text asking what level ninja a user is.');"
+          "text": "Your code should have a <code>legend</code> tag around the text asking what level ninja a user is.",
+          "testString": "assert($('legend').length == 1, 'Your code should have a <code>legend</code> tag around the text asking what level ninja a user is.');"
         },
         {
           "text": "Your code should not have any <code>div</code> tags.",
-          "testString":
-            "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
+          "testString": "assert($('div').length == 0, 'Your code should not have any <code>div</code> tags.');"
         },
         {
-          "text":
-            "Your code should no longer have a <code>p</code> tag around the text asking what level ninja a user is.",
-          "testString":
-            "assert($('p').length == 4, 'Your code should no longer have a <code>p</code> tag around the text asking what level ninja a user is.');"
+          "text": "Your code should no longer have a <code>p</code> tag around the text asking what level ninja a user is.",
+          "testString": "assert($('p').length == 4, 'Your code should no longer have a <code>p</code> tag around the text asking what level ninja a user is.');"
         }
       ],
       "solutions": [],
@@ -861,7 +810,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cVJVefw"
     },
     {
       "id": "587d778b367417b2b2512aa8",
@@ -877,28 +827,20 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should add one <code>input</code> tag for the date selector field.",
-          "testString":
-            "assert($('input').length == 2, 'Your code should add one <code>input</code> tag for the date selector field.');"
+          "text": "Your code should add one <code>input</code> tag for the date selector field.",
+          "testString": "assert($('input').length == 2, 'Your code should add one <code>input</code> tag for the date selector field.');"
         },
         {
-          "text":
-            "Your <code>input</code> tag should have a <code>type</code> attribute with a value of date.",
-          "testString":
-            "assert($('input').attr('type') == 'date', 'Your <code>input</code> tag should have a <code>type</code> attribute with a value of date.');"
+          "text": "Your <code>input</code> tag should have a <code>type</code> attribute with a value of date.",
+          "testString": "assert($('input').attr('type') == 'date', 'Your <code>input</code> tag should have a <code>type</code> attribute with a value of date.');"
         },
         {
-          "text":
-            "Your <code>input</code> tag should have an <code>id</code> attribute with a value of pickdate.",
-          "testString":
-            "assert($('input').attr('id') == 'pickdate', 'Your <code>input</code> tag should have an <code>id</code> attribute with a value of pickdate.');"
+          "text": "Your <code>input</code> tag should have an <code>id</code> attribute with a value of pickdate.",
+          "testString": "assert($('input').attr('id') == 'pickdate', 'Your <code>input</code> tag should have an <code>id</code> attribute with a value of pickdate.');"
         },
         {
-          "text":
-            "Your <code>input</code> tag should have a <code>name</code> attribute with a value of date.",
-          "testString":
-            "assert($('input').attr('name') == 'date', 'Your <code>input</code> tag should have a <code>name</code> attribute with a value of date.');"
+          "text": "Your <code>input</code> tag should have a <code>name</code> attribute with a value of date.",
+          "testString": "assert($('input').attr('name') == 'date', 'Your <code>input</code> tag should have a <code>name</code> attribute with a value of date.');"
         }
       ],
       "solutions": [],
@@ -939,7 +881,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cD9DJHr"
     },
     {
       "id": "587d778c367417b2b2512aa9",
@@ -953,27 +896,20 @@
       ],
       "tests": [
         {
-          "text":
-            "Your <code>time</code> tags should wrap around the text \"Thursday, September 15&lt;sup&gt;th&lt;/sup&gt;\".",
-          "testString":
-            "assert($('time').text().match(/Thursday, September 15th/g), 'Your <code>time</code> tags should wrap around the text \"Thursday, September 15&lt;sup&gt;th&lt;/sup&gt;\".');"
+          "text": "Your <code>time</code> tags should wrap around the text \"Thursday, September 15&lt;sup&gt;th&lt;/sup&gt;\".",
+          "testString": "assert($('time').text().match(/Thursday, September 15th/g), 'Your <code>time</code> tags should wrap around the text \"Thursday, September 15&lt;sup&gt;th&lt;/sup&gt;\".');"
         },
         {
-          "text":
-            "Your <code>time</code> tag should have a <code>datetime</code> attribute that is not empty.",
-          "testString":
-            "assert($('time').attr('datetime'), 'Your <code>time</code> tag should have a <code>datetime</code> attribute that is not empty.');"
+          "text": "Your <code>time</code> tag should have a <code>datetime</code> attribute that is not empty.",
+          "testString": "assert($('time').attr('datetime'), 'Your <code>time</code> tag should have a <code>datetime</code> attribute that is not empty.');"
         },
         {
-          "text":
-            "Your <code>datetime</code> attribute should be set to a value of 2016-09-15.",
-          "testString":
-            "assert($('time').attr('datetime') === \"2016-09-15\", 'Your <code>datetime</code> attribute should be set to a value of 2016-09-15.');"
+          "text": "Your <code>datetime</code> attribute should be set to a value of 2016-09-15.",
+          "testString": "assert($('time').attr('datetime') === \"2016-09-15\", 'Your <code>datetime</code> attribute should be set to a value of 2016-09-15.');"
         },
         {
           "text": "Make sure your <code>time</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/time>/g) && code.match(/<\\/time>/g).length === 4, 'Make sure your <code>time</code> element has a closing tag.');"
+          "testString": "assert(code.match(/<\\/time>/g) && code.match(/<\\/time>/g).length === 4, 'Make sure your <code>time</code> element has a closing tag.');"
         }
       ],
       "solutions": [],
@@ -1022,12 +958,12 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cmzMgtz"
     },
     {
       "id": "587d778d367417b2b2512aaa",
-      "title":
-        "Make Elements Only Visible to a Screen Reader by Using Custom CSS",
+      "title": "Make Elements Only Visible to a Screen Reader by Using Custom CSS",
       "description": [
         "Have you noticed that all of the applied accessibility challenges so far haven't used any CSS? This is to show the importance of a logical document outline, and using semantically meaningful tags around your content before introducing the visual design aspect.",
         "However, CSS's magic can also improve accessibility on your page when you want to visually hide content meant only for screen readers. This happens when information is in a visual format (like a chart), but screen reader users need an alternative presentation (like a table) to access the data. CSS is used to position the screen reader-only elements off the visual area of the browser window.",
@@ -1043,28 +979,20 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should set the <code>position</code> property of the <code>sr-only</code> class to a value of absolute.",
-          "testString":
-            "assert($('.sr-only').css('position') == 'absolute', 'Your code should set the <code>position</code> property of the <code>sr-only</code> class to a value of absolute.');"
+          "text": "Your code should set the <code>position</code> property of the <code>sr-only</code> class to a value of absolute.",
+          "testString": "assert($('.sr-only').css('position') == 'absolute', 'Your code should set the <code>position</code> property of the <code>sr-only</code> class to a value of absolute.');"
         },
         {
-          "text":
-            "Your code should set the <code>left</code> property of the <code>sr-only</code> class to a value of -10000px.",
-          "testString":
-            "assert($('.sr-only').css('left') == '-10000px', 'Your code should set the <code>left</code> property of the <code>sr-only</code> class to a value of -10000px.');"
+          "text": "Your code should set the <code>left</code> property of the <code>sr-only</code> class to a value of -10000px.",
+          "testString": "assert($('.sr-only').css('left') == '-10000px', 'Your code should set the <code>left</code> property of the <code>sr-only</code> class to a value of -10000px.');"
         },
         {
-          "text":
-            "Your code should set the <code>width</code> property of the <code>sr-only</code> class to a value of 1 pixel.",
-          "testString":
-            "assert(code.match(/width:\\s*?1px/gi), 'Your code should set the <code>width</code> property of the <code>sr-only</code> class to a value of 1 pixel.');"
+          "text": "Your code should set the <code>width</code> property of the <code>sr-only</code> class to a value of 1 pixel.",
+          "testString": "assert(code.match(/width:\\s*?1px/gi), 'Your code should set the <code>width</code> property of the <code>sr-only</code> class to a value of 1 pixel.');"
         },
         {
-          "text":
-            "Your code should set the <code>height</code> property of the <code>sr-only</code> class to a value of 1 pixel.",
-          "testString":
-            "assert(code.match(/height:\\s*?1px/gi), 'Your code should set the <code>height</code> property of the <code>sr-only</code> class to a value of 1 pixel.');"
+          "text": "Your code should set the <code>height</code> property of the <code>sr-only</code> class to a value of 1 pixel.",
+          "testString": "assert(code.match(/height:\\s*?1px/gi), 'Your code should set the <code>height</code> property of the <code>sr-only</code> class to a value of 1 pixel.');"
         }
       ],
       "solutions": [],
@@ -1166,7 +1094,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/c8azdfM"
     },
     {
       "id": "587d778e367417b2b2512aab",
@@ -1179,16 +1108,12 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should change the text <code>color</code> for the <code>body</code> to the darker gray.",
-          "testString":
-            "assert($('body').css('color') == 'rgb(99, 99, 99)', 'Your code should change the text <code>color</code> for the <code>body</code> to the darker gray.');"
+          "text": "Your code should change the text <code>color</code> for the <code>body</code> to the darker gray.",
+          "testString": "assert($('body').css('color') == 'rgb(99, 99, 99)', 'Your code should change the text <code>color</code> for the <code>body</code> to the darker gray.');"
         },
         {
-          "text":
-            "Your code should not change the <code>background-color</code> for the <code>body</code>.",
-          "testString":
-            "assert($('body').css('background-color') == 'rgb(255, 255, 255)', 'Your code should not change the <code>background-color</code> for the <code>body</code>.');"
+          "text": "Your code should not change the <code>background-color</code> for the <code>body</code>.",
+          "testString": "assert($('body').css('background-color') == 'rgb(255, 255, 255)', 'Your code should not change the <code>background-color</code> for the <code>body</code>.');"
         }
       ],
       "solutions": [],
@@ -1224,7 +1149,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cKb3nCq"
     },
     {
       "id": "587d778f367417b2b2512aac",
@@ -1239,16 +1165,12 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should only change the lightness value for the text <code>color</code> property to a value of 15%.",
-          "testString":
-            "assert(code.match(/color:\\s*?hsl\\(0,\\s*?55%,\\s*?15%\\)/gi), 'Your code should only change the lightness value for the text <code>color</code> property to a value of 15%.');"
+          "text": "Your code should only change the lightness value for the text <code>color</code> property to a value of 15%.",
+          "testString": "assert(code.match(/color:\\s*?hsl\\(0,\\s*?55%,\\s*?15%\\)/gi), 'Your code should only change the lightness value for the text <code>color</code> property to a value of 15%.');"
         },
         {
-          "text":
-            "Your code should only change the lightness value for the <code>background-color</code> property to a value of 55%.",
-          "testString":
-            "assert(code.match(/background-color:\\s*?hsl\\(120,\\s*?25%,\\s*?55%\\)/gi), 'Your code should only change the lightness value for the <code>background-color</code> property to a value of 55%.');"
+          "text": "Your code should only change the lightness value for the <code>background-color</code> property to a value of 55%.",
+          "testString": "assert(code.match(/background-color:\\s*?hsl\\(120,\\s*?25%,\\s*?55%\\)/gi), 'Your code should only change the lightness value for the <code>background-color</code> property to a value of 55%.');"
         }
       ],
       "solutions": [
@@ -1286,12 +1208,12 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cmzMEUw"
     },
     {
       "id": "587d778f367417b2b2512aad",
-      "title":
-        "Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information",
+      "title": "Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information",
       "description": [
         "There are various forms of colorblindness. These can range from a reduced sensitivity to a certain wavelength of light to the inability to see color at all. The most common form is a reduced sensitivity to detect greens.",
         "For example, if two similar green colors are the foreground and background color of your content, a colorblind user may not be able to distinguish them. Close colors can be thought of as neighbors on the color wheel, and those combinations should be avoided when conveying important information.",
@@ -1301,10 +1223,8 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should change the text <code>color</code> for the <code>button</code> to the dark blue.",
-          "testString":
-            "assert($('button').css('color') == 'rgb(0, 51, 102)', 'Your code should change the text <code>color</code> for the <code>button</code> to the dark blue.');"
+          "text": "Your code should change the text <code>color</code> for the <code>button</code> to the dark blue.",
+          "testString": "assert($('button').css('color') == 'rgb(0, 51, 102)', 'Your code should change the text <code>color</code> for the <code>button</code> to the dark blue.');"
         }
       ],
       "solutions": [],
@@ -1338,7 +1258,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/c437as3"
     },
     {
       "id": "587d778f367417b2b2512aae",
@@ -1351,15 +1272,12 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should move the anchor <code>a</code> tags from around the words \"Click here\" to wrap around the words \"information about batteries\".",
-          "testString":
-            "assert($('a').text().match(/^(information about batteries)$/g), 'Your code should move the anchor <code>a</code> tags from around the words \"Click here\" to wrap around the words \"information about batteries\".');"
+          "text": "Your code should move the anchor <code>a</code> tags from around the words \"Click here\" to wrap around the words \"information about batteries\".",
+          "testString": "assert($('a').text().match(/^(information about batteries)$/g), 'Your code should move the anchor <code>a</code> tags from around the words \"Click here\" to wrap around the words \"information about batteries\".');"
         },
         {
           "text": "Make sure your <code>a</code> element has a closing tag.",
-          "testString":
-            "assert(code.match(/<\\/a>/g) && code.match(/<\\/a>/g).length === code.match(/<a href=(''|\"\")>/g).length, 'Make sure your <code>a</code> element has a closing tag.');"
+          "testString": "assert(code.match(/<\\/a>/g) && code.match(/<\\/a>/g).length === code.match(/<a href=(''|\"\")>/g).length, 'Make sure your <code>a</code> element has a closing tag.');"
         }
       ],
       "solutions": [],
@@ -1386,7 +1304,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/c437DcV"
     },
     {
       "id": "587d7790367417b2b2512aaf",
@@ -1401,28 +1320,20 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"first\".",
-          "testString":
-            "assert($('#first').attr('accesskey'), 'Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"first\".');"
+          "text": "Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"first\".",
+          "testString": "assert($('#first').attr('accesskey'), 'Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"first\".');"
         },
         {
-          "text":
-            "Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"second\".",
-          "testString":
-            "assert($('#second').attr('accesskey'), 'Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"second\".');"
+          "text": "Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"second\".",
+          "testString": "assert($('#second').attr('accesskey'), 'Your code should add an <code>accesskey</code> attribute to the <code>a</code> tag with the <code>id</code> of \"second\".');"
         },
         {
-          "text":
-            "Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"first\" to \"g\". Note that case matters.",
-          "testString":
-            "assert($('#first').attr('accesskey') == 'g', 'Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"first\" to \"g\". Note that case matters.');"
+          "text": "Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"first\" to \"g\". Note that case matters.",
+          "testString": "assert($('#first').attr('accesskey') == 'g', 'Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"first\" to \"g\". Note that case matters.');"
         },
         {
-          "text":
-            "Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"second\" to \"c\". Note that case matters.",
-          "testString":
-            "assert($('#second').attr('accesskey') == 'c', 'Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"second\" to \"c\". Note that case matters.');"
+          "text": "Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"second\" to \"c\". Note that case matters.",
+          "testString": "assert($('#second').attr('accesskey') == 'c', 'Your code should set the <code>accesskey</code> attribute on the <code>a</code> tag with the <code>id</code> of \"second\" to \"c\". Note that case matters.');"
         }
       ],
       "solutions": [],
@@ -1462,7 +1373,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cQvmaTp"
     },
     {
       "id": "587d7790367417b2b2512ab0",
@@ -1477,16 +1389,12 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should add a <code>tabindex</code> attribute to the <code>p</code> tag that holds the form instructions.",
-          "testString":
-            "assert($('p').attr('tabindex'), 'Your code should add a <code>tabindex</code> attribute to the <code>p</code> tag that holds the form instructions.');"
+          "text": "Your code should add a <code>tabindex</code> attribute to the <code>p</code> tag that holds the form instructions.",
+          "testString": "assert($('p').attr('tabindex'), 'Your code should add a <code>tabindex</code> attribute to the <code>p</code> tag that holds the form instructions.');"
         },
         {
-          "text":
-            "Your code should set the <code>tabindex</code> attribute on the <code>p</code> tag to a value of 0.",
-          "testString":
-            "assert($('p').attr('tabindex') == '0', 'Your code should set the <code>tabindex</code> attribute on the <code>p</code> tag to a value of 0.');"
+          "text": "Your code should set the <code>tabindex</code> attribute on the <code>p</code> tag to a value of 0.",
+          "testString": "assert($('p').attr('tabindex') == '0', 'Your code should set the <code>tabindex</code> attribute on the <code>p</code> tag to a value of 0.');"
         }
       ],
       "solutions": [],
@@ -1551,12 +1459,12 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cmzMDHW"
     },
     {
       "id": "587d7790367417b2b2512ab1",
-      "title":
-        "Use tabindex to Specify the Order of Keyboard Focus for Several Elements",
+      "title": "Use tabindex to Specify the Order of Keyboard Focus for Several Elements",
       "description": [
         "The <code>tabindex</code> attribute also specifies the exact tab order of elements. This is achieved when the value of the attribute is set to a positive number of 1 or higher.",
         "Setting a tabindex=\"1\" will bring keyboard focus to that element first. Then it cycles through the sequence of specified <code>tabindex</code> values (2, 3, etc.), before moving to default and <code>tabindex=\"0\"</code> items.",
@@ -1569,28 +1477,20 @@
       ],
       "tests": [
         {
-          "text":
-            "Your code should add a <code>tabindex</code> attribute to the search <code>input</code> tag.",
-          "testString":
-            "assert($('#search').attr('tabindex'), 'Your code should add a <code>tabindex</code> attribute to the search <code>input</code> tag.');"
+          "text": "Your code should add a <code>tabindex</code> attribute to the search <code>input</code> tag.",
+          "testString": "assert($('#search').attr('tabindex'), 'Your code should add a <code>tabindex</code> attribute to the search <code>input</code> tag.');"
         },
         {
-          "text":
-            "Your code should add a <code>tabindex</code> attribute to the submit <code>input</code> tag.",
-          "testString":
-            "assert($('#submit').attr('tabindex'), 'Your code should add a <code>tabindex</code> attribute to the submit <code>input</code> tag.');"
+          "text": "Your code should add a <code>tabindex</code> attribute to the submit <code>input</code> tag.",
+          "testString": "assert($('#submit').attr('tabindex'), 'Your code should add a <code>tabindex</code> attribute to the submit <code>input</code> tag.');"
         },
         {
-          "text":
-            "Your code should set the <code>tabindex</code> attribute on the search <code>input</code> tag to a value of 1.",
-          "testString":
-            "assert($('#search').attr('tabindex') == '1', 'Your code should set the <code>tabindex</code> attribute on the search <code>input</code> tag to a value of 1.');"
+          "text": "Your code should set the <code>tabindex</code> attribute on the search <code>input</code> tag to a value of 1.",
+          "testString": "assert($('#search').attr('tabindex') == '1', 'Your code should set the <code>tabindex</code> attribute on the search <code>input</code> tag to a value of 1.');"
         },
         {
-          "text":
-            "Your code should set the <code>tabindex</code> attribute on the submit <code>input</code> tag to a value of 2.",
-          "testString":
-            "assert($('#submit').attr('tabindex') == '2', 'Your code should set the <code>tabindex</code> attribute on the submit <code>input</code> tag to a value of 2.');"
+          "text": "Your code should set the <code>tabindex</code> attribute on the submit <code>input</code> tag to a value of 2.",
+          "testString": "assert($('#submit').attr('tabindex') == '2', 'Your code should set the <code>tabindex</code> attribute on the submit <code>input</code> tag to a value of 2.');"
         }
       ],
       "solutions": [],
@@ -1639,7 +1539,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pJ5rC6/cmzRRcb"
     }
   ]
 }

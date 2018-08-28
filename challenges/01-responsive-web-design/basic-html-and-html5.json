@@ -52,9 +52,9 @@
             "Vous pouvez modifier le <code>code</code> dans votre <code>éditeur texte</code>, lequel est disponible dans cette page.",
             "Voyez-vous le code dans l'éditeur texte qui dit <code>&#60;h1&#62;Hello&#60;/h1&#62;</code>? C'est un <code>élément</code> HTML.",
             "La plupart des éléments HTML ont une <code>balise ouvrante</code> et une <code>balise fermante</code>",
-            "Les balises ouvrantes ont cette apparence :",
+            "Les balises ouvrantes ont cette apparence:",
             "<code>&#60;h1&#62;</code>",
-            "Les balises fermantes ont cette apparence :",
+            "Les balises fermantes ont cette apparence:",
             "<code>&#60;/h1&#62;</code>",
             "Notez que la seule différence entre une balise ouvrante et fermante est que la balise fermante a une barre oblique après son chevron ouvrant.",
             "Chaque défi contient des tests que vous pouvez éxécuter en cliquant sur le bouton \"Run tests\". Lorsque tous les tests sont réussis, vous pouvez poursuivre avec le défi suivant.",
@@ -104,11 +104,14 @@
           "key": "indexhtml",
           "ext": "html",
           "name": "index",
-          "contents": ["<h1>Hello</h1>"],
+          "contents": [
+            "<h1>Hello</h1>"
+          ],
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cE8Gpt2"
     },
     {
       "id": "bad87fee1348bd9aedf0887a",
@@ -153,7 +156,7 @@
         "fr": {
           "title": "Un titre avec l'élément h2",
           "description": [
-            "Pour les quelques prochains défis, nous construirons une application HTML5 qui ressemblera à ceci :",
+            "Pour les quelques prochains défis, nous construirons une application HTML5 qui ressemblera à ceci:",
             "<a href=\"https://i.imgur.com/jOc1JF1.png\" target=\"_blank\" data-lightbox=\"img-enlarge\"><img class=\"img-responsive\" src=\"https://i.imgur.com/jOc1JF1.png\" title=\"Cliquez pour agrandir\" alt=\"Une capture écran de notre application de photo de chats\"></a>",
             "L'élément <code>h2</code> que vous entrerez créera un élément <code>h2</code> sur le site.",
             "Cet élément renseigne votre navigateur sur la structure de votre site. Les éléments <code>h1</code> sont souvent utilisés comme titre, tandis que les éléments <code>h2</code> sont généralement utilisés comme sous-titres. Il existe également les éléments <code>h3</code>, <code>h4</code>, <code>h5</code> et <code>h6</code> qui indiquent une nouvelle et différente section.",
@@ -189,11 +192,14 @@
           "key": "indexhtml",
           "ext": "html",
           "name": "index",
-          "contents": ["<h1>Hello World</h1>"],
+          "contents": [
+            "<h1>Hello World</h1>"
+          ],
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cE8Gqf3"
     },
     {
       "id": "bad87fee1348bd9aedf08801",
@@ -234,7 +240,7 @@
           "title": "Informez avec l'élément paragraphe",
           "description": [
             "L'élément <code>p</code> est le préféré pour les textes de paragraphes de taille normale. P est l'acronyme de \"paragraphe\",",
-            "Vous pouvez créer un élément <code>p</code> comme ceci :",
+            "Vous pouvez créer un élément <code>p</code> comme ceci:",
             "<code>&#60;p&#62;Je suis une balise p!&#60;/p&#62;</code>",
             "<hr>",
             "Créez un élément <code>p</code> sous votre élément <code>h2</code> et inscrivez-y le texte \"Hello Paragraph\"."
@@ -266,11 +272,15 @@
           "key": "indexhtml",
           "ext": "html",
           "name": "index",
-          "contents": ["<h1>Hello World</h1>", "<h2>CatPhotoApp</h2>"],
+          "contents": [
+            "<h1>Hello World</h1>",
+            "<h2>CatPhotoApp</h2>"
+          ],
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/ceZ7DtN"
     },
     {
       "id": "bad87fee1348bd9aedf08833",
@@ -306,7 +316,7 @@
             "Le texte lorem ipsum a été utilisé comme faux-texte par des typographes depuis le 16<sup>ème</sup> siècle et cette tradition se poursuit sur le Web.",
             "Enfin, 5 siècles est suffisament long. Étant donné que nous fabriquons une application de photos de chats, utilisons plutôt du texte <code>Kitty ipsum</code>.",
             "<hr>",
-            "Remplacez le texte à l'intérieur des éléments <code>p</code> avec ces quelques mots du texte Kitty ipsum : <code>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</code>"
+            "Remplacez le texte à l'intérieur des éléments <code>p</code> avec ces quelques mots du texte Kitty ipsum: <code>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</code>"
           ]
         },
         "pt-br": {
@@ -345,7 +355,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cgR7Dc7"
     },
     {
       "id": "bad87fee1348bd9aedf08802",
@@ -434,7 +445,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cBmG9T7"
     },
     {
       "id": "bad87fee1348bd9aedf08804",
@@ -522,7 +534,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cGyGbca"
     },
     {
       "id": "bad87fed1348bd9aedf08833",
@@ -603,7 +616,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/ckK73C9"
     },
     {
       "id": "bad87fee1348bd9aecf08801",
@@ -675,7 +689,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/c4Ep9Am"
     },
     {
       "id": "bad87fee1348bd9aedf08812",
@@ -728,12 +743,12 @@
           "title": "Ajouter des images à votre site Web",
           "description": [
             "Vous pouvez ajouter des images à votre site Web en utilisant l'élément <code>img</code> et pointer vers une URL d'image spécifique en utilisant l'attribut <code>src</code>.",
-            "Un exemple de cette procédure serait :",
+            "Un exemple de cette procédure serait:",
             "<code>&#60img src=\"https://www.your-image-source.com/your-image.jpg\"&#62</code>",
             "Note that in most cases, <code>img</code> elements are self-closing.",
             "Prenez note que dans la plupart des cas, les éléments <code>img</code> sont auto-fermants.",
             "<hr>",
-            "Essayez avec cette image :",
+            "Essayez avec cette image:",
             "<code>https://bit.ly/fcc-relaxing-cat</code>"
           ]
         },
@@ -786,7 +801,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/c8EbJf2"
     },
     {
       "id": "bad87fee1348bd9aedf08816",
@@ -884,7 +900,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/c8EkncB"
     },
     {
       "id": "bad88fee1348bd9aedf08816",
@@ -970,7 +987,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cyrDRUL"
     },
     {
       "id": "bad87fee1348bd9aede08817",
@@ -1093,7 +1111,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cb6k8Cb"
     },
     {
       "id": "bad87fee1348bd9aedf08817",
@@ -1169,7 +1188,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cMdkytL"
     },
     {
       "id": "bad87fee1348bd9aedf08820",
@@ -1264,7 +1284,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cRdBnUr"
     },
     {
       "id": "bad87fee1348bd9aedf08827",
@@ -1366,7 +1387,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cDKVPuv"
     },
     {
       "id": "bad87fee1348bd9aedf08828",
@@ -1494,7 +1516,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cQ3B8TM"
     },
     {
       "id": "bad87fee1348bd9aedf08829",
@@ -1596,7 +1619,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/c2EVnf6"
     },
     {
       "id": "bad87fee1348bd9aedf08830",
@@ -1696,7 +1720,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cKdJDhg"
     },
     {
       "id": "bad87fee1348bd9aede08830",
@@ -1795,7 +1820,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cmQ3Kfa"
     },
     {
       "id": "bad87fee1348bd9aedd08830",
@@ -1901,7 +1927,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cp2Nkhz"
     },
     {
       "id": "bad87fee1348bd9aedc08830",
@@ -1999,7 +2026,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cMd4EcQ"
     },
     {
       "id": "bad87fee1348bd9aedf08834",
@@ -2134,7 +2162,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cNWKvuR"
     },
     {
       "id": "bad87fee1348bd9aedf08835",
@@ -2258,7 +2287,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cqrkJsp"
     },
     {
       "id": "bad87fee1348bd9aedd08835",
@@ -2361,7 +2391,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cWk3Qh6"
     },
     {
       "id": "bad87fee1348bd9aede08835",
@@ -2478,7 +2509,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cNW4kC3"
     },
     {
       "id": "587d78aa367417b2b2512aed",
@@ -2534,7 +2566,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cra98AJ"
     },
     {
       "id": "587d78aa367417b2b2512aec",
@@ -2605,7 +2638,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": "https://scrimba.com/p/pVMPUv/cra9bfP"
     }
   ]
 }

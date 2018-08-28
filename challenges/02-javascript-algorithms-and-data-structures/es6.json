@@ -60,7 +60,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b87367417b2b2512b40",
@@ -118,7 +119,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b87367417b2b2512b41",
@@ -176,7 +178,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b87367417b2b2512b42",
@@ -231,7 +234,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "598f48a36c8c40764b4e52b3",
@@ -291,7 +295,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b87367417b2b2512b43",
@@ -347,7 +352,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b88367417b2b2512b44",
@@ -400,7 +406,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b88367417b2b2512b45",
@@ -470,7 +477,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b88367417b2b2512b46",
@@ -518,7 +526,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b88367417b2b2512b47",
@@ -574,7 +583,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b89367417b2b2512b48",
@@ -626,7 +636,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b89367417b2b2512b49",
@@ -681,7 +692,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b89367417b2b2512b4a",
@@ -731,7 +743,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b89367417b2b2512b4b",
@@ -783,7 +796,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8a367417b2b2512b4c",
@@ -835,7 +849,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8a367417b2b2512b4d",
@@ -899,7 +914,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8a367417b2b2512b4e",
@@ -965,7 +981,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8a367417b2b2512b4f",
@@ -1015,7 +1032,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8b367417b2b2512b50",
@@ -1066,7 +1084,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8b367417b2b2512b53",
@@ -1094,7 +1113,6 @@
         },
         {
           "text": "<code>Vegetable</code> can be instantiated.",
-          "testString": "assert(() => {const a = new Vegetable(\"apple\"); return typeof a === 'object';},'<code>Vegetable</code> can be instantiated.');"
         },
         {
           "text": "<code>carrot.name</code> should return <code>carrot</code>.",
@@ -1124,7 +1142,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8c367417b2b2512b54",
@@ -1185,7 +1204,8 @@
           "head": [],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8c367417b2b2512b55",
@@ -1218,7 +1238,10 @@
           "key": "indexjs",
           "ext": "js",
           "name": "index",
-          "contents": ["\"use strict\";", "capitalizeString(\"hello!\");"],
+          "contents": [
+            "\"use strict\";",
+            "capitalizeString(\"hello!\");"
+          ],
           "head": [
             "window.require = function (str) {",
             "if (str === 'string_functions') {",
@@ -1228,7 +1251,8 @@
           ],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8c367417b2b2512b56",
@@ -1266,10 +1290,13 @@
             "const foo = \"bar\";",
             "const bar = \"foo\";"
           ],
-          "head": ["window.exports = function(){};"],
+          "head": [
+            "window.exports = function(){};"
+          ],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8c367417b2b2512b57",
@@ -1298,7 +1325,9 @@
           "key": "indexjs",
           "ext": "js",
           "name": "index",
-          "contents": ["\"use strict\";"],
+          "contents": [
+            "\"use strict\";"
+          ],
           "head": [
             "window.require = function(str) {",
             "if (str === 'capitalize_strings') {",
@@ -1309,7 +1338,8 @@
           ],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8c367417b2b2512b58",
@@ -1341,10 +1371,13 @@
             "\"use strict\";",
             "function subtract(x,y) {return x - y;}"
           ],
-          "head": ["window.exports = function(){};"],
+          "head": [
+            "window.exports = function(){};"
+          ],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     },
     {
       "id": "587d7b8d367417b2b2512b59",
@@ -1371,7 +1404,10 @@
           "key": "indexjs",
           "ext": "js",
           "name": "index",
-          "contents": ["\"use strict\";", "subtract(7,4);"],
+          "contents": [
+            "\"use strict\";",
+            "subtract(7,4);"
+          ],
           "head": [
             "window.require = function(str) {",
             "if (str === 'math_functions') {",
@@ -1381,7 +1417,8 @@
           ],
           "tail": []
         }
-      }
+      },
+      "videoUrl": ""
     }
   ]
 }
