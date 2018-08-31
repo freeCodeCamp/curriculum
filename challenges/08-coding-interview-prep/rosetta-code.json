@@ -13378,6 +13378,1144 @@
       }
     },
     {
+      "title": "Permutations",
+      "description": [
+        "Write a function that generates all  <a href=\"https://en.wikipedia.org/wiki/Permutation\">permutations</a> of <b>n</b> different objects. The returned array should be sorted."
+      ],
+      "solutions": [
+        "function perm (a) {\n  if (a.length < 2) return a;\n  var c, d, b = [];\n  for (c = 0; c < a.length; c++) {\n    var e = a.splice(c, 1),\n      f = perm(a);\n    for (d = 0; d < f.length; d++) b.push(e.concat(f[d]));\n    a.splice(c, 0, e[0])\n  }\n  b.sort(function(a, b) {\n    return a > b\n  })\n  return b\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>perm</code> should be a function.'",
+          "testString":
+            "assert(typeof perm=='function','<code>perm</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>perm('+JSON.stringify(permutationTests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(perm(permutationTests[0])),'<code>perm('+JSON.stringify(permutationTests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>perm('+JSON.stringify(permutationTests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(perm(permutationTests[0]),results[0],'<code>perm('+JSON.stringify(permutationTests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>perm('+JSON.stringify(permutationTests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(perm(permutationTests[1]),results[1],'<code>perm('+JSON.stringify(permutationTests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>perm('+JSON.stringify(permutationTests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(perm(permutationTests[2]),results[2],'<code>perm('+JSON.stringify(permutationTests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>perm('+JSON.stringify(permutationTests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(perm(permutationTests[3]),results[3],'<code>perm('+JSON.stringify(permutationTests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f6f",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function perm (a) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "let permutationTests=[",
+            "[1,2,3],",
+            "[5,6,7],",
+            "[\"a\",\"b\",\"c\"],",
+            "[\"hey\",\"hi\",\"hello\"]]",
+            "var results=[",
+            "[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]],",
+            "[[5,6,7],[5,7,6],[6,5,7],[6,7,5],[7,5,6],[7,6,5]],",
+            "[[\"a\",\"b\",\"c\"],[\"a\",\"c\",\"b\"],[\"b\",\"a\",\"c\"],[\"b\",\"c\",\"a\"],[\"c\",\"a\",\"b\"],[\"c\",\"b\",\"a\"]],",
+            "[[\"hello\",\"hey\",\"hi\"],[\"hello\",\"hi\",\"hey\"],[\"hey\",\"hello\",\"hi\"],[\"hey\",\"hi\",\"hello\"],[\"hi\",\"hello\",\"hey\"],[\"hi\",\"hey\",\"hello\"]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Pernicious numbers",
+      "description": [
+        "A <a href=\"https://en.wikipedia.org/wiki/Pernicious number\">pernicious number</a> is a positive integer whose <a href=\"http://rosettacode.org/wiki/population count\">population count</a> is a prime. The population count is the number of ones in the binary representation of a non-negative integer.",
+        "22 (which is 10110 in binary) has a population count of 3, which is prime, and therefore 22 is a pernicious number.",
+        "Write a function that checks if a given number is pernicious or not."
+      ],
+      "solutions": [
+        "function isPernicious (n) {\n  function isPrime(x) {\n    if (x < 2) return false;\n    for (var i = 2; i < x; i++) {\n      if (x % i == 0) return false;\n    }\n    return true;\n  }\n\n  function popCount(x) {\n    var count = 0;\n    while (x > 0) {\n      count += x % 2\n      x = x >> 1;\n    }\n    return count;\n  }\n\n  return isPrime(popCount(n))\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isPernicious</code> should be a function.'",
+          "testString":
+            "assert(typeof isPernicious=='function','<code>isPernicious</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isPernicious(3)</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isPernicious(3) == 'boolean','<code>isPernicious(3)</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(3)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPernicious(3),true,'<code>isPernicious(3)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(1)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPernicious(1),false,'<code>isPernicious(1)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(18)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPernicious(18),true,'<code>isPernicious(18)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(15)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPernicious(15),false,'<code>isPernicious(15)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(25)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPernicious(25),true,'<code>isPernicious(25)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(27)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPernicious(27),false,'<code>isPernicious(27)</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(10)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPernicious(10),true,'<code>isPernicious(10)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(36)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPernicious(36),true,'<code>isPernicious(36)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPernicious(16)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPernicious(16),false,'<code>isPernicious(16)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f71",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isPernicious (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Phrase reversals",
+      "description": [
+        "Given a string of space separated words containing the following phrase:",
+        "rosetta code phrase reversal",
+        "<ul><li>Reverse the string.</li>",
+        "<li>Reverse each individual word in the string, maintaining original string order.</li>",
+        "<li>Reverse the order of each word of the phrase, maintaining the order of characters in each word.</li></ul>",
+        "The result should be returned as an array with respective results ordered as above."
+      ],
+      "solutions": [
+        "function reversal (p) {\n  return [\n    p.split('').reverse().join(''),\n\n    p.split(' ').map(function(x) {\n      return x.split('').reverse().join('');\n    }).join(' '),\n\n    p.split(' ').reverse().join(' ')\n\n  ];\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>reversal</code> should be a function.'",
+          "testString":
+            "assert(typeof reversal=='function','<code>reversal</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>reversal(\"rosetta code phrase reversal\")</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(reversal(\"rosetta code phrase reversal\")),'<code>reversal(\"rosetta code phrase reversal\")</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>reversal(\"rosetta code phrase reversal\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(reversal(\"rosetta code phrase reversal\"),results[0],'<code>reversal(\"rosetta code phrase reversal\")</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>reversal(\"Reverse each individual word\")</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(reversal(\"Reverse each individual word\"),results[1],'<code>reversal(\"Reverse each individual word\")</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>reversal(\"maintaining the order of characters\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(reversal(\"maintaining the order of characters\"),results[2],'<code>reversal(\"maintaining the order of characters\")</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>reversal(\"the order of each word of the phrase\")</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(reversal(\"the order of each word of the phrase\"),results[3],'<code>reversal(\"the order of each word of the phrase\")</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>reversal(\"string of space separated words containing\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(reversal(\"string of space separated words containing\"),results[4],'<code>reversal(\"string of space separated words containing\")</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f72",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function reversal (p) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[\"lasrever esarhp edoc attesor\",\"attesor edoc esarhp lasrever\",\"reversal phrase code rosetta\"],",
+            "[\"drow laudividni hcae esreveR\",\"esreveR hcae laudividni drow\",\"word individual each Reverse\"],",
+            "[\"sretcarahc fo redro eht gniniatniam\",\"gniniatniam eht redro fo sretcarahc\",\"characters of order the maintaining\"],",
+            "[\"esarhp eht fo drow hcae fo redro eht\",\"eht redro fo hcae drow fo eht esarhp\",\"phrase the of word each of order the\"],",
+            "[\"gniniatnoc sdrow detarapes ecaps fo gnirts\",\"gnirts fo ecaps detarapes sdrow gniniatnoc\",\"containing words separated space of string\"]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Polynomial long division",
+      "description": [
+        "<cite>In algebra, <a href=\"https://en.wikipedia.org/wiki/Polynomial long division\">polynomial long division</a> is an algorithm for dividing a polynomial by another polynomial of the same or lower degree.</cite>",
+        "Let us suppose a polynomial is represented by a vector, $x$ (i.e., an ordered collection of <a href=\"https://en.wikipedia.org/wiki/Coefficient\">coefficients</a>) so that the $i$<sup>th</sup> element keeps the coefficient of $x^i$, and the multiplication by a monomial is a <i>shift</i>  of the vector's elements \"towards right\" (injecting ones from left) followed by a multiplication of each element by the coefficient of the monomial.",
+        "Write a function that takes 2 arrays as parameters. The first array contains the coefficients of polynomial of the dividend and the second array contains the coefficients of the divisor. The $i^{th}$ element is the coefficient of $x^i$. The function should return an array. The first element should be an array containing the coefficients of the quotient and the second element should be an array containing the coefficients of the remainder. Note that the lengths of the array should be equal to the length of the dividend array."
+      ],
+      "solutions": [
+        "function PolynomialLongDivision (n,d) {\n  function Solution(q, r) {\n    this.quotient = null;\n    this.remainder = null;\n    this.quotient = q;\n    this.remainder = r;\n  }\n\n  function polyDegree(p) {\n    for (var i = p.length - 1; i >= 0; --i) {\n      if (p[i] !== 0.0)\n        return i;\n    }\n    return Number.MIN_VALUE;\n  }\n\n  function polyShiftRight(p, places) {\n    if (places <= 0)\n      return p;\n    var pd = polyDegree(p);\n    var d = (function(s) {\n      var a = [];\n      while (s-- > 0)\n        a.push(0);\n      return a;\n    })(p.length);\n    for (var i = 0; i < p.length; i++)\n      d[i] = p[i];\n    for (var i = pd; i >= 0; --i) {\n      d[i + places] = d[i];\n      d[i] = 0.0;\n    }\n    return d;\n  }\n\n  function polyMultiply(p, m) {\n    for (var i = 0; i < p.length; ++i) {\n      p[i] *= m;\n    }\n  }\n\n  function polySubtract(p, s) {\n    for (var i = 0; i < p.length; ++i) {\n      p[i] -= s[i];\n    }\n  }\n\n  function polyLongDiv(n, d) {\n    var nd = polyDegree(n);\n    var dd = polyDegree(d);\n    var n2 = (function(s) {\n      var a = [];\n      while (s-- > 0)\n        a.push(0);\n      return a;\n    })(n.length);\n    for (var i = 0; i < n.length; i++)\n      n2[i] = n[i];\n    var q = (function(s) {\n      var a = [];\n      while (s-- > 0)\n        a.push(0);\n      return a;\n    })(n.length);\n    while ((nd >= dd)) {\n      var d2 = polyShiftRight(d, nd - dd);\n      q[nd - dd] = n2[nd] / d2[nd];\n      polyMultiply(d2, q[nd - dd]);\n      polySubtract(n2, d2);\n      nd = polyDegree(n2);\n    }\n    return new Solution(q, n2);\n  }\n  var sol=polyLongDiv(n,d)\n  return [sol.quotient,sol.remainder]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>PolynomialLongDivision</code> should be a function.'",
+          "testString":
+            "assert(typeof PolynomialLongDivision=='function','<code>PolynomialLongDivision</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[0][0])+','+JSON.stringify(polyLongTests[0][1])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(PolynomialLongDivision(polyLongTests[0][0].slice(),polyLongTests[0][1].slice())),'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[0][0])+','+JSON.stringify(polyLongTests[0][1])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[0][0])+','+JSON.stringify(polyLongTests[0][1])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialLongDivision(polyLongTests[0][0].slice(),polyLongTests[0][1].slice()),results[0],'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[0][0])+','+JSON.stringify(polyLongTests[0][1])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[1][0])+','+JSON.stringify(polyLongTests[1][1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialLongDivision(polyLongTests[1][0].slice(),polyLongTests[1][1].slice()),results[1],'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[1][0])+','+JSON.stringify(polyLongTests[1][1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[2][0])+','+JSON.stringify(polyLongTests[2][1])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialLongDivision(polyLongTests[2][0].slice(),polyLongTests[2][1].slice()),results[2],'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[2][0])+','+JSON.stringify(polyLongTests[2][1])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[3][0])+','+JSON.stringify(polyLongTests[3][1])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialLongDivision(polyLongTests[3][0].slice(),polyLongTests[3][1].slice()),results[3],'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[3][0])+','+JSON.stringify(polyLongTests[3][1])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[4][0])+','+JSON.stringify(polyLongTests[4][1])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialLongDivision(polyLongTests[4][0].slice(),polyLongTests[4][1].slice()),results[4],'<code>PolynomialLongDivision('+JSON.stringify(polyLongTests[4][0])+','+JSON.stringify(polyLongTests[4][1])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f80",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function PolynomialLongDivision (n,d) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "let polyLongTests=[",
+            "[[-42,0,-12,1],[-3,1,0,0]],",
+            "[[-4,0,-2,1],[-3,1,0,0]],",
+            "[[-42,0,-12,1],[1,-2,1,0]],",
+            "[[-3,2,-4,1],[2,1,0,0]],",
+            "[[-7,2,-13,4],[-2,3,1,0]]]",
+            "var results=[",
+            "[[-27,-9,1,0],[-123,0,0,0]],",
+            "[[3,1,1,0],[5,0,0,0]],",
+            "[[-10,1,0,0],[-32,-21,0,0]],",
+            "[[14,-6,1,0],[-31,0,0,0]],",
+            "[[-25,4,0,0],[-57,85,0,0]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Polynomial regression",
+      "description": [
+        "Find an approximating polynomial of known degree for a given data.",
+        "Example:",
+        "For input data:",
+        "x = {0,  1,  2,  3,  4,  5,  6,   7,   8,   9,   10};",
+        "y = {1,  6,  17, 34, 57, 86, 121, 162, 209, 262, 321};",
+        "The approximating polynomial is:",
+        "3 x<sup>2</sup> + 2 x + 1",
+        "Here, the polynomial's coefficients are (3, 2, 1)."
+      ],
+      "solutions": [
+        "function PolynomialRegression (x, y) {\n  function average(arr) {\n    var av = 0;\n    for (var i = 0; i < arr.length; i++) {\n      av += arr[i];\n    }\n    return av / arr.length;\n  }\n\n  var n = x.length;\n  var r = new Array(n);\n  for (var i = 0; i < n; i++) r[i] = i;\n  var xm = average(x);\n  var ym = average(y);\n  var x2m = average(r.map(a => a * a));\n  var x3m = average(r.map(a => a * a * a));\n  var x4m = average(r.map(a => a * a * a * a));\n  var xym = 0.0;\n  for (var i = 0; i < x.length && i < y.length; ++i) {\n    xym += x[i] * y[i];\n  }\n  xym /= Math.min(x.length, y.length);\n  var x2ym = 0.0;\n  for (var i = 0; i < x.length && i < y.length; ++i) {\n    x2ym += x[i] * x[i] * y[i];\n  }\n  x2ym /= Math.min(x.length, y.length);\n\n  var sxx = x2m - xm * xm;\n  var sxy = xym - xm * ym;\n  var sxx2 = x3m - xm * x2m;\n  var sx2x2 = x4m - x2m * x2m;\n  var sx2y = x2ym - x2m * ym;\n\n  var b = (sxy * sx2x2 - sx2y * sxx2) / (sxx * sx2x2 - sxx2 * sxx2);\n  var c = (sx2y * sxx - sxy * sxx2) / (sxx * sx2x2 - sxx2 * sxx2);\n  var a = ym - b * xm - c * x2m;\n\n  var abc = xx => a + b * xx + c * xx * xx;\n  return [a,b,c]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>PolynomialRegression</code> should be a function.'",
+          "testString":
+            "assert(typeof PolynomialRegression=='function','<code>PolynomialRegression</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialRegression('+JSON.stringify(polyRegTests[0][0])+','+JSON.stringify(polyRegTests[0][1])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(PolynomialRegression(polyRegTests[0][0],polyRegTests[0][1])),'<code>PolynomialRegression('+JSON.stringify(polyRegTests[0][0])+','+JSON.stringify(polyRegTests[0][1])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialRegression('+JSON.stringify(polyRegTests[0][0])+','+JSON.stringify(polyRegTests[0][1])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialRegression(polyRegTests[0][0],polyRegTests[0][1]),results[0],'<code>PolynomialRegression('+JSON.stringify(polyRegTests[0][0])+','+JSON.stringify(polyRegTests[0][1])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialRegression('+JSON.stringify(polyRegTests[1][0])+','+JSON.stringify(polyRegTests[1][1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialRegression(polyRegTests[1][0],polyRegTests[1][1]),results[1],'<code>PolynomialRegression('+JSON.stringify(polyRegTests[1][0])+','+JSON.stringify(polyRegTests[1][1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>PolynomialRegression('+JSON.stringify(polyRegTests[2][0])+','+JSON.stringify(polyRegTests[2][1])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(PolynomialRegression(polyRegTests[2][0],polyRegTests[2][1]),results[2],'<code>PolynomialRegression('+JSON.stringify(polyRegTests[2][0])+','+JSON.stringify(polyRegTests[2][1])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f81",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function PolynomialRegression (x, y) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "let polyRegTests=[",
+            "[[0,1,2,3,4,5,6,7,8,9,10],[2,4,6,8,10,12,14,16,18,20,22]],",
+            "[[0,1,2,3,4,5,6,7,8,9,10],[-1,1,5,11,19,29,41,55,71,89,109]],",
+            "[[0,1,2,3,4,5,6,7,8,9,10],[1,6,17,34,57,86,121,162,209,262,321]]]",
+            "var results=[",
+            "[2,2,0],",
+            "[-1,1,1],",
+            "[1,2,3]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Population count",
+      "description": [
+        "The <i><a href=\"https://en.wikipedia.org/wiki/Hamming weight\">population count</a></i>  is the number of  <b>1</b>s  (ones)  in the binary representation of a non-negative integer.",
+        "<i>Population count</i> is also known as  <i>pop count</i>,  <i>popcount</i>,  <i>sideways sum</i>,  and  <i>Hamming weight</i>.",
+        "For example,  <b>5</b>  (which is  <b>101</b>  in binary)  has a population count of  <b>2</b>.",
+        "<i><a href=\"http://mathworld.wolfram.com/EvilNumber.html\">Evil numbers</a></i>  are non-negative integers  that have an  <i>even</i>  population count.",
+        "<i><a href=\"http://mathworld.wolfram.com/OdiousNumber.html\">Odious numbers</a></i>  are positive integers that have an  <i>odd</i>  population count.",
+        "Write a function that takes a number as parameter and returns an array. The first element should be the population count. The second element should be true or false if the number is evil or not. The third element should be true or false if the number is odious or not."
+      ],
+      "solutions": [
+        "function popCountNumber (n) {\n  var popCount=0;\n  while(n!=0){\n    popCount+=n%2;\n    n>>=1;\n  }\n\n  return [popCount,popCount%2==0,popCount%2==1]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>popCountNumber</code> should be a function.'",
+          "testString":
+            "assert(typeof popCountNumber=='function','<code>popCountNumber</code> should be a function.');"
+        },
+        {
+          "text": "'<code>popCountNumber(7)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(popCountNumber(7)),'<code>popCountNumber(7)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>popCountNumber(7)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(popCountNumber(7),results[0],'<code>popCountNumber(7)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>popCountNumber(89)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(popCountNumber(89),results[1],'<code>popCountNumber(89)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>popCountNumber(44)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(popCountNumber(44),results[2],'<code>popCountNumber(44)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>popCountNumber(29)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(popCountNumber(29),results[3],'<code>popCountNumber(29)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>popCountNumber(85)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(popCountNumber(85),results[4],'<code>popCountNumber(85)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f83",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function popCountNumber (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[3,false,true],",
+            "[4,true,false],",
+            "[3,false,true],",
+            "[4,true,false],",
+            "[4,true,false]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Power set",
+      "description": [
+        "A  <a href=\"http://rosettacode.org/wiki/set\">set</a>  is a collection (container) of certain values, without any particular order, and no repeated values.",
+        "It corresponds with a finite set in mathematics.",
+        "A set can be implemented as an associative array (partial mapping) in which the value of each key-value pair is ignored.",
+        "Given a set S, the <a href=\"https://en.wikipedia.org/wiki/Power_set\">power set</a> (or powerset) of S, written P(S), or 2<sup>S</sup>, is the set of all subsets of S.",
+        "Write a function that takes an array as parameter and returns the powerset as an array. Note: Sort the array before returning it."
+      ],
+      "solutions": [
+        "function powerset (ary) {\n    var ps = [[]];\n    for (var i=0; i < ary.length; i++) {\n        for (var j = 0, len = ps.length; j < len; j++) {\n            ps.push(ps[j].concat(ary[i]));\n        }\n    }\n    ps.sort()\n    return ps;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>powerset</code> should be a function.'",
+          "testString":
+            "assert(typeof powerset=='function','<code>powerset</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>powerset('+JSON.stringify(powersetTests[0])+')</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(powerset(powersetTests[0])),'<code>powerset('+JSON.stringify(powersetTests[0])+')</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>powerset('+JSON.stringify(powersetTests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(powerset(powersetTests[0]),results[0],'<code>powerset('+JSON.stringify(powersetTests[0])+')</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>powerset('+JSON.stringify(powersetTests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(powerset(powersetTests[1]),results[1],'<code>powerset('+JSON.stringify(powersetTests[1])+')</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>powerset('+JSON.stringify(powersetTests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(powerset(powersetTests[2]),results[2],'<code>powerset('+JSON.stringify(powersetTests[2])+')</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>powerset('+JSON.stringify(powersetTests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(powerset(powersetTests[3]),results[3],'<code>powerset('+JSON.stringify(powersetTests[3])+')</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>powerset('+JSON.stringify(powersetTests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(powerset(powersetTests[4]),results[4],'<code>powerset('+JSON.stringify(powersetTests[4])+')</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f84",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function powerset (ary) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "let powersetTests=[",
+            "[1,2],",
+            "[7,8],",
+            "[1,2,3],",
+            "[4,5,6],",
+            "[1,2,3,4]]",
+            "var results=[",
+            "[[],[1],[1,2],[2]],",
+            "[[],[7],[7,8],[8]],",
+            "[[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]],",
+            "[[],[4],[4,5],[4,5,6],[4,6],[5],[5,6],[6]],",
+            "[[],[1],[1,2],[1,2,3],[1,2,3,4],[1,2,4],[1,3],[1,3,4],[1,4],[2],[2,3],[2,3,4],[2,4],[3],[3,4],[4]]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Price fraction",
+      "description": [
+        "A friend of mine runs a pharmacy.  He has a specialized function in his Dispensary application which receives a decimal value of currency and replaces it to a standard value.  This value is regulated by a government department.",
+        "Given a floating point value between  0.00  and  1.00,  rescale according to the following table:",
+        ">=  0.00  <  0.06  :=  0.10",
+        ">=  0.06  <  0.11  :=  0.18",
+        ">=  0.11  <  0.16  :=  0.26",
+        ">=  0.16  <  0.21  :=  0.32",
+        ">=  0.21  <  0.26  :=  0.38",
+        ">=  0.26  <  0.31  :=  0.44",
+        ">=  0.31  <  0.36  :=  0.50",
+        ">=  0.36  <  0.41  :=  0.54",
+        ">=  0.41  <  0.46  :=  0.58",
+        ">=  0.46  <  0.51  :=  0.62",
+        ">=  0.51  <  0.56  :=  0.66",
+        ">=  0.56  <  0.61  :=  0.70",
+        ">=  0.61  <  0.66  :=  0.74",
+        ">=  0.66  <  0.71  :=  0.78",
+        ">=  0.71  <  0.76  :=  0.82",
+        ">=  0.76  <  0.81  :=  0.86",
+        ">=  0.81  <  0.86  :=  0.90",
+        ">=  0.86  <  0.91  :=  0.94",
+        ">=  0.91  <  0.96  :=  0.98",
+        ">=  0.96  <  1.01  :=  1.00"
+      ],
+      "solutions": [
+        "function getScaleFactor (v) {\n  var values=['0.10','0.18','0.26','0.32','0.38','0.44','0.50','0.54', '0.58','0.62','0.66','0.70','0.74','0.78','0.82','0.86', '0.90','0.94','0.98','1.00']\n  return parseFloat(values[(v * 100 - 1) / 5 | 0]);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>getScaleFactor</code> should be a function.'",
+          "testString":
+            "assert(typeof getScaleFactor=='function','<code>getScaleFactor</code> should be a function.');"
+        },
+        {
+          "text": "'<code>getScaleFactor(0.01)</code> should return a number.'",
+          "testString":
+            "assert(typeof getScaleFactor(0.01) == 'number','<code>getScaleFactor(0.01)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>getScaleFactor(0.01)</code> should return <code>0.1</code>.'",
+          "testString":
+            "assert.equal(getScaleFactor(0.01),0.1,'<code>getScaleFactor(0.01)</code> should return <code>0.1</code>.');"
+        },
+        {
+          "text":
+            "'<code>getScaleFactor(0.41)</code> should return <code>0.58</code>.'",
+          "testString":
+            "assert.equal(getScaleFactor(0.41),0.58,'<code>getScaleFactor(0.41)</code> should return <code>0.58</code>.');"
+        },
+        {
+          "text":
+            "'<code>getScaleFactor(0.21)</code> should return <code>0.38</code>.'",
+          "testString":
+            "assert.equal(getScaleFactor(0.21),0.38,'<code>getScaleFactor(0.21)</code> should return <code>0.38</code>.');"
+        },
+        {
+          "text":
+            "'<code>getScaleFactor(0.96)</code> should return <code>1</code>.'",
+          "testString":
+            "assert.equal(getScaleFactor(0.96),1,'<code>getScaleFactor(0.96)</code> should return <code>1</code>.');"
+        },
+        {
+          "text":
+            "'<code>getScaleFactor(0.32)</code> should return <code>0.5</code>.'",
+          "testString":
+            "assert.equal(getScaleFactor(0.32),0.5,'<code>getScaleFactor(0.32)</code> should return <code>0.5</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f86",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function getScaleFactor (v) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Primality by trial division",
+      "description": [
+        "Write a boolean function that tells whether a given integer is prime.",
+        "Remember that  <b>1</b>  and all non-positive numbers are not prime.",
+        "Use trial division.",
+        "Even numbers over two may be eliminated right away.",
+        "A loop from  <b>3</b>  to  <b>&radic; </b> will suffice,  but other loops are allowed."
+      ],
+      "solutions": [
+        "function isPrime (n) {\n  if (n == 2 || n == 3 || n == 5 || n == 7) {\n    return true;\n  } else if ((n < 2) || (n % 2 == 0)) {\n    return false;\n  } else {\n    for (var i = 3; i <= Math.sqrt(n); i += 2) {\n      if (n % i == 0)\n        return false;\n    }\n    return true;\n  }\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isPrime</code> should be a function.'",
+          "testString":
+            "assert(typeof isPrime=='function','<code>isPrime</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isPrime(2)</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isPrime(2) == 'boolean','<code>isPrime(2)</code> should return a boolean.');"
+        },
+        {
+          "text": "'<code>isPrime(2)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPrime(2),true,'<code>isPrime(2)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(3)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPrime(3),true,'<code>isPrime(3)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(4)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPrime(4),false,'<code>isPrime(4)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(5)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPrime(5),true,'<code>isPrime(5)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(6)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPrime(6),false,'<code>isPrime(6)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(7)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPrime(7),true,'<code>isPrime(7)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPrime(72)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPrime(72),false,'<code>isPrime(72)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(19)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPrime(19),true,'<code>isPrime(19)</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isPrime(36)</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isPrime(36),false,'<code>isPrime(36)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isPrime(97)</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isPrime(97),true,'<code>isPrime(97)</code> should return <code>true</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f87",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isPrime (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Prime decomposition",
+      "description": [
+        "The prime decomposition of a number is defined as a list of prime numbers which when all multiplied together, are equal to that number.",
+        "12 = 2 &times; 2 &times; 3,  so its prime decomposition is  {2, 2, 3}",
+        "Write a function which returns an <a href=\"http://rosettacode.org/wiki/Arrays\">array</a> which contains the prime decomposition of a given number  $n$  greater than  <b>1</b>."
+      ],
+      "solutions": [
+        "function runFactorize (n) {\n  if (n <= 3)\n      return [n];\n\n  var ans = [];\n  var done = false;\n  while (!done)\n  {\n    if (n%2 === 0){\n        ans.push(2);\n        n /= 2;\n        continue;\n    }\n    if (n%3 === 0){\n        ans.push(3);\n        n /= 3;\n        continue;\n    }\n    if ( n === 1)\n      return ans;\n    var sr = Math.sqrt(n);\n    done = true;\n    // try to divide the checked number by all numbers till its square root.\n    for (var i=6; i<=sr; i+=6){\n        if (n%(i-1) === 0){ // is n divisible by i-1?\n            ans.push( (i-1) );\n            n /= (i-1);\n            done = false;\n            break;\n        }\n        if (n%(i+1) === 0){ // is n divisible by i+1?\n            ans.push( (i+1) );\n            n /= (i+1);\n            done = false;\n            break;\n        }\n    }\n  }\n  ans.push( n );\n  return ans;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>runFactorize</code> should be a function.'",
+          "testString":
+            "assert(typeof runFactorize=='function','<code>runFactorize</code> should be a function.');"
+        },
+        {
+          "text": "'<code>runFactorize(1024)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(runFactorize(1024)),'<code>runFactorize(1024)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>runFactorize(1024)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(runFactorize(1024),results[0],'<code>runFactorize(1024)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>runFactorize(2047)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(runFactorize(2047),results[1],'<code>runFactorize(2047)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>runFactorize(3684)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(runFactorize(3684),results[2],'<code>runFactorize(3684)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>runFactorize(8388607)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(runFactorize(8388607),results[3],'<code>runFactorize(8388607)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>runFactorize(536870911)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(runFactorize(536870911),results[4],'<code>runFactorize(536870911)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f88",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function runFactorize (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[2,2,2,2,2,2,2,2,2,2],",
+            "[23,89],",
+            "[2,2,3,307],",
+            "[47,178481],",
+            "[233,1103,2089]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Primes - allocate descendants to their ancestors",
+      "description": [
+        "The concept, rather simple, is to add the decomposition into prime factors of a number to get its 'ancestors'.",
+        "The problem is to calculate the total number of descendants for a given number.",
+        "You only have to consider the prime factors < 100.",
+        "A grand total of the descendants has to be printed at the end of the list.",
+        "Example :",
+        "46 = 2*23 --> 2+23 = 25, is the parent of 46.",
+        "25 = 5*5  --> 5+5  = 10, is the parent of 25.",
+        "10 = 2*5  --> 2+5  = 7,  is the parent of 10.",
+        "7 is a prime factor and, as such, has no parent.46 has 3 ancestors (7, 10 and 25).",
+        "46 has 557 descendants.",
+        "[46] Level: 3",
+        "Ancestors: 7, 10, 25",
+        "Descendants: 557"
+      ],
+      "solutions": [
+        "function descendants (n) {\n  function get_primes(max) {\n    if (max < 2)\n      return []\n    var lprimes = [2]\n    for (var x = 3, l = max + 1; x < l; x += 2) {\n      var f = true\n      for (var p of lprimes) {\n        if (x % p == 0) {\n          f = false;\n          break\n        }\n      }\n      if (f)\n        lprimes.push(x)\n    }\n    return lprimes\n  }\n  var descendants = new Array(n + 1)\n  for (var i = 0; i < descendants.length; i++)\n    descendants[i] = []\n\n  var ancestors = new Array(n + 1)\n  for (var i = 0; i < ancestors.length; i++)\n    ancestors[i] = []\n\n  var primes = get_primes(n)\n  for (var p of primes) {\n    descendants[p].push(p)\n    for (var s = 1; s < descendants.length - p; s++) {\n      for (var pr of descendants[s])\n        descendants[s + p].push(p * pr)\n    }\n  }\n\n  for (var p of primes.concat([4]))\n    descendants[p].pop()\n\n  return descendants[n].length\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>descendants</code> should be a function.'",
+          "testString":
+            "assert(typeof descendants=='function','<code>descendants</code> should be a function.');"
+        },
+        {
+          "text": "'<code>descendants(7)</code> should return a number.'",
+          "testString":
+            "assert(typeof descendants(7) == 'number','<code>descendants(7)</code> should return a number.');"
+        },
+        {
+          "text": "'<code>descendants(7)</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(descendants(7),2,'<code>descendants(7)</code> should return <code>2</code>.');"
+        },
+        {
+          "text":
+            "'<code>descendants(10)</code> should return <code>5</code>.'",
+          "testString":
+            "assert.equal(descendants(10),5,'<code>descendants(10)</code> should return <code>5</code>.');"
+        },
+        {
+          "text":
+            "'<code>descendants(25)</code> should return <code>52</code>.'",
+          "testString":
+            "assert.equal(descendants(25),52,'<code>descendants(25)</code> should return <code>52</code>.');"
+        },
+        {
+          "text":
+            "'<code>descendants(33)</code> should return <code>140</code>.'",
+          "testString":
+            "assert.equal(descendants(33),140,'<code>descendants(33)</code> should return <code>140</code>.');"
+        },
+        {
+          "text":
+            "'<code>descendants(46)</code> should return <code>557</code>.'",
+          "testString":
+            "assert.equal(descendants(46),557,'<code>descendants(46)</code> should return <code>557</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f89",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function descendants (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Primorial numbers",
+      "description": [
+        "Primorial numbers are those formed by multiplying successive prime numbers.",
+        "The primorial number series is:",
+        "primorial(0) = 1(by definition)",
+        "primorial(1) = 2(2)",
+        "primorial(2) = 6(2*3)",
+        "primorial(3) = 30(2*3*5)",
+        "primorial(4) = 210(2*3*5*7)",
+        "primorial(5) = 2310(2*3*5*7*11)",
+        "primorial(6) = 30030(2*3*5*7*11*13)",
+        "To express this mathematically,  <b>primorial<sub><i>n</i></sub></b>  is the product of the first  <i>n</i>  (successive) primes:",
+        "$primorial_n = \\prod_{k=1}^n prime_k$",
+        "where  $prime_k$  is the  <i>k</i><sup><i>th</i></sup>  prime number.",
+        "In some sense, generating primorial numbers is similar to factorials.",
+        "As with factorials, primorial numbers get large quickly.",
+        "Write a function that takes $n$ as parameter and returns the $n^{th}$ primorial number."
+      ],
+      "solutions": [
+        "function primorial (n) {\n  function genSieve(limit) {\n    var composite = new Array(limit);\n    composite[0] = composite[1] = true;\n    var max = (Math.sqrt(limit) | 0);\n    for (var n = 2; n <= max; n++) {\n      if (!composite[n]) {\n        for (var k = n * n; k < limit; k += n) {\n          composite[k] = true;\n        };\n      }\n    };\n    return composite;\n  }\n  var sieveLimit = 1300000\n  var sieve = genSieve(sieveLimit)\n\n  if (n === 0)\n    return 1;\n  var result = 1;\n  for (var i = 0; i < sieveLimit && n > 0; i++) {\n    if (sieve[i])\n      continue;\n    result = result * i;\n    n--;\n  };\n  return result;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>primorial</code> should be a function.'",
+          "testString":
+            "assert(typeof primorial=='function','<code>primorial</code> should be a function.');"
+        },
+        {
+          "text": "'<code>primorial(1)</code> should return a number.'",
+          "testString":
+            "assert(typeof primorial(1) == 'number','<code>primorial(1)</code> should return a number.');"
+        },
+        {
+          "text": "'<code>primorial(1)</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(primorial(1),2,'<code>primorial(1)</code> should return <code>2</code>.');"
+        },
+        {
+          "text": "'<code>primorial(2)</code> should return <code>6</code>.'",
+          "testString":
+            "assert.equal(primorial(2),6,'<code>primorial(2)</code> should return <code>6</code>.');"
+        },
+        {
+          "text": "'<code>primorial(3)</code> should return <code>30</code>.'",
+          "testString":
+            "assert.equal(primorial(3),30,'<code>primorial(3)</code> should return <code>30</code>.');"
+        },
+        {
+          "text": "'<code>primorial(4)</code> should return <code>210</code>.'",
+          "testString":
+            "assert.equal(primorial(4),210,'<code>primorial(4)</code> should return <code>210</code>.');"
+        },
+        {
+          "text":
+            "'<code>primorial(5)</code> should return <code>2310</code>.'",
+          "testString":
+            "assert.equal(primorial(5),2310,'<code>primorial(5)</code> should return <code>2310</code>.');"
+        },
+        {
+          "text":
+            "'<code>primorial(6)</code> should return <code>30030</code>.'",
+          "testString":
+            "assert.equal(primorial(6),30030,'<code>primorial(6)</code> should return <code>30030</code>.');"
+        },
+        {
+          "text":
+            "'<code>primorial(7)</code> should return <code>510510</code>.'",
+          "testString":
+            "assert.equal(primorial(7),510510,'<code>primorial(7)</code> should return <code>510510</code>.');"
+        },
+        {
+          "text":
+            "'<code>primorial(8)</code> should return <code>9699690</code>.'",
+          "testString":
+            "assert.equal(primorial(8),9699690,'<code>primorial(8)</code> should return <code>9699690</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f8a",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function primorial (n) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Problem of Apollonius",
+      "description": [
+        "Implement a solution to the Problem of Apollonius  (<a href=\"https://en.wikipedia.org/wiki/Problem_of_Apollonius\">description on Wikipedia</a>)  which is the problem of finding the circle that is tangent to three specified circles.  There is an <a href=\"https://en.wikipedia.org/wiki/Problem_of_Apollonius#Algebraic_solutions\">algebraic solution</a> which is pretty straightforward.",
+        "Write a function that takes 3 arrays and 3 numbers as parameters. The 3 arrays represent the circles ([x,y,radius]). The three numbers represents whether the resultant circle should be internally (-1) or extenally tangent (1) to the respective circles. The function should return the resultant circle as an array in the form: [x,y,radius]."
+      ],
+      "solutions": [
+        "function solveApollonius (c1, c2, c3, s1, s2, s3) {\n  var x1 = c1[0];\n  var y1 = c1[1];\n  var r1 = c1[2];\n  var x2 = c2[0];\n  var y2 = c2[1];\n  var r2 = c2[2];\n  var x3 = c3[0];\n  var y3 = c3[1];\n  var r3 = c3[2];\n  var v11 = 2 * x2 - 2 * x1;\n  var v12 = 2 * y2 - 2 * y1;\n  var v13 = x1 * x1 - x2 * x2 + y1 * y1 - y2 * y2 - r1 * r1 + r2 * r2;\n  var v14 = 2 * s2 * r2 - 2 * s1 * r1;\n  var v21 = 2 * x3 - 2 * x2;\n  var v22 = 2 * y3 - 2 * y2;\n  var v23 = x2 * x2 - x3 * x3 + y2 * y2 - y3 * y3 - r2 * r2 + r3 * r3;\n  var v24 = 2 * s3 * r3 - 2 * s2 * r2;\n  var w12 = v12 / v11;\n  var w13 = v13 / v11;\n  var w14 = v14 / v11;\n  var w22 = v22 / v21 - w12;\n  var w23 = v23 / v21 - w13;\n  var w24 = v24 / v21 - w14;\n  var P = -w23 / w22;\n  var Q = w24 / w22;\n  var M = -w12 * P - w13;\n  var N = w14 - w12 * Q;\n  var a = N * N + Q * Q - 1;\n  var b = 2 * M * N - 2 * N * x1 + 2 * P * Q - 2 * Q * y1 + 2 * s1 * r1;\n  var c = x1 * x1 + M * M - 2 * M * x1 + P * P + y1 * y1 - 2 * P * y1 - r1 * r1;\n  var D = b * b - 4 * a * c;\n  var rs = (-b - Math.sqrt(D)) / (2 * a);\n  var xs = M + N * rs;\n  var ys = P + Q * rs;\n\n  return [xs,ys,rs].map((n)=>Math.round(n*1000)/1000)\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>solveApollonius</code> should be a function.'",
+          "testString":
+            "assert(typeof solveApollonius=='function','<code>solveApollonius</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+',1,1,1)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(solveApollonius(tests[0][0],tests[0][1],tests[0][2],1,1,1)),'<code>solveApollonius('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+',1,1,1)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+',1,1,1)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(solveApollonius(tests[0][0],tests[0][1],tests[0][2],1,1,1),results[0],'<code>solveApollonius('+JSON.stringify(tests[0][0])+','+JSON.stringify(tests[0][1])+','+JSON.stringify(tests[0][2])+',1,1,1)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+','+JSON.stringify(tests[1][2])+',-1,-1,-1)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(solveApollonius(tests[1][0],tests[1][1],tests[1][2],-1,-1,-1),results[1],'<code>solveApollonius('+JSON.stringify(tests[1][0])+','+JSON.stringify(tests[1][1])+','+JSON.stringify(tests[1][2])+',-1,-1,-1)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+','+JSON.stringify(tests[2][2])+',-1,1,1)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(solveApollonius(tests[2][0],tests[2][1],tests[2][2],-1,1,1),results[2],'<code>solveApollonius('+JSON.stringify(tests[2][0])+','+JSON.stringify(tests[2][1])+','+JSON.stringify(tests[2][2])+',-1,1,1)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+','+JSON.stringify(tests[3][2])+',1,-1,-1)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(solveApollonius(tests[3][0],tests[3][1],tests[3][2],1,-1,-1),results[3],'<code>solveApollonius('+JSON.stringify(tests[3][0])+','+JSON.stringify(tests[3][1])+','+JSON.stringify(tests[3][2])+',1,-1,-1)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+','+JSON.stringify(tests[4][2])+',1,-1,1)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(solveApollonius(tests[4][0],tests[4][1],tests[4][2],1,-1,1),results[4],'<code>solveApollonius('+JSON.stringify(tests[4][0])+','+JSON.stringify(tests[4][1])+','+JSON.stringify(tests[4][2])+',1,-1,1)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>solveApollonius('+JSON.stringify(tests[5][0])+','+JSON.stringify(tests[5][1])+','+JSON.stringify(tests[5][2])+',-1,1,-1)</code> should return <code>'+JSON.stringify(results[5])+'</code>.'",
+          "testString":
+            "assert.deepEqual(solveApollonius(tests[5][0],tests[5][1],tests[5][2],-1,1,-1),results[5],'<code>solveApollonius('+JSON.stringify(tests[5][0])+','+JSON.stringify(tests[5][1])+','+JSON.stringify(tests[5][2])+',-1,1,-1)</code> should return <code>'+JSON.stringify(results[5])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f8d",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function solveApollonius (c1, c2, c3, s1, s2, s3) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var tests=[",
+            "[[0,0,1],[4,0,1],[2,4,2]],",
+            "[[0,0,1],[4,0,1],[2,4,2]],",
+            "[[1,0,1],[3,2,1],[10,4,2]],",
+            "[[0,2,0],[3,0,1],[5,4,2]],",
+            "[[0,0,3],[4,0,1],[6,4,2]],",
+            "[[0,4,1],[4,0,1],[7,4,2]]]",
+            "var results=[",
+            "[2,2.1,3.9],",
+            "[2,0.833,1.167],",
+            "[7.652,1.088,5.74],",
+            "[1.671,2.362,1.71],",
+            "[5.1,0,-2.1],",
+            "[2.88,1.46,2.84]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Pythagorean triples",
+      "description": [
+        "A <a href=\"https://en.wikipedia.org/wiki/Pythagorean_triple\">Pythagorean triple</a> is defined as three positive integers $(a, b, c)$ where $a < b < c$, and $a^2+b^2=c^2.$",
+        "They are called primitive triples if $a, b, c$ are co-prime, that is, if their pairwise greatest common divisors ${\\rm gcd}(a, b) = {\\rm gcd}(a, c) = {\\rm gcd}(b, c) = 1$.",
+        "Because of their relationship through the Pythagorean theorem, a, b, and c are co-prime if a and b are co-prime (${\\rm gcd}(a, b) = 1$).",
+        "Each triple forms the length of the sides of a right triangle, whose perimeter is $P=a+b+c$.",
+        "The task is to determine how many Pythagorean triples there are with a perimeter no larger than a given value."
+      ],
+      "solutions": [
+        "function pythagoreanTriplets (maxPerim) {\n  const pythTripleCount = (p, maxPerim) => {\n        const xs = enumFromTo(1, Math.floor(maxPerim / 2));\n\n        return  concatMap(x =>\n                concatMap(y =>\n                concatMap(z =>\n                    ((x + y + z <= maxPerim) &&\n                        (x * x + y * y === z * z) &&\n                        p(x, y, z)) ? [\n                        [x, y, z]\n                    ] : [],\n                xs.slice(y)), xs.slice(x)), xs\n            )\n            .length;\n    };\n\n    const concatMap = (f, xs) =>\n        xs.length > 0 ? [].concat.apply([], xs.map(f)) : [];\n\n    const enumFromTo = (m, n) =>\n        (typeof m !== 'number' ? (\n            enumFromToChar\n        ) : enumFromToInt)\n        .apply(null, [m, n]);\n\n    const enumFromToInt = (m, n) =>\n        n >= m ? Array.from({\n            length: Math.floor(n - m) + 1\n        }, (_, i) => m + i) : [];\n\n    const gcd = (x, y) => {\n        const _gcd = (a, b) => (b === 0 ? a : _gcd(b, a % b));\n        return _gcd(Math.abs(x), Math.abs(y));\n    };\n\n    return [pythTripleCount(x=>true,maxPerim),pythTripleCount((x, y, _) => gcd(x, y) === 1, maxPerim)]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>pythagoreanTriplets</code> should be a function.'",
+          "testString":
+            "assert(typeof pythagoreanTriplets=='function','<code>pythagoreanTriplets</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>pythagoreanTriplets(20)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(pythagoreanTriplets(20)),'<code>pythagoreanTriplets(20)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>pythagoreanTriplets(20)</code> should return <code>'+JSON.stringify(results[0])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pythagoreanTriplets(20),results[0],'<code>pythagoreanTriplets(20)</code> should return <code>'+JSON.stringify(results[0])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pythagoreanTriplets(30)</code> should return <code>'+JSON.stringify(results[1])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pythagoreanTriplets(30),results[1],'<code>pythagoreanTriplets(30)</code> should return <code>'+JSON.stringify(results[1])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pythagoreanTriplets(50)</code> should return <code>'+JSON.stringify(results[2])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pythagoreanTriplets(50),results[2],'<code>pythagoreanTriplets(50)</code> should return <code>'+JSON.stringify(results[2])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pythagoreanTriplets(70)</code> should return <code>'+JSON.stringify(results[3])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pythagoreanTriplets(70),results[3],'<code>pythagoreanTriplets(70)</code> should return <code>'+JSON.stringify(results[3])+'</code>.');"
+        },
+        {
+          "text":
+            "'<code>pythagoreanTriplets(100)</code> should return <code>'+JSON.stringify(results[4])+'</code>.'",
+          "testString":
+            "assert.deepEqual(pythagoreanTriplets(100),results[4],'<code>pythagoreanTriplets(100)</code> should return <code>'+JSON.stringify(results[4])+'</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f91",
+      "challengeType": 5,
+      "releasedOn": "August 22, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function pythagoreanTriplets (maxPerim) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var results=[",
+            "[1,1],",
+            "[3,2],",
+            "[6,3],",
+            "[10,5],",
+            "[17,7]]"
+          ]
+        }
+      }
+    },
+    {
       "title": "Sailors, coconuts and a monkey problem",
       "description": [
         " <p>",
