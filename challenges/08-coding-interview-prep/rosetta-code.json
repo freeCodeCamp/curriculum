@@ -1049,6 +1049,90 @@
       }
     },
     {
+      "title": "CUSIP",
+      "description": [
+        "A  <b>CUSIP</b>  is a nine-character alphanumeric code that identifies a North American financial security for the purposes of facilitating clearing and settlement of trades. The CUSIP was adopted as an American National Standard under Accredited Standards X9.6.",
+        "Write a function that takes a string as a parameter and checks if the string is valid CUSIP."
+      ],
+      "solutions": [
+        "function isCusip (s) {\n  if (s.length != 9) return false;\n  var sum = 0;\n  var ASCII = x => x.charCodeAt(0);\n  for (var i = 0; i < 7; i++) {\n    var c = s.charCodeAt(i);\n\n    var v;\n    if (c >= ASCII('0') && c <= ASCII('9')) {\n      v = c - 48;\n    } else if (c >= ASCII('A') && c <= ASCII('Z')) {\n      v = c - 64; // lower case letters apparently invalid\n    } else if (c == ASCII('*')) {\n      v = 36;\n    } else if (c == ASCII('@')) {\n      v = 37;\n    } else if (c == ASCII('#')) {\n      v = 38;\n    } else {\n      return false;\n    }\n    if (i % 2 == 1) v *= 2; // check if odd as using 0-based indexing\n    sum += Math.floor(v / 10) + v % 10;\n  }\n  return s.charCodeAt(8) - 48 == (10 - (sum % 10)) % 10;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isCusip</code> should be a function.'",
+          "testString":
+            "assert(typeof isCusip=='function','<code>isCusip</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"037833100\")</code> should return a boolean.'",
+          "testString":
+            "assert(typeof isCusip(\"037833100\") == 'boolean','<code>isCusip(\"037833100\")</code> should return a boolean.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"037833100\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"037833100\"),true,'<code>isCusip(\"037833100\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"17275R102\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"17275R102\"),true,'<code>isCusip(\"17275R102\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"38259P50a\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"38259P50a\"),false,'<code>isCusip(\"38259P50a\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"38259P508\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"38259P508\"),true,'<code>isCusip(\"38259P508\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"38259P50#\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"38259P50#\"),false,'<code>isCusip(\"38259P50#\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"68389X105\")</code> should return <code>true</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"68389X105\"),true,'<code>isCusip(\"68389X105\")</code> should return <code>true</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"68389X106\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"68389X106\"),false,'<code>isCusip(\"68389X106\")</code> should return <code>false</code>.');"
+        },
+        {
+          "text":
+            "'<code>isCusip(\"5949181\")</code> should return <code>false</code>.'",
+          "testString":
+            "assert.equal(isCusip(\"5949181\"),false,'<code>isCusip(\"5949181\")</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7e05",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": ["function isCusip (s) {", "  // Good luck!", "}"],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
       "title": "Circles of given radius through two points",
       "description": [
         "<p>Given two points on a plane and a radius, usually two circles of given radius can be drawn through the points.</p>",
@@ -1932,6 +2016,152 @@
       }
     },
     {
+      "title": "Cumulative standard deviation",
+      "description": [
+        "Write a function that takes an array of numbers as parameter and returns the <a href=\"https://en.wikipedia.org/wiki/Standard Deviation\">standard deviation</a> of the series."
+      ],
+      "solutions": [
+        "function standardDeviation (arr) {\n  var sum = 0,\n    sum_sq = 0,\n    n = arr.length;\n  arr.forEach(function(e) {\n    sum += e;\n    sum_sq += e * e;\n  })\n\n  var std_dev=Math.sqrt((sum_sq / n) - Math.pow(sum / n, 2))\n  return Math.round(std_dev*1000)/1000;\n}\n\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>standardDeviation</code> should be a function.'",
+          "testString":
+            "assert(typeof standardDeviation=='function','<code>standardDeviation</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>standardDeviation('+JSON.stringify(stdDevTests[0])+')</code> should return a number.'",
+          "testString":
+            "assert(typeof standardDeviation(stdDevTests[0]) == 'number','<code>standardDeviation('+JSON.stringify(stdDevTests[0])+')</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>standardDeviation('+JSON.stringify(stdDevTests[0])+')</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(standardDeviation(stdDevTests[0]),2,'<code>standardDeviation('+JSON.stringify(stdDevTests[0])+')</code> should return <code>2</code>.');"
+        },
+        {
+          "text":
+            "'<code>standardDeviation('+JSON.stringify(stdDevTests[1])+')</code> should return <code>147.323</code>.'",
+          "testString":
+            "assert.equal(standardDeviation(stdDevTests[1]),147.323,'<code>standardDeviation('+JSON.stringify(stdDevTests[1])+')</code> should return <code>147.323</code>.');"
+        },
+        {
+          "text":
+            "'<code>standardDeviation('+JSON.stringify(stdDevTests[2])+')</code> should return <code>18.239</code>.'",
+          "testString":
+            "assert.equal(standardDeviation(stdDevTests[2]),18.239,'<code>standardDeviation('+JSON.stringify(stdDevTests[2])+')</code> should return <code>18.239</code>.');"
+        },
+        {
+          "text":
+            "'<code>standardDeviation('+JSON.stringify(stdDevTests[3])+')</code> should return <code>16.87</code>.'",
+          "testString":
+            "assert.equal(standardDeviation(stdDevTests[3]),16.87,'<code>standardDeviation('+JSON.stringify(stdDevTests[3])+')</code> should return <code>16.87</code>.');"
+        },
+        {
+          "text":
+            "'<code>standardDeviation('+JSON.stringify(stdDevTests[4])+')</code> should return <code>22.631</code>.'",
+          "testString":
+            "assert.equal(standardDeviation(stdDevTests[4]),22.631,'<code>standardDeviation('+JSON.stringify(stdDevTests[4])+')</code> should return <code>22.631</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7e03",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function standardDeviation (arr) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "var stdDevTests=[",
+            "[2,4,4,4,5,5,7,9],",
+            "[600,470,170,430,300],",
+            "[75,83,96,100,121,125],",
+            "[23,37,45,49,56,63,63,70,72,82],",
+            "[271,354,296,301,333,326,285,298,327,316,287,314]]"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Cut a rectangle",
+      "description": [
+        "A given rectangle is made from <i>m</i> × <i>n</i> squares. If <i>m</i> and <i>n</i> are not both odd, then it is possible to cut a path through the rectangle along the square edges such that the rectangle splits into two connected pieces with the same shape (after rotating one of the pieces by 180°). All such paths for 2 × 2 and 4 × 3 rectangles are shown below.",
+        "<a href=\"http://rosettacode.org/wiki/file:rect-cut.svg\">file:rect-cut.svg</a>",
+        "Write a function that calculates the number of different ways to cut an <i>m</i> × <i>n</i> rectangle."
+      ],
+      "solutions": [
+        "function cutRectangle (w, h) {\n  if (w % 2 == 1 && h % 2 == 1)\n    return;\n\n  var dirs = [[0, -1], [-1, 0], [0, 1], [1, 0]];\n\n  var grid = new Array(h); for (var i = 0; i < grid.length; i++) grid[i]=new Array(w);\n  var stack = [];\n\n  var half = Math.floor((w * h) / 2);\n  var bits = Math.pow(2, half) - 1;\n  var result=0;\n  for (; bits > 0; bits -= 2) {\n\n    for (var i = 0; i < half; i++) {\n      var r = Math.floor(i / w);\n      var c = i % w;\n      grid[r][c] = (bits & (1 << i)) != 0 ? 1 : 0;\n      grid[h - r - 1][w - c - 1] = 1 - grid[r][c];\n    }\n\n    stack.push(0);\n    grid[0][0] = 2;\n    var count = 1;\n    while (stack.length!=0) {\n\n      var pos = stack.pop();\n      var r = Math.floor(pos / w);\n      var c = pos % w;\n\n      for (var dir of dirs) {\n        var nextR = r + dir[0];\n        var nextC = c + dir[1];\n\n        if (nextR >= 0 && nextR < h && nextC >= 0 && nextC < w) {\n\n          if (grid[nextR][nextC] == 1) {\n            stack.push(nextR * w + nextC);\n            grid[nextR][nextC] = 2;\n            count++;\n          }\n        }\n      }\n    }\n\n    if (count == half) {\n      result++;\n    }\n  }\n\n  return result;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>cutRectangle</code> should be a function.'",
+          "testString":
+            "assert(typeof cutRectangle=='function','<code>cutRectangle</code> should be a function.');"
+        },
+        {
+          "text": "'<code>cutRectangle(2,2)</code> should return a number.'",
+          "testString":
+            "assert(typeof cutRectangle(2,2) == 'number','<code>cutRectangle(2,2)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>cutRectangle(2,2)</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(cutRectangle(2,2),2,'<code>cutRectangle(2,2)</code> should return <code>2</code>.');"
+        },
+        {
+          "text":
+            "'<code>cutRectangle(4,3)</code> should return <code>9</code>.'",
+          "testString":
+            "assert.equal(cutRectangle(4,3),9,'<code>cutRectangle(4,3)</code> should return <code>9</code>.');"
+        },
+        {
+          "text":
+            "'<code>cutRectangle(4,4)</code> should return <code>22</code>.'",
+          "testString":
+            "assert.equal(cutRectangle(4,4),22,'<code>cutRectangle(4,4)</code> should return <code>22</code>.');"
+        },
+        {
+          "text":
+            "'<code>cutRectangle(8,3)</code> should return <code>53</code>.'",
+          "testString":
+            "assert.equal(cutRectangle(8,3),53,'<code>cutRectangle(8,3)</code> should return <code>53</code>.');"
+        },
+        {
+          "text":
+            "'<code>cutRectangle(7,4)</code> should return <code>151</code>.'",
+          "testString":
+            "assert.equal(cutRectangle(7,4),151,'<code>cutRectangle(7,4)</code> should return <code>151</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7e06",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function cutRectangle (w, h) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
       "title": "Date format",
       "description": [
         "Task:",
@@ -2618,6 +2848,206 @@
           ],
           "head": [],
           "tail": []
+        }
+      }
+    },
+    {
+      "title": "Dot product",
+      "description": [
+        "Create a function, to compute the  <b><a href=\"https://en.wikipedia.org/wiki/Dot product\">dot product</a></b>,  also known as the  <b>scalar product</b>  of two vectors."
+      ],
+      "solutions": [
+        "function dotProduct (ary1, ary2) {\n    var dotprod = 0;\n    for (var i = 0; i < ary1.length; i++)\n        dotprod += ary1[i] * ary2[i];\n    return dotprod;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>dotProduct</code> should be a function.'",
+          "testString":
+            "assert(typeof dotProduct=='function','<code>dotProduct</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>dotProduct([1,3,-5],[4,-2,-1])</code> should return a number.'",
+          "testString":
+            "assert(typeof dotProduct([1,3,-5],[4,-2,-1]) == 'number','<code>dotProduct([1,3,-5],[4,-2,-1])</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>dotProduct([1,3,-5],[4,-2,-1])</code> should return <code>3</code>.'",
+          "testString":
+            "assert.equal(dotProduct([1,3,-5],[4,-2,-1]),3,'<code>dotProduct([1,3,-5],[4,-2,-1])</code> should return <code>3</code>.');"
+        },
+        {
+          "text":
+            "'<code>dotProduct([1,2,3,4,5],[6,7,8,9,10])</code> should return <code>130</code>.'",
+          "testString":
+            "assert.equal(dotProduct([1,2,3,4,5],[6,7,8,9,10]),130,'<code>dotProduct([1,2,3,4,5],[6,7,8,9,10])</code> should return <code>130</code>.');"
+        },
+        {
+          "text":
+            "'<code>dotProduct([5,4,3,2],[7,8,9,6])</code> should return <code>106</code>.'",
+          "testString":
+            "assert.equal(dotProduct([5,4,3,2],[7,8,9,6]),106,'<code>dotProduct([5,4,3,2],[7,8,9,6])</code> should return <code>106</code>.');"
+        },
+        {
+          "text":
+            "'<code>dotProduct([-5,4,-3,2],[-7,-8,9,-6])</code> should return <code>-36</code>.'",
+          "testString":
+            "assert.equal(dotProduct([-5,4,-3,2],[-7,-8,9,-6]),-36,'<code>dotProduct([-5,4,-3,2],[-7,-8,9,-6])</code> should return <code>-36</code>.');"
+        },
+        {
+          "text":
+            "'<code>dotProduct([17,27,34,43,15],[62,73,48,95,110])</code> should return <code>10392</code>.'",
+          "testString":
+            "assert.equal(dotProduct([17,27,34,43,15],[62,73,48,95,110]),10392,'<code>dotProduct([17,27,34,43,15],[62,73,48,95,110])</code> should return <code>10392</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7e1e",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function dotProduct (ary1, ary2) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Doubly-linked list/Definition",
+      "description": [
+        "Write a function that takes an array as parameter. This array contains queries that specify operations to be performed on a doubly linked list. The operations are in the form [type,args...]. The type can be head, tail or after.",
+        "For head, insert the second element of the operation to the beginning of the list. For tail, insert at end of list. For after, the second and third element of the operation will be index and value. The value should be inserted after the given index.",
+        "Return the doubly linked list object after performing the operations."
+      ],
+      "solutions": [
+        "function doublyLinkedList() {\n  this.length = 0;\n  this.head = null;\n  this.tail = null;\n}\n\nfunction Node(val) {\n  this.val = val;\n  this.prev = null;\n  this.next = null;\n}\n\nfunction doubLinkedList (queries) {\n  // Good luck!\n}\nfunction doubLinkedList (queries) {\n  doublyLinkedList.prototype.insertAtHead = function(val) {\n    var node=new Node(val);\n    if(this.head){\n      node.next=this.head;\n      this.head.prev=node;\n      this.head=node;\n    }else{\n      this.head=node;\n      this.tail=node;\n    }\n    this.length++;\n  }\n\n  doublyLinkedList.prototype.insertAfter = function(index,val) {\n    var temp=this.head;\n\n    if(this.length==1){\n      this.insertAtTail(val)\n    }else{\n      for(var i=0;i<index;i++){\n        temp=temp.next;\n      }\n\n      if(temp==this.tail){\n        this.insertAtTail(val)\n      }else{\n        var node=new Node(val);\n        var tempNext=temp.next;\n        temp.next=node;\n        tempNext.prev=node;\n        node.prev=temp;\n        node.next=tempNext;\n      }\n    }\n    this.length++;\n  }\n\n  doublyLinkedList.prototype.insertAtTail = function(val) {\n    if(this.head){\n      var node=new Node(val);\n      node.prev=this.tail;\n      this.tail.next=node;\n      this.tail=node;\n    }else{\n      this.insertAtHead(val)\n    }\n    this.length++;\n  }\n\n  var list = new doublyLinkedList();\n\n  queries.forEach(function(e) {\n    switch (e[0]) {\n      case 'head':\n        list.insertAtHead(e[1]);\n        break;\n      case 'after':\n        list.insertAfter(e[1],e[2]);\n        break;\n      case 'tail':\n        list.insertAtTail(e[1]);\n        break;\n    }\n  })\n\n  return list\n}\n"
+      ],
+      "tests": [
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList</code> should be a function.'",
+          "testString":
+            "assert(typeof doubLinkedList=='function','<code>forwardTraverse(doubLinkedList</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(forwardTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))),'<code>forwardTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return <code>[5,4,3,2,1]</code>.'",
+          "testString":
+            "assert.deepEqual(forwardTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]])),[5,4,3,2,1],'<code>forwardTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return <code>[5,4,3,2,1]</code>.');"
+        },
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"tail\",3],[\"tail\",5],[\"after\",2,4]]))</code> should return <code>[1,2,3,4,5]</code>.'",
+          "testString":
+            "assert.deepEqual(forwardTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"tail\",3],[\"tail\",5],[\"after\",2,4]])),[1,2,3,4,5],'<code>forwardTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"tail\",3],[\"tail\",5],[\"after\",2,4]]))</code> should return <code>[1,2,3,4,5]</code>.');"
+        },
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList([[\"head\",31],[\"tail\",26],[\"head\",33],[\"tail\",15],[\"head\",24]]))</code> should return <code>[24,33,31,26,15]</code>.'",
+          "testString":
+            "assert.deepEqual(forwardTraverse(doubLinkedList([[\"head\",31],[\"tail\",26],[\"head\",33],[\"tail\",15],[\"head\",24]])),[24,33,31,26,15],'<code>forwardTraverse(doubLinkedList([[\"head\",31],[\"tail\",26],[\"head\",33],[\"tail\",15],[\"head\",24]]))</code> should return <code>[24,33,31,26,15]</code>.');"
+        },
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList([[\"head\",2],[\"head\",0],[\"after\",0,3],[\"after\",0,4],[\"tail\",12]]))</code> should return <code>[0,4,3,2,12]</code>.'",
+          "testString":
+            "assert.deepEqual(forwardTraverse(doubLinkedList([[\"head\",2],[\"head\",0],[\"after\",0,3],[\"after\",0,4],[\"tail\",12]])),[0,4,3,2,12],'<code>forwardTraverse(doubLinkedList([[\"head\",2],[\"head\",0],[\"after\",0,3],[\"after\",0,4],[\"tail\",12]]))</code> should return <code>[0,4,3,2,12]</code>.');"
+        },
+        {
+          "text":
+            "'<code>forwardTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"head\",3],[\"tail\",5],[\"head\",42]]))</code> should return <code>[42,3,1,2,5]</code>.'",
+          "testString":
+            "assert.deepEqual(forwardTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"head\",3],[\"tail\",5],[\"head\",42]])),[42,3,1,2,5],'<code>forwardTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"head\",3],[\"tail\",5],[\"head\",42]]))</code> should return <code>[42,3,1,2,5]</code>.');"
+        },
+        {
+          "text":
+            "'<code>reverseTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return <code>[1,2,3,4,5]</code>.'",
+          "testString":
+            "assert.deepEqual(reverseTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]])),[1,2,3,4,5],'<code>reverseTraverse(doubLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return <code>[1,2,3,4,5]</code>.');"
+        },
+        {
+          "text":
+            "'<code>reverseTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"tail\",3],[\"tail\",5],[\"after\",2,4]]))</code> should return <code>[5,4,3,2,1]</code>.'",
+          "testString":
+            "assert.deepEqual(reverseTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"tail\",3],[\"tail\",5],[\"after\",2,4]])),[5,4,3,2,1],'<code>reverseTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"tail\",3],[\"tail\",5],[\"after\",2,4]]))</code> should return <code>[5,4,3,2,1]</code>.');"
+        },
+        {
+          "text":
+            "'<code>reverseTraverse(doubLinkedList([[\"head\",31],[\"tail\",26],[\"head\",33],[\"tail\",15],[\"head\",24]]))</code> should return <code>[15,26,31,33,24]</code>.'",
+          "testString":
+            "assert.deepEqual(reverseTraverse(doubLinkedList([[\"head\",31],[\"tail\",26],[\"head\",33],[\"tail\",15],[\"head\",24]])),[15,26,31,33,24],'<code>reverseTraverse(doubLinkedList([[\"head\",31],[\"tail\",26],[\"head\",33],[\"tail\",15],[\"head\",24]]))</code> should return <code>[15,26,31,33,24]</code>.');"
+        },
+        {
+          "text":
+            "'<code>reverseTraverse(doubLinkedList([[\"head\",2],[\"head\",0],[\"after\",0,3],[\"after\",0,4],[\"tail\",12]]))</code> should return <code>[12,2,3,4,0]</code>.'",
+          "testString":
+            "assert.deepEqual(reverseTraverse(doubLinkedList([[\"head\",2],[\"head\",0],[\"after\",0,3],[\"after\",0,4],[\"tail\",12]])),[12,2,3,4,0],'<code>reverseTraverse(doubLinkedList([[\"head\",2],[\"head\",0],[\"after\",0,3],[\"after\",0,4],[\"tail\",12]]))</code> should return <code>[12,2,3,4,0]</code>.');"
+        },
+        {
+          "text":
+            "'<code>reverseTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"head\",3],[\"tail\",5],[\"head\",42]]))</code> should return <code>[5,2,1,3,42]</code>.'",
+          "testString":
+            "assert.deepEqual(reverseTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"head\",3],[\"tail\",5],[\"head\",42]])),[5,2,1,3,42],'<code>reverseTraverse(doubLinkedList([[\"tail\",1],[\"after\",0,2],[\"head\",3],[\"tail\",5],[\"head\",42]]))</code> should return <code>[5,2,1,3,42]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7e1f",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function doublyLinkedList() {",
+            "  this.length = 0;",
+            "  this.head = null;",
+            "  this.tail = null;",
+            "}",
+            "",
+            "function Node(val) {",
+            "  this.val = val;",
+            "  this.prev = null;",
+            "  this.next = null;",
+            "}",
+            "",
+            "function doubLinkedList (queries) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "function forwardTraverse(list) {",
+            "  var vals=[],temp=list.head;",
+            "  while(temp){",
+            "    vals.push(temp.val)",
+            "    temp=temp.next",
+            "  }",
+            "  return vals",
+            "}",
+            "function reverseTraverse(list) {",
+            "  var vals=[],temp=list.tail;",
+            "  while(temp){",
+            "    vals.push(temp.val)",
+            "    temp=temp.prev",
+            "  }",
+            "  return vals",
+            "}"
+          ]
         }
       }
     },
@@ -14512,6 +14942,380 @@
             "[10,5],",
             "[17,7]]"
           ]
+        }
+      }
+    },
+    {
+      "title": "QR decomposition",
+      "description": [
+        "Any rectangular $m \\times n$ matrix $\\mathit A$ can be decomposed to a product of an orthogonal matrix $\\mathit Q$ and an upper (right) triangular matrix $\\mathit R$, as described in <a href=\"https://en.wikipedia.org/wiki/QR decomposition\">QR decomposition</a>.",
+        "<b>Task</b>",
+        "Write a function that takes a matrix as a parameter and returns the Q and R matrix in the form [Q,R] by perfoming QR decomposition. Note that every element of Q and R elements should be rounded to 3 decimal places. The method of <a href=\"https://en.wikipedia.org/wiki/ Householder transformation\">Householder reflections</a> should be used:",
+        "<b>Method</b>",
+        "Multiplying a given vector $\\mathit a$, for example the first column of matrix $\\mathit A$, with the Householder matrix $\\mathit H$, which is given as",
+        "$H = I - \\frac {2} {u^T u} u u^T$",
+        "reflects $\\mathit a$ about a plane given by its normal vector $\\mathit u$. When the normal vector of the plane $\\mathit u$ is given as",
+        "$u = a - \\|a\\|_2 \\; e_1$",
+        "then the transformation reflects $\\mathit a$ onto the first standard basis vector",
+        "$e_1 = [1 \\; 0 \\; 0 \\; ...]^T$",
+        "which means that all entries but the first become zero. To avoid numerical cancellation errors, we should take the opposite sign of $a_1$:",
+        "$u = a + \\textrm{sign}(a_1)\\|a\\|_2 \\; e_1$",
+        "and normalize with respect to the first element:",
+        "$v = \\frac{u}{u_1}$",
+        "The equation for $H$ thus becomes:",
+        "$H = I - \\frac {2} {v^T v} v v^T$",
+        "or, in another form",
+        "$H = I - \\beta v v^T$",
+        "with",
+        "$\\beta = \\frac {2} {v^T v}$",
+        "Applying $\\mathit H$ on $\\mathit a$ then gives",
+        "$H \\; a = -\\textrm{sign}(a_1) \\; \\|a\\|_2 \\; e_1$",
+        "and applying $\\mathit H$ on the matrix $\\mathit A$ zeroes all subdiagonal elements of the first column:",
+        "$H_1 \\; A = \\begin{pmatrix} r_{11} & r_{12} & r_{13} \\\\ 0    & *    & * \\\\ 0    & *    & * \\end{pmatrix}$",
+        "In the second step, the second column of $\\mathit A$, we want to zero all elements but the first two, which means that we have to calculate $\\mathit H$ with the first column of the <i>submatrix</i> (denoted *), not on the whole second column of $\\mathit A$.",
+        "To get $H_2$, we then embed the new $\\mathit H$ into an $m \\times n$ identity:",
+        "$H_2 = \\begin{pmatrix} 1 & 0 & 0 \\\\ 0 & H & \\\\ 0 &   & \\end{pmatrix}$",
+        "This is how we can, column by column, remove all subdiagonal elements of $\\mathit A$ and thus transform it into $\\mathit R$.",
+        "$H_n \\; ... \\; H_3 H_2 H_1 A = R$",
+        "The product of all the Householder matrices $\\mathit H$, for every column, in reverse order, will then yield the orthogonal matrix $\\mathit Q$.",
+        "$H_1 H_2 H_3 \\; ... \\; H_n = Q$",
+        "The QR decomposition should then be used to solve linear least squares (<a href=\"http://rosettacode.org/wiki/Multiple regression\">Multiple regression</a>) problems $\\mathit A x = b$ by solving",
+        "$ R \\; x = Q^T \\; b $",
+        "When $\\mathit R$ is not square, i.e. $m > n$ we have to cut off the $\\mathit m - n$ zero padded bottom rows.",
+        "$R = \\begin{pmatrix} R_1 \\\\ 0 \\end{pmatrix}$",
+        "and the same for the RHS:",
+        "$Q^T \\; b = \\begin{pmatrix} q_1 \\\\ q_2 \\end{pmatrix}$",
+        "Finally, solve the square upper triangular system by back substitution:",
+        "$R_1 \\; x = q_1$"
+      ],
+      "solutions": [
+        "function QRDecomposition (A) {\n  function mat_t(m, n) {\n    this.m = m;\n    this.n = n;\n    this.v = new Array(m);\n    for (var i = 0; i < this.v.length; i++) {\n      this.v[i] = new Array(n);\n      this.v[i].fill(0)\n    }\n  }\n\n  function matrix_transpose(m) {\n    for (var i = 0; i < m.m; i++) {\n      for (var j = 0; j < i; j++) {\n        var t = m.v[i][j];\n        m.v[i][j] = m.v[j][i];\n        m.v[j][i] = t;\n      }\n    }\n    return m\n  }\n\n  function matrix_mul(x, y) {\n    if (x.n != y.m) return 0;\n    var r = new mat_t(x.m, y.n);\n    for (var i = 0; i < x.m; i++)\n      for (var j = 0; j < y.n; j++)\n        for (var k = 0; k < x.n; k++)\n          r.v[i][j] += x.v[i][k] * y.v[k][j];\n    return r;\n  }\n\n  function matrix_minor(x, d) {\n    var m = new mat_t(x.m, x.n);\n    for (var i = 0; i < d; i++)\n      m.v[i][i] = 1;\n    for (var i = d; i < x.m; i++)\n      for (var j = d; j < x.n; j++)\n        m.v[i][j] = x.v[i][j];\n    return m;\n  }\n\n  function vmadd(a, b, s, c, n) {\n    for (var i = 0; i < n; i++)\n      c[i] = a[i] + s * b[i];\n    return c;\n  }\n\n  function vmul(v, n) {\n    var x = new mat_t(n, n);\n    for (var i = 0; i < n; i++)\n      for (var j = 0; j < n; j++)\n        x.v[i][j] = -2 * v[i] * v[j];\n    for (var i = 0; i < n; i++)\n      x.v[i][i] += 1;\n\n    return x;\n  }\n\n  function vnorm(x, n) {\n    var sum = 0;\n    for (var i = 0; i < n; i++) sum += x[i] * x[i];\n    return Math.sqrt(sum);\n  }\n\n  function vdiv(x, d, y, n) {\n    for (var i = 0; i < n; i++) y[i] = x[i] / d;\n    return y;\n  }\n\n  function mcol(m, v, c) {\n    for (var i = 0; i < m.m; i++)\n      v[i] = m.v[i][c];\n    return v;\n  }\n\n  var m = new mat_t(A.length, A[0].length)\n  m.v = A\n  var q = new Array(m.m);\n  for (var i = 0; i < q.length; i++) {\n    q[i] = new mat_t(1, 1)\n  }\n  var z = m,\n    z1;\n  for (var k = 0; k < m.n && k < m.m - 1; k++) {\n    var e = new Array(m.m),\n      x = new Array(m.m),\n      a;\n    z1 = matrix_minor(z, k);\n    z = z1;\n\n    mcol(z, x, k);\n    a = vnorm(x, m.m);\n    if (m.v[k][k] > 0) a = -a;\n\n    for (var i = 0; i < m.m; i++)\n      e[i] = (i == k) ? 1 : 0;\n\n    vmadd(x, e, a, e, m.m);\n    vdiv(e, vnorm(e, m.m), e, m.m);\n    q[k] = vmul(e, m.m);\n    z1 = matrix_mul(q[k], z);\n    z = z1;\n  }\n\n  var Q = q[0];\n  var R = matrix_mul(q[0], m);\n  for (var i = 1; i < m.n && i < m.m - 1; i++) {\n    z1 = matrix_mul(q[i], Q);\n    Q = z1;\n  }\n  z = matrix_mul(Q, m);\n  R = z;\n  Q = matrix_transpose(Q);\n\n  const roundMat = (e => e.map(f => f.map(g => 0 + Math.round(g * 1000) / 1000)))\n\n  return [roundMat(Q.v), roundMat(R.v)]\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>QRDecomposition</code> should be a function.'",
+          "testString":
+            "assert(typeof QRDecomposition=='function','<code>QRDecomposition</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>QRDecomposition([[3,8],[4,6]])</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(QRDecomposition([[3,8],[4,6]])),'<code>QRDecomposition([[3,8],[4,6]])</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>QRDecomposition([[3,8],[4,6]])</code> should return <code>[[[0.6,0.8],[0.8,-0.6]],[[5,9.6],[0,2.8]]]</code>.'",
+          "testString":
+            "assert.deepEqual(QRDecomposition([[3,8],[4,6]]),[[[0.6,0.8],[0.8,-0.6]],[[5,9.6],[0,2.8]]],'<code>QRDecomposition([[3,8],[4,6]])</code> should return <code>[[[0.6,0.8],[0.8,-0.6]],[[5,9.6],[0,2.8]]]</code>.');"
+        },
+        {
+          "text":
+            "'<code>QRDecomposition([[6,1,1],[4,-2,5],[2,8,7]])</code> should return <code>[[[0.802,0.062,-0.594],[0.535,0.371,0.76],[0.267,-0.927,0.264]],[[7.483,1.871,5.345],[0,-8.093,-4.572],[0,0,5.053]]]</code>.'",
+          "testString":
+            "assert.deepEqual(QRDecomposition([[6,1,1],[4,-2,5],[2,8,7]]),[[[0.802,0.062,-0.594],[0.535,0.371,0.76],[0.267,-0.927,0.264]],[[7.483,1.871,5.345],[0,-8.093,-4.572],[0,0,5.053]]],'<code>QRDecomposition([[6,1,1],[4,-2,5],[2,8,7]])</code> should return <code>[[[0.802,0.062,-0.594],[0.535,0.371,0.76],[0.267,-0.927,0.264]],[[7.483,1.871,5.345],[0,-8.093,-4.572],[0,0,5.053]]]</code>.');"
+        },
+        {
+          "text":
+            "'<code>QRDecomposition([[2,-3,1],[2,0,-1],[1,4,5]])</code> should return <code>[[[0.667,0.516,-0.538],[0.667,-0.09,0.74],[0.333,-0.852,-0.404]],[[3,-0.667,1.667],[0,-4.955,-3.655],[0,0,-3.296]]]</code>.'",
+          "testString":
+            "assert.deepEqual(QRDecomposition([[2,-3,1],[2,0,-1],[1,4,5]]),[[[0.667,0.516,-0.538],[0.667,-0.09,0.74],[0.333,-0.852,-0.404]],[[3,-0.667,1.667],[0,-4.955,-3.655],[0,0,-3.296]]],'<code>QRDecomposition([[2,-3,1],[2,0,-1],[1,4,5]])</code> should return <code>[[[0.667,0.516,-0.538],[0.667,-0.09,0.74],[0.333,-0.852,-0.404]],[[3,-0.667,1.667],[0,-4.955,-3.655],[0,0,-3.296]]]</code>.');"
+        },
+        {
+          "text":
+            "'<code>QRDecomposition([[1,3,2],[-3,-1,-3],[2,3,1]])</code> should return <code>[[[0.267,-0.726,0.634],[-0.802,-0.532,-0.272],[0.535,-0.436,-0.724]],[[3.742,3.207,3.474],[0,-2.952,-0.29],[0,0,1.358]]]</code>.'",
+          "testString":
+            "assert.deepEqual(QRDecomposition([[1,3,2],[-3,-1,-3],[2,3,1]]),[[[0.267,-0.726,0.634],[-0.802,-0.532,-0.272],[0.535,-0.436,-0.724]],[[3.742,3.207,3.474],[0,-2.952,-0.29],[0,0,1.358]]],'<code>QRDecomposition([[1,3,2],[-3,-1,-3],[2,3,1]])</code> should return <code>[[[0.267,-0.726,0.634],[-0.802,-0.532,-0.272],[0.535,-0.436,-0.724]],[[3.742,3.207,3.474],[0,-2.952,-0.29],[0,0,1.358]]]</code>.');"
+        },
+        {
+          "text":
+            "'<code>QRDecomposition([[12,-51,4],[6,167,-68],[-4,24,-41],[-1,1,0],[2,0,3]])</code> should return <code>[[[0.846,-0.391,0.343,0.082,0.078],[0.423,0.904,-0.029,0.026,0.045],[-0.282,0.17,0.933,-0.047,-0.137],[-0.071,0.014,-0.001,0.98,-0.184],[0.141,-0.017,-0.106,-0.171,-0.969]],[[14.177,20.667,-13.402],[0,175.043,-70.08],[0,0,-35.202],[0,0,0],[0,0,0]]]</code>.'",
+          "testString":
+            "assert.deepEqual(QRDecomposition([[12,-51,4],[6,167,-68],[-4,24,-41],[-1,1,0],[2,0,3]]),[[[0.846,-0.391,0.343,0.082,0.078],[0.423,0.904,-0.029,0.026,0.045],[-0.282,0.17,0.933,-0.047,-0.137],[-0.071,0.014,-0.001,0.98,-0.184],[0.141,-0.017,-0.106,-0.171,-0.969]],[[14.177,20.667,-13.402],[0,175.043,-70.08],[0,0,-35.202],[0,0,0],[0,0,0]]],'<code>QRDecomposition([[12,-51,4],[6,167,-68],[-4,24,-41],[-1,1,0],[2,0,3]])</code> should return <code>[[[0.846,-0.391,0.343,0.082,0.078],[0.423,0.904,-0.029,0.026,0.045],[-0.282,0.17,0.933,-0.047,-0.137],[-0.071,0.014,-0.001,0.98,-0.184],[0.141,-0.017,-0.106,-0.171,-0.969]],[[14.177,20.667,-13.402],[0,175.043,-70.08],[0,0,-35.202],[0,0,0],[0,0,0]]]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f92",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function QRDecomposition (A) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Quaternion type",
+      "description": [
+        "<a href=\"https://en.wikipedia.org/wiki/Quaternion\">Quaternions</a>  are an extension of the idea of  <a href=\"http://rosettacode.org/wiki/Arithmetic/Complex\">complex numbers</a>.",
+        "A complex number has a real and complex part,  sometimes written as   <code> a + bi, </code>",
+        "where   <code> a </code>   and   <code> b </code>   stand for real numbers, and   <code> i </code>   stands for the square root of minus 1.",
+        "An example of a complex number might be   <code> -3 + 2i, </code>",
+        "where the real part,   <code> a </code>   is   <code> <b>-3.0</b> </code>   and the complex part,   <code> b </code>   is   <code> <b>+2.0</b>. </code>",
+        "A quaternion has one real part and <i>three</i> imaginary parts,   <code> i, </code>    <code> j, </code>   and   <code> k. </code>",
+        "A quaternion might be written as   <code> a + bi + cj + dk. </code>",
+        "In the quaternion numbering system:",
+        "<code> i∙i = j∙j = k∙k = i∙j∙k = -1, </code>     or more simply,",
+        "<code> ii = jj = kk = ijk  = -1. </code>",
+        "The order of multiplication is important, as, in general, for two quaternions:",
+        "<code> q<sub>1</sub> </code>   and   <code> q<sub>2</sub>: </code>     <code> q<sub>1</sub>q<sub>2</sub> &ne; q<sub>2</sub>q<sub>1</sub>. </code>",
+        "An example of a quaternion might be   <code> 1 +2i +3j +4k </code>",
+        "There is a list form of notation where just the numbers are shown and the imaginary multipliers   <code>i, </code>    <code> j, </code>   and   <code> k </code>   are assumed by position.",
+        "So the example above would be written as   <code> (1, 2, 3, 4) </code>",
+        "Create functions  (or classes)  to perform simple maths with quaternions including computing:",
+        "<ol><li>The norm of a quaternion:   <code> $ = \\sqrt{ a^2 + b^2 + c^2 + d^2 } $ </code>  </li>",
+        "<li>The negative of a quaternion:   <code> = (-a, -b, -c, -d)</code>  </li>",
+        "<li>The conjugate of a quaternion:   <code> = ( a, -b, -c, -d)</code>  </li>",
+        "<li>Addition of a real number   <code> r </code>   and   <code> a </code>   quaternion   <code> q: </code>    <code> r + q = q + r = (a+r, b, c, d) </code> </li>",
+        "<li>Addition of two quaternions:   <code> q<sub>1</sub> + q<sub>2</sub> = (a<sub>1</sub>+a<sub>2</sub>, b<sub>1</sub>+b<sub>2</sub>, c<sub>1</sub>+c<sub>2</sub>, d<sub>1</sub>+d<sub>2</sub>) </code> </li>",
+        "<li>Multiplication of a real number and a quaternion:   <code> qr = rq = (ar, br, cr, dr) </code> </li>",
+        "<li>Multiplication of two quaternions   <code> q<sub>1</sub> </code>   and  <code>q<sub>2</sub> </code>   is given by:   <code> ( a<sub>1</sub>a<sub>2</sub> − b<sub>1</sub>b<sub>2</sub> − c<sub>1</sub>c<sub>2</sub> − d<sub>1</sub>d<sub>2</sub>, </code>  <code>  a<sub>1</sub>b<sub>2</sub> + b<sub>1</sub>a<sub>2</sub> + c<sub>1</sub>d<sub>2</sub> − d<sub>1</sub>c<sub>2</sub>, </code>  <code>  a<sub>1</sub>c<sub>2</sub> − b<sub>1</sub>d<sub>2</sub> + c<sub>1</sub>a<sub>2</sub> + d<sub>1</sub>b<sub>2</sub>, </code>  <code>  a<sub>1</sub>d<sub>2</sub> + b<sub>1</sub>c<sub>2</sub> − c<sub>1</sub>b<sub>2</sub> + d<sub>1</sub>a<sub>2</sub> ) </code> </li>",
+        "For the sake of this task, we represent a quaternion as an array with 4 elements."
+      ],
+      "solutions": [
+        "function norm (quat) {\n  return Math.round(Math.sqrt(quat.map((x) => x * x).reduce((x, y) => x + y))*1000)/1000;\n}\n\nfunction negate (quat) {\n  return quat.map(x => -x);\n}\n\nfunction conjugate (quat) {\n  return [quat[0]].concat(quat.slice(1).map(x => -x));\n}\n\nfunction add (quat, x) {\n  if (\"number\" === typeof x) {\n    return [quat[0] + x].concat(quat.slice(1));\n  } else {\n    return quat.map((v, i) => v + x[i]);\n  }\n}\n\nfunction mult (quat, r) {\n  if (\"number\" === typeof r) {\n    return quat.map(e => e * r);\n  } else {\n    return [quat[0] * r[0] - quat[1] * r[1] - quat[2] * r[2] - quat[3] * r[3],\n      quat[0] * r[1] + quat[1] * r[0] + quat[2] * r[3] - quat[3] * r[2],\n      quat[0] * r[2] - quat[1] * r[3] + quat[2] * r[0] + quat[3] * r[1],\n      quat[0] * r[3] + quat[1] * r[2] - quat[2] * r[1] + quat[3] * r[0]\n    ];\n  }\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>norm</code> should be a function.'",
+          "testString":
+            "assert(typeof norm=='function','<code>norm</code> should be a function.');"
+        },
+        {
+          "text": "'<code>norm([1,2,3,4])</code> should return a number.'",
+          "testString":
+            "assert(typeof norm([1,2,3,4]) == 'number','<code>norm([1,2,3,4])</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>norm([1,2,3,4])</code> should return <code>5.477</code>.'",
+          "testString":
+            "assert.equal(norm([1,2,3,4]),5.477,'<code>norm([1,2,3,4])</code> should return <code>5.477</code>.');"
+        },
+        {
+          "text": "'<code>negate</code> should be a function.'",
+          "testString":
+            "assert(typeof negate=='function','<code>negate</code> should be a function.');"
+        },
+        {
+          "text": "'<code>negate([1,2,3,4])</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(negate([1,2,3,4])),'<code>negate([1,2,3,4])</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>negate([1,2,3,4])</code> should return <code>[-1,-2,-3,-4]</code>.'",
+          "testString":
+            "assert.deepEqual(negate([1,2,3,4]),[-1,-2,-3,-4],'<code>negate([1,2,3,4])</code> should return <code>[-1,-2,-3,-4]</code>.');"
+        },
+        {
+          "text": "'<code>conjugate</code> should be a function.'",
+          "testString":
+            "assert(typeof conjugate=='function','<code>conjugate</code> should be a function.');"
+        },
+        {
+          "text": "'<code>conjugate([1,2,3,4])</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(conjugate([1,2,3,4])),'<code>conjugate([1,2,3,4])</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>conjugate([1,2,3,4])</code> should return <code>[1,-2,-3,-4]</code>.'",
+          "testString":
+            "assert.deepEqual(conjugate([1,2,3,4]),[1,-2,-3,-4],'<code>conjugate([1,2,3,4])</code> should return <code>[1,-2,-3,-4]</code>.');"
+        },
+        {
+          "text": "'<code>add</code> should be a function.'",
+          "testString":
+            "assert(typeof add=='function','<code>add</code> should be a function.');"
+        },
+        {
+          "text": "'<code>add([1,2,3,4],7)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(add([1,2,3,4],7)),'<code>add([1,2,3,4],7)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>add([1,2,3,4],7)</code> should return <code>[8,2,3,4]</code>.'",
+          "testString":
+            "assert.deepEqual(add([1,2,3,4],7),[8,2,3,4],'<code>add([1,2,3,4],7)</code> should return <code>[8,2,3,4]</code>.');"
+        },
+        {
+          "text": "'<code>add</code> should be a function.'",
+          "testString":
+            "assert(typeof add=='function','<code>add</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>add([2,3,4,5],[3,4,5,6])</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(add([2,3,4,5],[3,4,5,6])),'<code>add([2,3,4,5],[3,4,5,6])</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>add([2,3,4,5],[3,4,5,6])</code> should return <code>[5,7,9,11]</code>.'",
+          "testString":
+            "assert.deepEqual(add([2,3,4,5],[3,4,5,6]),[5,7,9,11],'<code>add([2,3,4,5],[3,4,5,6])</code> should return <code>[5,7,9,11]</code>.');"
+        },
+        {
+          "text": "'<code>mult</code> should be a function.'",
+          "testString":
+            "assert(typeof mult=='function','<code>mult</code> should be a function.');"
+        },
+        {
+          "text": "'<code>mult([1,2,3,4],7)</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(mult([1,2,3,4],7)),'<code>mult([1,2,3,4],7)</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>mult([1,2,3,4],7)</code> should return <code>[7,14,21,28]</code>.'",
+          "testString":
+            "assert.deepEqual(mult([1,2,3,4],7),[7,14,21,28],'<code>mult([1,2,3,4],7)</code> should return <code>[7,14,21,28]</code>.');"
+        },
+        {
+          "text": "'<code>mult</code> should be a function.'",
+          "testString":
+            "assert(typeof mult=='function','<code>mult</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>mult([2,3,4,5],[3,4,5,6])</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(mult([2,3,4,5],[3,4,5,6])),'<code>mult([2,3,4,5],[3,4,5,6])</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>mult([2,3,4,5],[3,4,5,6])</code> should return <code>[-56,16,24,26]</code>.'",
+          "testString":
+            "assert.deepEqual(mult([2,3,4,5],[3,4,5,6]),[-56,16,24,26],'<code>mult([2,3,4,5],[3,4,5,6])</code> should return <code>[-56,16,24,26]</code>.');"
+        },
+        {
+          "text": "'<code>mult</code> should be a function.'",
+          "testString":
+            "assert(typeof mult=='function','<code>mult</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>mult([3,4,5,6],[2,3,4,5])</code> should return a array.'",
+          "testString":
+            "assert(Array.isArray(mult([3,4,5,6],[2,3,4,5])),'<code>mult([3,4,5,6],[2,3,4,5])</code> should return a array.');"
+        },
+        {
+          "text":
+            "'<code>mult([3,4,5,6],[2,3,4,5])</code> should return <code>[-56,18,20,28]</code>.'",
+          "testString":
+            "assert.deepEqual(mult([3,4,5,6],[2,3,4,5]),[-56,18,20,28],'<code>mult([3,4,5,6],[2,3,4,5])</code> should return <code>[-56,18,20,28]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f93",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function norm (quat) {",
+            "  // Good luck!",
+            "}",
+            "",
+            "function negate (quat) {",
+            "  // Good luck!",
+            "}",
+            "",
+            "function conjugate (quat) {",
+            "  // Good luck!",
+            "}",
+            "",
+            "function add (quat, x) {",
+            "  // Good luck!",
+            "}",
+            "",
+            "function mult (quat, r) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Quickselect algorithm",
+      "description": [
+        "Write a function that takes an array and a number as parameters and returns the position of the number in the sorted array using the <a href=\"https://en.wikipedia.org/wiki/Quickselect\">quickselect algorithm</a>. Note: the position returned should be zero-based."
+      ],
+      "solutions": [
+        "function quickselect (arr, index) {\n  function swap(firstIndex, secondIndex) {\n    var temp = arr[firstIndex];\n    arr[firstIndex] = arr[secondIndex];\n    arr[secondIndex] = temp;\n  }\n\n  function getRandomInt(min, max) {\n    min = Math.ceil(min);\n    max = Math.floor(max);\n    //The maximum is exclusive and the minimum is inclusive\n    return Math.floor(Math.random() * (max - min)) + min;\n  }\n\n  function partition(from, to) {\n    var pivotIndex = getRandomInt(from, to),\n      pivot = arr[pivotIndex];\n    swap(pivotIndex, to);\n    pivotIndex = from;\n\n    for (var i = from; i <= to; i++) {\n      if (arr[i] < pivot) {\n        swap(pivotIndex, i);\n        pivotIndex++;\n      }\n    }\n    swap(pivotIndex, to);\n\n    return pivotIndex;\n  }\n\n  function quickselectRecursive(from, to, statistic) {\n    var pivotIndex = partition(from, to);\n    if (pivotIndex === statistic) {\n      return arr[pivotIndex];\n    } else if (pivotIndex < statistic) {\n      return quickselectRecursive(pivotIndex, to, statistic);\n    } else if (pivotIndex > statistic) {\n      return quickselectRecursive(from, pivotIndex, statistic);\n    }\n  };\n  return quickselectRecursive(0, arr.length - 1, index)\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>quickselect</code> should be a function.'",
+          "testString":
+            "assert(typeof quickselect=='function','<code>quickselect</code> should be a function.');"
+        },
+        {
+          "text":
+            "'<code>quickselect([9,8,7,6,5,0,1,2,3,4],0)</code> should return a number.'",
+          "testString":
+            "assert(typeof quickselect([9,8,7,6,5,0,1,2,3,4],0) == 'number','<code>quickselect([9,8,7,6,5,0,1,2,3,4],0)</code> should return a number.');"
+        },
+        {
+          "text":
+            "'<code>quickselect([9,8,7,6,5,0,1,2,3,4],0)</code> should return <code>0</code>.'",
+          "testString":
+            "assert.equal(quickselect([9,8,7,6,5,0,1,2,3,4],0),0,'<code>quickselect([9,8,7,6,5,0,1,2,3,4],0)</code> should return <code>0</code>.');"
+        },
+        {
+          "text":
+            "'<code>quickselect([9,8,27,16,5,30,1,2,3,4],1)</code> should return <code>2</code>.'",
+          "testString":
+            "assert.equal(quickselect([9,8,27,16,5,30,1,2,3,4],1),2,'<code>quickselect([9,8,27,16,5,30,1,2,3,4],1)</code> should return <code>2</code>.');"
+        },
+        {
+          "text":
+            "'<code>quickselect([66,57,10,41,82,3,34],2)</code> should return <code>34</code>.'",
+          "testString":
+            "assert.equal(quickselect([66,57,10,41,82,3,34],2),34,'<code>quickselect([66,57,10,41,82,3,34],2)</code> should return <code>34</code>.');"
+        },
+        {
+          "text":
+            "'<code>quickselect([9,58,7,6,5,4],3)</code> should return <code>7</code>.'",
+          "testString":
+            "assert.equal(quickselect([9,58,7,6,5,4],3),7,'<code>quickselect([9,58,7,6,5,4],3)</code> should return <code>7</code>.');"
+        },
+        {
+          "text":
+            "'<code>quickselect([97,68,57,56,5,40,83,94],3)</code> should return <code>57</code>.'",
+          "testString":
+            "assert.equal(quickselect([97,68,57,56,5,40,83,94],3),57,'<code>quickselect([97,68,57,56,5,40,83,94],3)</code> should return <code>57</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7f96",
+      "challengeType": 5,
+      "releasedOn": "September 1, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function quickselect (arr, index) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
         }
       }
     },
