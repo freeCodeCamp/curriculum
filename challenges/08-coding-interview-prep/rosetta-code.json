@@ -2923,8 +2923,8 @@
     {
       "title": "Doubly-linked list/Definition",
       "description": [
-        "Write a function that takes an array as parameter. This array contains queries that specify operations to be performed on a doubly linked list. The operations are in the form [type,args...]. The type can be head, tail or after.",
-        "For head, insert the second element of the operation to the beginning of the list. For tail, insert at end of list. For after, the second and third element of the operation will be index and value. The value should be inserted after the given index.",
+        "Write a function that takes an array as a parameter. This array contains queries that specify operations to be performed on a doubly linked list. The operations are in the form of <code>[ type, args... ]</code>. The type can be <code>head</code>, <code>tail</code> or <code>after</code>.",
+        "If the type is <code>head</code>, insert the second element of the operation to the beginning of the list. If the type is <code>tail</code>, insert at end of list. If it's <code>after</code>, the second and third elements of the operation will be an index and a value. The value should be inserted after the given index.",
         "Return the doubly linked list object after performing the operations."
       ],
       "solutions": [
