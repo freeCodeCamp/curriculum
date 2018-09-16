@@ -1,4 +1,5 @@
 {
+  "id": "5b8cfedd499ca42ed032c1f2",
   "name": "Data Structures",
   "order": 2,
   "time": "",
@@ -2390,7 +2391,9 @@
         }
       ],
       "releasedOn": "Feb 17, 2017",
-      "solutions": ["function Node(value) { \n this.value = value; \n this.left = null; \n this.right = null; \n } \n function BinarySearchTree() { \n this.root = null; \n this.add = function (element) { \n let current = this.root; \n if (!current) { \n this.root = new Node(element) \n return; \n } else { \n const searchTree = function (current) { \n if (current.value > element) { \n if (current.left) { //si existe \n return searchTree(current.left) \n } else { \n current.left = new Node(element); \n return; \n } \n } else if (current.value < element) { \n  if (current.right) { \n return searchTree(current.right) \n } else { \n current.right = new Node(element) \n return; \n } \n } else { \n return null; \n } \n } \n return searchTree(current); \n } \n } \n }"],
+      "solutions": [
+        "function Node(value) { \n this.value = value; \n this.left = null; \n this.right = null; \n } \n function BinarySearchTree() { \n this.root = null; \n this.add = function (element) { \n let current = this.root; \n if (!current) { \n this.root = new Node(element) \n return; \n } else { \n const searchTree = function (current) { \n if (current.value > element) { \n if (current.left) { //si existe \n return searchTree(current.left) \n } else { \n current.left = new Node(element); \n return; \n } \n } else if (current.value < element) { \n  if (current.right) { \n return searchTree(current.right) \n } else { \n current.right = new Node(element) \n return; \n } \n } else { \n return null; \n } \n } \n return searchTree(current); \n } \n } \n }"
+      ],
       "challengeType": 1,
       "translations": {},
       "files": {
