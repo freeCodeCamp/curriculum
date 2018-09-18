@@ -5597,7 +5597,7 @@
       "description": [
         "When you create a variable, it becomes available for you to use inside the element in which you create it. It also becomes available within any elements nested within it. This effect is known as <dfn>cascading</dfn>.",
         "Because of cascading, CSS variables are often defined in the <dfn>:root</dfn> element.",
-        "You can think of the <code>:root</code> element as a container for your entire HTML document, in the same way that an <code>html</code> element is a container for the <code>body</code> element.",
+        "You can think of the <code>:root</code> element as a container for your entire CSS  document, in the same way that an <code>html</code> element is a container for the <code>body</code> element.",
         "By creating your variables in <code>:root</code>, they will be available throughout the whole web page.",
         "<hr>",
         "Define a variable named <code>--penguin-belly</code> in the <code>:root</code> selector and give it the value of <code>pink</code>. You can then see how the value will cascade down to change the value to pink, anywhere that variable is used."
