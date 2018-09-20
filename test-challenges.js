@@ -10,9 +10,6 @@ import ChallengeTitles from './challengeTitles';
 import addAssertsToTapTest from './addAssertsToTapTest';
 import { validateChallenge } from './schema/challengeSchema';
 
-// modern challengeType
-const modern = 6;
-
 let mongoIds = new MongoIds();
 let challengeTitles = new ChallengeTitles();
 
@@ -27,7 +24,15 @@ function evaluateTest(
   test,
   tapTest
 ) {
+  // code and editor provide access to the original text of the solution, which
+  // is needed since the solution itself is likely to change during
+  // transpilation.
   let code = solution;
+  const editor = {
+    getValue() {
+      return code;
+    }
+  };
 
   /* NOTE: Provide dependencies for React/Redux challenges
                * and configure testing environment
@@ -61,8 +66,8 @@ function evaluateTest(
     ReduxThunk = require('redux-thunk');
     ReactRedux = require('react-redux');
     Enzyme = require('enzyme');
-    const Adapter15 = require('enzyme-adapter-react-15');
-    Enzyme.configure({ adapter: new Adapter15() });
+    const Adapter16 = require('enzyme-adapter-react-16');
+    Enzyme.configure({ adapter: new Adapter16() });
 
     /* Transpile ALL the code
                  * (we may use JSX in head or tail or tests, too): */
@@ -72,14 +77,15 @@ function evaluateTest(
     head = transform(head, options).code;
     solution = transform(solution, options).code;
     tail = transform(tail, options).code;
-    test = transform(test, options).code;
+    test.testString = transform(test.testString, options).code;
 
     const { JSDOM } = require('jsdom');
     // Mock DOM document for ReactDOM.render method
     const jsdom = new JSDOM(`<!doctype html>
                   <html>
                     <body>
-                      <div id="challenge-node"></div>
+                      <div id="root"/>
+                      <div id="challenge-node"/>
                     </body>
                   </html>
                 `);
@@ -94,9 +100,18 @@ function evaluateTest(
   /* eslint-enable no-unused-vars */
   try {
     (() => {
-      return eval(
+      // As async tests are removed by createTest (since tests are run in series
+      // and waiting the default of 5 seconds between each test could result in
+      // an unreasonably slow test suite) the following differs somewhat from
+      // learn/src/client/frame-runner.js
+      const testOrResult = eval(
         head + '\n' + solution + '\n' + tail + '\n' + test.testString
       );
+      if (typeof testOrResult === 'function') {
+        // The function returned is intended to evaluate the text of the
+        // solution, which code contains.
+        testOrResult(() => code);
+      }
     })();
   } catch (e) {
     console.log(head + '\n' + solution + '\n' + tail + '\n' + test.testString);
@@ -202,7 +217,6 @@ Observable.from(getChallenges())
   .flatMap(challengeSpec => {
     return Observable.from(challengeSpec.challenges);
   })
-  .filter(({ challengeType }) => challengeType !== modern)
   .flatMap(challenge => {
     return createTest(challenge);
   })

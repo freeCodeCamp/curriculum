@@ -60,9 +60,6 @@ module.exports = function getChallenges(challengesDir) {
         'MDNlinks',
         'null',
         'rawSolutions',
-        'react',
-        'reactRedux',
-        'redux',
         'type'
       ])
     );

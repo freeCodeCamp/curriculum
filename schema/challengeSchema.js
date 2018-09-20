@@ -38,6 +38,9 @@ const schema = Joi.object().keys({
   isRequired: Joi.bool(),
   name: Joi.string(),
   order: Joi.number(),
+  react: Joi.bool(),
+  reactRedux: Joi.bool(),
+  redux: Joi.bool(),
   required: Joi.array().items(
     Joi.object().keys({
       link: Joi.string(),
