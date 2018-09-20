@@ -16001,7 +16001,7 @@
     {
       "title": "Resistor mesh",
       "description": [
-        "<a href=\"http://rosettacode.org/wiki/image:resistor-mesh.svg\">300px||right</a>",
+        "<img src='http://rosettacode.org/mw/images/7/71/Resistor-mesh.svg' style='width:300px;max-width:100%;'>",
         "Given 10&times;10 grid nodes (as shown in the image) interconnected by 1Ω resistors as shown, write a function to find the resistance between point <b>A</b> and <b>B</b>. The function should take 4 numbers as parameters. The first two are the coordinates of <b>A</b> and last two are the coordinates of <b>B</b>. Note: Coordinates are 0-based."
       ],
       "solutions": [
