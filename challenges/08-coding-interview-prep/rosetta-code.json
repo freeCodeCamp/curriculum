@@ -16980,6 +16980,988 @@
       }
     },
     {
+      "title": "Search a list of records",
+      "description": [
+        "Write a function that takes a string as a parameter. The function should return the index of the list item for which the name is the same as the given string."
+      ],
+      "solutions": [
+        "var lst = [\n  { \"name\": \"Lagos\",                \"population\": 21.0  },\n  { \"name\": \"Cairo\",                \"population\": 15.2  },\n  { \"name\": \"Kinshasa-Brazzaville\", \"population\": 11.3  },\n  { \"name\": \"Greater Johannesburg\", \"population\":  7.55 },\n  { \"name\": \"Mogadishu\",            \"population\":  5.85 },\n  { \"name\": \"Khartoum-Omdurman\",    \"population\":  4.98 },\n  { \"name\": \"Dar Es Salaam\",        \"population\":  4.7  },\n  { \"name\": \"Alexandria\",           \"population\":  4.58 },\n  { \"name\": \"Abidjan\",              \"population\":  4.4  },\n  { \"name\": \"Casablanca\",           \"population\":  3.98 }\n];\nfunction searchCity (name) {\n  for (var i = 0; i < lst.length; i++) {\n    if(lst[i].name==name)\n      return i;\n  }\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>searchCity</code> should be a function.'",
+          "testString": "assert(typeof searchCity=='function','<code>searchCity</code> should be a function.');"
+        },
+        {
+          "text": "'<code>searchCity(\"Dar Es Salaam\")</code> should return a number.'",
+          "testString": "assert(typeof searchCity(\"Dar Es Salaam\") == 'number','<code>searchCity(\"Dar Es Salaam\")</code> should return a number.');"
+        },
+        {
+          "text": "'<code>searchCity(\"Dar Es Salaam\")</code> should return <code>6</code>.'",
+          "testString": "assert.equal(searchCity(\"Dar Es Salaam\"),6,'<code>searchCity(\"Dar Es Salaam\")</code> should return <code>6</code>.');"
+        },
+        {
+          "text": "'<code>searchCity(\"Casablanca\")</code> should return <code>9</code>.'",
+          "testString": "assert.equal(searchCity(\"Casablanca\"),9,'<code>searchCity(\"Casablanca\")</code> should return <code>9</code>.');"
+        },
+        {
+          "text": "'<code>searchCity(\"Cairo\")</code> should return <code>1</code>.'",
+          "testString": "assert.equal(searchCity(\"Cairo\"),1,'<code>searchCity(\"Cairo\")</code> should return <code>1</code>.');"
+        },
+        {
+          "text": "'<code>searchCity(\"Mogadishu\")</code> should return <code>4</code>.'",
+          "testString": "assert.equal(searchCity(\"Mogadishu\"),4,'<code>searchCity(\"Mogadishu\")</code> should return <code>4</code>.');"
+        },
+        {
+          "text": "'<code>searchCity(\"Lagos\")</code> should return <code>0</code>.'",
+          "testString": "assert.equal(searchCity(\"Lagos\"),0,'<code>searchCity(\"Lagos\")</code> should return <code>0</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fcf",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "var lst = [",
+            "  { \"name\": \"Lagos\",                \"population\": 21.0  },",
+            "  { \"name\": \"Cairo\",                \"population\": 15.2  },",
+            "  { \"name\": \"Kinshasa-Brazzaville\", \"population\": 11.3  },",
+            "  { \"name\": \"Greater Johannesburg\", \"population\":  7.55 },",
+            "  { \"name\": \"Mogadishu\",            \"population\":  5.85 },",
+            "  { \"name\": \"Khartoum-Omdurman\",    \"population\":  4.98 },",
+            "  { \"name\": \"Dar Es Salaam\",        \"population\":  4.7  },",
+            "  { \"name\": \"Alexandria\",           \"population\":  4.58 },",
+            "  { \"name\": \"Abidjan\",              \"population\":  4.4  },",
+            "  { \"name\": \"Casablanca\",           \"population\":  3.98 }",
+            "];",
+            "",
+            "function searchCity (name) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Self-describing numbers",
+      "description": [
+        "There are several so-called \"self-describing\" or \"<a href=\"https://en.wikipedia.org/wiki/Self-descriptive number\">self-descriptive</a>\" integers.",
+        "An integer is said to be \"self-describing\" if it has the property that, when digit positions are labeled 0 to N-1, the digit in each position is equal to the number of times that that digit appears in the number.",
+        "For example,  <b>2020</b>  is a four-digit self describing number:<ul><li> position  0  has value  2  and there are two 0s in the number;</li>",
+        "<li> position  1  has value  0  and there are no 1s in the number;</li>",
+        "<li> position  2  has value  2  and there are two 2s;</li>",
+        "<li> position  3  has value  0  and there are zero 3s.</li></ul>",
+        "Self-describing numbers < 100.000.000 are:   1210,  2020,  21200,  3211000,  42101000.",
+        "Write a function that will check whether a given positive integer is self-describing."
+      ],
+      "solutions": [
+        "function isSelfDescribing (n) {\n    var digits = Number(n).toString().split(\"\").map(function(elem) {return Number(elem)});\n    var len = digits.length;\n    var count = digits.map(function(x){return 0});\n\n    digits.forEach(function(digit, idx, ary) {\n        if (digit >= count.length)\n            return false\n        count[digit] ++;\n    });\n\n    return digits.every((e,i)=>e==count[i]);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isSelfDescribing</code> should be a function.'",
+          "testString": "assert(typeof isSelfDescribing=='function','<code>isSelfDescribing</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(2020)</code> should return a boolean.'",
+          "testString": "assert(typeof isSelfDescribing(2020) == 'boolean','<code>isSelfDescribing(2020)</code> should return a boolean.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(2020)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSelfDescribing(2020),true,'<code>isSelfDescribing(2020)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(26)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSelfDescribing(26),false,'<code>isSelfDescribing(26)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(55)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSelfDescribing(55),false,'<code>isSelfDescribing(55)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(1)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSelfDescribing(1),false,'<code>isSelfDescribing(1)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(1210)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSelfDescribing(1210),true,'<code>isSelfDescribing(1210)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(10)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSelfDescribing(10),false,'<code>isSelfDescribing(10)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(2020)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSelfDescribing(2020),true,'<code>isSelfDescribing(2020)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(33)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSelfDescribing(33),false,'<code>isSelfDescribing(33)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(21200)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSelfDescribing(21200),true,'<code>isSelfDescribing(21200)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSelfDescribing(3211000)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSelfDescribing(3211000),true,'<code>isSelfDescribing(3211000)</code> should return <code>true</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fd3",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function isSelfDescribing (n) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Self-referential sequence",
+      "description": [
+        "There are several ways to generate a self-referential sequence. One very common one (the <a href=\"http://rosettacode.org/wiki/Look-and-say sequence\">Look-and-say sequence</a>) is to start with a positive integer, then generate the next term by concatenating enumerated groups of adjacent alike digits:",
+        "0, 10, 1110, 3110, 132110, 1113122110, 311311222110 ...",
+        "The terms generated grow in length geometrically and never converge.",
+        "Another way to generate a self-referential sequence is to summarize the previous term.",
+        "Count how many of each alike digit there is, then concatenate the sum and digit for each of the sorted enumerated digits. Note that the first five terms are the same as for the previous sequence.",
+        "0, 10, 1110, 3110, 132110, 13123110, 23124110 ... see <a href=\"http://rosettacode.org/wiki/oeis:A036058\">The On-Line Encyclopedia of Integer Sequences</a>",
+        "Sort the digits largest to smallest. Do not include counts of digits that do not appear in the previous term.",
+        "Depending on the seed value, series generated this way always either converge to a stable value or to a short cyclical pattern. (For our purposes, I'll use converge to mean an element matches a previously seen element.) The sequence shown, with a seed value of 0, converges to a stable value of 1433223110 after 11 iterations. The seed value that converges most quickly is 22. It goes stable after the first element. (The next element is 22, which has been seen before.)",
+        "<b>Task:</b>",
+        " Write a function that takes the seed value as parameter and returns the self referential sequence as an array."
+      ],
+      "solutions": [
+        "function selfReferential (n) {\n  var descending, i, incr, j, max_i, max_len, max_seq, seq, sequence,\n    indexOf = [].indexOf || function(item) {\n      for (var i = 0, l = this.length; i < l; i++) {\n        if (i in this && this[i] === item) return i;\n      }\n      return -1;\n    };\n\n  sequence = function(n) {\n    var c, cnt, cnts, d, digit, i, j, l, len, new_cnts, ref, s, seq;\n    cnts = {};\n    ref = n.toString();\n    for (j = 0, len = ref.length; j < len; j++) {\n      c = ref[j];\n      d = parseInt(c);\n      incr(cnts, d);\n    }\n    seq = [];\n    while (true) {\n      s = '';\n      for (i = l = 9; l >= 0; i = --l) {\n        if (cnts[i]) {\n          s += \"\" + cnts[i] + i;\n        }\n      }\n      if (indexOf.call(seq, s) >= 0) {\n        break;\n      }\n      seq.push(s);\n      new_cnts = {};\n      for (digit in cnts) {\n        cnt = cnts[digit];\n        incr(new_cnts, cnt);\n        incr(new_cnts, digit);\n      }\n      cnts = new_cnts;\n    }\n    return seq;\n  };\n\n  incr = function(h, k) {\n    if (h[k] == null) {\n      h[k] = 0;\n    }\n    return h[k] += 1;\n  };\n\n  descending = function(n) {\n    var tens;\n    if (n < 10) {\n      return true;\n    }\n    tens = n / 10;\n    if (n % 10 > tens % 10) {\n      return false;\n    }\n    return descending(tens);\n  };\n\n  return sequence(n)\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>selfReferential</code> should be a function.'",
+          "testString": "assert(typeof selfReferential=='function','<code>selfReferential</code> should be a function.');"
+        },
+        {
+          "text": "'<code>selfReferential(40)</code> should return a array.'",
+          "testString": "assert(Array.isArray(selfReferential(40)),'<code>selfReferential(40)</code> should return a array.');"
+        },
+        {
+          "text": "'<code>selfReferential(40)</code> should return <code>[\"1410\",\"142110\",\"14123110\",\"1413124110\",\"2413125110\",\"151413224110\",\"152413225110\",\"251413324110\",\"152423224110\",\"152413423110\"]</code>.'",
+          "testString": "assert.deepEqual(selfReferential(40),[\"1410\",\"142110\",\"14123110\",\"1413124110\",\"2413125110\",\"151413224110\",\"152413225110\",\"251413324110\",\"152423224110\",\"152413423110\"],'<code>selfReferential(40)</code> should return <code>[\"1410\",\"142110\",\"14123110\",\"1413124110\",\"2413125110\",\"151413224110\",\"152413225110\",\"251413324110\",\"152423224110\",\"152413423110\"]</code>.');"
+        },
+        {
+          "text": "'<code>selfReferential(132110)</code> should return <code>[\"13123110\",\"23124110\",\"1413223110\",\"1423224110\",\"2413323110\",\"1433223110\"]</code>.'",
+          "testString": "assert.deepEqual(selfReferential(132110),[\"13123110\",\"23124110\",\"1413223110\",\"1423224110\",\"2413323110\",\"1433223110\"],'<code>selfReferential(132110)</code> should return <code>[\"13123110\",\"23124110\",\"1413223110\",\"1423224110\",\"2413323110\",\"1433223110\"]</code>.');"
+        },
+        {
+          "text": "'<code>selfReferential(132211)</code> should return <code>[\"132231\",\"232221\",\"134211\",\"14131231\",\"14231241\",\"24132231\",\"14233221\"]</code>.'",
+          "testString": "assert.deepEqual(selfReferential(132211),[\"132231\",\"232221\",\"134211\",\"14131231\",\"14231241\",\"24132231\",\"14233221\"],'<code>selfReferential(132211)</code> should return <code>[\"132231\",\"232221\",\"134211\",\"14131231\",\"14231241\",\"24132231\",\"14233221\"]</code>.');"
+        },
+        {
+          "text": "'<code>selfReferential(1413223110)</code> should return <code>[\"1423224110\",\"2413323110\",\"1433223110\"]</code>.'",
+          "testString": "assert.deepEqual(selfReferential(1413223110),[\"1423224110\",\"2413323110\",\"1433223110\"],'<code>selfReferential(1413223110)</code> should return <code>[\"1423224110\",\"2413323110\",\"1433223110\"]</code>.');"
+        },
+        {
+          "text": "'<code>selfReferential(251413126110)</code> should return <code>[\"16151413225110\",\"16251413226110\",\"26151413325110\",\"16251423225110\",\"16251413424110\",\"16153413225110\"]</code>.'",
+          "testString": "assert.deepEqual(selfReferential(251413126110),[\"16151413225110\",\"16251413226110\",\"26151413325110\",\"16251423225110\",\"16251413424110\",\"16153413225110\"],'<code>selfReferential(251413126110)</code> should return <code>[\"16151413225110\",\"16251413226110\",\"26151413325110\",\"16251423225110\",\"16251413424110\",\"16153413225110\"]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fd4",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function selfReferential (n) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Semiprime",
+      "description": [
+        "Semiprime numbers are natural numbers that are products of exactly two (possibly equal) <a href=\"http://rosettacode.org/wiki/prime_number\">prime numbers</a>.",
+        " 1679  =  23 &times; 73",
+        "Write a function determining whether a given number is semiprime."
+      ],
+      "solutions": [
+        "function isSemiPrime (n) {\n  if (n <= 3)\n      return false;\n\n  var ans = [];\n  var done = false;\n  while (!done)\n  {\n    if (n%2 === 0){\n        ans.push(2);\n        n /= 2;\n        continue;\n    }\n    if (n%3 === 0){\n        ans.push(3);\n        n /= 3;\n        continue;\n    }\n    if ( n === 1)\n      return ans.length==2;\n    var sr = Math.sqrt(n);\n    done = true;\n    // try to divide the checked number by all numbers till its square root.\n    for (var i=6; i<=sr; i+=6){\n        if (n%(i-1) === 0){ // is n divisible by i-1?\n            ans.push( (i-1) );\n            n /= (i-1);\n            done = false;\n            break;\n        }\n        if (n%(i+1) === 0){ // is n divisible by i+1?\n            ans.push( (i+1) );\n            n /= (i+1);\n            done = false;\n            break;\n        }\n    }\n  }\n  ans.push( n );\n  return ans.length==2;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isSemiPrime</code> should be a function.'",
+          "testString": "assert(typeof isSemiPrime=='function','<code>isSemiPrime</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(100)</code> should return a boolean.'",
+          "testString": "assert(typeof isSemiPrime(100) == 'boolean','<code>isSemiPrime(100)</code> should return a boolean.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(100)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSemiPrime(100),false,'<code>isSemiPrime(100)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(504)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSemiPrime(504),false,'<code>isSemiPrime(504)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(4)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSemiPrime(4),true,'<code>isSemiPrime(4)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(46)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSemiPrime(46),true,'<code>isSemiPrime(46)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(13)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSemiPrime(13),false,'<code>isSemiPrime(13)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(74)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSemiPrime(74),true,'<code>isSemiPrime(74)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(1679)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSemiPrime(1679),true,'<code>isSemiPrime(1679)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(2)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSemiPrime(2),false,'<code>isSemiPrime(2)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(95)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSemiPrime(95),true,'<code>isSemiPrime(95)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSemiPrime(124)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSemiPrime(124),false,'<code>isSemiPrime(124)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fd5",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function isSemiPrime (n) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Set consolidation",
+      "description": [
+        "Given two sets of items then if any item is common to any set then the result of applying <i>consolidation</i> to those sets is a set of sets whose contents is:",
+        "<ul><li> The two input sets if no common item exists between the two input sets of items.</li>",
+        "<li> The single set that is the union of the two input sets if they share a common item.</li></ul>",
+        "Given N sets of items where N>2 then the result is the same as repeatedly replacing all combinations of two sets by their consolidation until no further consolidation between set pairs is possible.",
+        "If N < 2 then consolidation has no strict meaning and the input can be returned.",
+        "Given the two sets <tt>{A,B}</tt> and <tt>{C,D}</tt> then there is no common element between the sets and the result is the same as the input.",
+        "Given the two sets <tt>{A,B}</tt> and <tt>{B,D}</tt> then there is a common element <tt>B</tt> between the sets and the result is the single set <tt>{B,D,A}</tt>.  (Note that order of items in a set is immaterial: <tt>{A,B,D}</tt> is the same as <tt>{B,D,A}</tt> and <tt>{D,A,B}</tt>, etc).",
+        "Given the three sets <tt>{A,B}</tt> and <tt>{C,D}</tt> and <tt>{D,B}</tt> then there is no common element between the sets <tt>{A,B}</tt> and <tt>{C,D}</tt> but the sets <tt>{A,B}</tt> and <tt>{D,B}</tt> do share a common element that consolidates to produce the result <tt>{B,D,A}</tt>. On examining this result with the remaining set, <tt>{C,D}</tt>, they share a common element and so consolidate to the final output of the single set <tt>{A,B,C,D}</tt>",
+        "The consolidation of the five sets:",
+        ":<tt>{H,I,K}</tt>, <tt>{A,B}</tt>, <tt>{C,D}</tt>, <tt>{D,B}</tt>, and <tt>{F,G,H}</tt>",
+        "Is the two sets:",
+        ":<tt>{A, C, B, D}</tt>, and <tt>{G, F, I, H, K}</tt>",
+        "Write a function that takes an array of strings as a parameter. Each string is represents a set with the characters representing the set elements. The function should return a 2D array containing the consolidated sets. Note: each set should be sorted."
+      ],
+      "solutions": [
+        "function setConsolidation (sets) {\n  function addAll(l1,l2) {\n    l2.forEach(function (e) {\n      if(l1.indexOf(e)==-1) l1.push(e)\n    })\n  }\n\n  function consolidate(sets) {\n    var r = [];\n    for (var i = 0; i < sets.length; i++) {\n      var s = sets[i]; {\n        var new_r = [];\n        new_r.push(s)\n        for (var j = 0; j < r.length; j++) {\n          var x = r[j]; {\n            if (!(function(c1, c2) {\n                for (var i = 0; i < c1.length; i++) {\n                  if (c2.indexOf(c1[i]) >= 0)\n                    return false;\n                }\n                return true;\n              }) (s, x)) {\n              (function(l1, l2) {\n                addAll(l1,l2)\n              })(s, x);\n            } else {\n              new_r.push(x)\n            }\n          }\n        }\n        r = new_r;\n      }\n    }\n    return r;\n  };\n\n  function consolidateR(sets) {\n    if (sets.length < 2)\n      return sets;\n    var r = ([]);\n    r.push(sets[0])\n    {\n      var arr1 = consolidateR( sets.slice(1, sets.length));\n      for (var i = 0; i < arr1.length; i++) {\n        var x = arr1[i]; {\n          if (!(function(c1, c2) {\n              for (var i = 0; i < c1.length; i++) {\n                if (c2.indexOf(c1[i]) >= 0)\n                  return false;\n              }\n              return true;\n            })(r[0], x)) {\n            (function(l1, l2) {\n              return l1.push.apply(l1, l2);\n            })(r[0], x);\n          } else {\n            r.push(x)\n          }\n        }\n      }\n    }\n    return r;\n  };\n\n  function hashSetList(set) {\n    var r = [];\n    for (var i = 0; i < set.length; i++) {\n      r.push([])\n      for (var j = 0; j < set[i].length; j++)\n        (function(s, e) {\n          if (s.indexOf(e) == -1) {\n            s.push(e);\n            return true;\n          } else {\n            return false;\n          }\n        })(r[i], set[i].charAt(j));\n    };\n    return r;\n  };\n\n  var h1 = consolidate(hashSetList(sets)).map(function (e) {\n    e.sort()\n    return e\n  })\n  return h1;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>setConsolidation</code> should be a function.'",
+          "testString": "assert(typeof setConsolidation=='function','<code>setConsolidation</code> should be a function.');"
+        },
+        {
+          "text": "'<code>setConsolidation([\"AB\",\"CD\"])</code> should return a array.'",
+          "testString": "assert(Array.isArray(setConsolidation([\"AB\",\"CD\"])),'<code>setConsolidation([\"AB\",\"CD\"])</code> should return a array.');"
+        },
+        {
+          "text": "'<code>setConsolidation([\"AB\",\"CD\"])</code> should return <code>[[\"C\",\"D\"],[\"A\",\"B\"]]</code>.'",
+          "testString": "assert.deepEqual(setConsolidation([\"AB\",\"CD\"]),[[\"C\",\"D\"],[\"A\",\"B\"]],'<code>setConsolidation([\"AB\",\"CD\"])</code> should return <code>[[\"C\",\"D\"],[\"A\",\"B\"]]</code>.');"
+        },
+        {
+          "text": "'<code>setConsolidation([\"AB\",\"BD\"])</code> should return <code>[[\"A\",\"B\",\"D\"]]</code>.'",
+          "testString": "assert.deepEqual(setConsolidation([\"AB\",\"BD\"]),[[\"A\",\"B\",\"D\"]],'<code>setConsolidation([\"AB\",\"BD\"])</code> should return <code>[[\"A\",\"B\",\"D\"]]</code>.');"
+        },
+        {
+          "text": "'<code>setConsolidation([\"AB\",\"CD\",\"DB\"])</code> should return <code>[[\"A\",\"B\",\"C\",\"D\"]]</code>.'",
+          "testString": "assert.deepEqual(setConsolidation([\"AB\",\"CD\",\"DB\"]),[[\"A\",\"B\",\"C\",\"D\"]],'<code>setConsolidation([\"AB\",\"CD\",\"DB\"])</code> should return <code>[[\"A\",\"B\",\"C\",\"D\"]]</code>.');"
+        },
+        {
+          "text": "'<code>setConsolidation([\"HIK\",\"AB\",\"CD\",\"DB\",\"FGH\"])</code> should return <code>[[\"F\",\"G\",\"H\",\"I\",\"K\"],[\"A\",\"B\",\"C\",\"D\"]]</code>.'",
+          "testString": "assert.deepEqual(setConsolidation([\"HIK\",\"AB\",\"CD\",\"DB\",\"FGH\"]),[[\"F\",\"G\",\"H\",\"I\",\"K\"],[\"A\",\"B\",\"C\",\"D\"]],'<code>setConsolidation([\"HIK\",\"AB\",\"CD\",\"DB\",\"FGH\"])</code> should return <code>[[\"F\",\"G\",\"H\",\"I\",\"K\"],[\"A\",\"B\",\"C\",\"D\"]]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fdb",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function setConsolidation (sets) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Set of real numbers",
+      "description": [
+        "All real numbers form the uncountable set R.  Among its subsets, relatively simple are the convex sets, each expressed as a range between two real numbers <i>a</i> and <i>b</i> where <i>a</i> ≤ <i>b</i>.  There are actually four cases for the meaning of \"between\", depending on open or closed boundary:",
+        "<ul><li>[<i>a</i>, <i>b</i>]: {<i>x</i> | <i>a</i> ≤ <i>x</i> and <i>x</i> ≤ <i>b</i> }</li>",
+        "<li>(<i>a</i>, <i>b</i>): {<i>x</i> | <i>a</i> < <i>x</i> and <i>x</i> < <i>b</i> }</li>",
+        "<li>[<i>a</i>, <i>b</i>): {<i>x</i> | <i>a</i> ≤ <i>x</i> and <i>x</i> < <i>b</i> }</li>",
+        "<li>(<i>a</i>, <i>b</i>]: {<i>x</i> | <i>a</i> < <i>x</i> and <i>x</i> ≤ <i>b</i> }</li></ul>Note that if <i>a</i> = <i>b</i>, of the four only [<i>a</i>, <i>a</i>] would be non-empty.",
+        "<b>Task</b>",
+        "<ul><li>Devise a way to represent any set of real numbers, for the definition of 'any' in the implementation notes below.</li>",
+        "<li>Provide methods for these common set operations (<i>x</i> is a real number; <i>A</i> and <i>B</i> are sets):</li></ul><i>x</i> ∈ <i>A</i>: determine if <i>x</i> is an element of <i>A</i>",
+        "example: 1 is in [1, 2), while 2, 3, ... are not.",
+        "<i>A</i> ∪ <i>B</i>: union of <i>A</i> and <i>B</i>, i.e. {<i>x</i> | <i>x</i> ∈ <i>A</i> or <i>x</i> ∈ <i>B</i>}",
+        "example: [0, 2) ∪ (1, 3) = [0, 3); [0, 1) ∪ (2, 3] = well, [0, 1) ∪ (2, 3]",
+        "<i>A</i> ∩ <i>B</i>: intersection of <i>A</i> and <i>B</i>, i.e. {<i>x</i> | <i>x</i> ∈ <i>A</i> and <i>x</i> ∈ <i>B</i>}",
+        "example: [0, 2) ∩ (1, 3) = (1, 2); [0, 1) ∩ (2, 3] = empty set",
+        "<i>A</i> - <i>B</i>: difference between <i>A</i> and <i>B</i>, also written as <i>A</i> \\ <i>B</i>, i.e. {<i>x</i> | <i>x</i> ∈ <i>A</i> and <i>x</i> ∉ <i>B</i>}",
+        "example: [0, 2) − (1, 3) = [0, 1]",
+        "Write a function that takes 2 objects, a string and an array as parameters. The objects represents the set and have attributes: low, high and rangeType. The rangeType can have values 0, 1, 2 and 3 for CLOSED, BOTH_OPEN, LEFT_OPEN and RIGHT_OPEN respectively. The function should implement a set using this information. The string represents the operation to be performed on the sets. It can be: \"union\", \"intersect\" and \"subtract\" (difference). After performing the operation, the function should check if the values in the array are present in the resultant set and store a corresponding boolean value to an array. The function should return this array."
+      ],
+      "solutions": [
+        "function realSet (set1, set2, operation, values) {\n  const RangeType = {\n    CLOSED: 0,\n    BOTH_OPEN: 1,\n    LEFT_OPEN: 2,\n    RIGHT_OPEN: 3,\n  }\n\n  function Predicate(test) {\n    this.test = test;\n    this.or = function(other) {\n      return new Predicate((t) => this.test(t) || other.test(t));\n    }\n    this.and = function(other) {\n      return new Predicate((t) => this.test(t) && other.test(t))\n    }\n    this.negate = function() {\n      return new Predicate((t) => !this.test(t))\n    }\n  }\n\n  function RealSet(start, end, rangeType, predF) {\n    this.low = start;\n    this.high = end;\n\n    if (predF) {\n      this.predicate = new Predicate(predF);\n    } else {\n      this.predicate = new Predicate(d => {\n        switch (rangeType) {\n          case RangeType.CLOSED:\n            return start <= d && d <= end;\n          case RangeType.BOTH_OPEN:\n            return start < d && d < end;\n          case RangeType.LEFT_OPEN:\n            return start < d && d <= end;\n          case RangeType.RIGHT_OPEN:\n            return start <= d && d < end;\n        };\n      })\n    }\n\n    this.contains = function(d) {\n      return this.predicate.test(d);\n    }\n\n    this.union = function(other) {\n      var low2 = Math.min(this.low, other.low);\n      var high2 = Math.max(this.high, other.high);\n      return new RealSet(low2, high2, null, d => this.predicate.or(other.predicate).test(d));\n    }\n\n    this.intersect = function(other) {\n      var low2 = Math.min(this.low, other.low);\n      var high2 = Math.max(this.high, other.high);\n      return new RealSet(low2, high2, null, d => this.predicate.and(other.predicate).test(d));\n    }\n\n    this.subtract = function(other) {\n      return new RealSet(this.low, this.high, null, d => this.predicate.and(other.predicate.negate()).test(d));\n    }\n  }\n  set1=new RealSet(set1.low,set1.high,set1.rangeType);\n  set2=new RealSet(set2.low,set2.high,set2.rangeType);\n  var result = []\n  values.forEach(function (value) {\n    result.push(set1[operation](set2).contains(value))\n  })\n  return result\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>realSet</code> should be a function.'",
+          "testString": "assert(typeof realSet=='function','<code>realSet</code> should be a function.');"
+        },
+        {
+          "text": "'<code>realSet({\"low\":0,\"high\":1,\"rangeType\":2},{\"low\":0,\"high\":2,\"rangeType\":3},\"union\",[1,2,3])</code> should return a array.'",
+          "testString": "assert(Array.isArray(realSet({\"low\":0,\"high\":1,\"rangeType\":2},{\"low\":0,\"high\":2,\"rangeType\":3},\"union\",[1,2,3])),'<code>realSet({\"low\":0,\"high\":1,\"rangeType\":2},{\"low\":0,\"high\":2,\"rangeType\":3},\"union\",[1,2,3])</code> should return a array.');"
+        },
+        {
+          "text": "'<code>realSet({\"low\":0,\"high\":1,\"rangeType\":2},{\"low\":0,\"high\":2,\"rangeType\":3},\"union\",[1,2,3])</code> should return <code>[true,false,false]</code>.'",
+          "testString": "assert.deepEqual(realSet({\"low\":0,\"high\":1,\"rangeType\":2},{\"low\":0,\"high\":2,\"rangeType\":3},\"union\",[1,2,3]),[true,false,false],'<code>realSet({\"low\":0,\"high\":1,\"rangeType\":2},{\"low\":0,\"high\":2,\"rangeType\":3},\"union\",[1,2,3])</code> should return <code>[true,false,false]</code>.');"
+        },
+        {
+          "text": "'<code>realSet({\"low\":0,\"high\":2,\"rangeType\":3},{\"low\":1,\"high\":2,\"rangeType\":2},\"intersect\",[0,1,2])</code> should return <code>[false,false,false]</code>.'",
+          "testString": "assert.deepEqual(realSet({\"low\":0,\"high\":2,\"rangeType\":3},{\"low\":1,\"high\":2,\"rangeType\":2},\"intersect\",[0,1,2]),[false,false,false],'<code>realSet({\"low\":0,\"high\":2,\"rangeType\":3},{\"low\":1,\"high\":2,\"rangeType\":2},\"intersect\",[0,1,2])</code> should return <code>[false,false,false]</code>.');"
+        },
+        {
+          "text": "'<code>realSet({\"low\":0,\"high\":3,\"rangeType\":3},{\"low\":0,\"high\":1,\"rangeType\":1},\"subtract\",[0,1,2])</code> should return <code>[true,true,true]</code>.'",
+          "testString": "assert.deepEqual(realSet({\"low\":0,\"high\":3,\"rangeType\":3},{\"low\":0,\"high\":1,\"rangeType\":1},\"subtract\",[0,1,2]),[true,true,true],'<code>realSet({\"low\":0,\"high\":3,\"rangeType\":3},{\"low\":0,\"high\":1,\"rangeType\":1},\"subtract\",[0,1,2])</code> should return <code>[true,true,true]</code>.');"
+        },
+        {
+          "text": "'<code>realSet({\"low\":0,\"high\":3,\"rangeType\":3},{\"low\":0,\"high\":1,\"rangeType\":0},\"subtract\",[0,1,2])</code> should return <code>[false,false,true]</code>.'",
+          "testString": "assert.deepEqual(realSet({\"low\":0,\"high\":3,\"rangeType\":3},{\"low\":0,\"high\":1,\"rangeType\":0},\"subtract\",[0,1,2]),[false,false,true],'<code>realSet({\"low\":0,\"high\":3,\"rangeType\":3},{\"low\":0,\"high\":1,\"rangeType\":0},\"subtract\",[0,1,2])</code> should return <code>[false,false,true]</code>.');"
+        },
+        {
+          "text": "'<code>realSet({\"low\":0,\"high\":33,\"rangeType\":1},{\"low\":30,\"high\":31,\"rangeType\":0},\"intersect\",[30,31,32])</code> should return <code>[true,true,false]</code>.'",
+          "testString": "assert.deepEqual(realSet({\"low\":0,\"high\":33,\"rangeType\":1},{\"low\":30,\"high\":31,\"rangeType\":0},\"intersect\",[30,31,32]),[true,true,false],'<code>realSet({\"low\":0,\"high\":33,\"rangeType\":1},{\"low\":30,\"high\":31,\"rangeType\":0},\"intersect\",[30,31,32])</code> should return <code>[true,true,false]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fdc",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function realSet (set1, set2, operation, values) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "SHA-1",
+      "description": [
+        "<b>SHA-1</b> or <b>SHA1</b> is a one-way hash function; it computes a 160-bit message digest.",
+        "SHA-1 often appears in security protocols; for example, many HTTPS websites use RSA with SHA-1 to secure their connections.",
+        "BitTorrent uses SHA-1 to verify downloads.",
+        "Git and Mercurial use SHA-1 digests to identify commits.",
+        "A US government standard, <a href=\"http://rosettacode.org/wiki/SHA-1/FIPS-180-1\">FIPS 180-1</a>, defines SHA-1.",
+        "Find the SHA-1 message digest for a given string."
+      ],
+      "solutions": [
+        "function SHA1 (input) {\n  var hexcase = 0;\n  var b64pad = \"\";\n  var chrsz = 8;\n\n  function hex_sha1(s) {\n    return binb2hex(core_sha1(str2binb(s), s.length * chrsz));\n  }\n\n  function core_sha1(x, len) {\n    x[len >> 5] |= 0x80 << (24 - len % 32);\n    x[((len + 64 >> 9) << 4) + 15] = len;\n\n    var w = Array(80);\n    var a = 1732584193;\n    var b = -271733879;\n    var c = -1732584194;\n    var d = 271733878;\n    var e = -1009589776;\n\n    for (var i = 0; i < x.length; i += 16) {\n      var olda = a;\n      var oldb = b;\n      var oldc = c;\n      var oldd = d;\n      var olde = e;\n\n      for (var j = 0; j < 80; j++) {\n        if (j < 16) w[j] = x[i + j];\n        else w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);\n        var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)),\n          safe_add(safe_add(e, w[j]), sha1_kt(j)));\n        e = d;\n        d = c;\n        c = rol(b, 30);\n        b = a;\n        a = t;\n      }\n\n      a = safe_add(a, olda);\n      b = safe_add(b, oldb);\n      c = safe_add(c, oldc);\n      d = safe_add(d, oldd);\n      e = safe_add(e, olde);\n    }\n    return Array(a, b, c, d, e);\n\n  }\n\n  function sha1_ft(t, b, c, d) {\n    if (t < 20) return (b & c) | ((~b) & d);\n    if (t < 40) return b ^ c ^ d;\n    if (t < 60) return (b & c) | (b & d) | (c & d);\n    return b ^ c ^ d;\n  }\n\n  function sha1_kt(t) {\n    return (t < 20) ? 1518500249 : (t < 40) ? 1859775393 :\n      (t < 60) ? -1894007588 : -899497514;\n  }\n\n  function safe_add(x, y) {\n    var lsw = (x & 0xFFFF) + (y & 0xFFFF);\n    var msw = (x >> 16) + (y >> 16) + (lsw >> 16);\n    return (msw << 16) | (lsw & 0xFFFF);\n  }\n\n  function rol(num, cnt) {\n    return (num << cnt) | (num >>> (32 - cnt));\n  }\n\n  function str2binb(str) {\n    var bin = Array();\n    var mask = (1 << chrsz) - 1;\n    for (var i = 0; i < str.length * chrsz; i += chrsz)\n      bin[i >> 5] |= (str.charCodeAt(i / chrsz) & mask) << (24 - i % 32);\n    return bin;\n  }\n\n  function binb2hex(binarray) {\n    var hex_tab = hexcase ? \"0123456789ABCDEF\" : \"0123456789abcdef\";\n    var str = \"\";\n    for (var i = 0; i < binarray.length * 4; i++) {\n      str += hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8 + 4)) & 0xF) +\n        hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8)) & 0xF);\n    }\n    return str;\n  }\n\n  return hex_sha1(input);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>SHA1</code> should be a function.'",
+          "testString": "assert(typeof SHA1=='function','<code>SHA1</code> should be a function.');"
+        },
+        {
+          "text": "'<code>SHA1(\"abc\")</code> should return a string.'",
+          "testString": "assert(typeof SHA1(\"abc\") == 'string','<code>SHA1(\"abc\")</code> should return a string.');"
+        },
+        {
+          "text": "'<code>SHA1(\"abc\")</code> should return <code>\"a9993e364706816aba3e25717850c26c9cd0d89d\"</code>.'",
+          "testString": "assert.equal(SHA1(\"abc\"),\"a9993e364706816aba3e25717850c26c9cd0d89d\",'<code>SHA1(\"abc\")</code> should return <code>\"a9993e364706816aba3e25717850c26c9cd0d89d\"</code>.');"
+        },
+        {
+          "text": "'<code>SHA1(\"Rosetta Code\")</code> should return <code>\"48c98f7e5a6e736d790ab740dfc3f51a61abe2b5\"</code>.'",
+          "testString": "assert.equal(SHA1(\"Rosetta Code\"),\"48c98f7e5a6e736d790ab740dfc3f51a61abe2b5\",'<code>SHA1(\"Rosetta Code\")</code> should return <code>\"48c98f7e5a6e736d790ab740dfc3f51a61abe2b5\"</code>.');"
+        },
+        {
+          "text": "'<code>SHA1(\"Hello world\")</code> should return <code>\"7b502c3a1f48c8609ae212cdfb639dee39673f5e\"</code>.'",
+          "testString": "assert.equal(SHA1(\"Hello world\"),\"7b502c3a1f48c8609ae212cdfb639dee39673f5e\",'<code>SHA1(\"Hello world\")</code> should return <code>\"7b502c3a1f48c8609ae212cdfb639dee39673f5e\"</code>.');"
+        },
+        {
+          "text": "'<code>SHA1(\"Programming\")</code> should return <code>\"d1a946bf8b2f2a7292c250063ee28989d742cd4b\"</code>.'",
+          "testString": "assert.equal(SHA1(\"Programming\"),\"d1a946bf8b2f2a7292c250063ee28989d742cd4b\",'<code>SHA1(\"Programming\")</code> should return <code>\"d1a946bf8b2f2a7292c250063ee28989d742cd4b\"</code>.');"
+        },
+        {
+          "text": "'<code>SHA1(\"is Awesome\")</code> should return <code>\"6537205da59c72b57ed3881843c2d24103d683a3\"</code>.'",
+          "testString": "assert.equal(SHA1(\"is Awesome\"),\"6537205da59c72b57ed3881843c2d24103d683a3\",'<code>SHA1(\"is Awesome\")</code> should return <code>\"6537205da59c72b57ed3881843c2d24103d683a3\"</code>.');"
+        }
+      ],
+      "id": "5b93a3a3d73df01ea208e89e",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function SHA1 (input) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "SHA-256",
+      "description": [
+        "<b><a href=\"https://en.wikipedia.org/wiki/SHA-256\">SHA-256</a></b> is the recommended stronger alternative to <a href=\"http://rosettacode.org/wiki/SHA-1\">SHA-1</a>.",
+        "Write a function that takes a string as a parameter and returns its the SHA-256 digest."
+      ],
+      "solutions": [
+        "function SHA256 (input) {\n  var chrsz = 8;\n  var hexcase = 0;\n\n  function safe_add(x, y) {\n    var lsw = (x & 0xFFFF) + (y & 0xFFFF);\n    var msw = (x >> 16) + (y >> 16) + (lsw >> 16);\n    return (msw << 16) | (lsw & 0xFFFF);\n  }\n\n  function S(X, n) {\n    return (X >>> n) | (X << (32 - n));\n  }\n\n  function R(X, n) {\n    return (X >>> n);\n  }\n\n  function Ch(x, y, z) {\n    return ((x & y) ^ ((~x) & z));\n  }\n\n  function Maj(x, y, z) {\n    return ((x & y) ^ (x & z) ^ (y & z));\n  }\n\n  function Sigma0256(x) {\n    return (S(x, 2) ^ S(x, 13) ^ S(x, 22));\n  }\n\n  function Sigma1256(x) {\n    return (S(x, 6) ^ S(x, 11) ^ S(x, 25));\n  }\n\n  function Gamma0256(x) {\n    return (S(x, 7) ^ S(x, 18) ^ R(x, 3));\n  }\n\n  function Gamma1256(x) {\n    return (S(x, 17) ^ S(x, 19) ^ R(x, 10));\n  }\n\n  function Sigma0512(x) {\n    return (S(x, 28) ^ S(x, 34) ^ S(x, 39));\n  }\n\n  function Sigma1512(x) {\n    return (S(x, 14) ^ S(x, 18) ^ S(x, 41));\n  }\n\n  function Gamma0512(x) {\n    return (S(x, 1) ^ S(x, 8) ^ R(x, 7));\n  }\n\n  function Gamma1512(x) {\n    return (S(x, 19) ^ S(x, 61) ^ R(x, 6));\n  }\n\n  function core_sha256(m, l) {\n    var K = new Array(0x428A2F98, 0x71374491, 0xB5C0FBCF, 0xE9B5DBA5, 0x3956C25B, 0x59F111F1, 0x923F82A4, 0xAB1C5ED5, 0xD807AA98, 0x12835B01, 0x243185BE, 0x550C7DC3, 0x72BE5D74, 0x80DEB1FE, 0x9BDC06A7, 0xC19BF174, 0xE49B69C1, 0xEFBE4786, 0xFC19DC6, 0x240CA1CC, 0x2DE92C6F, 0x4A7484AA, 0x5CB0A9DC, 0x76F988DA, 0x983E5152, 0xA831C66D, 0xB00327C8, 0xBF597FC7, 0xC6E00BF3, 0xD5A79147, 0x6CA6351, 0x14292967, 0x27B70A85, 0x2E1B2138, 0x4D2C6DFC, 0x53380D13, 0x650A7354, 0x766A0ABB, 0x81C2C92E, 0x92722C85, 0xA2BFE8A1, 0xA81A664B, 0xC24B8B70, 0xC76C51A3, 0xD192E819, 0xD6990624, 0xF40E3585, 0x106AA070, 0x19A4C116, 0x1E376C08, 0x2748774C, 0x34B0BCB5, 0x391C0CB3, 0x4ED8AA4A, 0x5B9CCA4F, 0x682E6FF3, 0x748F82EE, 0x78A5636F, 0x84C87814, 0x8CC70208, 0x90BEFFFA, 0xA4506CEB, 0xBEF9A3F7, 0xC67178F2);\n    var HASH = new Array(0x6A09E667, 0xBB67AE85, 0x3C6EF372, 0xA54FF53A, 0x510E527F, 0x9B05688C, 0x1F83D9AB, 0x5BE0CD19);\n    var W = new Array(64);\n    var a, b, c, d, e, f, g, h, i, j;\n    var T1, T2;\n\n    m[l >> 5] |= 0x80 << (24 - l % 32);\n    m[((l + 64 >> 9) << 4) + 15] = l;\n\n    for (var i = 0; i < m.length; i += 16) {\n      a = HASH[0];\n      b = HASH[1];\n      c = HASH[2];\n      d = HASH[3];\n      e = HASH[4];\n      f = HASH[5];\n      g = HASH[6];\n      h = HASH[7];\n\n      for (var j = 0; j < 64; j++) {\n        if (j < 16) W[j] = m[j + i];\n        else W[j] = safe_add(safe_add(safe_add(Gamma1256(W[j - 2]), W[j - 7]), Gamma0256(W[j - 15])), W[j - 16]);\n\n        T1 = safe_add(safe_add(safe_add(safe_add(h, Sigma1256(e)), Ch(e, f, g)), K[j]), W[j]);\n        T2 = safe_add(Sigma0256(a), Maj(a, b, c));\n\n        h = g;\n        g = f;\n        f = e;\n        e = safe_add(d, T1);\n        d = c;\n        c = b;\n        b = a;\n        a = safe_add(T1, T2);\n      }\n\n      HASH[0] = safe_add(a, HASH[0]);\n      HASH[1] = safe_add(b, HASH[1]);\n      HASH[2] = safe_add(c, HASH[2]);\n      HASH[3] = safe_add(d, HASH[3]);\n      HASH[4] = safe_add(e, HASH[4]);\n      HASH[5] = safe_add(f, HASH[5]);\n      HASH[6] = safe_add(g, HASH[6]);\n      HASH[7] = safe_add(h, HASH[7]);\n    }\n    return HASH;\n  }\n\n  function core_sha512(m, l) {\n    var K = new Array(0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc, 0x3956c25bf348b538, 0x59f111f1b605d019, 0x923f82a4af194f9b, 0xab1c5ed5da6d8118, 0xd807aa98a3030242, 0x12835b0145706fbe, 0x243185be4ee4b28c, 0x550c7dc3d5ffb4e2, 0x72be5d74f27b896f, 0x80deb1fe3b1696b1, 0x9bdc06a725c71235, 0xc19bf174cf692694, 0xe49b69c19ef14ad2, 0xefbe4786384f25e3, 0x0fc19dc68b8cd5b5, 0x240ca1cc77ac9c65, 0x2de92c6f592b0275, 0x4a7484aa6ea6e483, 0x5cb0a9dcbd41fbd4, 0x76f988da831153b5, 0x983e5152ee66dfab, 0xa831c66d2db43210, 0xb00327c898fb213f, 0xbf597fc7beef0ee4, 0xc6e00bf33da88fc2, 0xd5a79147930aa725, 0x06ca6351e003826f, 0x142929670a0e6e70, 0x27b70a8546d22ffc, 0x2e1b21385c26c926, 0x4d2c6dfc5ac42aed, 0x53380d139d95b3df, 0x650a73548baf63de, 0x766a0abb3c77b2a8, 0x81c2c92e47edaee6, 0x92722c851482353b, 0xa2bfe8a14cf10364, 0xa81a664bbc423001, 0xc24b8b70d0f89791, 0xc76c51a30654be30, 0xd192e819d6ef5218, 0xd69906245565a910, 0xf40e35855771202a, 0x106aa07032bbd1b8, 0x19a4c116b8d2d0c8, 0x1e376c085141ab53, 0x2748774cdf8eeb99, 0x34b0bcb5e19b48a8, 0x391c0cb3c5c95a63, 0x4ed8aa4ae3418acb, 0x5b9cca4f7763e373, 0x682e6ff3d6b2b8a3, 0x748f82ee5defb2fc, 0x78a5636f43172f60, 0x84c87814a1f0ab72, 0x8cc702081a6439ec, 0x90befffa23631e28, 0xa4506cebde82bde9, 0xbef9a3f7b2c67915, 0xc67178f2e372532b, 0xca273eceea26619c, 0xd186b8c721c0c207, 0xeada7dd6cde0eb1e, 0xf57d4f7fee6ed178, 0x06f067aa72176fba, 0x0a637dc5a2c898a6, 0x113f9804bef90dae, 0x1b710b35131c471b, 0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc, 0x431d67c49c100d4c, 0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817);\n    var HASH = new Array(0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1, 0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179);\n    var W = new Array(80);\n    var a, b, c, d, e, f, g, h, i, j;\n    var T1, T2;\n\n  }\n\n  function str2binb(str) {\n    var bin = Array();\n    var mask = (1 << chrsz) - 1;\n    for (var i = 0; i < str.length * chrsz; i += chrsz)\n      bin[i >> 5] |= (str.charCodeAt(i / chrsz) & mask) << (24 - i % 32);\n    return bin;\n  }\n\n  function binb2str(bin) {\n    var str = \"\";\n    var mask = (1 << chrsz) - 1;\n    for (var i = 0; i < bin.length * 32; i += chrsz)\n      str += String.fromCharCode((bin[i >> 5] >>> (24 - i % 32)) & mask);\n    return str;\n  }\n\n  function binb2hex(binarray) {\n    var hex_tab = hexcase ? \"0123456789ABCDEF\" : \"0123456789abcdef\";\n    var str = \"\";\n    for (var i = 0; i < binarray.length * 4; i++) {\n      str += hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8 + 4)) & 0xF) +\n        hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8)) & 0xF);\n    }\n    return str;\n  }\n\n  function binb2b64(binarray) {\n    var tab = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\";\n    var str = \"\";\n    for (var i = 0; i < binarray.length * 4; i += 3) {\n      var triplet = (((binarray[i >> 2] >> 8 * (3 - i % 4)) & 0xFF) << 16) |\n        (((binarray[i + 1 >> 2] >> 8 * (3 - (i + 1) % 4)) & 0xFF) << 8) |\n        ((binarray[i + 2 >> 2] >> 8 * (3 - (i + 2) % 4)) & 0xFF);\n      for (var j = 0; j < 4; j++) {\n        if (i * 8 + j * 6 > binarray.length * 32) str += \"\";\n        else str += tab.charAt((triplet >> 6 * (3 - j)) & 0x3F);\n      }\n    }\n    return str;\n  }\n\n  function hex_sha2(s) {\n    return binb2hex(core_sha256(str2binb(s), s.length * chrsz));\n  }\n\n  function b64_sha2(s) {\n    return binb2b64(core_sha256(str2binb(s), s.length * chrsz));\n  }\n\n  function str_sha2(s) {\n    return binb2str(core_sha256(str2binb(s), s.length * chrsz));\n  }\n  return hex_sha2(input);\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "assert(typeof SHA256 == 'function', '<code>SHA256</code> should be a function.'",
+          "testString": "assert(typeof SHA256 == 'function', '<code>SHA256</code> should be a function.');"
+        },
+        {
+          "text": "assert(typeof SHA256(\"Rosetta code\") == 'string', '<code>SHA256(\"Rosetta code\")</code> should return a string.'",
+          "testString": "assert(typeof SHA256(\"Rosetta code\") == 'string', '<code>SHA256(\"Rosetta code\")</code> should return a string.');"
+        },
+        {
+          "text": "assert.equal(SHA256(\"Rosetta code\"), \"764faf5c61ac315f1497f9dfa542713965b785e5cc2f707d6468d7d1124cdfcf\", '<code>SHA256(\"Rosetta code\")</code> should return <code>\"764faf5c61ac315f1497f9dfa542713965b785e5cc2f707d6468d7d1124cdfcf\"</code>.'",
+          "testString": "assert.equal(SHA256(\"Rosetta code\"), \"764faf5c61ac315f1497f9dfa542713965b785e5cc2f707d6468d7d1124cdfcf\", '<code>SHA256(\"Rosetta code\")</code> should return <code>\"764faf5c61ac315f1497f9dfa542713965b785e5cc2f707d6468d7d1124cdfcf\"</code>.');"
+        },
+        {
+          "text": "assert.equal(SHA256(\"SHA-256 Hash\"), \"bee8c0cabdcf8c7835f40217dd35a8b0dba9134520e633f1c57285f35ca7ee3e\", '<code>SHA256(\"SHA-256 Hash\")</code> should return <code>\"bee8c0cabdcf8c7835f40217dd35a8b0dba9134520e633f1c57285f35ca7ee3e\"</code>.'",
+          "testString": "assert.equal(SHA256(\"SHA-256 Hash\"), \"bee8c0cabdcf8c7835f40217dd35a8b0dba9134520e633f1c57285f35ca7ee3e\", '<code>SHA256(\"SHA-256 Hash\")</code> should return <code>\"bee8c0cabdcf8c7835f40217dd35a8b0dba9134520e633f1c57285f35ca7ee3e\"</code>.');"
+        },
+        {
+          "text": "assert.equal(SHA256(\"implementation\"), \"da31012c40330e7e21538e7dd57503b16e8a0839159e96137090cccc9910b171\", '<code>SHA256(\"implementation\")</code> should return <code>\"da31012c40330e7e21538e7dd57503b16e8a0839159e96137090cccc9910b171\"</code>.'",
+          "testString": "assert.equal(SHA256(\"implementation\"), \"da31012c40330e7e21538e7dd57503b16e8a0839159e96137090cccc9910b171\", '<code>SHA256(\"implementation\")</code> should return <code>\"da31012c40330e7e21538e7dd57503b16e8a0839159e96137090cccc9910b171\"</code>.');"
+        },
+        {
+          "text": "assert.equal(SHA256(\"algorithm\"), \"b1eb2ec8ac9f31ff7918231e67f96e6deda83a9ff33ed2c67443f1df81e5ed14\", '<code>SHA256(\"algorithm\")</code> should return <code>\"b1eb2ec8ac9f31ff7918231e67f96e6deda83a9ff33ed2c67443f1df81e5ed14\"</code>.'",
+          "testString": "assert.equal(SHA256(\"algorithm\"), \"b1eb2ec8ac9f31ff7918231e67f96e6deda83a9ff33ed2c67443f1df81e5ed14\", '<code>SHA256(\"algorithm\")</code> should return <code>\"b1eb2ec8ac9f31ff7918231e67f96e6deda83a9ff33ed2c67443f1df81e5ed14\"</code>.');"
+        },
+        {
+          "text": "assert.equal(SHA256(\"language\"), \"a4ef304ba42a200bafd78b046e0869af9183f6eee5524aead5dcb3a5ab5f8f3f\", '<code>SHA256(\"language\")</code> should return <code>\"a4ef304ba42a200bafd78b046e0869af9183f6eee5524aead5dcb3a5ab5f8f3f\"</code>.'",
+          "testString": "assert.equal(SHA256(\"language\"), \"a4ef304ba42a200bafd78b046e0869af9183f6eee5524aead5dcb3a5ab5f8f3f\", '<code>SHA256(\"language\")</code> should return <code>\"a4ef304ba42a200bafd78b046e0869af9183f6eee5524aead5dcb3a5ab5f8f3f\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fe2",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function SHA256 (input) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Sieve of Eratosthenes",
+      "description": [
+        "The <a href=\"https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes\">Sieve of Eratosthenes</a> is a simple algorithm that finds the prime numbers up to a given integer.",
+        "Implement the  Sieve of Eratosthenes  algorithm, with the only allowed optimization that the outer loop can stop at the square root of the limit, and the inner loop may start at the square of the prime just found.",
+        "Write a function that takes a number as a parameter and returns an array containing prime numbers less than the given number using the above method."
+      ],
+      "solutions": [
+        "function eratosthenes (limit) {\n    var primes = [];\n    if (limit >= 2) {\n        var sqrtlmt = Math.sqrt(limit) - 2;\n        var nums = new Array();\n        for (var i = 2; i <= limit; i++)\n            nums.push(i);\n        for (var i = 0; i <= sqrtlmt; i++) {\n            var p = nums[i]\n            if (p)\n                for (var j = p * p - 2; j < nums.length; j += p)\n                    nums[j] = 0;\n        }\n        for (var i = 0; i < nums.length; i++) {\n            var p = nums[i];\n            if (p)\n                primes.push(p);\n        }\n    }\n    return primes;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>eratosthenes</code> should be a function.'",
+          "testString": "assert(typeof eratosthenes=='function','<code>eratosthenes</code> should be a function.');"
+        },
+        {
+          "text": "'<code>eratosthenes(10)</code> should return a array.'",
+          "testString": "assert(Array.isArray(eratosthenes(10)),'<code>eratosthenes(10)</code> should return a array.');"
+        },
+        {
+          "text": "'<code>eratosthenes(10)</code> should return <code>[2,3,5,7]</code>.'",
+          "testString": "assert.deepEqual(eratosthenes(10),[2,3,5,7],'<code>eratosthenes(10)</code> should return <code>[2,3,5,7]</code>.');"
+        },
+        {
+          "text": "'<code>eratosthenes(20)</code> should return <code>[2,3,5,7,11,13,17,19]</code>.'",
+          "testString": "assert.deepEqual(eratosthenes(20),[2,3,5,7,11,13,17,19],'<code>eratosthenes(20)</code> should return <code>[2,3,5,7,11,13,17,19]</code>.');"
+        },
+        {
+          "text": "'<code>eratosthenes(30)</code> should return <code>[2,3,5,7,11,13,17,19,23,29]</code>.'",
+          "testString": "assert.deepEqual(eratosthenes(30),[2,3,5,7,11,13,17,19,23,29],'<code>eratosthenes(30)</code> should return <code>[2,3,5,7,11,13,17,19,23,29]</code>.');"
+        },
+        {
+          "text": "'<code>eratosthenes(40)</code> should return <code>[2,3,5,7,11,13,17,19,23,29,31,37]</code>.'",
+          "testString": "assert.deepEqual(eratosthenes(40),[2,3,5,7,11,13,17,19,23,29,31,37],'<code>eratosthenes(40)</code> should return <code>[2,3,5,7,11,13,17,19,23,29,31,37]</code>.');"
+        },
+        {
+          "text": "'<code>eratosthenes(50)</code> should return <code>[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]</code>.'",
+          "testString": "assert.deepEqual(eratosthenes(50),[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47],'<code>eratosthenes(50)</code> should return <code>[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7fea",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function eratosthenes (limit) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Singly-linked list/Element definition",
+      "description": [
+        "Define the data structure for a <a href=\"http://rosettacode.org/wiki/singly-linked list\">singly-linked list</a> element. Said element should contain a data member capable of holding a numeric value, and the link to the next element should be mutable.",
+        "Write a function that takes an array as a parameter. The array contains queries to be performed on the singly linked list. The first element of the query is the type of the operation and it can be \"head\" or \"after\". For head, the second element should be inserted at the head of the linked list. For after, the second element's value should be searched in the linked list. The third element should be inserted after the node whose value is equal to the second element's value."
+      ],
+      "solutions": [
+        "function LinkedList() {\n  this.length = 0;\n  this.head = null;\n}\nfunction Node(val) {\n  this.val = val;\n  this.prev = null;\n}\n\nfunction singlyLinkedList (queries) {\n  LinkedList.prototype.insertAtHead = function(val) {\n    var node=new Node(val);\n    if(this.head){\n      node.next=this.head;\n      this.head=node;\n    }else{\n      this.head=node;\n    }\n    this.length++;\n  }\n\n  LinkedList.prototype.insertAfter = function(val1,val2) {\n    var temp=this.head;\n\n    while(temp!=null && temp.val!=val1){\n      temp=temp.next;\n    }\n\n    if(temp){\n      var node=new Node(val2);\n      var tempNext=temp.next;\n      temp.next=node;\n      node.next=tempNext;\n    }\n    this.length++;\n  }\n\n  var list = new LinkedList();\n\n  queries.forEach(function(e) {\n    switch (e[0]) {\n      case 'head':\n        list.insertAtHead(e[1]);\n        break;\n      case 'after':\n        list.insertAfter(e[1],e[2]);\n        break;\n    }\n  })\n\n  return list\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>singlyLinkedList</code> should be a function.'",
+          "testString": "assert(typeof singlyLinkedList=='function','<code>singlyLinkedList</code> should be a function.');"
+        },
+        {
+          "text": "'<code>traverse(singlyLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return a array.'",
+          "testString": "assert(Array.isArray(traverse(singlyLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))),'<code>traverse(singlyLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return a array.');"
+        },
+        {
+          "text": "'<code>traverse(singlyLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return <code>[5,4,3,2,1]</code>.'",
+          "testString": "assert.deepEqual(traverse(singlyLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]])),[5,4,3,2,1],'<code>traverse(singlyLinkedList([[\"head\",1],[\"head\",2],[\"head\",3],[\"head\",4],[\"head\",5]]))</code> should return <code>[5,4,3,2,1]</code>.');"
+        },
+        {
+          "text": "'<code>traverse(singlyLinkedList([[\"head\",1],[\"after\",1,2],[\"head\",3],[\"head\",5],[\"after\",3,4]]))</code> should return <code>[5,3,4,1,2]</code>.'",
+          "testString": "assert.deepEqual(traverse(singlyLinkedList([[\"head\",1],[\"after\",1,2],[\"head\",3],[\"head\",5],[\"after\",3,4]])),[5,3,4,1,2],'<code>traverse(singlyLinkedList([[\"head\",1],[\"after\",1,2],[\"head\",3],[\"head\",5],[\"after\",3,4]]))</code> should return <code>[5,3,4,1,2]</code>.');"
+        },
+        {
+          "text": "'<code>traverse(singlyLinkedList([[\"head\",31],[\"head\",26],[\"head\",33],[\"head\",15],[\"head\",24]]))</code> should return <code>[24,15,33,26,31]</code>.'",
+          "testString": "assert.deepEqual(traverse(singlyLinkedList([[\"head\",31],[\"head\",26],[\"head\",33],[\"head\",15],[\"head\",24]])),[24,15,33,26,31],'<code>traverse(singlyLinkedList([[\"head\",31],[\"head\",26],[\"head\",33],[\"head\",15],[\"head\",24]]))</code> should return <code>[24,15,33,26,31]</code>.');"
+        },
+        {
+          "text": "'<code>traverse(singlyLinkedList([[\"head\",2],[\"head\",0],[\"after\",2,3],[\"after\",0,4],[\"head\",12]]))</code> should return <code>[12,0,4,2,3]</code>.'",
+          "testString": "assert.deepEqual(traverse(singlyLinkedList([[\"head\",2],[\"head\",0],[\"after\",2,3],[\"after\",0,4],[\"head\",12]])),[12,0,4,2,3],'<code>traverse(singlyLinkedList([[\"head\",2],[\"head\",0],[\"after\",2,3],[\"after\",0,4],[\"head\",12]]))</code> should return <code>[12,0,4,2,3]</code>.');"
+        },
+        {
+          "text": "'<code>traverse(singlyLinkedList([[\"head\",1],[\"after\",1,2],[\"head\",3],[\"head\",5],[\"head\",42]]))</code> should return <code>[42,5,3,1,2]</code>.'",
+          "testString": "assert.deepEqual(traverse(singlyLinkedList([[\"head\",1],[\"after\",1,2],[\"head\",3],[\"head\",5],[\"head\",42]])),[42,5,3,1,2],'<code>traverse(singlyLinkedList([[\"head\",1],[\"after\",1,2],[\"head\",3],[\"head\",5],[\"head\",42]]))</code> should return <code>[42,5,3,1,2]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ff0",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function LinkedList() {",
+            "  this.length = 0;",
+            "  this.head = null;",
+            "}",
+            "function Node(val) {",
+            "  this.val = val;",
+            "  this.prev = null;",
+            "}",
+            "",
+            "function singlyLinkedList (queries) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": [
+            "function traverse(list) {",
+            "  var vals=[],temp=list.head;",
+            "  while(temp){",
+            "    vals.push(temp.val)",
+            "    temp=temp.next",
+            "  }",
+            "  return vals",
+            "}"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Smith numbers",
+      "description": [
+        "<a href=\"https://en.wikipedia.org/wiki/Smith numbers\">Smith numbers</a> are numbers such that the <a href=\"http://rosettacode.org/wiki/Sum_digits_of_an_integer\">sum of the decimal digits of the integers</a> that make up that number is the same as the sum of the decimal digits of its prime factors excluding 1.",
+        "By definition, all primes are <i>excluded</i> as they (naturally) satisfy this condition!Smith numbers are also known as joke numbers.",
+        "Using the number <b>166</b>",
+        "Find the prime factors of <b>166</b> which are: <b>2</b> x <b>83</b>",
+        "Then, take those two prime factors and sum all their decimal digits: <b>2 + 8 + 3</b> which is <b>13</b>",
+        "Then, take the decimal digits of <b>166</b> and add their decimal digits: <b>1 + 6 + 6</b> which is <b>13</b>",
+        "Therefore, the number <b>166</b> is a Smith number.",
+        "Write a function that checks if a given number is a Smith number. It should return true if it is a Smith number. Otherwise returns false."
+      ],
+      "solutions": [
+        "function isSmith (n) {\n  const concat = xs => {\n    if (xs.length > 0) {\n      const unit = typeof xs[0] === 'string' ? '' : [];\n      return unit.concat.apply(unit, xs);\n    } else return [];\n  }\n  const range = (m, n) =>\n    Array.from({\n      length: Math.floor(n - m) + 1\n    }, (_, i) => m + i);\n  const dropWhile = (p, xs) => {\n    let i = 0;\n    for (let lng = xs.length;\n      (i < lng) && p(xs[i]); i++) {}\n    return xs.slice(i);\n  }\n  const head = xs => xs.length ? xs[0] : undefined;\n  const take = (n, xs) => xs.slice(0, n);\n  const primeFactors = n => {\n    const fs = take(1, (dropWhile(x => n % x !== 0, range(2, Math.floor(Math.sqrt(n))))));\n    return fs.length === 0 ? (\n      [n]\n    ) : fs.concat(primeFactors(Math.floor(n / head(fs))));\n  };\n\n  const digitSum = ds =>\n    ds\n    .reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);\n\n  const pfs = primeFactors(n);\n  return (head(pfs) !== n) &&\n    digitSum(n.toString()\n      .split('')) == digitSum(\n      concat(pfs.map(x => x.toString()))\n      .split('')\n    );\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>isSmith</code> should be a function.'",
+          "testString": "assert(typeof isSmith=='function','<code>isSmith</code> should be a function.');"
+        },
+        {
+          "text": "'<code>isSmith(4)</code> should return a boolean.'",
+          "testString": "assert(typeof isSmith(4) == 'boolean','<code>isSmith(4)</code> should return a boolean.');"
+        },
+        {
+          "text": "'<code>isSmith(4)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSmith(4),true,'<code>isSmith(4)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(52)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSmith(52),false,'<code>isSmith(52)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(355)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSmith(355),true,'<code>isSmith(355)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(378)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSmith(378),true,'<code>isSmith(378)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(44)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSmith(44),false,'<code>isSmith(44)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(133)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSmith(133),false,'<code>isSmith(133)</code> should return <code>false</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(121)</code> should return <code>true</code>.'",
+          "testString": "assert.equal(isSmith(121),true,'<code>isSmith(121)</code> should return <code>true</code>.');"
+        },
+        {
+          "text": "'<code>isSmith(76)</code> should return <code>false</code>.'",
+          "testString": "assert.equal(isSmith(76),false,'<code>isSmith(76)</code> should return <code>false</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ff4",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function isSmith (n) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Sokoban",
+      "description": [
+        "Demonstrate how to find a solution to a given <a href=\"https://en.wikipedia.org/wiki/Sokoban\">Sokoban</a> level. For the purpose of this task (formally, a PSPACE-complete problem) any method may be used. However a move-optimal or push-optimal (or any other -optimal) solutions is preferred.",
+        "Sokoban levels are usually stored as a character array where",
+        "<ul><li><i>space</i> is an empty square</li>",
+        "<li># is a wall</li>",
+        "<li>@ is the player</li>",
+        "<li>$ is a box</li>",
+        "<li>. is a goal</li>",
+        "<li>+ is the player on a goal</li>",
+        "<li>* is a box on a goal</li></ul>",
+        "Sokoban solutions are usually stored in the LURD format, where lowercase l, u, r and d represent a move in that (<b>l</b>eft, <b>u</b>p, <b>r</b>ight, <b>d</b>own) direction and capital LURD represents a push.",
+        "Write a function that takes a string as a parameter. The string represents the Sokoban puzzle. Each row is separated by commas. The function should return the solution as a string of valid moves."
+      ],
+      "solutions": [
+        "// noprotect\nfunction solveSokoban (level) {\n  function Sokoban(board) {\n    this.nCols = board[0].length;\n    var destBuf = \"\";\n    var currBuf = \"\";\n\n    for (var r = 0; r < board.length; r++) {\n      for (var c = 0; c < this.nCols; c++) {\n\n        var ch = board[r][c];\n\n        destBuf += ch != '$' && ch != '@' ? ch : ' ';\n        currBuf += ch != '.' ? ch : ' ';\n\n        if (ch == '@') {\n          this.playerX = c;\n          this.playerY = r;\n        }\n      }\n    }\n    this.destBoard = destBuf;\n    this.currBoard = currBuf;\n    this.move = function(x, y, dx, dy, trialBoard) {\n      var newPlayerPos = (y + dy) * this.nCols + x + dx;\n      if (trialBoard[newPlayerPos] != ' ')\n        return null;\n\n      var trial = trialBoard.split(\"\");\n      trial[y * this.nCols + x] = ' ';\n      trial[newPlayerPos] = '@';\n      return trial.join(\"\");\n    }\n\n    this.push = function(x, y, dx, dy, trialBoard) {\n      var newBoxPos = (y + 2 * dy) * this.nCols + x + 2 * dx;\n\n      if (trialBoard[newBoxPos] != ' ')\n        return null;\n\n      var trial = trialBoard.split(\"\");\n      trial[y * this.nCols + x] = ' ';\n      trial[(y + dy) * this.nCols + x + dx] = '@';\n      trial[newBoxPos] = '$';\n      return trial.join(\"\");\n    }\n\n    this.isSolved = function(trialBoard) {\n      for (var i = 0; i < trialBoard.length; i++)\n        if ((this.destBoard[i] == '.') !=\n          (trialBoard[i] == '$'))\n          return false;\n      return true;\n    }\n\n    function Board(s1, s2, px, py) {\n      this.cur = s1;\n      this.sol = s2;\n      this.x = px;\n      this.y = py;\n    }\n    this.solve = function() {\n      var dirLabels = [\n        ['u', 'U'],\n        ['r', 'R'],\n        ['d', 'D'],\n        ['l', 'L']\n      ];\n      var dirs = [\n        [0, -1],\n        [1, 0],\n        [0, 1],\n        [-1, 0]\n      ];\n      var history = new Set();\n      var open = [];\n\n      history.add(this.currBoard);\n      open.push(new Board(this.currBoard, \"\", this.playerX, this.playerY));\n      while (open.length != 0) {\n        var item = open.shift();\n        var cur = item.cur;\n        var sol = item.sol;\n        var x = item.x;\n        var y = item.y;\n        for (var i = 0; i < dirs.length; i++) {\n          var trial = cur;\n          var dx = dirs[i][0];\n          var dy = dirs[i][1];\n          // are we standing next to a box ?\n          if (trial[(y + dy) * this.nCols + x + dx] == '$') {\n\n            if (trial = this.push(x, y, dx, dy, trial)) {\n\n              // or did we already try this one ?\n              if (!history.has(trial)) {\n\n                var newSol = sol + dirLabels[i][1];\n\n                if (this.isSolved(trial))\n                  return newSol;\n\n                open.push(new Board(trial, newSol, x + dx, y + dy));\n                history.add(trial);\n              }\n            }\n\n            // otherwise try changing position\n          } else if ((trial = this.move(x, y, dx, dy, trial)) != null) {\n            if (!history.has(trial)) {\n              var newSol = sol + dirLabels[i][0];\n              open.push(new Board(trial, newSol, x + dx, y + dy));\n              history.add(trial);\n            }\n          }\n        }\n      }\n      return \"No solution\";\n    }\n  }\n\n  return new Sokoban(level.split(\",\")).solve()\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>solveSokoban</code> should be a function.'",
+          "testString": "assert(typeof solveSokoban=='function','<code>solveSokoban</code> should be a function.');"
+        },
+        {
+          "text": "'<code>solveSokoban(\"#######,#     #,#     #,#. #  #,#. $$ #,#.$$  #,#.#  @#,#######\")</code> should return a string.'",
+          "testString": "assert(typeof solveSokoban(\"#######,#     #,#     #,#. #  #,#. $$ #,#.$$  #,#.#  @#,#######\") == 'string','<code>solveSokoban(\"#######,#     #,#     #,#. #  #,#. $$ #,#.$$  #,#.#  @#,#######\")</code> should return a string.');"
+        },
+        {
+          "text": "'<code>solveSokoban(\"#######,#     #,#     #,#. #  #,#. $$ #,#.$$  #,#.#  @#,#######\")</code> should return <code>\"ulULLulDDurrrddlULrruLLrrUruLLLulD\"</code>.'",
+          "testString": "assert.equal(solveSokoban(\"#######,#     #,#     #,#. #  #,#. $$ #,#.$$  #,#.#  @#,#######\"),\"ulULLulDDurrrddlULrruLLrrUruLLLulD\",'<code>solveSokoban(\"#######,#     #,#     #,#. #  #,#. $$ #,#.$$  #,#.#  @#,#######\")</code> should return <code>\"ulULLulDDurrrddlULrruLLrrUruLLLulD\"</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ff7",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function solveSokoban (level) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Solve a Hidato puzzle",
+      "description": [
+        "The task is to write a program which solves <a href=\"https://en.wikipedia.org/wiki/Hidato\">Hidato (aka Hidoku) puzzles</a>.",
+        "The rules are:",
+        "<ul><li>You are given a grid with some numbers placed in it. The other squares in the grid will be blank.</li>",
+        "<li>The grid is not necessarily rectangular.</li>",
+        "<li>The grid may have holes in it.</li>",
+        "<li>The grid is always connected.</li>",
+        "<li>The number “1” is always present, as is another number that is equal to the number of squares in the grid. Other numbers are present so as to force the solution to be unique.</li>",
+        "<li>It may be assumed that the difference between numbers present on the grid is not greater than lucky 13.</li>",
+        "<li>The aim is to place a natural number in each blank square so that in the sequence of numbered squares from “1” upwards, each square is in the Moore neighborhood of the squares immediately before and after it in the sequence (except for the first and last squares, of course, which only have one-sided constraints).</li>",
+        "<li>Thus, if the grid was overlaid on a chessboard, a king would be able to make legal moves along the path from first to last square in numerical order.</li>",
+        "<li>A square may only contain one number.</li>",
+        "<li>In a proper Hidato puzzle, the solution is unique.</li></ul>",
+        "Write a function that takes a 2D array as a parameter. The 2D array represents the puzzle. The elements can be:",
+        "<ul><li>A number greater than or equal to 1.</li>",
+        "<li>0 in case of blank cell.</li>",
+        "<li>-1 otherwise (for representing non-rectangular grids and holes)</li></ol>",
+        "The function should return the solved puzzle in which the blank cells are populated according to the rules."
+      ],
+      "solutions": [
+        "function solveHidato (boardMat) {\n  var board, flood, known, top = 0,\n    w, h;\n\n  function idx(y, x) {\n    return y * w + x;\n  }\n\n  function neighbors(c, p) {\n    var i, j, n = 0;\n    var y = Math.floor(c / w),\n      x = c % w;\n\n    for (i = y - 1; i <= y + 1; i++) {\n      if (i < 0 || i >= h) continue;\n      for (j = x - 1; j <= x + 1; j++)\n        if (!(j < 0 || j >= w ||\n            (j == x && i == y) ||\n            board[p[n] = idx(i, j)] == -1))\n          n++;\n    }\n\n    return n;\n  }\n\n  function flood_fill(c) {\n    var i, n = new Array(8),\n      nei;\n\n    nei = neighbors(c, n);\n    for (i = 0; i < nei; i++) {\n      if (board[n[i]] || flood[n[i]]) continue;\n\n      flood[n[i]] = 1;\n      flood_fill(n[i]);\n    }\n  }\n\n  function check_connectity(lowerbound) {\n    var c;\n    for (var i = 0; i <= w * h; i++) {\n      flood[i] = 0;\n    }\n    for (c = lowerbound + 1; c <= top; c++)\n      if (known[c]) flood_fill(known[c]);\n\n    for (c = 0; c < w * h; c++)\n      if (board[c] == 0 && flood[c] == 0)\n        return 0;\n\n    return 1;\n  }\n\n  function fill(c, n) {\n    var i, nei, p = new Array(8),\n      ko, bo;\n\n    if ((board[c] && board[c] != n) || (known[n] && known[n] != c))\n      return 0;\n\n    if (n == top) return 1;\n\n    ko = known[n];\n    bo = board[c];\n    board[c] = n;\n\n    if (check_connectity(n)) {\n      nei = neighbors(c, p);\n      for (i = 0; i < nei; i++)\n        if (fill(p[i], n + 1))\n          return 1;\n    }\n\n    board[c] = bo;\n    known[n] = ko;\n    return 0;\n  }\n\n  w = boardMat[0].length;\n  h = boardMat.length;\n\n  var x = w * h;\n  known = new Array(x + 1);\n  board = [];\n  boardMat.forEach(function(e) {\n    board = board.concat(e)\n  })\n  board.forEach(function(e, i) {\n    if (e > 0) {\n      known[e] = i;\n      if (board[i] > top) top = board[i];\n    }\n  })\n\n  flood = new Array(x);\n  fill(known[1], 1);\n\n  var result = []\n\n  for (var i = 0; i < h; i++) {\n    result.push(board.slice(i * w, w * (i + 1)))\n  }\n\n  return result;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>solveHidato</code> should be a function.'",
+          "testString": "assert(typeof solveHidato=='function','<code>solveHidato</code> should be a function.');"
+        },
+        {
+          "text": "'<code>solveHidato([[-1,4,-1],[0,7,0],[1,0,0]])</code> should return a array.'",
+          "testString": "assert(Array.isArray(solveHidato([[-1,4,-1],[0,7,0],[1,0,0]])),'<code>solveHidato([[-1,4,-1],[0,7,0],[1,0,0]])</code> should return a array.');"
+        },
+        {
+          "text": "'<code>solveHidato([[-1,4,-1],[0,7,0],[1,0,0]])</code> should return <code>[[-1,4,-1],[3,7,5],[1,2,6]]</code>.'",
+          "testString": "assert.deepEqual(solveHidato([[-1,4,-1],[0,7,0],[1,0,0]]),[[-1,4,-1],[3,7,5],[1,2,6]],'<code>solveHidato([[-1,4,-1],[0,7,0],[1,0,0]])</code> should return <code>[[-1,4,-1],[3,7,5],[1,2,6]]</code>.');"
+        },
+        {
+          "text": "'<code>solveHidato([[1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,74],[-1,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1],[-1,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1]])</code> should return <code>[[1,2,3,-1,-1,8,9,-1,-1,14,15,-1,-1,20,21,-1,-1,26,27,-1,-1,32,33,-1,-1,38,39,-1,-1,44,45,-1,-1,50,51,-1,-1,56,57,-1,-1,62,63,-1,-1,68,69,-1,-1,74],[-1,-1,4,-1,7,-1,10,-1,13,-1,16,-1,19,-1,22,-1,25,-1,28,-1,31,-1,34,-1,37,-1,40,-1,43,-1,46,-1,49,-1,52,-1,55,-1,58,-1,61,-1,64,-1,67,-1,70,-1,73,-1],[-1,-1,-1,5,6,-1,-1,11,12,-1,-1,17,18,-1,-1,23,24,-1,-1,29,30,-1,-1,35,36,-1,-1,41,42,-1,-1,47,48,-1,-1,53,54,-1,-1,59,60,-1,-1,65,66,-1,-1,71,72,-1]]</code>.'",
+          "testString": "assert.deepEqual(solveHidato([[1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,74],[-1,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1],[-1,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1]]),[[1,2,3,-1,-1,8,9,-1,-1,14,15,-1,-1,20,21,-1,-1,26,27,-1,-1,32,33,-1,-1,38,39,-1,-1,44,45,-1,-1,50,51,-1,-1,56,57,-1,-1,62,63,-1,-1,68,69,-1,-1,74],[-1,-1,4,-1,7,-1,10,-1,13,-1,16,-1,19,-1,22,-1,25,-1,28,-1,31,-1,34,-1,37,-1,40,-1,43,-1,46,-1,49,-1,52,-1,55,-1,58,-1,61,-1,64,-1,67,-1,70,-1,73,-1],[-1,-1,-1,5,6,-1,-1,11,12,-1,-1,17,18,-1,-1,23,24,-1,-1,29,30,-1,-1,35,36,-1,-1,41,42,-1,-1,47,48,-1,-1,53,54,-1,-1,59,60,-1,-1,65,66,-1,-1,71,72,-1]],'<code>solveHidato([[1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,74],[-1,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1,0,-1],[-1,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1,-1,0,0,-1]])</code> should return <code>[[1,2,3,-1,-1,8,9,-1,-1,14,15,-1,-1,20,21,-1,-1,26,27,-1,-1,32,33,-1,-1,38,39,-1,-1,44,45,-1,-1,50,51,-1,-1,56,57,-1,-1,62,63,-1,-1,68,69,-1,-1,74],[-1,-1,4,-1,7,-1,10,-1,13,-1,16,-1,19,-1,22,-1,25,-1,28,-1,31,-1,34,-1,37,-1,40,-1,43,-1,46,-1,49,-1,52,-1,55,-1,58,-1,61,-1,64,-1,67,-1,70,-1,73,-1],[-1,-1,-1,5,6,-1,-1,11,12,-1,-1,17,18,-1,-1,23,24,-1,-1,29,30,-1,-1,35,36,-1,-1,41,42,-1,-1,47,48,-1,-1,53,54,-1,-1,59,60,-1,-1,65,66,-1,-1,71,72,-1]]</code>.');"
+        },
+        {
+          "text": "'<code>solveHidato([[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]])</code> should return <code>[[32,33,35,36,37,-1,-1,-1],[31,34,24,22,38,-1,-1,-1],[30,25,23,21,12,39,-1,-1],[29,26,20,13,40,11,-1,-1],[27,28,14,19,9,10,1,-1],[-1,-1,15,16,18,8,2,-1],[-1,-1,-1,-1,17,7,6,3],[-1,-1,-1,-1,-1,-1,5,4]]</code>.'",
+          "testString": "assert.deepEqual(solveHidato([[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]]),[[32,33,35,36,37,-1,-1,-1],[31,34,24,22,38,-1,-1,-1],[30,25,23,21,12,39,-1,-1],[29,26,20,13,40,11,-1,-1],[27,28,14,19,9,10,1,-1],[-1,-1,15,16,18,8,2,-1],[-1,-1,-1,-1,17,7,6,3],[-1,-1,-1,-1,-1,-1,5,4]],'<code>solveHidato([[0,33,35,0,0,-1,-1,-1],[0,0,24,22,0,-1,-1,-1],[0,0,0,21,0,0,-1,-1],[0,26,0,13,40,11,-1,-1],[27,0,0,0,9,0,1,-1],[-1,-1,0,0,18,0,0,-1],[-1,-1,-1,-1,0,7,0,0],[-1,-1,-1,-1,-1,-1,5,0]])</code> should return <code>[[32,33,35,36,37,-1,-1,-1],[31,34,24,22,38,-1,-1,-1],[30,25,23,21,12,39,-1,-1],[29,26,20,13,40,11,-1,-1],[27,28,14,19,9,10,1,-1],[-1,-1,15,16,18,8,2,-1],[-1,-1,-1,-1,17,7,6,3],[-1,-1,-1,-1,-1,-1,5,4]]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ff8",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function solveHidato (boardMat) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Solve a Numbrix puzzle",
+      "description": [
+        "Numbrix puzzles are similar to <a href=\"http://rosettacode.org/wiki/Solve a Hidato puzzle\">Hidato</a>.",
+        "The most important difference is that it is only possible to move 1 node left, right, up, or down (sometimes referred to as the <a href=\"https://en.wikipedia.org/wiki/Von Neumann neighborhood\">Von Neumann neighborhood</a>).",
+        "Published puzzles also tend not to have holes in the grid and may not always indicate the end node.",
+        "Two examples follow:",
+        "Problem.",
+        "<pre> 0  0  0  0  0  0  0  0  0 \\n 0  0 46 45  0 55 74  0  0 \\n 0 38  0  0 43  0  0 78  0 \\n 0 35  0  0  0  0  0 71  0 \\n 0  0 33  0  0  0 59  0  0 \\n 0 17  0  0  0  0  0 67  0 \\n 0 18  0  0 11  0  0 64  0 \\n 0  0 24 21  0  1  2  0  0 \\n 0  0  0  0  0  0  0  0  0 \\n </pre>",
+        "Solution.",
+        "<pre> 49 50 51 52 53 54 75 76 81 \\n 48 47 46 45 44 55 74 77 80 \\n 37 38 39 40 43 56 73 78 79 \\n 36 35 34 41 42 57 72 71 70 \\n 31 32 33 14 13 58 59 68 69 \\n 30 17 16 15 12 61 60 67 66 \\n 29 18 19 20 11 62 63 64 65 \\n 28 25 24 21 10  1  2  3  4 \\n 27 26 23 22  9  8  7  6  5 \\n </pre>",
+        "Problem.",
+        "<pre> 0  0  0  0  0  0  0  0  0 \\n 0 11 12 15 18 21 62 61  0 \\n 0  6  0  0  0  0  0 60  0 \\n 0 33  0  0  0  0  0 57  0 \\n 0 32  0  0  0  0  0 56  0 \\n 0 37  0  1  0  0  0 73  0 \\n 0 38  0  0  0  0  0 72  0 \\n 0 43 44 47 48 51 76 77  0 \\n 0  0  0  0  0  0  0  0  0 \\n </pre>",
+        "Solution.",
+        "<pre> 9 10 13 14 19 20 63 64 65 \\n 8 11 12 15 18 21 62 61 66 \\n 7  6  5 16 17 22 59 60 67 \\n 34 33  4  3 24 23 58 57 68 \\n 35 32 31  2 25 54 55 56 69 \\n 36 37 30  1 26 53 74 73 70 \\n 39 38 29 28 27 52 75 72 71 \\n 40 43 44 47 48 51 76 77 78 \\n 41 42 45 46 49 50 81 80 79 \\n </pre>",
+        "Write a function that takes a 2D array as a parameter. This array represents the Numbrix puzzle. The function should return the solution by replacing the 0s with valid numbers."
+      ],
+      "solutions": [
+        "function solveNumbrix (board) {\n  var moves = [\n    [1, 0],\n    [0, 1],\n    [-1, 0],\n    [0, -1]\n  ]\n\n  var nRows = board.length + 2;\n  var nCols = board[0].length + 2;\n  var startRow = 0;\n  var startCol = 0;\n  var grid = new Array(nRows);\n\n  for (var i = 0; i < grid.length; i++) {\n    grid[i]=new Array(nCols);\n    grid[i].fill(-1)\n  }\n  var totalToFill = (nRows - 2) * (nCols - 2);\n  var lst = ([]);\n  for (var r = 0; r < nRows; r++) {\n    if (r >= 1 && r < nRows - 1) {\n      var row = board[r - 1];\n      for (var c = 1; c < nCols - 1; c++) {\n        var val = row[c - 1];\n        if (val > 0)\n          (lst.push(val) > 0);\n        if (val === 1) {\n          startRow = r;\n          startCol = c;\n        }\n        grid[r][c] = val;\n      };\n    }\n  }\n  lst.sort()\n  var clues = lst.slice();\n  solve(startRow, startCol, 1, 0)\n\n  function solve(r, c, count, nextClue) {\n    if (count > totalToFill)\n      return true;\n    if (grid[r][c] !== 0 && grid[r][c] !== count)\n      return false;\n    if (grid[r][c] === 0 && nextClue < clues.length)\n      if (clues[nextClue] === count)\n        return false;\n    var back = grid[r][c];\n    if (back === count)\n      nextClue++;\n    grid[r][c] = count;\n    for (var index371 = 0; index371 < moves.length; index371++) {\n      var move = moves[index371];\n      if (solve(r + move[1], c + move[0], count + 1, nextClue))\n        return true;\n    }\n    grid[r][c] = back;\n    return false;\n  };\n\n  grid = grid.slice(1, -1).map(e => e.slice(1, -1))\n  return grid;\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>solveNumbrix</code> should be a function.'",
+          "testString": "assert(typeof solveNumbrix=='function','<code>solveNumbrix</code> should be a function.');"
+        },
+        {
+          "text": "'<code>solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,0,46,45,0,55,74,0,0],[0,38,0,0,43,0,0,78,0],[0,35,0,0,0,0,0,71,0],[0,0,33,0,0,0,59,0,0],[0,17,0,0,0,0,0,67,0],[0,18,0,0,11,0,0,64,0],[0,0,24,21,0,1,2,0,0],[0,0,0,0,0,0,0,0,0]])</code> should return a array.'",
+          "testString": "assert(Array.isArray(solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,0,46,45,0,55,74,0,0],[0,38,0,0,43,0,0,78,0],[0,35,0,0,0,0,0,71,0],[0,0,33,0,0,0,59,0,0],[0,17,0,0,0,0,0,67,0],[0,18,0,0,11,0,0,64,0],[0,0,24,21,0,1,2,0,0],[0,0,0,0,0,0,0,0,0]])),'<code>solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,0,46,45,0,55,74,0,0],[0,38,0,0,43,0,0,78,0],[0,35,0,0,0,0,0,71,0],[0,0,33,0,0,0,59,0,0],[0,17,0,0,0,0,0,67,0],[0,18,0,0,11,0,0,64,0],[0,0,24,21,0,1,2,0,0],[0,0,0,0,0,0,0,0,0]])</code> should return a array.');"
+        },
+        {
+          "text": "'<code>solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,0,46,45,0,55,74,0,0],[0,38,0,0,43,0,0,78,0],[0,35,0,0,0,0,0,71,0],[0,0,33,0,0,0,59,0,0],[0,17,0,0,0,0,0,67,0],[0,18,0,0,11,0,0,64,0],[0,0,24,21,0,1,2,0,0],[0,0,0,0,0,0,0,0,0]])</code> should return <code>[[49,50,51,52,53,54,75,76,81],[48,47,46,45,44,55,74,77,80],[37,38,39,40,43,56,73,78,79],[36,35,34,41,42,57,72,71,70],[31,32,33,14,13,58,59,68,69],[30,17,16,15,12,61,60,67,66],[29,18,19,20,11,62,63,64,65],[28,25,24,21,10,1,2,3,4],[27,26,23,22,9,8,7,6,5]]</code>.'",
+          "testString": "assert.deepEqual(solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,0,46,45,0,55,74,0,0],[0,38,0,0,43,0,0,78,0],[0,35,0,0,0,0,0,71,0],[0,0,33,0,0,0,59,0,0],[0,17,0,0,0,0,0,67,0],[0,18,0,0,11,0,0,64,0],[0,0,24,21,0,1,2,0,0],[0,0,0,0,0,0,0,0,0]]),[[49,50,51,52,53,54,75,76,81],[48,47,46,45,44,55,74,77,80],[37,38,39,40,43,56,73,78,79],[36,35,34,41,42,57,72,71,70],[31,32,33,14,13,58,59,68,69],[30,17,16,15,12,61,60,67,66],[29,18,19,20,11,62,63,64,65],[28,25,24,21,10,1,2,3,4],[27,26,23,22,9,8,7,6,5]],'<code>solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,0,46,45,0,55,74,0,0],[0,38,0,0,43,0,0,78,0],[0,35,0,0,0,0,0,71,0],[0,0,33,0,0,0,59,0,0],[0,17,0,0,0,0,0,67,0],[0,18,0,0,11,0,0,64,0],[0,0,24,21,0,1,2,0,0],[0,0,0,0,0,0,0,0,0]])</code> should return <code>[[49,50,51,52,53,54,75,76,81],[48,47,46,45,44,55,74,77,80],[37,38,39,40,43,56,73,78,79],[36,35,34,41,42,57,72,71,70],[31,32,33,14,13,58,59,68,69],[30,17,16,15,12,61,60,67,66],[29,18,19,20,11,62,63,64,65],[28,25,24,21,10,1,2,3,4],[27,26,23,22,9,8,7,6,5]]</code>.');"
+        },
+        {
+          "text": "'<code>solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,11,12,15,18,21,62,61,0],[0,6,0,0,0,0,0,60,0],[0,33,0,0,0,0,0,57,0],[0,32,0,0,0,0,0,56,0],[0,37,0,1,0,0,0,73,0],[0,38,0,0,0,0,0,72,0],[0,43,44,47,48,51,76,77,0],[0,0,0,0,0,0,0,0,0]])</code> should return <code>[[9,10,13,14,19,20,63,64,65],[8,11,12,15,18,21,62,61,66],[7,6,5,16,17,22,59,60,67],[34,33,4,3,24,23,58,57,68],[35,32,31,2,25,54,55,56,69],[36,37,30,1,26,53,74,73,70],[39,38,29,28,27,52,75,72,71],[40,43,44,47,48,51,76,77,78],[41,42,45,46,49,50,81,80,79]]</code>.'",
+          "testString": "assert.deepEqual(solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,11,12,15,18,21,62,61,0],[0,6,0,0,0,0,0,60,0],[0,33,0,0,0,0,0,57,0],[0,32,0,0,0,0,0,56,0],[0,37,0,1,0,0,0,73,0],[0,38,0,0,0,0,0,72,0],[0,43,44,47,48,51,76,77,0],[0,0,0,0,0,0,0,0,0]]),[[9,10,13,14,19,20,63,64,65],[8,11,12,15,18,21,62,61,66],[7,6,5,16,17,22,59,60,67],[34,33,4,3,24,23,58,57,68],[35,32,31,2,25,54,55,56,69],[36,37,30,1,26,53,74,73,70],[39,38,29,28,27,52,75,72,71],[40,43,44,47,48,51,76,77,78],[41,42,45,46,49,50,81,80,79]],'<code>solveNumbrix([[0,0,0,0,0,0,0,0,0],[0,11,12,15,18,21,62,61,0],[0,6,0,0,0,0,0,60,0],[0,33,0,0,0,0,0,57,0],[0,32,0,0,0,0,0,56,0],[0,37,0,1,0,0,0,73,0],[0,38,0,0,0,0,0,72,0],[0,43,44,47,48,51,76,77,0],[0,0,0,0,0,0,0,0,0]])</code> should return <code>[[9,10,13,14,19,20,63,64,65],[8,11,12,15,18,21,62,61,66],[7,6,5,16,17,22,59,60,67],[34,33,4,3,24,23,58,57,68],[35,32,31,2,25,54,55,56,69],[36,37,30,1,26,53,74,73,70],[39,38,29,28,27,52,75,72,71],[40,43,44,47,48,51,76,77,78],[41,42,45,46,49,50,81,80,79]]</code>.');"
+        },
+        {
+          "text": "'<code>solveNumbrix([[17,0,0,0,11,0,0,0,59],[0,15,0,0,6,0,0,61,0],[0,0,3,0,0,0,63,0,0],[0,0,0,1,66,0,0,0,0],[23,24,0,68,67,78,0,54,55],[0,0,0,0,72,0,0,0,0],[0,0,35,0,0,0,49,0,0],[0,29,0,0,40,0,0,47,0],[31,0,0,0,39,0,0,0,45]])</code> should return <code>[[17,16,13,12,11,10,9,60,59],[18,15,14,5,6,7,8,61,58],[19,20,3,4,65,64,63,62,57],[22,21,2,1,66,79,80,81,56],[23,24,69,68,67,78,77,54,55],[26,25,70,71,72,75,76,53,52],[27,28,35,36,73,74,49,50,51],[30,29,34,37,40,41,48,47,46],[31,32,33,38,39,42,43,44,45]]</code>.'",
+          "testString": "assert.deepEqual(solveNumbrix([[17,0,0,0,11,0,0,0,59],[0,15,0,0,6,0,0,61,0],[0,0,3,0,0,0,63,0,0],[0,0,0,1,66,0,0,0,0],[23,24,0,68,67,78,0,54,55],[0,0,0,0,72,0,0,0,0],[0,0,35,0,0,0,49,0,0],[0,29,0,0,40,0,0,47,0],[31,0,0,0,39,0,0,0,45]]),[[17,16,13,12,11,10,9,60,59],[18,15,14,5,6,7,8,61,58],[19,20,3,4,65,64,63,62,57],[22,21,2,1,66,79,80,81,56],[23,24,69,68,67,78,77,54,55],[26,25,70,71,72,75,76,53,52],[27,28,35,36,73,74,49,50,51],[30,29,34,37,40,41,48,47,46],[31,32,33,38,39,42,43,44,45]],'<code>solveNumbrix([[17,0,0,0,11,0,0,0,59],[0,15,0,0,6,0,0,61,0],[0,0,3,0,0,0,63,0,0],[0,0,0,1,66,0,0,0,0],[23,24,0,68,67,78,0,54,55],[0,0,0,0,72,0,0,0,0],[0,0,35,0,0,0,49,0,0],[0,29,0,0,40,0,0,47,0],[31,0,0,0,39,0,0,0,45]])</code> should return <code>[[17,16,13,12,11,10,9,60,59],[18,15,14,5,6,7,8,61,58],[19,20,3,4,65,64,63,62,57],[22,21,2,1,66,79,80,81,56],[23,24,69,68,67,78,77,54,55],[26,25,70,71,72,75,76,53,52],[27,28,35,36,73,74,49,50,51],[30,29,34,37,40,41,48,47,46],[31,32,33,38,39,42,43,44,45]]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ffb",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function solveNumbrix (board) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
+      "title": "Sort a list of object identifiers",
+      "description": [
+        "<a href=\"https://en.wikipedia.org/wiki/Object identifier\">Object identifiers (OID)</a> are strings used to identify objects in network data.",
+        "The task to sort a list of OIDs, in their natural sort order.",
+        "<ul> <li>An OID consists of one or more non-negative integers in base 10, separated by dots. It starts and ends with a number.</li> <li>Their natural sort order is <a href=\"https://en.wikipedia.org/wiki/Lexicographical\">lexicographical</a> with regard to the dot-separated fields, using numeric comparison between fields.</li> </ul>",
+        "<table border=1 cellpadding=5 style=\"border-collapse:collapse\"> <tr><th>Input</th><th>Output</th></tr> <tr><td>1.3.6.1.4.1.11.2.17.19.3.4.0.10</td><td>1.3.6.1.4.1.11.2.17.5.2.0.79</td></tr> <tr><td>1.3.6.1.4.1.11.2.17.5.2.0.79</td><td>1.3.6.1.4.1.11.2.17.19.3.4.0.1</td></tr> <tr><td>1.3.6.1.4.1.11.2.17.19.3.4.0.4</td><td>1.3.6.1.4.1.11.2.17.19.3.4.0.4</td></tr> <tr><td>1.3.6.1.4.1.11150.3.4.0.1</td><td>1.3.6.1.4.1.11.2.17.19.3.4.0.10</td></tr> <tr><td>1.3.6.1.4.1.11.2.17.19.3.4.0.1</td><td>1.3.6.1.4.1.11150.3.4.0</td></tr> <tr><td>1.3.6.1.4.1.11150.3.4.0</td><td>1.3.6.1.4.1.11150.3.4.0.1</td></tr> </table>",
+        "Write a function that takes an array of strings as a parameter. The strings are OIDs that need to be sorted in natural order. The function should return the sorted OIDs."
+      ],
+      "solutions": [
+        "function sortOids (input) {\n  input.sort(function(a, b) {\n    var splits1 = a.split('.')\n    var splits2 = b.split('.')\n    var minSize = (splits1.length < splits2.length) ? splits1.length : splits2.length\n    for (var i = 0; i < minSize; i++) {\n      if (parseInt(splits1[i]) < parseInt(splits2[i])) return -1\n      else if (parseInt(splits1[i]) > parseInt(splits2[i])) return 1\n    }\n\n    return splits1.length > splits2.length\n  })\n  return input\n}\n"
+      ],
+      "tests": [
+        {
+          "text": "'<code>sortOids</code> should be a function.'",
+          "testString": "assert(typeof sortOids=='function','<code>sortOids</code> should be a function.');"
+        },
+        {
+          "text": "'<code>sortOids([\"1.2.3.4.5\",\"1.1.2.3.4.5\",\"11.2.3.11.33\",\"4.3.2.4.1.3.1\"])</code> should return a array.'",
+          "testString": "assert(Array.isArray(sortOids([\"1.2.3.4.5\",\"1.1.2.3.4.5\",\"11.2.3.11.33\",\"4.3.2.4.1.3.1\"])),'<code>sortOids([\"1.2.3.4.5\",\"1.1.2.3.4.5\",\"11.2.3.11.33\",\"4.3.2.4.1.3.1\"])</code> should return a array.');"
+        },
+        {
+          "text": "'<code>sortOids([\"1.2.3.4.5\",\"1.1.2.3.4.5\",\"11.2.3.11.33\",\"4.3.2.4.1.3.1\"])</code> should return <code>[\"1.1.2.3.4.5\",\"1.2.3.4.5\",\"4.3.2.4.1.3.1\",\"11.2.3.11.33\"]</code>.'",
+          "testString": "assert.deepEqual(sortOids([\"1.2.3.4.5\",\"1.1.2.3.4.5\",\"11.2.3.11.33\",\"4.3.2.4.1.3.1\"]),[\"1.1.2.3.4.5\",\"1.2.3.4.5\",\"4.3.2.4.1.3.1\",\"11.2.3.11.33\"],'<code>sortOids([\"1.2.3.4.5\",\"1.1.2.3.4.5\",\"11.2.3.11.33\",\"4.3.2.4.1.3.1\"])</code> should return <code>[\"1.1.2.3.4.5\",\"1.2.3.4.5\",\"4.3.2.4.1.3.1\",\"11.2.3.11.33\"]</code>.');"
+        },
+        {
+          "text": "'<code>sortOids([\"53.1195.63.1.2.3\",\"46.53.77.89.22\",\"46.53.76.88.12\",\"66.57.88.3.21.1\",\"53.1000.22.13.44\"])</code> should return <code>[\"46.53.76.88.12\",\"46.53.77.89.22\",\"53.1000.22.13.44\",\"53.1195.63.1.2.3\",\"66.57.88.3.21.1\"]</code>.'",
+          "testString": "assert.deepEqual(sortOids([\"53.1195.63.1.2.3\",\"46.53.77.89.22\",\"46.53.76.88.12\",\"66.57.88.3.21.1\",\"53.1000.22.13.44\"]),[\"46.53.76.88.12\",\"46.53.77.89.22\",\"53.1000.22.13.44\",\"53.1195.63.1.2.3\",\"66.57.88.3.21.1\"],'<code>sortOids([\"53.1195.63.1.2.3\",\"46.53.77.89.22\",\"46.53.76.88.12\",\"66.57.88.3.21.1\",\"53.1000.22.13.44\"])</code> should return <code>[\"46.53.76.88.12\",\"46.53.77.89.22\",\"53.1000.22.13.44\",\"53.1195.63.1.2.3\",\"66.57.88.3.21.1\"]</code>.');"
+        },
+        {
+          "text": "'<code>sortOids([\"1.3.6.1.4.1.11.2.17.19.3.4.0.10\",\"1.3.6.1.4.1.11.2.17.5.2.0.79\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.4\",\"1.3.6.1.4.1.11150.3.4.0.1\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.1\",\"1.3.6.1.4.1.11150.3.4.0\"])</code> should return <code>[\"1.3.6.1.4.1.11.2.17.5.2.0.79\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.1\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.4\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.10\",\"1.3.6.1.4.1.11150.3.4.0\",\"1.3.6.1.4.1.11150.3.4.0.1\"]</code>.'",
+          "testString": "assert.deepEqual(sortOids([\"1.3.6.1.4.1.11.2.17.19.3.4.0.10\",\"1.3.6.1.4.1.11.2.17.5.2.0.79\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.4\",\"1.3.6.1.4.1.11150.3.4.0.1\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.1\",\"1.3.6.1.4.1.11150.3.4.0\"]),[\"1.3.6.1.4.1.11.2.17.5.2.0.79\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.1\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.4\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.10\",\"1.3.6.1.4.1.11150.3.4.0\",\"1.3.6.1.4.1.11150.3.4.0.1\"],'<code>sortOids([\"1.3.6.1.4.1.11.2.17.19.3.4.0.10\",\"1.3.6.1.4.1.11.2.17.5.2.0.79\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.4\",\"1.3.6.1.4.1.11150.3.4.0.1\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.1\",\"1.3.6.1.4.1.11150.3.4.0\"])</code> should return <code>[\"1.3.6.1.4.1.11.2.17.5.2.0.79\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.1\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.4\",\"1.3.6.1.4.1.11.2.17.19.3.4.0.10\",\"1.3.6.1.4.1.11150.3.4.0\",\"1.3.6.1.4.1.11150.3.4.0.1\"]</code>.');"
+        }
+      ],
+      "id": "5a23c84252665b21eecc7ffd",
+      "challengeType": 5,
+      "releasedOn": "September 8, 2018",
+      "files": {
+        "indexjs": {
+          "key": "indexjs",
+          "ext": "js",
+          "name": "index",
+          "contents": [
+            "function sortOids (input) {",
+            "  // Good luck!",
+            "}"
+          ],
+          "head": [],
+          "tail": []
+        }
+      }
+    },
+    {
       "title": "Taxicab numbers",
       "description": [
         "A &nbsp; <a href=\"https://en.wikipedia.org/wiki/Hardy–Ramanujan number\" title=\"wp: Hardy–Ramanujan number\">taxicab number</a>",
