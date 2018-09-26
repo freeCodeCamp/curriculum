@@ -1,4 +1,5 @@
 {
+  "id": "5b8cfedd499ca42ed032c1e5",
   "name": "Sass",
   "order": 4,
   "time": "5 hours",
@@ -9,7 +10,8 @@
       "title": "Store Data with Sass Variables",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -24,20 +26,28 @@
       ],
       "tests": [
         {
-          "text": "Your code should have a Sass variable declared for <code>$text-color</code> with a value of red.",
-          "testString": "assert(code.match(/\\$text-color:\\s*?red;/g), 'Your code should have a Sass variable declared for <code>$text-color</code> with a value of red.');"
+          "text":
+            "Your code should have a Sass variable declared for <code>$text-color</code> with a value of red.",
+          "testString":
+            "assert(code.match(/\\$text-color:\\s*?red;/g), 'Your code should have a Sass variable declared for <code>$text-color</code> with a value of red.');"
         },
         {
-          "text": "Your code should use the <code>$text-color</code> variable to change the <code>color</code> for the <code>.blog-post</code> and <code>h2</code> items.",
-          "testString": "assert(code.match(/color:\\s*?\\$text-color;/g), 'Your code should use the <code>$text-color</code> variable to change the <code>color</code> for the <code>.blog-post</code> and <code>h2</code> items.');"
+          "text":
+            "Your code should use the <code>$text-color</code> variable to change the <code>color</code> for the <code>.blog-post</code> and <code>h2</code> items.",
+          "testString":
+            "assert(code.match(/color:\\s*?\\$text-color;/g), 'Your code should use the <code>$text-color</code> variable to change the <code>color</code> for the <code>.blog-post</code> and <code>h2</code> items.');"
         },
         {
-          "text": "Your <code>.blog-post</code> element should have a </code>color</code> of red.",
-          "testString": "assert($('.blog-post').css('color') == 'rgb(255, 0, 0)', 'Your <code>.blog-post</code> element should have a </code>color</code> of red.');"
+          "text":
+            "Your <code>.blog-post</code> element should have a </code>color</code> of red.",
+          "testString":
+            "assert($('.blog-post').css('color') == 'rgb(255, 0, 0)', 'Your <code>.blog-post</code> element should have a </code>color</code> of red.');"
         },
         {
-          "text": "Your <code>h2</code> elements should have a </code>color</code> of red.",
-          "testString": "assert($('h2').css('color') == 'rgb(255, 0, 0)', 'Your <code>h2</code> elements should have a </code>color</code> of red.');"
+          "text":
+            "Your <code>h2</code> elements should have a </code>color</code> of red.",
+          "testString":
+            "assert($('h2').css('color') == 'rgb(255, 0, 0)', 'Your <code>h2</code> elements should have a </code>color</code> of red.');"
         }
       ],
       "solutions": [],
@@ -86,7 +96,8 @@
       "title": "Nest CSS with Sass",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -101,8 +112,10 @@
       ],
       "tests": [
         {
-          "text": "Your code should re-organize the CSS rules so the <code>h1</code> and <code>p</code> are nested in the <code>.blog-post</code> parent element.",
-          "testString": "assert(code.match(/\\.blog-post\\s*?{\\s*?h1\\s*?{\\s*?text-align:\\s*?center;\\s*?color:\\s*?blue;\\s*?}\\s*?p\\s*?{\\s*?font-size:\\s*?20px;\\s*?}\\s*?}/gi), 'Your code should re-organize the CSS rules so the <code>h1</code> and <code>p</code> are nested in the <code>.blog-post</code> parent element.');"
+          "text":
+            "Your code should re-organize the CSS rules so the <code>h1</code> and <code>p</code> are nested in the <code>.blog-post</code> parent element.",
+          "testString":
+            "assert(code.match(/\\.blog-post\\s*?{\\s*?h1\\s*?{\\s*?text-align:\\s*?center;\\s*?color:\\s*?blue;\\s*?}\\s*?p\\s*?{\\s*?font-size:\\s*?20px;\\s*?}\\s*?}/gi), 'Your code should re-organize the CSS rules so the <code>h1</code> and <code>p</code> are nested in the <code>.blog-post</code> parent element.');"
         }
       ],
       "solutions": [],
@@ -144,7 +157,8 @@
       "title": "Create Reusable CSS with Mixins",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -163,28 +177,40 @@
       ],
       "tests": [
         {
-          "text": "Your code should declare a <code>mixin</code> named <code>border-radius</code> which has a parameter named <code>$radius</code>.",
-          "testString": "assert(code.match(/@mixin\\s+?border-radius\\s*?\\(\\s*?\\$radius\\s*?\\)\\s*?{/gi), 'Your code should declare a <code>mixin</code> named <code>border-radius</code> which has a parameter named <code>$radius</code>.');"
+          "text":
+            "Your code should declare a <code>mixin</code> named <code>border-radius</code> which has a parameter named <code>$radius</code>.",
+          "testString":
+            "assert(code.match(/@mixin\\s+?border-radius\\s*?\\(\\s*?\\$radius\\s*?\\)\\s*?{/gi), 'Your code should declare a <code>mixin</code> named <code>border-radius</code> which has a parameter named <code>$radius</code>.');"
         },
         {
-          "text": "Your code should include the <code>-webkit-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.",
-          "testString": "assert(code.match(/-webkit-border-radius:\\s*?\\$radius;/gi), 'Your code should include the <code>-webkit-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.');"
+          "text":
+            "Your code should include the <code>-webkit-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.",
+          "testString":
+            "assert(code.match(/-webkit-border-radius:\\s*?\\$radius;/gi), 'Your code should include the <code>-webkit-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.');"
         },
         {
-          "text": "Your code should include the <code>-moz-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.",
-          "testString": "assert(code.match(/-moz-border-radius:\\s*?\\$radius;/gi), 'Your code should include the <code>-moz-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.');"
+          "text":
+            "Your code should include the <code>-moz-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.",
+          "testString":
+            "assert(code.match(/-moz-border-radius:\\s*?\\$radius;/gi), 'Your code should include the <code>-moz-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.');"
         },
         {
-          "text": "Your code should include the <code>-ms-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.",
-          "testString": "assert(code.match(/-ms-border-radius:\\s*?\\$radius;/gi), 'Your code should include the <code>-ms-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.');"
+          "text":
+            "Your code should include the <code>-ms-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.",
+          "testString":
+            "assert(code.match(/-ms-border-radius:\\s*?\\$radius;/gi), 'Your code should include the <code>-ms-border-radius</code> vender prefix that uses the <code>$radius</code> parameter.');"
         },
         {
-          "text": "Your code should include the general <code>border-radius</code> rule that uses the <code>$radius</code> parameter.",
-          "testString": "assert(code.match(/border-radius:\\s*?\\$radius;/gi).length == 4, 'Your code should include the general <code>border-radius</code> rule that uses the <code>$radius</code> parameter.');"
+          "text":
+            "Your code should include the general <code>border-radius</code> rule that uses the <code>$radius</code> parameter.",
+          "testString":
+            "assert(code.match(/border-radius:\\s*?\\$radius;/gi).length == 4, 'Your code should include the general <code>border-radius</code> rule that uses the <code>$radius</code> parameter.');"
         },
         {
-          "text": "Your code should call the <code>border-radius mixin</code> using the <code>@include</code> keyword, setting it to 15px.",
-          "testString": "assert(code.match(/@include\\s+?border-radius\\(\\s*?15px\\s*?\\);/gi), 'Your code should call the <code>border-radius mixin</code> using the <code>@include</code> keyword, setting it to 15px.');"
+          "text":
+            "Your code should call the <code>border-radius mixin</code> using the <code>@include</code> keyword, setting it to 15px.",
+          "testString":
+            "assert(code.match(/@include\\s+?border-radius\\(\\s*?15px\\s*?\\);/gi), 'Your code should call the <code>border-radius mixin</code> using the <code>@include</code> keyword, setting it to 15px.');"
         }
       ],
       "solutions": [],
@@ -223,7 +249,8 @@
       "title": "Use @if and @else to Add Logic To Your Styles",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -238,24 +265,34 @@
       ],
       "tests": [
         {
-          "text": "Your code should declare a <code>mixin</code> named <code>border-stroke</code> which has a parameter named <code>$val</code>.",
-          "testString": "assert(code.match(/@mixin\\s+?border-stroke\\s*?\\(\\s*?\\$val\\s*?\\)\\s*?{/gi), 'Your code should declare a <code>mixin</code> named <code>border-stroke</code> which has a parameter named <code>$val</code>.');"
+          "text":
+            "Your code should declare a <code>mixin</code> named <code>border-stroke</code> which has a parameter named <code>$val</code>.",
+          "testString":
+            "assert(code.match(/@mixin\\s+?border-stroke\\s*?\\(\\s*?\\$val\\s*?\\)\\s*?{/gi), 'Your code should declare a <code>mixin</code> named <code>border-stroke</code> which has a parameter named <code>$val</code>.');"
         },
         {
-          "text": "Your <code>mixin</code> should have an <code>@if</code> statement to check if <code>$val</code> is light, and to set the <code>border</code> to 1px solid black.",
-          "testString": "assert(code.match(/@if\\s+?\\$val\\s*?===?\\s*?light\\s*?{\\s*?border\\s*?:\\s*?1px\\s+?solid\\s+?black\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@if</code> statement to check if <code>$val</code> is light, and to set the <code>border</code> to 1px solid black.');"
+          "text":
+            "Your <code>mixin</code> should have an <code>@if</code> statement to check if <code>$val</code> is light, and to set the <code>border</code> to 1px solid black.",
+          "testString":
+            "assert(code.match(/@if\\s+?\\$val\\s*?===?\\s*?light\\s*?{\\s*?border\\s*?:\\s*?1px\\s+?solid\\s+?black\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@if</code> statement to check if <code>$val</code> is light, and to set the <code>border</code> to 1px solid black.');"
         },
         {
-          "text": "Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is medium, and to set the <code>border</code> to 3px solid black.",
-          "testString": "assert(code.match(/@else\\s+?if\\s+?\\$val\\s*?===?\\s*?medium\\s*?{\\s*?border\\s*?:\\s*?3px\\s+?solid\\s+?black\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is medium, and to set the <code>border</code> to 3px solid black.');"
+          "text":
+            "Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is medium, and to set the <code>border</code> to 3px solid black.",
+          "testString":
+            "assert(code.match(/@else\\s+?if\\s+?\\$val\\s*?===?\\s*?medium\\s*?{\\s*?border\\s*?:\\s*?3px\\s+?solid\\s+?black\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is medium, and to set the <code>border</code> to 3px solid black.');"
         },
         {
-          "text": "Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is heavy, and to set the <code>border</code> to 6px solid black.",
-          "testString": "assert(code.match(/@else\\s+?if\\s+?\\$val\\s*?===?\\s*?heavy\\s*?{\\s*?border\\s*?:\\s*?6px\\s+?solid\\s+?black\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is heavy, and to set the <code>border</code> to 6px solid black.');"
+          "text":
+            "Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is heavy, and to set the <code>border</code> to 6px solid black.",
+          "testString":
+            "assert(code.match(/@else\\s+?if\\s+?\\$val\\s*?===?\\s*?heavy\\s*?{\\s*?border\\s*?:\\s*?6px\\s+?solid\\s+?black\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@else if</code> statement to check if <code>$val</code> is heavy, and to set the <code>border</code> to 6px solid black.');"
         },
         {
-          "text": "Your <code>mixin</code> should have an <code>@else</code> statement to set the <code>border</code> to none.",
-          "testString": "assert(code.match(/@else\\s*?{\\s*?border\\s*?:\\s*?none\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@else</code> statement to set the <code>border</code> to none.');"
+          "text":
+            "Your <code>mixin</code> should have an <code>@else</code> statement to set the <code>border</code> to none.",
+          "testString":
+            "assert(code.match(/@else\\s*?{\\s*?border\\s*?:\\s*?none\\s*?;\\s*?}/gi), 'Your <code>mixin</code> should have an <code>@else</code> statement to set the <code>border</code> to none.');"
         }
       ],
       "solutions": [],
@@ -293,7 +330,8 @@
       "title": "Use @for to Create a Sass Loop",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -312,27 +350,38 @@
       "tests": [
         {
           "text": "Your code should use the <code>@for</code> directive.",
-          "testString": "assert(code.match(/@for /g), 'Your code should use the <code>@for</code> directive.');"
+          "testString":
+            "assert(code.match(/@for /g), 'Your code should use the <code>@for</code> directive.');"
         },
         {
-          "text": "Your <code>.text-1</code> class should have a <code>font-size</code> of 10px.",
-          "testString": "assert($('.text-1').css('font-size') == '10px', 'Your <code>.text-1</code> class should have a <code>font-size</code> of 10px.');"
+          "text":
+            "Your <code>.text-1</code> class should have a <code>font-size</code> of 10px.",
+          "testString":
+            "assert($('.text-1').css('font-size') == '10px', 'Your <code>.text-1</code> class should have a <code>font-size</code> of 10px.');"
         },
         {
-          "text": "Your <code>.text-2</code> class should have a <code>font-size</code> of 20px.",
-          "testString": "assert($('.text-2').css('font-size') == '20px', 'Your <code>.text-2</code> class should have a <code>font-size</code> of 20px.');"
+          "text":
+            "Your <code>.text-2</code> class should have a <code>font-size</code> of 20px.",
+          "testString":
+            "assert($('.text-2').css('font-size') == '20px', 'Your <code>.text-2</code> class should have a <code>font-size</code> of 20px.');"
         },
         {
-          "text": "Your <code>.text-3</code> class should have a <code>font-size</code> of 30px.",
-          "testString": "assert($('.text-3').css('font-size') == '30px', 'Your <code>.text-3</code> class should have a <code>font-size</code> of 30px.');"
+          "text":
+            "Your <code>.text-3</code> class should have a <code>font-size</code> of 30px.",
+          "testString":
+            "assert($('.text-3').css('font-size') == '30px', 'Your <code>.text-3</code> class should have a <code>font-size</code> of 30px.');"
         },
         {
-          "text": "Your <code>.text-4</code> class should have a <code>font-size</code> of 40px.",
-          "testString": "assert($('.text-4').css('font-size') == '40px', 'Your <code>.text-4</code> class should have a <code>font-size</code> of 40px.');"
+          "text":
+            "Your <code>.text-4</code> class should have a <code>font-size</code> of 40px.",
+          "testString":
+            "assert($('.text-4').css('font-size') == '40px', 'Your <code>.text-4</code> class should have a <code>font-size</code> of 40px.');"
         },
         {
-          "text": "Your <code>.text-5</code> class should have a <code>font-size</code> of 50px.",
-          "testString": "assert($('.text-5').css('font-size') == '50px', 'Your <code>.text-5</code> class should have a <code>font-size</code> of 50px.');"
+          "text":
+            "Your <code>.text-5</code> class should have a <code>font-size</code> of 50px.",
+          "testString":
+            "assert($('.text-5').css('font-size') == '50px', 'Your <code>.text-5</code> class should have a <code>font-size</code> of 50px.');"
         }
       ],
       "solutions": [],
@@ -368,7 +417,8 @@
       "title": "Use @each to Map Over Items in a List",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -388,19 +438,26 @@
       "tests": [
         {
           "text": "Your code should use the <code>@each</code> directive.",
-          "testString": "assert(code.match(/@each /g), 'Your code should use the <code>@each</code> directive.');"
+          "testString":
+            "assert(code.match(/@each /g), 'Your code should use the <code>@each</code> directive.');"
         },
         {
-          "text": "Your <code>.blue-bg</code> class should have a <code>background-color</code> of blue.",
-          "testString": "assert($('.blue-bg').css('background-color') == 'rgb(0, 0, 255)', 'Your <code>.blue-bg</code> class should have a <code>background-color</code> of blue.');"
+          "text":
+            "Your <code>.blue-bg</code> class should have a <code>background-color</code> of blue.",
+          "testString":
+            "assert($('.blue-bg').css('background-color') == 'rgb(0, 0, 255)', 'Your <code>.blue-bg</code> class should have a <code>background-color</code> of blue.');"
         },
         {
-          "text": "Your <code>.black-bg</code> class should have a <code>background-color</code> of black.",
-          "testString": "assert($('.black-bg').css('background-color') == 'rgb(0, 0, 0)', 'Your <code>.black-bg</code> class should have a <code>background-color</code> of black.');"
+          "text":
+            "Your <code>.black-bg</code> class should have a <code>background-color</code> of black.",
+          "testString":
+            "assert($('.black-bg').css('background-color') == 'rgb(0, 0, 0)', 'Your <code>.black-bg</code> class should have a <code>background-color</code> of black.');"
         },
         {
-          "text": "Your <code>.red-bg</code> class should have a <code>background-color</code> of red.",
-          "testString": "assert($('.red-bg').css('background-color') == 'rgb(255, 0, 0)', 'Your <code>.red-bg</code> class should have a <code>background-color</code> of red.');"
+          "text":
+            "Your <code>.red-bg</code> class should have a <code>background-color</code> of red.",
+          "testString":
+            "assert($('.red-bg').css('background-color') == 'rgb(255, 0, 0)', 'Your <code>.red-bg</code> class should have a <code>background-color</code> of red.');"
         }
       ],
       "solutions": [],
@@ -438,7 +495,8 @@
       "title": "Apply a Style Until a Condition is Met with @while",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -455,55 +513,78 @@
       "tests": [
         {
           "text": "Your code should use the <code>@while</code> directive.",
-          "testString": "assert(code.match(/@while /g), 'Your code should use the <code>@while</code> directive.');"
+          "testString":
+            "assert(code.match(/@while /g), 'Your code should use the <code>@while</code> directive.');"
         },
         {
           "text": "Your code should set an index variable to 1 to start.",
-          "testString": "assert(code.match(/\\$.*:\\s*?1;/gi), 'Your code should set an index variable to 1 to start.');"
+          "testString":
+            "assert(code.match(/\\$.*:\\s*?1;/gi), 'Your code should set an index variable to 1 to start.');"
         },
         {
           "text": "Your code should increment the counter variable.",
-          "testString": "assert(code.match(/\\$(.*):\\s*?\\$\\1\\s*?\\+\\s*?1;/gi), 'Your code should increment the counter variable.');"
+          "testString":
+            "assert(code.match(/\\$(.*):\\s*?\\$\\1\\s*?\\+\\s*?1;/gi), 'Your code should increment the counter variable.');"
         },
         {
-          "text": "Your <code>.text-1</code> class should have a <code>font-size</code> of 5px.",
-          "testString": "assert($('.text-1').css('font-size') == '5px', 'Your <code>.text-1</code> class should have a <code>font-size</code> of 5px.');"
+          "text":
+            "Your <code>.text-1</code> class should have a <code>font-size</code> of 5px.",
+          "testString":
+            "assert($('.text-1').css('font-size') == '5px', 'Your <code>.text-1</code> class should have a <code>font-size</code> of 5px.');"
         },
         {
-          "text": "Your <code>.text-2</code> class should have a <code>font-size</code> of 10px.",
-          "testString": "assert($('.text-2').css('font-size') == '10px', 'Your <code>.text-2</code> class should have a <code>font-size</code> of 10px.');"
+          "text":
+            "Your <code>.text-2</code> class should have a <code>font-size</code> of 10px.",
+          "testString":
+            "assert($('.text-2').css('font-size') == '10px', 'Your <code>.text-2</code> class should have a <code>font-size</code> of 10px.');"
         },
         {
-          "text": "Your <code>.text-3</code> class should have a <code>font-size</code> of 15px.",
-          "testString": "assert($('.text-3').css('font-size') == '15px', 'Your <code>.text-3</code> class should have a <code>font-size</code> of 15px.');"
+          "text":
+            "Your <code>.text-3</code> class should have a <code>font-size</code> of 15px.",
+          "testString":
+            "assert($('.text-3').css('font-size') == '15px', 'Your <code>.text-3</code> class should have a <code>font-size</code> of 15px.');"
         },
         {
-          "text": "Your <code>.text-4</code> class should have a <code>font-size</code> of 20px.",
-          "testString": "assert($('.text-4').css('font-size') == '20px', 'Your <code>.text-4</code> class should have a <code>font-size</code> of 20px.');"
+          "text":
+            "Your <code>.text-4</code> class should have a <code>font-size</code> of 20px.",
+          "testString":
+            "assert($('.text-4').css('font-size') == '20px', 'Your <code>.text-4</code> class should have a <code>font-size</code> of 20px.');"
         },
         {
-          "text": "Your <code>.text-5</code> class should have a <code>font-size</code> of 25px.",
-          "testString": "assert($('.text-5').css('font-size') == '25px', 'Your <code>.text-5</code> class should have a <code>font-size</code> of 25px.');"
+          "text":
+            "Your <code>.text-5</code> class should have a <code>font-size</code> of 25px.",
+          "testString":
+            "assert($('.text-5').css('font-size') == '25px', 'Your <code>.text-5</code> class should have a <code>font-size</code> of 25px.');"
         },
         {
-          "text": "Your <code>.text-6</code> class should have a <code>font-size</code> of 30px.",
-          "testString": "assert($('.text-6').css('font-size') == '30px', 'Your <code>.text-6</code> class should have a <code>font-size</code> of 30px.');"
+          "text":
+            "Your <code>.text-6</code> class should have a <code>font-size</code> of 30px.",
+          "testString":
+            "assert($('.text-6').css('font-size') == '30px', 'Your <code>.text-6</code> class should have a <code>font-size</code> of 30px.');"
         },
         {
-          "text": "Your <code>.text-7</code> class should have a <code>font-size</code> of 35px.",
-          "testString": "assert($('.text-7').css('font-size') == '35px', 'Your <code>.text-7</code> class should have a <code>font-size</code> of 35px.');"
+          "text":
+            "Your <code>.text-7</code> class should have a <code>font-size</code> of 35px.",
+          "testString":
+            "assert($('.text-7').css('font-size') == '35px', 'Your <code>.text-7</code> class should have a <code>font-size</code> of 35px.');"
         },
         {
-          "text": "Your <code>.text-8</code> class should have a <code>font-size</code> of 40px.",
-          "testString": "assert($('.text-8').css('font-size') == '40px', 'Your <code>.text-8</code> class should have a <code>font-size</code> of 40px.');"
+          "text":
+            "Your <code>.text-8</code> class should have a <code>font-size</code> of 40px.",
+          "testString":
+            "assert($('.text-8').css('font-size') == '40px', 'Your <code>.text-8</code> class should have a <code>font-size</code> of 40px.');"
         },
         {
-          "text": "Your <code>.text-9</code> class should have a <code>font-size</code> of 45px.",
-          "testString": "assert($('.text-9').css('font-size') == '45px', 'Your <code>.text-9</code> class should have a <code>font-size</code> of 45px.');"
+          "text":
+            "Your <code>.text-9</code> class should have a <code>font-size</code> of 45px.",
+          "testString":
+            "assert($('.text-9').css('font-size') == '45px', 'Your <code>.text-9</code> class should have a <code>font-size</code> of 45px.');"
         },
         {
-          "text": "Your <code>.text-10</code> class should have a <code>font-size</code> of 50px.",
-          "testString": "assert($('.text-10').css('font-size') == '50px', 'Your <code>.text-10</code> class should have a <code>font-size</code> of 50px.');"
+          "text":
+            "Your <code>.text-10</code> class should have a <code>font-size</code> of 50px.",
+          "testString":
+            "assert($('.text-10').css('font-size') == '50px', 'Your <code>.text-10</code> class should have a <code>font-size</code> of 50px.');"
         }
       ],
       "solutions": [],
@@ -544,7 +625,8 @@
       "title": "Split Your Styles into Smaller Chunks with Partials",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -559,8 +641,10 @@
       ],
       "tests": [
         {
-          "text": "Your code should use the <code>@import</code> directive, and should not include the underscore in the file name.",
-          "testString": "assert(code.match(/@import\\s+?('|\")variables\\1/gi), 'Your code should use the <code>@import</code> directive, and should not include the underscore in the file name.');"
+          "text":
+            "Your code should use the <code>@import</code> directive, and should not include the underscore in the file name.",
+          "testString":
+            "assert(code.match(/@import\\s+?('|\")variables\\1/gi), 'Your code should use the <code>@import</code> directive, and should not include the underscore in the file name.');"
         }
       ],
       "solutions": [],
@@ -573,13 +657,7 @@
           "key": "indexhtml",
           "ext": "html",
           "name": "index",
-          "contents": [
-            "// The main.scss file",
-            "",
-            "",
-            "",
-            ""
-          ],
+          "contents": ["// The main.scss file", "", "", "", ""],
           "head": [],
           "tail": []
         }
@@ -590,7 +668,8 @@
       "title": "Extend One Set of CSS Styles to Another Element",
       "required": [
         {
-          "src": "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
+          "src":
+            "https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.10.9/sass.sync.min.js",
           "raw": true
         }
       ],
@@ -608,12 +687,16 @@
       ],
       "tests": [
         {
-          "text": "Your <code>info-important</code> class should have a <code>background-color</code> set to <code>magenta</code>.",
-          "testString": "assert(code.match(/\\.info-important\\s*?{[\\s\\S]*background-color\\s*?:\\s*?magenta\\s*?;[\\s\\S]*}/gi), 'Your <code>info-important</code> class should have a <code>background-color</code> set to <code>magenta</code>.');"
+          "text":
+            "Your <code>info-important</code> class should have a <code>background-color</code> set to <code>magenta</code>.",
+          "testString":
+            "assert(code.match(/\\.info-important\\s*?{[\\s\\S]*background-color\\s*?:\\s*?magenta\\s*?;[\\s\\S]*}/gi), 'Your <code>info-important</code> class should have a <code>background-color</code> set to <code>magenta</code>.');"
         },
         {
-          "text": "Your <code>info-important</code> class should use <code>@extend</code> to inherit the styling from the <code>info</code> class.",
-          "testString": "assert(code.match(/\\.info-important\\s*?{[\\s\\S]*@extend\\s*?.info\\s*?;[\\s\\S]*/gi), 'Your <code>info-important</code> class should use <code>@extend</code> to inherit the styling from the <code>info</code> class.');"
+          "text":
+            "Your <code>info-important</code> class should use <code>@extend</code> to inherit the styling from the <code>info</code> class.",
+          "testString":
+            "assert(code.match(/\\.info-important\\s*?{[\\s\\S]*@extend\\s*?.info\\s*?;[\\s\\S]*/gi), 'Your <code>info-important</code> class should use <code>@extend</code> to inherit the styling from the <code>info</code> class.');"
         }
       ],
       "solutions": [],

@@ -1,11 +1,13 @@
 {
+  "id": "5b8cfedc499ca42ed032c1df",
   "name": "Bootstrap",
   "order": 2,
   "time": "5 hours",
   "helpRoom": "Help",
   "required": [
     {
-      "link": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"
+      "link":
+        "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"
     }
   ],
   "challenges": [
@@ -23,22 +25,28 @@
       ],
       "tests": [
         {
-          "text": "Your <code>div</code> element should have the class <code>container-fluid</code>.",
-          "testString": "assert($(\"div\").hasClass(\"container-fluid\"), 'Your <code>div</code> element should have the class <code>container-fluid</code>.');"
+          "text":
+            "Your <code>div</code> element should have the class <code>container-fluid</code>.",
+          "testString":
+            "assert($(\"div\").hasClass(\"container-fluid\"), 'Your <code>div</code> element should have the class <code>container-fluid</code>.');"
         },
         {
           "text": "Make sure your <code>div</code> element has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure your <code>div</code> element has a closing tag.');"
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure your <code>div</code> element has a closing tag.');"
         },
         {
-          "text": "Make sure you have nested all HTML elements after the closing <code>style</code> tag in <code>.container-fluid</code>.",
-          "testString": "assert($(\".container-fluid\").children().length >= 8, 'Make sure you have nested all HTML elements after the closing <code>style</code> tag in <code>.container-fluid</code>.');"
+          "text":
+            "Make sure you have nested all HTML elements after the closing <code>style</code> tag in <code>.container-fluid</code>.",
+          "testString":
+            "assert($(\".container-fluid\").children().length >= 8, 'Make sure you have nested all HTML elements after the closing <code>style</code> tag in <code>.container-fluid</code>.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Usa diseño adaptativo con los contenedores fluidos de Bootstrap",
+          "title":
+            "Usa diseño adaptativo con los contenedores fluidos de Bootstrap",
           "description": [
             "Ahora vamos de vuelta a nuestra aplicación de fotos de gatos. Esta vez, vamos a darle estilo utilizando la infraestructura CSS del popular Bootstrap.",
             "Bootstrap determina qué tan ancha es la pantalla y adapta correspondientemente el tamaño de tus elementos HTML - por eso es que se llama <code>Diseño adaptativo</code> (responsive design).",
@@ -50,7 +58,8 @@
           ]
         },
         "fr": {
-          "title": "Un design adaptatif (responsive design) utilisant les conteneurs fluides de Bootstrap",
+          "title":
+            "Un design adaptatif (responsive design) utilisant les conteneurs fluides de Bootstrap",
           "description": [
             "Revenons à notre application de photos de chats. Cette fois-ci, nous allons lui donner un style grâce au renommé framework CSS Bootstrap.",
             "Bootstrap saura reconnaître la largeur de notre écran et s'y adapter en redimensionnant les éléments HTML - d'où le nom <code>Responsive Design</code> (design adaptatif).",
@@ -139,29 +148,39 @@
       "tests": [
         {
           "text": "You should have a total of two images.",
-          "testString": "assert($(\"img\").length === 2, 'You should have a total of two images.');"
+          "testString":
+            "assert($(\"img\").length === 2, 'You should have a total of two images.');"
         },
         {
-          "text": "Your new image should be below your old one and have the class <code>img-responsive</code>.",
-          "testString": "assert($(\"img:eq(1)\").hasClass(\"img-responsive\"), 'Your new image should be below your old one and have the class <code>img-responsive</code>.');"
+          "text":
+            "Your new image should be below your old one and have the class <code>img-responsive</code>.",
+          "testString":
+            "assert($(\"img:eq(1)\").hasClass(\"img-responsive\"), 'Your new image should be below your old one and have the class <code>img-responsive</code>.');"
         },
         {
-          "text": "Your new image should not have the class <code>smaller-image</code>.",
-          "testString": "assert(!$(\"img:eq(1)\").hasClass(\"smaller-image\"), 'Your new image should not have the class <code>smaller-image</code>.');"
+          "text":
+            "Your new image should not have the class <code>smaller-image</code>.",
+          "testString":
+            "assert(!$(\"img:eq(1)\").hasClass(\"smaller-image\"), 'Your new image should not have the class <code>smaller-image</code>.');"
         },
         {
-          "text": "Your new image should have a <code>src</code> of <code>https&#58;//bit.ly/fcc-running-cats</code>.",
-          "testString": "assert($(\"img:eq(1)\").attr(\"src\") === \"https://bit.ly/fcc-running-cats\", 'Your new image should have a <code>src</code> of <code>https&#58;//bit.ly/fcc-running-cats</code>.');"
+          "text":
+            "Your new image should have a <code>src</code> of <code>https&#58;//bit.ly/fcc-running-cats</code>.",
+          "testString":
+            "assert($(\"img:eq(1)\").attr(\"src\") === \"https://bit.ly/fcc-running-cats\", 'Your new image should have a <code>src</code> of <code>https&#58;//bit.ly/fcc-running-cats</code>.');"
         },
         {
-          "text": "Make sure your new <code>img</code> element has a closing angle bracket.",
-          "testString": "assert(code.match(/<img/g) && code.match(/<img[^<]*>/g).length === 2 && code.match(/<img/g).length === 2, 'Make sure your new <code>img</code> element has a closing angle bracket.');"
+          "text":
+            "Make sure your new <code>img</code> element has a closing angle bracket.",
+          "testString":
+            "assert(code.match(/<img/g) && code.match(/<img[^<]*>/g).length === 2 && code.match(/<img/g).length === 2, 'Make sure your new <code>img</code> element has a closing angle bracket.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Haz que las imágenes sean adaptativas en dispositivos móviles",
+          "title":
+            "Haz que las imágenes sean adaptativas en dispositivos móviles",
           "description": [
             "Primero, agrega una nueva imagen debajo que la que ya existe. Haz que su atributo <code>src</code> sea <code>https://bit.ly/fcc-running-cats</code>.",
             "Sería genial si esta imagen fuera exactamente del tamaño de la pantalla de nuestro teléfono.",
@@ -257,12 +276,16 @@
       ],
       "tests": [
         {
-          "text": "Your <code>h2</code> element should be centered by applying the class <code>text-center</code>",
-          "testString": "assert($(\"h2\").hasClass(\"text-center\"), 'Your <code>h2</code> element should be centered by applying the class <code>text-center</code>');"
+          "text":
+            "Your <code>h2</code> element should be centered by applying the class <code>text-center</code>",
+          "testString":
+            "assert($(\"h2\").hasClass(\"text-center\"), 'Your <code>h2</code> element should be centered by applying the class <code>text-center</code>');"
         },
         {
-          "text": "Your <code>h2</code> element should still have the class <code>red-text</code>",
-          "testString": "assert($(\"h2\").hasClass(\"red-text\"), 'Your <code>h2</code> element should still have the class <code>red-text</code>');"
+          "text":
+            "Your <code>h2</code> element should still have the class <code>red-text</code>",
+          "testString":
+            "assert($(\"h2\").hasClass(\"red-text\"), 'Your <code>h2</code> element should still have the class <code>red-text</code>');"
         }
       ],
       "challengeType": 0,
@@ -362,16 +385,22 @@
       ],
       "tests": [
         {
-          "text": "Create a new <code>button</code> element with the text \"Like\".",
-          "testString": "assert(new RegExp(\"like\",\"gi\").test($(\"button\").text()) && ($(\"img.img-responsive + button.btn\").length > 0), 'Create a new <code>button</code> element with the text \"Like\".');"
+          "text":
+            "Create a new <code>button</code> element with the text \"Like\".",
+          "testString":
+            "assert(new RegExp(\"like\",\"gi\").test($(\"button\").text()) && ($(\"img.img-responsive + button.btn\").length > 0), 'Create a new <code>button</code> element with the text \"Like\".');"
         },
         {
-          "text": "Your new button should have two classes: <code>btn</code> and <code>btn-default</code>.",
-          "testString": "assert($(\"button\").hasClass(\"btn\") && $(\"button\").hasClass(\"btn-default\"), 'Your new button should have two classes: <code>btn</code> and <code>btn-default</code>.');"
+          "text":
+            "Your new button should have two classes: <code>btn</code> and <code>btn-default</code>.",
+          "testString":
+            "assert($(\"button\").hasClass(\"btn\") && $(\"button\").hasClass(\"btn-default\"), 'Your new button should have two classes: <code>btn</code> and <code>btn-default</code>.');"
         },
         {
-          "text": "Make sure all your <code>button</code> elements have a closing tag.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
+          "text":
+            "Make sure all your <code>button</code> elements have a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -478,16 +507,21 @@
       ],
       "tests": [
         {
-          "text": "Your button should still have the <code>btn</code> and <code>btn-default</code> classes.",
-          "testString": "assert($(\"button\").hasClass(\"btn\") && $(\"button\").hasClass(\"btn-default\"), 'Your button should still have the <code>btn</code> and <code>btn-default</code> classes.');"
+          "text":
+            "Your button should still have the <code>btn</code> and <code>btn-default</code> classes.",
+          "testString":
+            "assert($(\"button\").hasClass(\"btn\") && $(\"button\").hasClass(\"btn-default\"), 'Your button should still have the <code>btn</code> and <code>btn-default</code> classes.');"
         },
         {
           "text": "Your button should have the class <code>btn-block</code>.",
-          "testString": "assert($(\"button\").hasClass(\"btn-block\"), 'Your button should have the class <code>btn-block</code>.');"
+          "testString":
+            "assert($(\"button\").hasClass(\"btn-block\"), 'Your button should have the class <code>btn-block</code>.');"
         },
         {
-          "text": "Make sure all your <code>button</code> elements have a closing tag.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
+          "text":
+            "Make sure all your <code>button</code> elements have a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -604,21 +638,27 @@
       "tests": [
         {
           "text": "Your button should have the class <code>btn-primary</code>.",
-          "testString": "assert($(\"button\").hasClass(\"btn-primary\"), 'Your button should have the class <code>btn-primary</code>.');"
+          "testString":
+            "assert($(\"button\").hasClass(\"btn-primary\"), 'Your button should have the class <code>btn-primary</code>.');"
         },
         {
-          "text": "Your button should still have the <code>btn</code> and <code>btn-block</code> classes.",
-          "testString": "assert($(\"button\").hasClass(\"btn-block\") && $(\"button\").hasClass(\"btn\"), 'Your button should still have the <code>btn</code> and <code>btn-block</code> classes.');"
+          "text":
+            "Your button should still have the <code>btn</code> and <code>btn-block</code> classes.",
+          "testString":
+            "assert($(\"button\").hasClass(\"btn-block\") && $(\"button\").hasClass(\"btn\"), 'Your button should still have the <code>btn</code> and <code>btn-block</code> classes.');"
         },
         {
-          "text": "Make sure all your <code>button</code> elements have a closing tag.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
+          "text":
+            "Make sure all your <code>button</code> elements have a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Prueba el arcoíris de colores para botones que te ofrece Bootstrap",
+          "title":
+            "Prueba el arcoíris de colores para botones que te ofrece Bootstrap",
           "description": [
             "La clase <code>btn-primary</code> es el color principal que utilizarás en tu aplicación. Es útil resaltar las acciones que quieres que tu usuario ejecute.",
             "Agrega la clase <code>btn-primary</code> de Bootstrap a tu botón.",
@@ -626,7 +666,8 @@
           ]
         },
         "fr": {
-          "title": "Goutez à l'arc en ciel de couleurs des boutons de Bootstrap",
+          "title":
+            "Goutez à l'arc en ciel de couleurs des boutons de Bootstrap",
           "description": [
             "La classe <code>btn-primary</code> est la couleur principale que vous utiliserez dans votre application. Elle est utile pour mettre en valeur les actions que vous voulez faire réaliser par vos utilisateurs.",
             "Ajoutez la classe Bootstrap <code>btn-primary</code> à votre bouton.",
@@ -714,20 +755,28 @@
       ],
       "tests": [
         {
-          "text": "Create a new <code>button</code> element with the text \"Info\".",
-          "testString": "assert(new RegExp(\"info\",\"gi\").test($(\"button\").text()), 'Create a new <code>button</code> element with the text \"Info\".');"
+          "text":
+            "Create a new <code>button</code> element with the text \"Info\".",
+          "testString":
+            "assert(new RegExp(\"info\",\"gi\").test($(\"button\").text()), 'Create a new <code>button</code> element with the text \"Info\".');"
         },
         {
-          "text": "Both of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.",
-          "testString": "assert($(\"button.btn-block.btn\").length > 1, 'Both of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.');"
+          "text":
+            "Both of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.",
+          "testString":
+            "assert($(\"button.btn-block.btn\").length > 1, 'Both of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.');"
         },
         {
-          "text": "Your new button should have the class <code>btn-info</code>.",
-          "testString": "assert($(\"button\").hasClass(\"btn-info\"), 'Your new button should have the class <code>btn-info</code>.');"
+          "text":
+            "Your new button should have the class <code>btn-info</code>.",
+          "testString":
+            "assert($(\"button\").hasClass(\"btn-info\"), 'Your new button should have the class <code>btn-info</code>.');"
         },
         {
-          "text": "Make sure all your <code>button</code> elements have a closing tag.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
+          "text":
+            "Make sure all your <code>button</code> elements have a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -741,7 +790,8 @@
           ]
         },
         "fr": {
-          "title": "Indiquez les actions optionelles avec des boutons informatifs",
+          "title":
+            "Indiquez les actions optionelles avec des boutons informatifs",
           "description": [
             "Bootstrap est livré avec plusieurs couleurs prédéfinies pour les boutons. La classe <code>btn-info</code> est utilisée pour indiquer des actions optionelles pour vos utilisateurs.",
             "Créez un nouveau bouton Bootstrap bloc en dessous de votre bouton \"Like\" avec le texte \"Info\" et donnez lui les classes Bootstrap <code>btn-info</code> et <code>btn-block</code>.",
@@ -829,20 +879,28 @@
       ],
       "tests": [
         {
-          "text": "Create a new <code>button</code> element with the text \"Delete\".",
-          "testString": "assert(new RegExp(\"Delete\",\"gi\").test($(\"button\").text()), 'Create a new <code>button</code> element with the text \"Delete\".');"
+          "text":
+            "Create a new <code>button</code> element with the text \"Delete\".",
+          "testString":
+            "assert(new RegExp(\"Delete\",\"gi\").test($(\"button\").text()), 'Create a new <code>button</code> element with the text \"Delete\".');"
         },
         {
-          "text": "All of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.",
-          "testString": "assert($(\"button.btn-block.btn\").length > 2, 'All of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.');"
+          "text":
+            "All of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.",
+          "testString":
+            "assert($(\"button.btn-block.btn\").length > 2, 'All of your Bootstrap buttons should have the <code>btn</code> and <code>btn-block</code> classes.');"
         },
         {
-          "text": "Your new button should have the class <code>btn-danger</code>.",
-          "testString": "assert($(\"button\").hasClass(\"btn-danger\"), 'Your new button should have the class <code>btn-danger</code>.');"
+          "text":
+            "Your new button should have the class <code>btn-danger</code>.",
+          "testString":
+            "assert($(\"button\").hasClass(\"btn-danger\"), 'Your new button should have the class <code>btn-danger</code>.');"
         },
         {
-          "text": "Make sure all your <code>button</code> elements have a closing tag.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
+          "text":
+            "Make sure all your <code>button</code> elements have a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -948,26 +1006,35 @@
       ],
       "tests": [
         {
-          "text": "Your buttons should all be nested within the same <code>div</code> element with the class <code>row</code>.",
-          "testString": "assert($(\"div.row:has(button)\").length > 0, 'Your buttons should all be nested within the same <code>div</code> element with the class <code>row</code>.');"
+          "text":
+            "Your buttons should all be nested within the same <code>div</code> element with the class <code>row</code>.",
+          "testString":
+            "assert($(\"div.row:has(button)\").length > 0, 'Your buttons should all be nested within the same <code>div</code> element with the class <code>row</code>.');"
         },
         {
-          "text": "Each of your Bootstrap buttons should be nested within its own <code>div</code> element with the class <code>col-xs-4</code>.",
-          "testString": "assert($(\"div.col-xs-4:has(button)\").length > 2, 'Each of your Bootstrap buttons should be nested within its own <code>div</code> element with the class <code>col-xs-4</code>.');"
+          "text":
+            "Each of your Bootstrap buttons should be nested within its own <code>div</code> element with the class <code>col-xs-4</code>.",
+          "testString":
+            "assert($(\"div.col-xs-4:has(button)\").length > 2, 'Each of your Bootstrap buttons should be nested within its own <code>div</code> element with the class <code>col-xs-4</code>.');"
         },
         {
-          "text": "Make sure each of your <code>button</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure each of your <code>button</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>button</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure each of your <code>button</code> elements has a closing tag.');"
         },
         {
-          "text": "Make sure each of your <code>div</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>div</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Usa la cuadrícula de Bootstrap para poner elementos lado a lado",
+          "title":
+            "Usa la cuadrícula de Bootstrap para poner elementos lado a lado",
           "description": [
             "Bootstrap utiliza un sistema de cuadrícula adaptativa que facilita el poner elementos en fila y especificar la anchura relativa de cada elemento. La mayoría de las clases de Bootstrap pueden ser aplicadas a un elemento <code>div</code>.",
             "Aquí hay un diagrama del funcionamiento de la cuadrícula de 12 columnas Bootstrap:",
@@ -979,7 +1046,8 @@
           ]
         },
         "fr": {
-          "title": "Utilisez la grille de Bootstrap pour mettre les éléments côte-à-côte.",
+          "title":
+            "Utilisez la grille de Bootstrap pour mettre les éléments côte-à-côte.",
           "description": [
             "Bootstrap utilise un système de grille adaptative, qui rend plus simple le placement des éléments en rangées et la spécification de la largeur relative de chaque élément. La plupart des classes de Bootstrap peuvent être associés à un élément <code>div</code>",
             "Voici un diagramme décrivant le fonctionnement du système de grille à 12 colonnes:",
@@ -1075,24 +1143,34 @@
       ],
       "tests": [
         {
-          "text": "Your h2 element should no longer have the class <code>red-text</code>.",
-          "testString": "assert(!$(\"h2\").hasClass(\"red-text\"), 'Your h2 element should no longer have the class <code>red-text</code>.');"
+          "text":
+            "Your h2 element should no longer have the class <code>red-text</code>.",
+          "testString":
+            "assert(!$(\"h2\").hasClass(\"red-text\"), 'Your h2 element should no longer have the class <code>red-text</code>.');"
         },
         {
-          "text": "Your h2 element should now have the class <code>text-primary</code>.",
-          "testString": "assert($(\"h2\").hasClass(\"text-primary\"), 'Your h2 element should now have the class <code>text-primary</code>.');"
+          "text":
+            "Your h2 element should now have the class <code>text-primary</code>.",
+          "testString":
+            "assert($(\"h2\").hasClass(\"text-primary\"), 'Your h2 element should now have the class <code>text-primary</code>.');"
         },
         {
-          "text": "Your paragraph elements should no longer use the font <code>Monospace</code>.",
-          "testString": "assert(!$(\"p\").css(\"font-family\").match(/monospace/i), 'Your paragraph elements should no longer use the font <code>Monospace</code>.');"
+          "text":
+            "Your paragraph elements should no longer use the font <code>Monospace</code>.",
+          "testString":
+            "assert(!$(\"p\").css(\"font-family\").match(/monospace/i), 'Your paragraph elements should no longer use the font <code>Monospace</code>.');"
         },
         {
-          "text": "Remove the <code>smaller-image</code> class from your top image.",
-          "testString": "assert(!$(\"img\").hasClass(\"smaller-image\"), 'Remove the <code>smaller-image</code> class from your top image.');"
+          "text":
+            "Remove the <code>smaller-image</code> class from your top image.",
+          "testString":
+            "assert(!$(\"img\").hasClass(\"smaller-image\"), 'Remove the <code>smaller-image</code> class from your top image.');"
         },
         {
-          "text": "Add the <code>img-responsive</code> class to your top image.",
-          "testString": "assert($(\".img-responsive\").length > 1, 'Add the <code>img-responsive</code> class to your top image.');"
+          "text":
+            "Add the <code>img-responsive</code> class to your top image.",
+          "testString":
+            "assert($(\".img-responsive\").length > 1, 'Add the <code>img-responsive</code> class to your top image.');"
         }
       ],
       "challengeType": 0,
@@ -1213,20 +1291,27 @@
       ],
       "tests": [
         {
-          "text": "Your <code>span</code> element should be inside your <code>p</code> element.",
-          "testString": "assert($(\"p span\") && $(\"p span\").length > 0, 'Your <code>span</code> element should be inside your <code>p</code> element.');"
+          "text":
+            "Your <code>span</code> element should be inside your <code>p</code> element.",
+          "testString":
+            "assert($(\"p span\") && $(\"p span\").length > 0, 'Your <code>span</code> element should be inside your <code>p</code> element.');"
         },
         {
-          "text": "Your <code>span</code> element should have just the text <code>love</code>.",
-          "testString": "assert($(\"p span\") && $(\"p span\").text().match(/love/i) && !$(\"p span\").text().match(/Things cats/i), 'Your <code>span</code> element should have just the text <code>love</code>.');"
+          "text":
+            "Your <code>span</code> element should have just the text <code>love</code>.",
+          "testString":
+            "assert($(\"p span\") && $(\"p span\").text().match(/love/i) && !$(\"p span\").text().match(/Things cats/i), 'Your <code>span</code> element should have just the text <code>love</code>.');"
         },
         {
-          "text": "Your <code>span</code> element should have class <code>text-danger</code>.",
-          "testString": "assert($(\"span\").hasClass(\"text-danger\"), 'Your <code>span</code> element should have class <code>text-danger</code>.');"
+          "text":
+            "Your <code>span</code> element should have class <code>text-danger</code>.",
+          "testString":
+            "assert($(\"span\").hasClass(\"text-danger\"), 'Your <code>span</code> element should have class <code>text-danger</code>.');"
         },
         {
           "text": "Make sure your <code>span</code> element has a closing tag.",
-          "testString": "assert(code.match(/<\\/span>/g) && code.match(/<span/g) && code.match(/<\\/span>/g).length === code.match(/<span/g).length, 'Make sure your <code>span</code> element has a closing tag.');"
+          "testString":
+            "assert(code.match(/<\\/span>/g) && code.match(/<span/g) && code.match(/<\\/span>/g).length === code.match(/<span/g).length, 'Make sure your <code>span</code> element has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -1334,20 +1419,28 @@
       ],
       "tests": [
         {
-          "text": "Your <code>h2</code> element and topmost <code>img</code> element should both be nested together within a <code>div</code> element with the class <code>row</code>.",
-          "testString": "assert($(\"div.row:has(h2)\").length > 0 && $(\"div.row:has(img)\").length > 0, 'Your <code>h2</code> element and topmost <code>img</code> element should both be nested together within a <code>div</code> element with the class <code>row</code>.');"
+          "text":
+            "Your <code>h2</code> element and topmost <code>img</code> element should both be nested together within a <code>div</code> element with the class <code>row</code>.",
+          "testString":
+            "assert($(\"div.row:has(h2)\").length > 0 && $(\"div.row:has(img)\").length > 0, 'Your <code>h2</code> element and topmost <code>img</code> element should both be nested together within a <code>div</code> element with the class <code>row</code>.');"
         },
         {
-          "text": "Nest your topmost <code>img</code> element within a <code>div</code> with the class <code>col-xs-4</code>.",
-          "testString": "assert($(\"div.col-xs-4:has(img)\").length > 0 && $(\"div.col-xs-4:has(div)\").length === 0, 'Nest your topmost <code>img</code> element within a <code>div</code> with the class <code>col-xs-4</code>.');"
+          "text":
+            "Nest your topmost <code>img</code> element within a <code>div</code> with the class <code>col-xs-4</code>.",
+          "testString":
+            "assert($(\"div.col-xs-4:has(img)\").length > 0 && $(\"div.col-xs-4:has(div)\").length === 0, 'Nest your topmost <code>img</code> element within a <code>div</code> with the class <code>col-xs-4</code>.');"
         },
         {
-          "text": "Nest your <code>h2</code> element within a <code>div</code> with the class <code>col-xs-8</code>.",
-          "testString": "assert($(\"div.col-xs-8:has(h2)\").length > 0 && $(\"div.col-xs-8:has(div)\").length === 0, 'Nest your <code>h2</code> element within a <code>div</code> with the class <code>col-xs-8</code>.');"
+          "text":
+            "Nest your <code>h2</code> element within a <code>div</code> with the class <code>col-xs-8</code>.",
+          "testString":
+            "assert($(\"div.col-xs-8:has(h2)\").length > 0 && $(\"div.col-xs-8:has(div)\").length === 0, 'Nest your <code>h2</code> element within a <code>div</code> with the class <code>col-xs-8</code>.');"
         },
         {
-          "text": "Make sure each of your <code>div</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>div</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -1450,7 +1543,8 @@
       "title": "Add Font Awesome Icons to our Buttons",
       "required": [
         {
-          "link": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
+          "link":
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
           "raw": true
         }
       ],
@@ -1466,20 +1560,27 @@
       ],
       "tests": [
         {
-          "text": "Add an <code>i</code> element with the classes <code>fa</code> and <code>fa-thumbs-up</code>.",
-          "testString": "assert($(\"i\").is(\".fa.fa-thumbs-up\") || $(\"span\").is(\".fa.fa-thumbs-up\"), 'Add an <code>i</code> element with the classes <code>fa</code> and <code>fa-thumbs-up</code>.');"
+          "text":
+            "Add an <code>i</code> element with the classes <code>fa</code> and <code>fa-thumbs-up</code>.",
+          "testString":
+            "assert($(\"i\").is(\".fa.fa-thumbs-up\") || $(\"span\").is(\".fa.fa-thumbs-up\"), 'Add an <code>i</code> element with the classes <code>fa</code> and <code>fa-thumbs-up</code>.');"
         },
         {
-          "text": "Your <code>fa-thumbs-up</code> icon should be located within the Like button.",
-          "testString": "assert(($(\"i.fa-thumbs-up\").parent().text().match(/Like/gi) && $(\".btn-primary > i\").is(\".fa.fa-thumbs-up\")) || ($(\"span.fa-thumbs-up\").parent().text().match(/Like/gi) && $(\".btn-primary > span\").is(\".fa.fa-thumbs-up\")), 'Your <code>fa-thumbs-up</code> icon should be located within the Like button.');"
+          "text":
+            "Your <code>fa-thumbs-up</code> icon should be located within the Like button.",
+          "testString":
+            "assert(($(\"i.fa-thumbs-up\").parent().text().match(/Like/gi) && $(\".btn-primary > i\").is(\".fa.fa-thumbs-up\")) || ($(\"span.fa-thumbs-up\").parent().text().match(/Like/gi) && $(\".btn-primary > span\").is(\".fa.fa-thumbs-up\")), 'Your <code>fa-thumbs-up</code> icon should be located within the Like button.');"
         },
         {
-          "text": "Nest your <code>i</code> element within your <code>button</code> element.",
-          "testString": "assert($(\"button\").children(\"i\").length > 0 || $(\"button\").children(\"span\").length > 0, 'Nest your <code>i</code> element within your <code>button</code> element.');"
+          "text":
+            "Nest your <code>i</code> element within your <code>button</code> element.",
+          "testString":
+            "assert($(\"button\").children(\"i\").length > 0 || $(\"button\").children(\"span\").length > 0, 'Nest your <code>i</code> element within your <code>button</code> element.');"
         },
         {
           "text": "Make sure your icon element has a closing tag.",
-          "testString": "assert(code.match(/<\\/i>|<\\/span>/g), 'Make sure your icon element has a closing tag.');"
+          "testString":
+            "assert(code.match(/<\\/i>|<\\/span>/g), 'Make sure your icon element has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -1583,7 +1684,8 @@
       "title": "Add Font Awesome Icons to all of our Buttons",
       "required": [
         {
-          "link": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
+          "link":
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
           "raw": true
         }
       ],
@@ -1594,16 +1696,22 @@
       ],
       "tests": [
         {
-          "text": "You should add a <code>&#60;i class=\"fa fa-info-circle\"&#62;&#60;/i&#62;</code> within your info button element.",
-          "testString": "assert($(\".btn-info > i\").is(\".fa.fa-info-circle\") || $(\".btn-info > span\").is(\".fa.fa-info-circle\"), 'You should add a <code>&#60;i class=\"fa fa-info-circle\"&#62;&#60;/i&#62;</code> within your info button element.');"
+          "text":
+            "You should add a <code>&#60;i class=\"fa fa-info-circle\"&#62;&#60;/i&#62;</code> within your info button element.",
+          "testString":
+            "assert($(\".btn-info > i\").is(\".fa.fa-info-circle\") || $(\".btn-info > span\").is(\".fa.fa-info-circle\"), 'You should add a <code>&#60;i class=\"fa fa-info-circle\"&#62;&#60;/i&#62;</code> within your info button element.');"
         },
         {
-          "text": "You should add a <code>&#60;i class=\"fa fa-trash\"&#62;&#60;/i&#62;</code> within your delete button element.",
-          "testString": "assert($(\".btn-danger > i\").is(\".fa.fa-trash\") || $(\".btn-danger > span\").is(\".fa.fa-trash\"), 'You should add a <code>&#60;i class=\"fa fa-trash\"&#62;&#60;/i&#62;</code> within your delete button element.');"
+          "text":
+            "You should add a <code>&#60;i class=\"fa fa-trash\"&#62;&#60;/i&#62;</code> within your delete button element.",
+          "testString":
+            "assert($(\".btn-danger > i\").is(\".fa.fa-trash\") || $(\".btn-danger > span\").is(\".fa.fa-trash\"), 'You should add a <code>&#60;i class=\"fa fa-trash\"&#62;&#60;/i&#62;</code> within your delete button element.');"
         },
         {
-          "text": "Make sure each of your <code>i</code> elements has a closing tag and <code>&#60;i class=\"fa fa-thumbs-up\"&#62;&#60;/i&#62;</code> is in your like button element.",
-          "testString": "assert(code.match(/<\\/i>|<\\/span/g) && code.match(/<\\/i|<\\/span>/g).length > 2 && ($(\".btn-primary > i\").is(\".fa.fa-thumbs-up\") || $(\".btn-primary > span\").is(\".fa.fa-thumbs-up\")), 'Make sure each of your <code>i</code> elements has a closing tag and <code>&#60;i class=\"fa fa-thumbs-up\"&#62;&#60;/i&#62;</code> is in your like button element.');"
+          "text":
+            "Make sure each of your <code>i</code> elements has a closing tag and <code>&#60;i class=\"fa fa-thumbs-up\"&#62;&#60;/i&#62;</code> is in your like button element.",
+          "testString":
+            "assert(code.match(/<\\/i>|<\\/span/g) && code.match(/<\\/i|<\\/span>/g).length > 2 && ($(\".btn-primary > i\").is(\".fa.fa-thumbs-up\") || $(\".btn-primary > span\").is(\".fa.fa-thumbs-up\")), 'Make sure each of your <code>i</code> elements has a closing tag and <code>&#60;i class=\"fa fa-thumbs-up\"&#62;&#60;/i&#62;</code> is in your like button element.');"
         }
       ],
       "challengeType": 0,
@@ -1697,7 +1805,8 @@
       "title": "Responsively Style Radio Buttons",
       "required": [
         {
-          "link": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
+          "link":
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
           "raw": true
         }
       ],
@@ -1708,16 +1817,22 @@
       ],
       "tests": [
         {
-          "text": "Nest all of your radio buttons inside one <code>div</code> with the class <code>row</code>.",
-          "testString": "assert($(\"div.row:has(input[type=\\\"radio\\\"])\").length > 0, 'Nest all of your radio buttons inside one <code>div</code> with the class <code>row</code>.');"
+          "text":
+            "Nest all of your radio buttons inside one <code>div</code> with the class <code>row</code>.",
+          "testString":
+            "assert($(\"div.row:has(input[type=\\\"radio\\\"])\").length > 0, 'Nest all of your radio buttons inside one <code>div</code> with the class <code>row</code>.');"
         },
         {
-          "text": "Nest each of your radio buttons inside its own <code>div</code> with the class <code>col-xs-6</code>.",
-          "testString": "assert($(\"div.col-xs-6:has(input[type=\\\"radio\\\"])\").length > 1, 'Nest each of your radio buttons inside its own <code>div</code> with the class <code>col-xs-6</code>.');"
+          "text":
+            "Nest each of your radio buttons inside its own <code>div</code> with the class <code>col-xs-6</code>.",
+          "testString":
+            "assert($(\"div.col-xs-6:has(input[type=\\\"radio\\\"])\").length > 1, 'Nest each of your radio buttons inside its own <code>div</code> with the class <code>col-xs-6</code>.');"
         },
         {
-          "text": "Make sure each of your <code>div</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>div</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -1811,7 +1926,8 @@
       "title": "Responsively Style Checkboxes",
       "required": [
         {
-          "link": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
+          "link":
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
           "raw": true
         }
       ],
@@ -1821,16 +1937,22 @@
       ],
       "tests": [
         {
-          "text": "Nest all of your checkboxes inside one <code>div</code> with the class <code>row</code>.",
-          "testString": "assert($(\"div.row:has(input[type=\\\"checkbox\\\"])\").length > 0, 'Nest all of your checkboxes inside one <code>div</code> with the class <code>row</code>.');"
+          "text":
+            "Nest all of your checkboxes inside one <code>div</code> with the class <code>row</code>.",
+          "testString":
+            "assert($(\"div.row:has(input[type=\\\"checkbox\\\"])\").length > 0, 'Nest all of your checkboxes inside one <code>div</code> with the class <code>row</code>.');"
         },
         {
-          "text": "Nest each of your checkboxes inside its own <code>div</code> with the class <code>col-xs-4</code>.",
-          "testString": "assert($(\"div.col-xs-4:has(input[type=\\\"checkbox\\\"])\").length > 2, 'Nest each of your checkboxes inside its own <code>div</code> with the class <code>col-xs-4</code>.');"
+          "text":
+            "Nest each of your checkboxes inside its own <code>div</code> with the class <code>col-xs-4</code>.",
+          "testString":
+            "assert($(\"div.col-xs-4:has(input[type=\\\"checkbox\\\"])\").length > 2, 'Nest each of your checkboxes inside its own <code>div</code> with the class <code>col-xs-4</code>.');"
         },
         {
-          "text": "Make sure each of your <code>div</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>div</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -1843,7 +1965,8 @@
           ]
         },
         "fr": {
-          "title": "Donnez un style responsive à vos checkbox (cases de séléction)",
+          "title":
+            "Donnez un style responsive à vos checkbox (cases de séléction)",
           "description": [
             "Vous pouvez aussi utiliser la classe Bootstrap <code>col-xs-*</code> sur des éléments <code>form</code>! Comme ça, nos boutons radio serons disposés régulierement dans la page, quelle que soit la largeur de l'écran.",
             "You can use Bootstrap's <code>col-xs-*</code> classes on <code>form</code> elements, too! This way, our checkboxes will be evenly spread out across the page, regardless of how wide the screen resolution is.",
@@ -1932,7 +2055,8 @@
       "title": "Style Text Inputs as Form Controls",
       "required": [
         {
-          "link": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
+          "link":
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
           "raw": true
         }
       ],
@@ -1943,20 +2067,28 @@
       ],
       "tests": [
         {
-          "text": "Give the submit button in your form the classes <code>btn btn-primary</code>.",
-          "testString": "assert($(\"button[type=\\\"submit\\\"]\").hasClass(\"btn btn-primary\"), 'Give the submit button in your form the classes <code>btn btn-primary</code>.');"
+          "text":
+            "Give the submit button in your form the classes <code>btn btn-primary</code>.",
+          "testString":
+            "assert($(\"button[type=\\\"submit\\\"]\").hasClass(\"btn btn-primary\"), 'Give the submit button in your form the classes <code>btn btn-primary</code>.');"
         },
         {
-          "text": "Add a <code>&#60;i class=\"fa fa-paper-plane\"&#62;&#60;/i&#62;</code> within your submit <code>button</code> element.",
-          "testString": "assert($(\"button[type=\\\"submit\\\"]:has(i.fa.fa-paper-plane)\").length > 0, 'Add a <code>&#60;i class=\"fa fa-paper-plane\"&#62;&#60;/i&#62;</code> within your submit <code>button</code> element.');"
+          "text":
+            "Add a <code>&#60;i class=\"fa fa-paper-plane\"&#62;&#60;/i&#62;</code> within your submit <code>button</code> element.",
+          "testString":
+            "assert($(\"button[type=\\\"submit\\\"]:has(i.fa.fa-paper-plane)\").length > 0, 'Add a <code>&#60;i class=\"fa fa-paper-plane\"&#62;&#60;/i&#62;</code> within your submit <code>button</code> element.');"
         },
         {
-          "text": "Give the text <code>input</code> in your form the class <code>form-control</code>.",
-          "testString": "assert($(\"input[type=\\\"text\\\"]\").hasClass(\"form-control\"), 'Give the text <code>input</code> in your form the class <code>form-control</code>.');"
+          "text":
+            "Give the text <code>input</code> in your form the class <code>form-control</code>.",
+          "testString":
+            "assert($(\"input[type=\\\"text\\\"]\").hasClass(\"form-control\"), 'Give the text <code>input</code> in your form the class <code>form-control</code>.');"
         },
         {
-          "text": "Make sure each of your <code>i</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/i>/g) && code.match(/<\\/i/g).length > 3, 'Make sure each of your <code>i</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>i</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/i>/g) && code.match(/<\\/i/g).length > 3, 'Make sure each of your <code>i</code> elements has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -1969,7 +2101,8 @@
           ]
         },
         "fr": {
-          "title": "Donnez un style similaire au contrôles de formulaires à des zones de texte",
+          "title":
+            "Donnez un style similaire au contrôles de formulaires à des zones de texte",
           "description": [
             "Vous pouvez ajouter l'icone Font Awesome <code>fa-paper-plane</code> en ajoutant <code>&#60;i class=\"fa fa-paper-plane\"&#62;&#60;/i&#62;</code> à l'intérieur de votre <code>button</code> de soumission du formulaire.",
             "Donnez aux entrées texte de votre formulaire une classe <code>form-control</code>. Donnez à votre bouton de soumission de formulaire les classes <code>btn btn-primary</code>. Donnez lui aussi un icone Font Awesome <code>fa-paper-plane</code>."
@@ -2065,7 +2198,8 @@
       "title": "Line up Form Elements Responsively with Bootstrap",
       "required": [
         {
-          "link": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
+          "link":
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css",
           "raw": true
         }
       ],
@@ -2076,26 +2210,35 @@
       ],
       "tests": [
         {
-          "text": "Nest your form submission button and text input in a div with class <code>row</code>.",
-          "testString": "assert($(\"div.row:has(input[type=\\\"text\\\"])\").length > 0 &&  $(\"div.row:has(button[type=\\\"submit\\\"])\").length > 0, 'Nest your form submission button and text input in a div with class <code>row</code>.');"
+          "text":
+            "Nest your form submission button and text input in a div with class <code>row</code>.",
+          "testString":
+            "assert($(\"div.row:has(input[type=\\\"text\\\"])\").length > 0 &&  $(\"div.row:has(button[type=\\\"submit\\\"])\").length > 0, 'Nest your form submission button and text input in a div with class <code>row</code>.');"
         },
         {
-          "text": "Nest your form text input in a div with the class <code>col-xs-7</code>.",
-          "testString": "assert($(\"div.col-xs-7:has(input[type=\\\"text\\\"])\").length > 0, 'Nest your form text input in a div with the class <code>col-xs-7</code>.');"
+          "text":
+            "Nest your form text input in a div with the class <code>col-xs-7</code>.",
+          "testString":
+            "assert($(\"div.col-xs-7:has(input[type=\\\"text\\\"])\").length > 0, 'Nest your form text input in a div with the class <code>col-xs-7</code>.');"
         },
         {
-          "text": "Nest your form submission button in a div with the class <code>col-xs-5</code>.",
-          "testString": "assert($(\"div.col-xs-5:has(button[type=\\\"submit\\\"])\").length > 0, 'Nest your form submission button in a div with the class <code>col-xs-5</code>.');"
+          "text":
+            "Nest your form submission button in a div with the class <code>col-xs-5</code>.",
+          "testString":
+            "assert($(\"div.col-xs-5:has(button[type=\\\"submit\\\"])\").length > 0, 'Nest your form submission button in a div with the class <code>col-xs-5</code>.');"
         },
         {
-          "text": "Make sure each of your <code>div</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>div</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Alínea elementos de formulario de forma adaptativa con Bootstrap",
+          "title":
+            "Alínea elementos de formulario de forma adaptativa con Bootstrap",
           "description": [
             "Ahora vamos a poner el elemento <code>input</code> y el elemento <code>button</code> que dice submit de tu formulario en la misma línea. Lo haremos de la misma forma que lo hicimos anteriormente: usando un elemento <code>div</code> con la clase <code>row</code>, y otros elementos <code>div</code> dentro de ese, usando la clase <code>col-xs-*</code>.",
             "Anida ambos, el elemento <code>input</code> y el elemento <code>button</code> que dice submit de tu formulario dentro de un <code>div</code> con la clase <code>row</code>. Anida el elemento <code>input</code> de tu formulario dentro de un div con cla clase <code>col-xs-7</code>. Anida el elemento <code>button</code> que dice submit de tu formulario en un elemento <code>div</code> con la clase <code>col-xs-5</code>.",
@@ -2103,7 +2246,8 @@
           ]
         },
         "fr": {
-          "title": "Aligner les éléments de formulaire de façon responsive avec Bootstrap",
+          "title":
+            "Aligner les éléments de formulaire de façon responsive avec Bootstrap",
           "description": [
             "Maintenant mettons sur la même ligne l'élément <code>input</code> et le <code>button</code> de soumission du formulaire. Nous procéderons de la même façon que précedemment: en utilisant un élément <code>div</code> avec la classe <code>row</code>, et un un autre div à l'intérieur qui aura la classe <code>col-xs-*</code>.",
             "Nichez à la fois l'<code>input</code> texte de votre formulaire et le <code>button</code> de soumission de formulaire à l'intérieur d'un <code>div</code> avec la classe <code>row</code>. Nichez l'<code>input</code> texte du formulaire dans un div ayant la classe <code>col-xs-7</code>. Nichez votre <code>button</code> de soumission de formulaire dans un div ayant la classe <code>col-xs-5</code>.",
@@ -2207,23 +2351,31 @@
       "tests": [
         {
           "text": "Add a <code>h3</code> element to your page.",
-          "testString": "assert($(\"h3\") && $(\"h3\").length > 0, 'Add a <code>h3</code> element to your page.');"
+          "testString":
+            "assert($(\"h3\") && $(\"h3\").length > 0, 'Add a <code>h3</code> element to your page.');"
         },
         {
           "text": "Make sure your <code>h3</code> element has a closing tag.",
-          "testString": "assert(code.match(/<\\/h3>/g) && code.match(/<h3/g) && code.match(/<\\/h3>/g).length === code.match(/<h3/g).length, 'Make sure your <code>h3</code> element has a closing tag.');"
+          "testString":
+            "assert(code.match(/<\\/h3>/g) && code.match(/<h3/g) && code.match(/<\\/h3>/g).length === code.match(/<h3/g).length, 'Make sure your <code>h3</code> element has a closing tag.');"
         },
         {
-          "text": "Your <code>h3</code> element should be colored by applying the class <code>text-primary</code>",
-          "testString": "assert($(\"h3\").hasClass(\"text-primary\"), 'Your <code>h3</code> element should be colored by applying the class <code>text-primary</code>');"
+          "text":
+            "Your <code>h3</code> element should be colored by applying the class <code>text-primary</code>",
+          "testString":
+            "assert($(\"h3\").hasClass(\"text-primary\"), 'Your <code>h3</code> element should be colored by applying the class <code>text-primary</code>');"
         },
         {
-          "text": "Your <code>h3</code> element should be centered by applying the class <code>text-center</code>",
-          "testString": "assert($(\"h3\").hasClass(\"text-center\"), 'Your <code>h3</code> element should be centered by applying the class <code>text-center</code>');"
+          "text":
+            "Your <code>h3</code> element should be centered by applying the class <code>text-center</code>",
+          "testString":
+            "assert($(\"h3\").hasClass(\"text-center\"), 'Your <code>h3</code> element should be centered by applying the class <code>text-center</code>');"
         },
         {
-          "text": "Your <code>h3</code> element should have the text <code>jQuery Playground</code>.",
-          "testString": "assert.isTrue((/jquery(\\s)+playground/gi).test($(\"h3\").text()), 'Your <code>h3</code> element should have the text <code>jQuery Playground</code>.');"
+          "text":
+            "Your <code>h3</code> element should have the text <code>jQuery Playground</code>.",
+          "testString":
+            "assert.isTrue((/jquery(\\s)+playground/gi).test($(\"h3\").text()), 'Your <code>h3</code> element should have the text <code>jQuery Playground</code>.');"
         }
       ],
       "challengeType": 0,
@@ -2267,22 +2419,29 @@
       ],
       "tests": [
         {
-          "text": "Your <code>div</code> element should have the class <code>container-fluid</code>.",
-          "testString": "assert($(\"div\").hasClass(\"container-fluid\"), 'Your <code>div</code> element should have the class <code>container-fluid</code>.');"
+          "text":
+            "Your <code>div</code> element should have the class <code>container-fluid</code>.",
+          "testString":
+            "assert($(\"div\").hasClass(\"container-fluid\"), 'Your <code>div</code> element should have the class <code>container-fluid</code>.');"
         },
         {
-          "text": "Make sure each of your <code>div</code> elements has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
+          "text":
+            "Make sure each of your <code>div</code> elements has a closing tag.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure each of your <code>div</code> elements has a closing tag.');"
         },
         {
-          "text": "Nest your <code>h3</code> element inside a <code>div</code> element.",
-          "testString": "assert($(\"div\").children(\"h3\").length >0, 'Nest your <code>h3</code> element inside a <code>div</code> element.');"
+          "text":
+            "Nest your <code>h3</code> element inside a <code>div</code> element.",
+          "testString":
+            "assert($(\"div\").children(\"h3\").length >0, 'Nest your <code>h3</code> element inside a <code>div</code> element.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Aloja la página dentro de un elemento Div contenedor fluido de Bootstrap",
+          "title":
+            "Aloja la página dentro de un elemento Div contenedor fluido de Bootstrap",
           "description": [
             "Ahora asegurémonos de que todo el contenido en nuestra página pueda adaptarse a dispositivos móviles.",
             "Anida tu elemento <code>h3</code> dentro de un elemento <code>div</code> con la clase <code>container-fluid</code>."
@@ -2320,20 +2479,27 @@
       ],
       "tests": [
         {
-          "text": "Add a <code>div</code> element below your <code>h3</code> element.",
-          "testString": "assert(($(\"div\").length > 1) && ($(\"div.row h3.text-primary\").length == 0) && ($(\"div.row + h3.text-primary\").length == 0) && ($(\"h3.text-primary + div.row\").length > 0), 'Add a <code>div</code> element below your <code>h3</code> element.');"
+          "text":
+            "Add a <code>div</code> element below your <code>h3</code> element.",
+          "testString":
+            "assert(($(\"div\").length > 1) && ($(\"div.row h3.text-primary\").length == 0) && ($(\"div.row + h3.text-primary\").length == 0) && ($(\"h3.text-primary + div.row\").length > 0), 'Add a <code>div</code> element below your <code>h3</code> element.');"
         },
         {
-          "text": "Your <code>div</code> element should have the class <code>row</code>",
-          "testString": "assert($(\"div\").hasClass(\"row\"), 'Your <code>div</code> element should have the class <code>row</code>');"
+          "text":
+            "Your <code>div</code> element should have the class <code>row</code>",
+          "testString":
+            "assert($(\"div\").hasClass(\"row\"), 'Your <code>div</code> element should have the class <code>row</code>');"
         },
         {
-          "text": "Your <code>row div</code> should be nested inside the <code>container-fluid div</code>",
-          "testString": "assert($(\"div.container-fluid div.row\").length > 0, 'Your <code>row div</code> should be nested inside the <code>container-fluid div</code>');"
+          "text":
+            "Your <code>row div</code> should be nested inside the <code>container-fluid div</code>",
+          "testString":
+            "assert($(\"div.container-fluid div.row\").length > 0, 'Your <code>row div</code> should be nested inside the <code>container-fluid div</code>');"
         },
         {
           "text": "Make sure your <code>div</code> element has a closing tag.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure your <code>div</code> element has a closing tag.');"
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure your <code>div</code> element has a closing tag.');"
         }
       ],
       "challengeType": 0,
@@ -2379,12 +2545,16 @@
       ],
       "tests": [
         {
-          "text": "Nest two <code>div class=\"col-xs-6\"</code> elements within your <code>div class=\"row\"</code> element.",
-          "testString": "assert($(\"div.row > div.col-xs-6\").length > 1, 'Nest two <code>div class=\"col-xs-6\"</code> elements within your <code>div class=\"row\"</code> element.');"
+          "text":
+            "Nest two <code>div class=\"col-xs-6\"</code> elements within your <code>div class=\"row\"</code> element.",
+          "testString":
+            "assert($(\"div.row > div.col-xs-6\").length > 1, 'Nest two <code>div class=\"col-xs-6\"</code> elements within your <code>div class=\"row\"</code> element.');"
         },
         {
-          "text": "Make sure all your <code>div</code> elements have closing tags.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure all your <code>div</code> elements have closing tags.');"
+          "text":
+            "Make sure all your <code>div</code> elements have closing tags.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure all your <code>div</code> elements have closing tags.');"
         }
       ],
       "challengeType": 0,
@@ -2432,16 +2602,22 @@
       ],
       "tests": [
         {
-          "text": "Add a <code>div</code> element with the class <code>well</code> inside each of your <code>div</code> elements with the class <code>\"col-xs-6\"</code>",
-          "testString": "assert($(\"div.col-xs-6\").not(\":has(>div.well)\").length < 1, 'Add a <code>div</code> element with the class <code>well</code> inside each of your <code>div</code> elements with the class <code>\"col-xs-6\"</code>');"
+          "text":
+            "Add a <code>div</code> element with the class <code>well</code> inside each of your <code>div</code> elements with the class <code>\"col-xs-6\"</code>",
+          "testString":
+            "assert($(\"div.col-xs-6\").not(\":has(>div.well)\").length < 1, 'Add a <code>div</code> element with the class <code>well</code> inside each of your <code>div</code> elements with the class <code>\"col-xs-6\"</code>');"
         },
         {
-          "text": "Nest both of your <code>div</code> elements with the class <code>\"col-xs-6\"</code> within your <code>div</code> element with the class <code>\"row\"</code>.",
-          "testString": "assert($(\"div.row > div.col-xs-6\").length > 1, 'Nest both of your <code>div</code> elements with the class <code>\"col-xs-6\"</code> within your <code>div</code> element with the class <code>\"row\"</code>.');"
+          "text":
+            "Nest both of your <code>div</code> elements with the class <code>\"col-xs-6\"</code> within your <code>div</code> element with the class <code>\"row\"</code>.",
+          "testString":
+            "assert($(\"div.row > div.col-xs-6\").length > 1, 'Nest both of your <code>div</code> elements with the class <code>\"col-xs-6\"</code> within your <code>div</code> element with the class <code>\"row\"</code>.');"
         },
         {
-          "text": "Make sure all your <code>div</code> elements have closing tags.",
-          "testString": "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure all your <code>div</code> elements have closing tags.');"
+          "text":
+            "Make sure all your <code>div</code> elements have closing tags.",
+          "testString":
+            "assert(code.match(/<\\/div>/g) && code.match(/<div/g) && code.match(/<\\/div>/g).length === code.match(/<div/g).length, 'Make sure all your <code>div</code> elements have closing tags.');"
         }
       ],
       "challengeType": 0,
@@ -2493,16 +2669,21 @@
       ],
       "tests": [
         {
-          "text": "Nest three <code>button</code> elements within each of your <code>div</code> elements with class <code>well</code>.",
-          "testString": "assert($(\"div.well:eq(0)\").children(\"button\").length === 3 && $(\"div.well:eq(1)\").children(\"button\").length === 3, 'Nest three <code>button</code> elements within each of your <code>div</code> elements with class <code>well</code>.');"
+          "text":
+            "Nest three <code>button</code> elements within each of your <code>div</code> elements with class <code>well</code>.",
+          "testString":
+            "assert($(\"div.well:eq(0)\").children(\"button\").length === 3 && $(\"div.well:eq(1)\").children(\"button\").length === 3, 'Nest three <code>button</code> elements within each of your <code>div</code> elements with class <code>well</code>.');"
         },
         {
           "text": "You should have a total of 6 <code>button</code> elements.",
-          "testString": "assert($(\"button\") && $(\"button\").length > 5, 'You should have a total of 6 <code>button</code> elements.');"
+          "testString":
+            "assert($(\"button\") && $(\"button\").length > 5, 'You should have a total of 6 <code>button</code> elements.');"
         },
         {
-          "text": "Make sure all your <code>button</code> elements have closing tags.",
-          "testString": "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have closing tags.');"
+          "text":
+            "Make sure all your <code>button</code> elements have closing tags.",
+          "testString":
+            "assert(code.match(/<\\/button>/g) && code.match(/<button/g) && code.match(/<\\/button>/g).length === code.match(/<button/g).length, 'Make sure all your <code>button</code> elements have closing tags.');"
         }
       ],
       "challengeType": 0,
@@ -2562,12 +2743,16 @@
       ],
       "tests": [
         {
-          "text": "Apply the <code>btn</code> class to each of your <code>button</code> elements.",
-          "testString": "assert($(\".btn\").length > 5, 'Apply the <code>btn</code> class to each of your <code>button</code> elements.');"
+          "text":
+            "Apply the <code>btn</code> class to each of your <code>button</code> elements.",
+          "testString":
+            "assert($(\".btn\").length > 5, 'Apply the <code>btn</code> class to each of your <code>button</code> elements.');"
         },
         {
-          "text": "Apply the <code>btn-default</code> class to each of your <code>button</code> elements.",
-          "testString": "assert($(\".btn-default\").length > 5, 'Apply the <code>btn-default</code> class to each of your <code>button</code> elements.');"
+          "text":
+            "Apply the <code>btn-default</code> class to each of your <code>button</code> elements.",
+          "testString":
+            "assert($(\".btn-default\").length > 5, 'Apply the <code>btn-default</code> class to each of your <code>button</code> elements.');"
         }
       ],
       "challengeType": 0,
@@ -2587,7 +2772,8 @@
           ]
         }
       },
-      "guideUrl": "https://guide.freecodecamp.org/certificates/apply-the-default-bootstrap-button-style",
+      "guideUrl":
+        "https://guide.freecodecamp.org/certificates/apply-the-default-bootstrap-button-style",
       "files": {
         "indexhtml": {
           "key": "indexhtml",
@@ -2628,8 +2814,10 @@
       ],
       "tests": [
         {
-          "text": "Apply the <code>target</code> class to each of your <code>button</code> elements.",
-          "testString": "assert($(\".target\").length > 5, 'Apply the <code>target</code> class to each of your <code>button</code> elements.');"
+          "text":
+            "Apply the <code>target</code> class to each of your <code>button</code> elements.",
+          "testString":
+            "assert($(\".target\").length > 5, 'Apply the <code>target</code> class to each of your <code>button</code> elements.');"
         }
       ],
       "challengeType": 0,
@@ -2693,18 +2881,23 @@
       ],
       "tests": [
         {
-          "text": "Give your left <code>well</code> the id of <code>left-well</code>.",
-          "testString": "assert($(\".col-xs-6\").children(\"#left-well\") && $(\".col-xs-6\").children(\"#left-well\").length > 0, 'Give your left <code>well</code> the id of <code>left-well</code>.');"
+          "text":
+            "Give your left <code>well</code> the id of <code>left-well</code>.",
+          "testString":
+            "assert($(\".col-xs-6\").children(\"#left-well\") && $(\".col-xs-6\").children(\"#left-well\").length > 0, 'Give your left <code>well</code> the id of <code>left-well</code>.');"
         },
         {
-          "text": "Give your right <code>well</code> the id of <code>right-well</code>.",
-          "testString": "assert($(\".col-xs-6\").children(\"#right-well\") && $(\".col-xs-6\").children(\"#right-well\").length > 0, 'Give your right <code>well</code> the id of <code>right-well</code>.');"
+          "text":
+            "Give your right <code>well</code> the id of <code>right-well</code>.",
+          "testString":
+            "assert($(\".col-xs-6\").children(\"#right-well\") && $(\".col-xs-6\").children(\"#right-well\").length > 0, 'Give your right <code>well</code> the id of <code>right-well</code>.');"
         }
       ],
       "challengeType": 0,
       "translations": {
         "es": {
-          "title": "Asígnales atributos de identificación (id) a tus elementos de Bootstrap",
+          "title":
+            "Asígnales atributos de identificación (id) a tus elementos de Bootstrap",
           "description": [
             "Recuerda que, además de los atributos de clase, también puedes darle a cada uno de tus elementos un atributo <code>id</code>.",
             "Cada id debe ser único para un elemento específico y ser usado solamente una vez por página.",
@@ -2767,20 +2960,28 @@
       ],
       "tests": [
         {
-          "text": "Add an <code>h4</code> element to each of your <code>&#60;div class=\"col-xs-6\"&#62;</code> elements.",
-          "testString": "assert($(\".col-xs-6\").children(\"h4\") && $(\".col-xs-6\").children(\"h4\").length > 1, 'Add an <code>h4</code> element to each of your <code>&#60;div class=\"col-xs-6\"&#62;</code> elements.');"
+          "text":
+            "Add an <code>h4</code> element to each of your <code>&#60;div class=\"col-xs-6\"&#62;</code> elements.",
+          "testString":
+            "assert($(\".col-xs-6\").children(\"h4\") && $(\".col-xs-6\").children(\"h4\").length > 1, 'Add an <code>h4</code> element to each of your <code>&#60;div class=\"col-xs-6\"&#62;</code> elements.');"
         },
         {
-          "text": "One <code>h4</code> element should have the text <code>#left-well</code>.",
-          "testString": "assert(new RegExp(\"#left-well\",\"gi\").test($(\"h4\").text()), 'One <code>h4</code> element should have the text <code>#left-well</code>.');"
+          "text":
+            "One <code>h4</code> element should have the text <code>#left-well</code>.",
+          "testString":
+            "assert(new RegExp(\"#left-well\",\"gi\").test($(\"h4\").text()), 'One <code>h4</code> element should have the text <code>#left-well</code>.');"
         },
         {
-          "text": "One <code>h4</code> element should have the text <code>#right-well</code>.",
-          "testString": "assert(new RegExp(\"#right-well\",\"gi\").test($(\"h4\").text()), 'One <code>h4</code> element should have the text <code>#right-well</code>.');"
+          "text":
+            "One <code>h4</code> element should have the text <code>#right-well</code>.",
+          "testString":
+            "assert(new RegExp(\"#right-well\",\"gi\").test($(\"h4\").text()), 'One <code>h4</code> element should have the text <code>#right-well</code>.');"
         },
         {
-          "text": "Make sure all your <code>h4</code> elements have closing tags.",
-          "testString": "assert(code.match(/<\\/h4>/g) && code.match(/<h4/g) && code.match(/<\\/h4>/g).length === code.match(/<h4/g).length, 'Make sure all your <code>h4</code> elements have closing tags.');"
+          "text":
+            "Make sure all your <code>h4</code> elements have closing tags.",
+          "testString":
+            "assert(code.match(/<\\/h4>/g) && code.match(/<h4/g) && code.match(/<\\/h4>/g).length === code.match(/<h4/g).length, 'Make sure all your <code>h4</code> elements have closing tags.');"
         }
       ],
       "challengeType": 0,
@@ -2845,28 +3046,40 @@
       ],
       "tests": [
         {
-          "text": "One <code>button</code> element should have the id <code>target1</code>.",
-          "testString": "assert($(\"#left-well\").children(\"#target1\") && $(\"#left-well\").children(\"#target1\").length > 0, 'One <code>button</code> element should have the id <code>target1</code>.');"
+          "text":
+            "One <code>button</code> element should have the id <code>target1</code>.",
+          "testString":
+            "assert($(\"#left-well\").children(\"#target1\") && $(\"#left-well\").children(\"#target1\").length > 0, 'One <code>button</code> element should have the id <code>target1</code>.');"
         },
         {
-          "text": "One <code>button</code> element should have the id <code>target2</code>.",
-          "testString": "assert($(\"#left-well\").children(\"#target2\") && $(\"#left-well\").children(\"#target2\").length > 0, 'One <code>button</code> element should have the id <code>target2</code>.');"
+          "text":
+            "One <code>button</code> element should have the id <code>target2</code>.",
+          "testString":
+            "assert($(\"#left-well\").children(\"#target2\") && $(\"#left-well\").children(\"#target2\").length > 0, 'One <code>button</code> element should have the id <code>target2</code>.');"
         },
         {
-          "text": "One <code>button</code> element should have the id <code>target3</code>.",
-          "testString": "assert($(\"#left-well\").children(\"#target3\") && $(\"#left-well\").children(\"#target3\").length > 0, 'One <code>button</code> element should have the id <code>target3</code>.');"
+          "text":
+            "One <code>button</code> element should have the id <code>target3</code>.",
+          "testString":
+            "assert($(\"#left-well\").children(\"#target3\") && $(\"#left-well\").children(\"#target3\").length > 0, 'One <code>button</code> element should have the id <code>target3</code>.');"
         },
         {
-          "text": "One <code>button</code> element should have the id <code>target4</code>.",
-          "testString": "assert($(\"#right-well\").children(\"#target4\") && $(\"#right-well\").children(\"#target4\").length > 0, 'One <code>button</code> element should have the id <code>target4</code>.');"
+          "text":
+            "One <code>button</code> element should have the id <code>target4</code>.",
+          "testString":
+            "assert($(\"#right-well\").children(\"#target4\") && $(\"#right-well\").children(\"#target4\").length > 0, 'One <code>button</code> element should have the id <code>target4</code>.');"
         },
         {
-          "text": "One <code>button</code> element should have the id <code>target5</code>.",
-          "testString": "assert($(\"#right-well\").children(\"#target5\") && $(\"#right-well\").children(\"#target5\").length > 0, 'One <code>button</code> element should have the id <code>target5</code>.');"
+          "text":
+            "One <code>button</code> element should have the id <code>target5</code>.",
+          "testString":
+            "assert($(\"#right-well\").children(\"#target5\") && $(\"#right-well\").children(\"#target5\").length > 0, 'One <code>button</code> element should have the id <code>target5</code>.');"
         },
         {
-          "text": "One <code>button</code> element should have the id <code>target6</code>.",
-          "testString": "assert($(\"#right-well\").children(\"#target6\") && $(\"#right-well\").children(\"#target6\").length > 0, 'One <code>button</code> element should have the id <code>target6</code>.');"
+          "text":
+            "One <code>button</code> element should have the id <code>target6</code>.",
+          "testString":
+            "assert($(\"#right-well\").children(\"#target6\") && $(\"#right-well\").children(\"#target6\").length > 0, 'One <code>button</code> element should have the id <code>target6</code>.');"
         }
       ],
       "challengeType": 0,
@@ -2930,28 +3143,40 @@
       ],
       "tests": [
         {
-          "text": "Give your <code>button</code> element with the id <code>target1</code> the text <code>#target1</code>.",
-          "testString": "assert(new RegExp(\"#target1\",\"gi\").test($(\"#target1\").text()), 'Give your <code>button</code> element with the id <code>target1</code> the text <code>#target1</code>.');"
+          "text":
+            "Give your <code>button</code> element with the id <code>target1</code> the text <code>#target1</code>.",
+          "testString":
+            "assert(new RegExp(\"#target1\",\"gi\").test($(\"#target1\").text()), 'Give your <code>button</code> element with the id <code>target1</code> the text <code>#target1</code>.');"
         },
         {
-          "text": "Give your <code>button</code> element with the id <code>target2</code> the text <code>#target2</code>.",
-          "testString": "assert(new RegExp(\"#target2\",\"gi\").test($(\"#target2\").text()), 'Give your <code>button</code> element with the id <code>target2</code> the text <code>#target2</code>.');"
+          "text":
+            "Give your <code>button</code> element with the id <code>target2</code> the text <code>#target2</code>.",
+          "testString":
+            "assert(new RegExp(\"#target2\",\"gi\").test($(\"#target2\").text()), 'Give your <code>button</code> element with the id <code>target2</code> the text <code>#target2</code>.');"
         },
         {
-          "text": "Give your <code>button</code> element with the id <code>target3</code> the text <code>#target3</code>.",
-          "testString": "assert(new RegExp(\"#target3\",\"gi\").test($(\"#target3\").text()), 'Give your <code>button</code> element with the id <code>target3</code> the text <code>#target3</code>.');"
+          "text":
+            "Give your <code>button</code> element with the id <code>target3</code> the text <code>#target3</code>.",
+          "testString":
+            "assert(new RegExp(\"#target3\",\"gi\").test($(\"#target3\").text()), 'Give your <code>button</code> element with the id <code>target3</code> the text <code>#target3</code>.');"
         },
         {
-          "text": "Give your <code>button</code> element with the id <code>target4</code> the text <code>#target4</code>.",
-          "testString": "assert(new RegExp(\"#target4\",\"gi\").test($(\"#target4\").text()), 'Give your <code>button</code> element with the id <code>target4</code> the text <code>#target4</code>.');"
+          "text":
+            "Give your <code>button</code> element with the id <code>target4</code> the text <code>#target4</code>.",
+          "testString":
+            "assert(new RegExp(\"#target4\",\"gi\").test($(\"#target4\").text()), 'Give your <code>button</code> element with the id <code>target4</code> the text <code>#target4</code>.');"
         },
         {
-          "text": "Give your <code>button</code> element with the id <code>target5</code> the text <code>#target5</code>.",
-          "testString": "assert(new RegExp(\"#target5\",\"gi\").test($(\"#target5\").text()), 'Give your <code>button</code> element with the id <code>target5</code> the text <code>#target5</code>.');"
+          "text":
+            "Give your <code>button</code> element with the id <code>target5</code> the text <code>#target5</code>.",
+          "testString":
+            "assert(new RegExp(\"#target5\",\"gi\").test($(\"#target5\").text()), 'Give your <code>button</code> element with the id <code>target5</code> the text <code>#target5</code>.');"
         },
         {
-          "text": "Give your <code>button</code> element with the id <code>target6</code> the text <code>#target6</code>.",
-          "testString": "assert(new RegExp(\"#target6\",\"gi\").test($(\"#target6\").text()), 'Give your <code>button</code> element with the id <code>target6</code> the text <code>#target6</code>.');"
+          "text":
+            "Give your <code>button</code> element with the id <code>target6</code> the text <code>#target6</code>.",
+          "testString":
+            "assert(new RegExp(\"#target6\",\"gi\").test($(\"#target6\").text()), 'Give your <code>button</code> element with the id <code>target6</code> the text <code>#target6</code>.');"
         }
       ],
       "challengeType": 0,
@@ -3015,20 +3240,27 @@
       ],
       "tests": [
         {
-          "text": "Start a comment with <code>&#60;!--</code> at the top of your HTML.",
-          "testString": "assert(code.match(/^\\s*<!--/), 'Start a comment with <code>&#60;!--</code> at the top of your HTML.');"
+          "text":
+            "Start a comment with <code>&#60;!--</code> at the top of your HTML.",
+          "testString":
+            "assert(code.match(/^\\s*<!--/), 'Start a comment with <code>&#60;!--</code> at the top of your HTML.');"
         },
         {
-          "text": "Your comment should have the text <code>Only change code above this line</code>.",
-          "testString": "assert(code.match(/<!--(?!(>|->|.*-->.*this line))\\s*.*this line.*\\s*-->/gi), 'Your comment should have the text <code>Only change code above this line</code>.');"
+          "text":
+            "Your comment should have the text <code>Only change code above this line</code>.",
+          "testString":
+            "assert(code.match(/<!--(?!(>|->|.*-->.*this line))\\s*.*this line.*\\s*-->/gi), 'Your comment should have the text <code>Only change code above this line</code>.');"
         },
         {
           "text": "Be sure to close your comment with <code>--&#62;</code>.",
-          "testString": "assert(code.match(/-->.*\\n+.+/g), 'Be sure to close your comment with <code>--&#62;</code>.');"
+          "testString":
+            "assert(code.match(/-->.*\\n+.+/g), 'Be sure to close your comment with <code>--&#62;</code>.');"
         },
         {
-          "text": "You should have the same number of comment openers and closers.",
-          "testString": "assert(code.match(/<!--/g).length === code.match(/-->/g).length, 'You should have the same number of comment openers and closers.');"
+          "text":
+            "You should have the same number of comment openers and closers.",
+          "testString":
+            "assert(code.match(/<!--/g).length === code.match(/-->/g).length, 'You should have the same number of comment openers and closers.');"
         }
       ],
       "challengeType": 0,

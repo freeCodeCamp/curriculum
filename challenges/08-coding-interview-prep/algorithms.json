@@ -1,4 +1,5 @@
 {
+  "id": "5b8cfedd499ca42ed032c1f1",
   "name": "Algorithms",
   "order": 1,
   "time": "",
@@ -17,66 +18,91 @@
       ],
       "tests": [
         {
-          "text": "<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.",
-          "testString": "assert.sameMembers(sym([1, 2, 3], [5, 2, 1, 4]), [3, 4, 5], '<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.');"
+          "text":
+            "<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.",
+          "testString":
+            "assert.sameMembers(sym([1, 2, 3], [5, 2, 1, 4]), [3, 4, 5], '<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.');"
         },
         {
-          "text": "<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should contain only three elements.",
-          "testString": "assert.equal(sym([1, 2, 3], [5, 2, 1, 4]).length, 3, '<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should contain only three elements.');"
+          "text":
+            "<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should contain only three elements.",
+          "testString":
+            "assert.equal(sym([1, 2, 3], [5, 2, 1, 4]).length, 3, '<code>sym([1, 2, 3], [5, 2, 1, 4])</code> should contain only three elements.');"
         },
         {
-          "text": "<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.",
-          "testString": "assert.sameMembers(sym([1, 2, 3, 3], [5, 2, 1, 4]), [3, 4, 5], '<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.');"
+          "text":
+            "<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.",
+          "testString":
+            "assert.sameMembers(sym([1, 2, 3, 3], [5, 2, 1, 4]), [3, 4, 5], '<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should return <code>[3, 4, 5]</code>.');"
         },
         {
-          "text": "<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should contain only three elements.",
-          "testString": "assert.equal(sym([1, 2, 3, 3], [5, 2, 1, 4]).length, 3, '<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should contain only three elements.');"
+          "text":
+            "<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should contain only three elements.",
+          "testString":
+            "assert.equal(sym([1, 2, 3, 3], [5, 2, 1, 4]).length, 3, '<code>sym([1, 2, 3, 3], [5, 2, 1, 4])</code> should contain only three elements.');"
         },
         {
-          "text": "<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should return <code>[3, 4, 5]</code>.",
-          "testString": "assert.sameMembers(sym([1, 2, 3], [5, 2, 1, 4, 5]), [3, 4, 5], '<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should return <code>[3, 4, 5]</code>.');"
+          "text":
+            "<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should return <code>[3, 4, 5]</code>.",
+          "testString":
+            "assert.sameMembers(sym([1, 2, 3], [5, 2, 1, 4, 5]), [3, 4, 5], '<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should return <code>[3, 4, 5]</code>.');"
         },
         {
-          "text": "<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should contain only three elements.",
-          "testString": "assert.equal(sym([1, 2, 3], [5, 2, 1, 4, 5]).length, 3, '<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should contain only three elements.');"
+          "text":
+            "<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should contain only three elements.",
+          "testString":
+            "assert.equal(sym([1, 2, 3], [5, 2, 1, 4, 5]).length, 3, '<code>sym([1, 2, 3], [5, 2, 1, 4, 5])</code> should contain only three elements.');"
         },
         {
-          "text": "<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should return <code>[1, 4, 5]</code>",
-          "testString": "assert.sameMembers(sym([1, 2, 5], [2, 3, 5], [3, 4, 5]), [1, 4, 5], '<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should return <code>[1, 4, 5]</code>');"
+          "text":
+            "<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should return <code>[1, 4, 5]</code>",
+          "testString":
+            "assert.sameMembers(sym([1, 2, 5], [2, 3, 5], [3, 4, 5]), [1, 4, 5], '<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should return <code>[1, 4, 5]</code>');"
         },
         {
-          "text": "<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should contain only three elements.",
-          "testString": "assert.equal(sym([1, 2, 5], [2, 3, 5], [3, 4, 5]).length, 3, '<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should contain only three elements.');"
+          "text":
+            "<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should contain only three elements.",
+          "testString":
+            "assert.equal(sym([1, 2, 5], [2, 3, 5], [3, 4, 5]).length, 3, '<code>sym([1, 2, 5], [2, 3, 5], [3, 4, 5])</code> should contain only three elements.');"
         },
         {
-          "text": "<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should return <code>[1, 4, 5]</code>.",
-          "testString": "assert.sameMembers(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]), [1, 4, 5], '<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should return <code>[1, 4, 5]</code>.');"
+          "text":
+            "<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should return <code>[1, 4, 5]</code>.",
+          "testString":
+            "assert.sameMembers(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]), [1, 4, 5], '<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should return <code>[1, 4, 5]</code>.');"
         },
         {
-          "text": "<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should contain only three elements.",
-          "testString": "assert.equal(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]).length, 3, '<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should contain only three elements.');"
+          "text":
+            "<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should contain only three elements.",
+          "testString":
+            "assert.equal(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]).length, 3, '<code>sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5])</code> should contain only three elements.');"
         },
         {
-          "text": "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should return <code>[2, 3, 4, 6, 7]</code>.",
-          "testString": "assert.sameMembers(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3]), [2, 3, 4, 6, 7], '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should return <code>[2, 3, 4, 6, 7]</code>.');"
+          "text":
+            "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should return <code>[2, 3, 4, 6, 7]</code>.",
+          "testString":
+            "assert.sameMembers(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3]), [2, 3, 4, 6, 7], '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should return <code>[2, 3, 4, 6, 7]</code>.');"
         },
         {
-          "text": "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should contain only five elements.",
-          "testString": "assert.equal(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3]).length, 5, '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should contain only five elements.');"
+          "text":
+            "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should contain only five elements.",
+          "testString":
+            "assert.equal(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3]).length, 5, '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3])</code> should contain only five elements.');"
         },
         {
-          "text": "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should return <code>[1, 2, 4, 5, 6, 7, 8, 9]</code>.",
-          "testString": "assert.sameMembers(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]), [1, 2, 4, 5, 6, 7, 8, 9], '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should return <code>[1, 2, 4, 5, 6, 7, 8, 9]</code>.');"
+          "text":
+            "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should return <code>[1, 2, 4, 5, 6, 7, 8, 9]</code>.",
+          "testString":
+            "assert.sameMembers(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]), [1, 2, 4, 5, 6, 7, 8, 9], '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should return <code>[1, 2, 4, 5, 6, 7, 8, 9]</code>.');"
         },
         {
-          "text": "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should contain only eight elements.",
-          "testString": "assert.equal(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]).length, 8, '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should contain only eight elements.');"
+          "text":
+            "<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should contain only eight elements.",
+          "testString":
+            "assert.equal(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]).length, 8, '<code>sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1])</code> should contain only eight elements.');"
         }
       ],
-      "MDNlinks": [
-        "Array.prototype.reduce()",
-        "Symmetric Difference"
-      ],
+      "MDNlinks": ["Array.prototype.reduce()", "Symmetric Difference"],
       "challengeType": 5,
       "translations": {
         "es": {
@@ -133,33 +159,43 @@
       ],
       "tests": [
         {
-          "text": "The function <code>updateInventory</code> should return an array.",
-          "testString": "assert.isArray(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]), 'The function <code>updateInventory</code> should return an array.');"
+          "text":
+            "The function <code>updateInventory</code> should return an array.",
+          "testString":
+            "assert.isArray(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]), 'The function <code>updateInventory</code> should return an array.');"
         },
         {
-          "text": "<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return an array with a length of 6.",
-          "testString": "assert.equal(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]).length, 6, '<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return an array with a length of 6.');"
+          "text":
+            "<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return an array with a length of 6.",
+          "testString":
+            "assert.equal(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]).length, 6, '<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return an array with a length of 6.');"
         },
         {
-          "text": "<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[88, \"Bowling Ball\"], [2, \"Dirty Sock\"], [3, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [5, \"Microphone\"], [7, \"Toothpaste\"]]</code>.",
-          "testString": "assert.deepEqual(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]), [[88, \"Bowling Ball\"], [2, \"Dirty Sock\"], [3, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [5, \"Microphone\"], [7, \"Toothpaste\"]], '<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[88, \"Bowling Ball\"], [2, \"Dirty Sock\"], [3, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [5, \"Microphone\"], [7, \"Toothpaste\"]]</code>.');"
+          "text":
+            "<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[88, \"Bowling Ball\"], [2, \"Dirty Sock\"], [3, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [5, \"Microphone\"], [7, \"Toothpaste\"]]</code>.",
+          "testString":
+            "assert.deepEqual(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]), [[88, \"Bowling Ball\"], [2, \"Dirty Sock\"], [3, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [5, \"Microphone\"], [7, \"Toothpaste\"]], '<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[88, \"Bowling Ball\"], [2, \"Dirty Sock\"], [3, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [5, \"Microphone\"], [7, \"Toothpaste\"]]</code>.');"
         },
         {
-          "text": "<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [])</code> should return <code>[[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]]</code>.",
-          "testString": "assert.deepEqual(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], []), [[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], '<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [])</code> should return <code>[[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]]</code>.');"
+          "text":
+            "<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [])</code> should return <code>[[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]]</code>.",
+          "testString":
+            "assert.deepEqual(updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], []), [[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], '<code>updateInventory([[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]], [])</code> should return <code>[[21, \"Bowling Ball\"], [2, \"Dirty Sock\"], [1, \"Hair Pin\"], [5, \"Microphone\"]]</code>.');"
         },
         {
-          "text": "<code>updateInventory([], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[67, \"Bowling Ball\"], [2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [7, \"Toothpaste\"]]</code>.",
-          "testString": "assert.deepEqual(updateInventory([], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]), [[67, \"Bowling Ball\"], [2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [7, \"Toothpaste\"]], '<code>updateInventory([], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[67, \"Bowling Ball\"], [2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [7, \"Toothpaste\"]]</code>.');"
+          "text":
+            "<code>updateInventory([], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[67, \"Bowling Ball\"], [2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [7, \"Toothpaste\"]]</code>.",
+          "testString":
+            "assert.deepEqual(updateInventory([], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]]), [[67, \"Bowling Ball\"], [2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [7, \"Toothpaste\"]], '<code>updateInventory([], [[2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [67, \"Bowling Ball\"], [7, \"Toothpaste\"]])</code> should return <code>[[67, \"Bowling Ball\"], [2, \"Hair Pin\"], [3, \"Half-Eaten Apple\"], [7, \"Toothpaste\"]]</code>.');"
         },
         {
-          "text": "<code>updateInventory([[0, \"Bowling Ball\"], [0, \"Dirty Sock\"], [0, \"Hair Pin\"], [0, \"Microphone\"]], [[1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [1, \"Bowling Ball\"], [1, \"Toothpaste\"]])</code> should return <code>[[1, \"Bowling Ball\"], [0, \"Dirty Sock\"], [1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [0, \"Microphone\"], [1, \"Toothpaste\"]]</code>.",
-          "testString": "assert.deepEqual(updateInventory([[0, \"Bowling Ball\"], [0, \"Dirty Sock\"], [0, \"Hair Pin\"], [0, \"Microphone\"]], [[1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [1, \"Bowling Ball\"], [1, \"Toothpaste\"]]), [[1, \"Bowling Ball\"], [0, \"Dirty Sock\"], [1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [0, \"Microphone\"], [1, \"Toothpaste\"]], '<code>updateInventory([[0, \"Bowling Ball\"], [0, \"Dirty Sock\"], [0, \"Hair Pin\"], [0, \"Microphone\"]], [[1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [1, \"Bowling Ball\"], [1, \"Toothpaste\"]])</code> should return <code>[[1, \"Bowling Ball\"], [0, \"Dirty Sock\"], [1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [0, \"Microphone\"], [1, \"Toothpaste\"]]</code>.');"
+          "text":
+            "<code>updateInventory([[0, \"Bowling Ball\"], [0, \"Dirty Sock\"], [0, \"Hair Pin\"], [0, \"Microphone\"]], [[1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [1, \"Bowling Ball\"], [1, \"Toothpaste\"]])</code> should return <code>[[1, \"Bowling Ball\"], [0, \"Dirty Sock\"], [1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [0, \"Microphone\"], [1, \"Toothpaste\"]]</code>.",
+          "testString":
+            "assert.deepEqual(updateInventory([[0, \"Bowling Ball\"], [0, \"Dirty Sock\"], [0, \"Hair Pin\"], [0, \"Microphone\"]], [[1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [1, \"Bowling Ball\"], [1, \"Toothpaste\"]]), [[1, \"Bowling Ball\"], [0, \"Dirty Sock\"], [1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [0, \"Microphone\"], [1, \"Toothpaste\"]], '<code>updateInventory([[0, \"Bowling Ball\"], [0, \"Dirty Sock\"], [0, \"Hair Pin\"], [0, \"Microphone\"]], [[1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [1, \"Bowling Ball\"], [1, \"Toothpaste\"]])</code> should return <code>[[1, \"Bowling Ball\"], [0, \"Dirty Sock\"], [1, \"Hair Pin\"], [1, \"Half-Eaten Apple\"], [0, \"Microphone\"], [1, \"Toothpaste\"]]</code>.');"
         }
       ],
-      "MDNlinks": [
-        "Global Array Object"
-      ],
+      "MDNlinks": ["Global Array Object"],
       "challengeType": 5,
       "translations": {
         "es": {
@@ -231,49 +267,56 @@
       "tests": [
         {
           "text": "<code>permAlone(\"aab\")</code> should return a number.",
-          "testString": "assert.isNumber(permAlone('aab'), '<code>permAlone(\"aab\")</code> should return a number.');"
+          "testString":
+            "assert.isNumber(permAlone('aab'), '<code>permAlone(\"aab\")</code> should return a number.');"
         },
         {
           "text": "<code>permAlone(\"aab\")</code> should return 2.",
-          "testString": "assert.strictEqual(permAlone('aab'), 2, '<code>permAlone(\"aab\")</code> should return 2.');"
+          "testString":
+            "assert.strictEqual(permAlone('aab'), 2, '<code>permAlone(\"aab\")</code> should return 2.');"
         },
         {
           "text": "<code>permAlone(\"aaa\")</code> should return 0.",
-          "testString": "assert.strictEqual(permAlone('aaa'), 0, '<code>permAlone(\"aaa\")</code> should return 0.');"
+          "testString":
+            "assert.strictEqual(permAlone('aaa'), 0, '<code>permAlone(\"aaa\")</code> should return 0.');"
         },
         {
           "text": "<code>permAlone(\"aabb\")</code> should return 8.",
-          "testString": "assert.strictEqual(permAlone('aabb'), 8, '<code>permAlone(\"aabb\")</code> should return 8.');"
+          "testString":
+            "assert.strictEqual(permAlone('aabb'), 8, '<code>permAlone(\"aabb\")</code> should return 8.');"
         },
         {
           "text": "<code>permAlone(\"abcdefa\")</code> should return 3600.",
-          "testString": "assert.strictEqual(permAlone('abcdefa'), 3600, '<code>permAlone(\"abcdefa\")</code> should return 3600.');"
+          "testString":
+            "assert.strictEqual(permAlone('abcdefa'), 3600, '<code>permAlone(\"abcdefa\")</code> should return 3600.');"
         },
         {
           "text": "<code>permAlone(\"abfdefa\")</code> should return 2640.",
-          "testString": "assert.strictEqual(permAlone('abfdefa'), 2640, '<code>permAlone(\"abfdefa\")</code> should return 2640.');"
+          "testString":
+            "assert.strictEqual(permAlone('abfdefa'), 2640, '<code>permAlone(\"abfdefa\")</code> should return 2640.');"
         },
         {
           "text": "<code>permAlone(\"zzzzzzzz\")</code> should return 0.",
-          "testString": "assert.strictEqual(permAlone('zzzzzzzz'), 0, '<code>permAlone(\"zzzzzzzz\")</code> should return 0.');"
+          "testString":
+            "assert.strictEqual(permAlone('zzzzzzzz'), 0, '<code>permAlone(\"zzzzzzzz\")</code> should return 0.');"
         },
         {
           "text": "<code>permAlone(\"a\")</code> should return 1.",
-          "testString": "assert.strictEqual(permAlone('a'), 1, '<code>permAlone(\"a\")</code> should return 1.');"
+          "testString":
+            "assert.strictEqual(permAlone('a'), 1, '<code>permAlone(\"a\")</code> should return 1.');"
         },
         {
           "text": "<code>permAlone(\"aaab\")</code> should return 0.",
-          "testString": "assert.strictEqual(permAlone('aaab'), 0, '<code>permAlone(\"aaab\")</code> should return 0.');"
+          "testString":
+            "assert.strictEqual(permAlone('aaab'), 0, '<code>permAlone(\"aaab\")</code> should return 0.');"
         },
         {
           "text": "<code>permAlone(\"aaabb\")</code> should return 12.",
-          "testString": "assert.strictEqual(permAlone('aaabb'), 12, '<code>permAlone(\"aaabb\")</code> should return 12.');"
+          "testString":
+            "assert.strictEqual(permAlone('aaabb'), 12, '<code>permAlone(\"aaabb\")</code> should return 12.');"
         }
       ],
-      "MDNlinks": [
-        "Permutations",
-        "RegExp"
-      ],
+      "MDNlinks": ["Permutations", "RegExp"],
       "challengeType": 5,
       "translations": {
         "es": {
@@ -335,29 +378,34 @@
       ],
       "tests": [
         {
-          "text": "<code>pairwise([1, 4, 2, 3, 0, 5], 7)</code> should return 11.",
-          "testString": "assert.deepEqual(pairwise([1, 4, 2, 3, 0, 5], 7), 11, '<code>pairwise([1, 4, 2, 3, 0, 5], 7)</code> should return 11.');"
+          "text":
+            "<code>pairwise([1, 4, 2, 3, 0, 5], 7)</code> should return 11.",
+          "testString":
+            "assert.deepEqual(pairwise([1, 4, 2, 3, 0, 5], 7), 11, '<code>pairwise([1, 4, 2, 3, 0, 5], 7)</code> should return 11.');"
         },
         {
           "text": "<code>pairwise([1, 3, 2, 4], 4)</code> should return 1.",
-          "testString": "assert.deepEqual(pairwise([1, 3, 2, 4], 4), 1, '<code>pairwise([1, 3, 2, 4], 4)</code> should return 1.');"
+          "testString":
+            "assert.deepEqual(pairwise([1, 3, 2, 4], 4), 1, '<code>pairwise([1, 3, 2, 4], 4)</code> should return 1.');"
         },
         {
           "text": "<code>pairwise([1, 1, 1], 2)</code> should return 1.",
-          "testString": "assert.deepEqual(pairwise([1, 1, 1], 2), 1, '<code>pairwise([1, 1, 1], 2)</code> should return 1.');"
+          "testString":
+            "assert.deepEqual(pairwise([1, 1, 1], 2), 1, '<code>pairwise([1, 1, 1], 2)</code> should return 1.');"
         },
         {
-          "text": "<code>pairwise([0, 0, 0, 0, 1, 1], 1)</code> should return 10.",
-          "testString": "assert.deepEqual(pairwise([0, 0, 0, 0, 1, 1], 1), 10, '<code>pairwise([0, 0, 0, 0, 1, 1], 1)</code> should return 10.');"
+          "text":
+            "<code>pairwise([0, 0, 0, 0, 1, 1], 1)</code> should return 10.",
+          "testString":
+            "assert.deepEqual(pairwise([0, 0, 0, 0, 1, 1], 1), 10, '<code>pairwise([0, 0, 0, 0, 1, 1], 1)</code> should return 10.');"
         },
         {
           "text": "<code>pairwise([], 100)</code> should return 0.",
-          "testString": "assert.deepEqual(pairwise([], 100), 0, '<code>pairwise([], 100)</code> should return 0.');"
+          "testString":
+            "assert.deepEqual(pairwise([], 100), 0, '<code>pairwise([], 100)</code> should return 0.');"
         }
       ],
-      "MDNlinks": [
-        "Array.prototype.reduce()"
-      ],
+      "MDNlinks": ["Array.prototype.reduce()"],
       "challengeType": 5,
       "translations": {
         "es": {
@@ -424,19 +472,26 @@
       "tests": [
         {
           "text": "<code>bubbleSort</code> is a function.",
-          "testString": "assert(typeof bubbleSort == 'function', '<code>bubbleSort</code> is a function.');"
+          "testString":
+            "assert(typeof bubbleSort == 'function', '<code>bubbleSort</code> is a function.');"
         },
         {
-          "text": "<code>bubbleSort</code> returns a sorted array (least to greatest).",
-          "testString": "assert(isSorted(bubbleSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>bubbleSort</code> returns a sorted array (least to greatest).');"
+          "text":
+            "<code>bubbleSort</code> returns a sorted array (least to greatest).",
+          "testString":
+            "assert(isSorted(bubbleSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>bubbleSort</code> returns a sorted array (least to greatest).');"
         },
         {
-          "text": "<code>bubbleSort</code> returns an array that is unchanged except for order.",
-          "testString": "assert.sameMembers(bubbleSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>bubbleSort</code> returns an array that is unchanged except for order.');"
+          "text":
+            "<code>bubbleSort</code> returns an array that is unchanged except for order.",
+          "testString":
+            "assert.sameMembers(bubbleSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>bubbleSort</code> returns an array that is unchanged except for order.');"
         },
         {
-          "text": "<code>bubbleSort</code> should not use the built-in <code>.sort()</code> method.",
-          "testString": "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>bubbleSort</code> should not use the built-in <code>.sort()</code> method.');"
+          "text":
+            "<code>bubbleSort</code> should not use the built-in <code>.sort()</code> method.",
+          "testString":
+            "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>bubbleSort</code> should not use the built-in <code>.sort()</code> method.');"
         }
       ],
       "solutions": [],
@@ -480,19 +535,26 @@
       "tests": [
         {
           "text": "<code>selectionSort</code> is a function.",
-          "testString": "assert(typeof selectionSort == 'function', '<code>selectionSort</code> is a function.');"
+          "testString":
+            "assert(typeof selectionSort == 'function', '<code>selectionSort</code> is a function.');"
         },
         {
-          "text": "<code>selectionSort</code> returns a sorted array (least to greatest).",
-          "testString": "assert(isSorted(selectionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>selectionSort</code> returns a sorted array (least to greatest).');"
+          "text":
+            "<code>selectionSort</code> returns a sorted array (least to greatest).",
+          "testString":
+            "assert(isSorted(selectionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>selectionSort</code> returns a sorted array (least to greatest).');"
         },
         {
-          "text": "<code>selectionSort</code> returns an array that is unchanged except for order.",
-          "testString": "assert.sameMembers(selectionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>selectionSort</code> returns an array that is unchanged except for order.');"
+          "text":
+            "<code>selectionSort</code> returns an array that is unchanged except for order.",
+          "testString":
+            "assert.sameMembers(selectionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>selectionSort</code> returns an array that is unchanged except for order.');"
         },
         {
-          "text": "<code>selectionSort</code> should not use the built-in <code>.sort()</code> method.",
-          "testString": "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>selectionSort</code> should not use the built-in <code>.sort()</code> method.');"
+          "text":
+            "<code>selectionSort</code> should not use the built-in <code>.sort()</code> method.",
+          "testString":
+            "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>selectionSort</code> should not use the built-in <code>.sort()</code> method.');"
         }
       ],
       "solutions": [],
@@ -536,19 +598,26 @@
       "tests": [
         {
           "text": "<code>insertionSort</code> is a function.",
-          "testString": "assert(typeof insertionSort == 'function', '<code>insertionSort</code> is a function.');"
+          "testString":
+            "assert(typeof insertionSort == 'function', '<code>insertionSort</code> is a function.');"
         },
         {
-          "text": "<code>insertionSort</code> returns a sorted array (least to greatest).",
-          "testString": "assert(isSorted(insertionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>insertionSort</code> returns a sorted array (least to greatest).');"
+          "text":
+            "<code>insertionSort</code> returns a sorted array (least to greatest).",
+          "testString":
+            "assert(isSorted(insertionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>insertionSort</code> returns a sorted array (least to greatest).');"
         },
         {
-          "text": "<code>insertionSort</code> returns an array that is unchanged except for order.",
-          "testString": "assert.sameMembers(insertionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>insertionSort</code> returns an array that is unchanged except for order.');"
+          "text":
+            "<code>insertionSort</code> returns an array that is unchanged except for order.",
+          "testString":
+            "assert.sameMembers(insertionSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>insertionSort</code> returns an array that is unchanged except for order.');"
         },
         {
-          "text": "<code>insertionSort</code> should not use the built-in <code>.sort()</code> method.",
-          "testString": "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>insertionSort</code> should not use the built-in <code>.sort()</code> method.');"
+          "text":
+            "<code>insertionSort</code> should not use the built-in <code>.sort()</code> method.",
+          "testString":
+            "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>insertionSort</code> should not use the built-in <code>.sort()</code> method.');"
         }
       ],
       "solutions": [],
@@ -593,19 +662,26 @@
       "tests": [
         {
           "text": "<code>quickSort</code> is a function.",
-          "testString": "assert(typeof quickSort == 'function', '<code>quickSort</code> is a function.');"
+          "testString":
+            "assert(typeof quickSort == 'function', '<code>quickSort</code> is a function.');"
         },
         {
-          "text": "<code>quickSort</code> returns a sorted array (least to greatest).",
-          "testString": "assert(isSorted(quickSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>quickSort</code> returns a sorted array (least to greatest).');"
+          "text":
+            "<code>quickSort</code> returns a sorted array (least to greatest).",
+          "testString":
+            "assert(isSorted(quickSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>quickSort</code> returns a sorted array (least to greatest).');"
         },
         {
-          "text": "<code>quickSort</code> returns an array that is unchanged except for order.",
-          "testString": "assert.sameMembers(quickSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>quickSort</code> returns an array that is unchanged except for order.');"
+          "text":
+            "<code>quickSort</code> returns an array that is unchanged except for order.",
+          "testString":
+            "assert.sameMembers(quickSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>quickSort</code> returns an array that is unchanged except for order.');"
         },
         {
-          "text": "<code>quickSort</code> should not use the built-in <code>.sort()</code> method.",
-          "testString": "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>quickSort</code> should not use the built-in <code>.sort()</code> method.');"
+          "text":
+            "<code>quickSort</code> should not use the built-in <code>.sort()</code> method.",
+          "testString":
+            "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>quickSort</code> should not use the built-in <code>.sort()</code> method.');"
         }
       ],
       "solutions": [],
@@ -653,19 +729,26 @@
       "tests": [
         {
           "text": "<code>mergeSort</code> is a function.",
-          "testString": "assert(typeof mergeSort == 'function', '<code>mergeSort</code> is a function.');"
+          "testString":
+            "assert(typeof mergeSort == 'function', '<code>mergeSort</code> is a function.');"
         },
         {
-          "text": "<code>mergeSort</code> returns a sorted array (least to greatest).",
-          "testString": "assert(isSorted(mergeSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>mergeSort</code> returns a sorted array (least to greatest).');"
+          "text":
+            "<code>mergeSort</code> returns a sorted array (least to greatest).",
+          "testString":
+            "assert(isSorted(mergeSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92])), '<code>mergeSort</code> returns a sorted array (least to greatest).');"
         },
         {
-          "text": "<code>mergeSort</code> returns an array that is unchanged except for order.",
-          "testString": "assert.sameMembers(mergeSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>mergeSort</code> returns an array that is unchanged except for order.');"
+          "text":
+            "<code>mergeSort</code> returns an array that is unchanged except for order.",
+          "testString":
+            "assert.sameMembers(mergeSort([1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92]), [1,4,2,8,345,123,43,32,5643,63,123,43,2,55,1,234,92], '<code>mergeSort</code> returns an array that is unchanged except for order.');"
         },
         {
-          "text": "<code>mergeSort</code> should not use the built-in <code>.sort()</code> method.",
-          "testString": "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>mergeSort</code> should not use the built-in <code>.sort()</code> method.');"
+          "text":
+            "<code>mergeSort</code> should not use the built-in <code>.sort()</code> method.",
+          "testString":
+            "assert.strictEqual(code.search(/\\.sort\\(/), -1, '<code>mergeSort</code> should not use the built-in <code>.sort()</code> method.');"
         }
       ],
       "solutions": [],

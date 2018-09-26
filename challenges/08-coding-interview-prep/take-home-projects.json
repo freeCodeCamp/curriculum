@@ -1,4 +1,5 @@
 {
+  "id": "5b8cfee0499ca42ed032c1f5",
   "name": "Take Home Projects",
   "order": 4,
   "time": "",
@@ -548,7 +549,8 @@
       "challengeType": 3,
       "translations": {
         "es": {
-          "title": "Muestra asociaciones utilizando un gráfico de fuerzas dirigidas",
+          "title":
+            "Muestra asociaciones utilizando un gráfico de fuerzas dirigidas",
           "description": [
             "<strong>Objetivo:</strong> Construye una aplicación en <a href='https://codepen.io' target='_blank'>CodePen.io</a> que funcione de forma similar al siguiente ejemplo: <a href='https://codepen.io/freeCodeCamp/full/KVNNXY' target='_blank'>https://codepen.io/freeCodeCamp/full/KVNNXY</a>.",
             "<strong>Regla #1:</strong> No veas el código del proyecto de ejemplo. Encuentra la forma de hacerlo por tu cuenta.",
@@ -759,7 +761,8 @@
         "<strong>User Story:</strong> As an authenticated user, if I don't like the options on a poll, I can create a new option.",
         "Once you've finished implementing these user stories, click the \"I've completed this challenge\" button and enter the URLs for both your GitHub repository and your live app running on Heroku.",
         "You can get feedback on your project by sharing it with your friends on Facebook."
-      ],"tests": [],
+      ],
+      "tests": [],
       "challengeType": 4,
       "isRequired": true,
       "translations": {
@@ -823,7 +826,8 @@
       "isRequired": false
     }
   ],
-  "fileName": "08-coding-interview-questions-and-take-home-assignments/take-home-interview-projects.json",
+  "fileName":
+    "08-coding-interview-questions-and-take-home-assignments/take-home-interview-projects.json",
   "superBlock": "coding-interview-questions-and-take-home-assignments",
   "superOrder": 8
 }
