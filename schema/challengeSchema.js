@@ -29,6 +29,7 @@ const schema = Joi.object().keys({
     })
   ),
   guideUrl: Joi.string().uri({ scheme: 'https' }),
+  videoUrl: Joi.string().allow(''),
   helpRoom: Joi.string(),
   id: Joi.objectId().required(),
   isBeta: Joi.bool(),
@@ -46,7 +47,6 @@ const schema = Joi.object().keys({
       crossDomain: Joi.bool()
     })
   ),
-  releasedOn: Joi.string().allow(''),
   solutions: Joi.array().items(Joi.string().optional()),
   superBlock: Joi.string(),
   superOrder: Joi.number(),
@@ -67,14 +67,7 @@ const schema = Joi.object().keys({
   ),
   template: Joi.string(),
   time: Joi.string().allow(''),
-  title: Joi.string().required(),
-  translations: Joi.object().pattern(
-    /\w+(-\w+)*/,
-    Joi.object().keys({
-      title: Joi.string(),
-      description: Joi.array().items(Joi.string().allow(''))
-    })
-  )
+  title: Joi.string().required()
 });
 
 exports.validateChallenge = function validateChallenge(challenge) {
