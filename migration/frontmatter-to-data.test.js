@@ -1,7 +1,7 @@
 /* global describe it expect beforeEach */
 const { isObject } = require('lodash');
 
-const mockAST = require('./fixtures/frontmatter-challenge-md-ast.json');
+const mockAST = require('./fixtures/challenge-md-ast.json');
 const frontmatterToData = require('./frontmatter-to-data');
 
 describe('frontmatter-to-data plugin', () => {

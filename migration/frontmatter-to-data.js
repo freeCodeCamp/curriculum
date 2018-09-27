@@ -1,37 +1,18 @@
-var visit = require('unist-util-visit');
+const visit = require('unist-util-visit');
+const YAML = require('js-yaml');
 
-module.exports = attacher;
-
-// Use these handlers to  maintain types
-const protectedTypesHandlers = {
-  challengeType: x => parseInt(x, 10)
-};
-
-function attacher() {
+function plugin() {
   return transformer;
 
   function transformer(tree, file) {
     visit(tree, 'yaml', visitor);
 
     function visitor(node) {
-      return node.value
-        .split('\n')
-        .map(str => {
-          const [key, value] = str.split(/:(.+)/);
-          const protectedValue =
-            key in protectedTypesHandlers
-              ? protectedTypesHandlers[key](value)
-              : value;
-          return {
-            [key.trim()]:
-              typeof protectedValue === 'string'
-                ? protectedValue.trim()
-                : protectedValue
-          };
-        })
-        .forEach(data => {
-          file.data = { ...file.data, ...data };
-        });
+      const frontmatter = YAML.load(node.value);
+
+      file.data = { ...file.data, ...frontmatter };
     }
   }
 }
+
+module.exports = plugin;
