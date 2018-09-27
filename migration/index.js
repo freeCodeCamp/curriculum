@@ -9,11 +9,13 @@ const raw = require('rehype-raw');
 
 const frontmatterToData = require('./frontmatter-to-data');
 const textToData = require('./text-to-data');
+const testsToData = require('./tests-to-data');
 
 const processor = unified()
   .use(markdown)
   .use(frontmatter, ['yaml'])
   .use(frontmatterToData)
+  .use(testsToData)
   .use(remark2rehype, { allowDangerousHTML: true })
   .use(raw)
   .use(textToData, ['description', 'instructions'])
@@ -26,5 +28,5 @@ processor.process(vfile.readSync('maybe.md'), function(err, file) {
     throw err;
   }
   console.error(report(file));
-  console.log(file);
+  console.log(JSON.stringify(file.data, null, 2));
 });
