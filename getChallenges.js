@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const omit = require('lodash/omit');
 
-const hiddenFile = /(^(\.|\/\.))|(.md$)/g;
+const hiddenFile = /(^(\.|\/\.))|(.md$)|(~$)/g;
 
 function getFilesFor(dir) {
   let targetDir = path.join(__dirname, dir);
@@ -50,7 +50,12 @@ module.exports = function getChallenges(challengesDir, unpackFlag) {
     challengesDir = 'challenges';
   }
   return getFilesFor(challengesDir).map(function(data) {
-    const challengeSpec = require('./' + challengesDir + '/' + data.file);
+    // During development, challenge files are often read multiple times.
+    // As a result, rather than clear the require cache we read them directly.
+    const rawChallenge = fs.readFileSync(
+      path.join(__dirname, challengesDir, data.file)
+    );
+    const challengeSpec = JSON.parse(rawChallenge);
     let superInfo = superblockInfo(data.superBlock);
     challengeSpec.fileName = data.file;
     challengeSpec.superBlock = superInfo.name;
